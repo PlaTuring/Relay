@@ -75,11 +75,6 @@ a6ad3dd611411536cd80efda94aeb7947fbfe93c9d5eb050016dde8d5a293efa
 
 ## 安全与产品边界
 
-> [!WARNING]
-> Relay 1.0 当前未使用 Authenticode 代码签名。Windows SmartScreen 可能显示“未知发布者”或阻止首次运行。请只从 `PlaTuring/Relay` 的官方 GitHub Release 下载。SHA-256 只能确认文件完整性，不能证明发布者身份，也不能替代 Authenticode。
-
-Relay **不会点击 Run、不会调用 `/prompt`、不会提交 ComfyUI 队列，也不会替用户生成视频或音频**。只有用户在 ComfyUI 中检查工作流并亲自点击 Run 后，MiniMax H3 才会生成视频与原生音频。
-
 - 不后台检查更新，不静默下载，也绝不自动执行安装程序。
 - 不添加云端生成 API，不隐藏上传用户项目、素材或提示词。
 - 外部已有 ComfyUI 和模型默认只读复用，不移动、不覆盖、不删除。
