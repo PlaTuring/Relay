@@ -18,6 +18,6 @@
   <g transform="translate(720 104)" font-family="Inter,Segoe UI,sans-serif"><path d="M114 54h46m114 0h46" stroke="#78a7f4" stroke-width="3"/><path d="m152 47 10 7-10 7m160-14 10 7-10 7" fill="none" stroke="#3b82f6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
     <g fill="#fff" stroke="#cbd5e1"><rect width="114" height="108" rx="18"/><rect x="160" width="114" height="108" rx="18" stroke="#76a5f1"/><rect x="320" width="114" height="108" rx="18"/></g>
     <g text-anchor="middle" font-size="14" font-weight="700"><text x="57" y="62" fill="#334155">PROJECT</text><text x="217" y="62" fill="#1e40af">RELAY</text><text x="377" y="62" fill="#334155">COMFYUI</text></g>
-    <circle cx="57" cy="30" r="8" fill="#93c5fd"/><circle cx="217" cy="30" r="8" fill="#2563eb"/><circle cx="377" cy="30" r="8" fill="#34d399"/><text x="217" y="142" text-anchor="middle" fill="#64748b" font-size="15">You choose when to click Run.</text>
+    <circle cx="57" cy="30" r="8" fill="#93c5fd"/><circle cx="217" cy="30" r="8" fill="#2563eb"/><circle cx="377" cy="30" r="8" fill="#34d399"/>
   </g>
 </svg>
