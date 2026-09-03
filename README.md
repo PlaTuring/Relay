@@ -26,7 +26,9 @@
 </p>
 
 > [!IMPORTANT]
-> **当前正式版本是 Relay 1.0.1。** 内部版本号和界面显示均为 `1.0.1`，GitHub Release 标签为 [`v1.0.1`](https://github.com/PlaTuring/Relay/releases/tag/v1.0.1)。支持 Windows 10 / 11 x64。
+> **当前正式版本是 Relay 1.0.1。** 产品界面沿用“Relay 1.0”主版本标识，内部更新版本为 `1.0.1`，GitHub Release 标签为 [`v1.0.1`](https://github.com/PlaTuring/Relay/releases/tag/v1.0.1)。支持 Windows 10 / 11 x64。
+
+> **1.0.1 热修复提示：** 2026-09-04 之前下载过 1.0.1 的用户，请从同一 Release 重新下载安装。此次修复保持版本号不变，已安装的旧 1.0.1 无法仅靠版本比较识别新的构建。
 
 ## Relay 是什么
 
@@ -69,7 +71,7 @@ Get-FileHash .\Relay-1.0.1-x64-Setup.exe -Algorithm SHA256
 预期 SHA-256：
 
 ```text
-641330af9f61c908781df9a766954b3eff4acc0eff54b4f19996160c1040a607
+0b7d39cfb7edec8804e6cca25c712500748a0654a8b33458e9480a15af09db30
 ```
 
 ## 本地数据与生成结果
@@ -95,3 +97,4 @@ Relay Logo 与品牌用于软件界面和项目介绍。
 ---
 
 <p align="center">本仓库用于 Relay 的产品介绍与官方二进制 Release。</p>
+
