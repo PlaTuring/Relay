@@ -9,11 +9,28 @@
   <img alt="Windows 10 / 11 x64" src="https://img.shields.io/badge/Windows-10%20%7C%2011%20x64-0078D4?style=flat-square&logo=windows11&logoColor=white">
   <img alt="Local first" src="https://img.shields.io/badge/data-local--first-0F766E?style=flat-square">
   <img alt="Apache 2.0" src="https://img.shields.io/badge/license-Apache--2.0-0F766E?style=flat-square">
+  <a href="https://github.com/PlaTuring/Relay/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/PlaTuring/Relay/actions/workflows/ci.yml/badge.svg"></a>
 </p>
 
 <p align="center"><strong>准备本机环境，管理项目与素材，编译可编辑工作流，再清楚地交接给 ComfyUI。</strong></p>
 
-## 功能概览
+<p align="center">
+  <a href="https://github.com/PlaTuring/Relay/releases/download/v1.0.2/Relay-1.0.2-x64-Setup.exe"><strong>下载 Windows 安装包</strong></a>
+  · <a href="https://github.com/PlaTuring/Relay/releases/tag/v1.0.2">查看 1.0.2 发布说明</a>
+  · <a href="#从源码构建">从源码构建</a>
+</p>
+
+> **当前稳定版：Relay 1.0.2** · 支持 Windows 10 / 11 x64 · 正式 Release 仅提供 Setup 安装包。
+
+## 界面导览
+
+<p align="center">
+  <img src="./docs/images/relay-workspace-overview.svg" alt="Relay 1.0.2 专业导播工作区界面导览" width="100%">
+</p>
+
+<p align="center"><sub>无用户数据的界面导览示意：项目设置、镜头编排、工作流参数与 ComfyUI 交接检查。</sub></p>
+
+## Relay 是什么
 
 Relay 是面向 Windows 10 / 11 x64 的本地安装配置器、项目与素材管理器，
 也是 MiniMax H3 的确定性 ComfyUI 工作流编译器。它把环境检测、受管组件
@@ -22,6 +39,19 @@ Relay 是面向 Windows 10 / 11 x64 的本地安装配置器、项目与素材�
 ```text
 项目与素材  →  Relay 确定性编译  →  ComfyUI 可编辑工作流
 ```
+
+| 本机准备 | 工作流编排 | 清晰交接 |
+| --- | --- | --- |
+| 检测并复用兼容的 ComfyUI 与 H3 组件，缺失项可安装到用户选择的数据目录。 | 管理项目、素材、镜头、连续性、种子和 T2V / FL2VA / Ref2VA 参数。 | 生成可检查、可修改的 ComfyUI 工作流，并在交接前完成确定性校验。 |
+
+## 使用流程
+
+1. **准备环境**：选择本机数据目录，检测或安装所需的 ComfyUI 与 H3 组件。
+2. **组织项目**：在快速创建或专业导播中配置提示词、素材、镜头与输出参数。
+3. **编译交接**：由 Relay 校验并打开可编辑工作流，再由用户在 ComfyUI 中明确启动执行。
+4. **查看结果**：`SaveVideo` 完成写盘后，Relay 在当前项目的安全输出范围内发现并校验视频。
+
+## 主要工作区
 
 | 工作区 | 功能 |
 | --- | --- |
@@ -43,10 +73,25 @@ Relay 只负责安装、检测、配置、项目与素材管理、确定性工�
 模型、种子和输出设置。Relay 不提供云端推理后端，也不会把项目、素材或
 提示词隐藏上传到云端。
 
-## 安装与本地数据
+## 安装
 
-正式安装包位于 [GitHub Releases](https://github.com/PlaTuring/Relay/releases)。
+从 [Relay 1.0.2 Release](https://github.com/PlaTuring/Relay/releases/tag/v1.0.2)
+下载 [`Relay-1.0.2-x64-Setup.exe`](https://github.com/PlaTuring/Relay/releases/download/v1.0.2/Relay-1.0.2-x64-Setup.exe)。
 GitHub 自动生成的 Source code 压缩包是源码快照，不是 Windows 安装程序。
+
+下载后可在 PowerShell 中核对文件完整性：
+
+```powershell
+Get-FileHash .\Relay-1.0.2-x64-Setup.exe -Algorithm SHA256
+```
+
+预期 SHA-256：
+
+```text
+345b32283cd77b989eae92b4cf96c929378ff52a19847ccfff3e0aca5a57a7fe
+```
+
+## 本地数据与结果
 
 Relay 将项目、素材、模型、工作流、恢复数据、下载和日志保存在选定的
 `dataRoot` 中。首次配置默认建议使用受支持的本机固定 NTFS 数据盘，例如
@@ -56,6 +101,18 @@ Relay 将项目、素材、模型、工作流、恢复数据、下载和日志�
 ComfyUI 完成 `SaveVideo` 写盘后，Relay 只扫描当前项目已交接工作流的安全
 输出前缀。文件通过稳定性、类型、摘要和媒体检查后才出现在“视频成品”中。
 只有显式选择“加入素材库”才会复制并校验项目副本，原始输出保持不变。
+
+## 项目结构
+
+| 路径 | 内容 |
+| --- | --- |
+| `apps/control-plane` | Relay Electron 桌面控制面与 Windows 打包配置。 |
+| `packages/detection` | 本机硬件、ComfyUI 与模型的只读检测能力。 |
+| `packages/installer` | 受管组件安装、校验和恢复流程。 |
+| `packages/workflow` | MiniMax H3 工作流解析、校验和确定性编译。 |
+| `packages/local-runtime` | 本地运行时编排与受限 IPC 合同。 |
+| `native/` | Windows 本机 helper 与受限系统操作适配。 |
+| `schemas/` | 项目、组件、能力目录及工作流的版本化契约。 |
 
 ## 从源码构建
 
