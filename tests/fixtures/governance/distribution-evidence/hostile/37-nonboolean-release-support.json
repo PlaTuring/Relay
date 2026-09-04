@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"37-nonboolean-release-support","base":"../index.valid.json","mutations":[{"op":"replace","path":"/release_candidate/supports_external_distribution","value":"false"}],"expected":{"code":"SHAPE.INVALID_BOOLEAN","instance_path":"/release_candidate/supports_external_distribution","rule_id":"DIST-REL-003"}}

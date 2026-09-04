@@ -1,0 +1,10 @@
+{
+  "fixture_id": "disclosure-disables-h3",
+  "mutation": {
+    "kind": "append_layer_relation",
+    "layer_id": "ai_generated_disclosure",
+    "field": "may_disable",
+    "target_layer_id": "minimax_h3_attribution"
+  },
+  "expected_code": "LAYER.DISABLEMENT_FORBIDDEN"
+}

@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"publisher-must-be-explicit","base":"valid/component-role-examples.json","mutations":[{"op":"remove","path":"/components/0/provenance/publisher"}],"expected":{"code":"COMPONENT.PUBLISHER_REQUIRED","instance_path":"/components/0/provenance/publisher","rule_id":"component.provenance.publisher_required"}}

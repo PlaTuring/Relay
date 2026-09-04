@@ -1,0 +1,18 @@
+{
+  "name": "@minimax-h3-tool/media-capability",
+  "version": "0.1.0-alpha.0",
+  "private": true,
+  "description": "Read-only PyAV and private/ambient FFmpeg capability observation.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "node tests/run-tests.mjs",
+    "typecheck": "node ../../../apps/control-plane/node_modules/typescript/bin/tsc -p tsconfig.json --noEmit"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  }
+}

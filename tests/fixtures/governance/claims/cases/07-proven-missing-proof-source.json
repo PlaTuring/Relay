@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"proven-requires-repeatable-proof-source","mutations":[{"op":"remove","path":"/records/0/evidence/source_refs/0"}],"expected":{"code":"CLAIM.PROVEN_REQUIRES_REPEATABLE_SOURCE","instance_path":"/records/0/evidence/source_refs","rule_id":"claim.evidence.proven.repeatable_direct"}}

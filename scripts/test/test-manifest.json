@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "tests": [
+    {
+      "id": "component-manifest-contract",
+      "lane": "fast",
+      "kind": "contract",
+      "required": true,
+      "adapter": "node_script",
+      "script": "tests/fixtures/contracts/component/validate.mjs",
+      "args": [],
+      "timeout_ms": 60000,
+      "max_output_bytes": 262144
+    },
+    {
+      "id": "capability-catalog-contract",
+      "lane": "fast",
+      "kind": "contract",
+      "required": true,
+      "adapter": "node_script",
+      "script": "tests/fixtures/contracts/capability/validate.mjs",
+      "args": [],
+      "timeout_ms": 60000,
+      "max_output_bytes": 262144
+    },
+    {
+      "id": "capability-snapshot-contract",
+      "lane": "fast",
+      "kind": "contract",
+      "required": true,
+      "adapter": "node_script",
+      "script": "prototypes/phase0/capability-snapshot/validate-snapshot.mjs",
+      "args": [],
+      "timeout_ms": 15000,
+      "max_output_bytes": 32768
+    },
+    {
+      "id": "no-self-update-policy",
+      "lane": "fast",
+      "kind": "policy",
+      "required": true,
+      "adapter": "node_script",
+      "script": "prototypes/phase0/no-self-update/test-policy.mjs",
+      "args": [],
+      "timeout_ms": 60000,
+      "max_output_bytes": 131072
+    },
+    {
+      "id": "qa-runner-contract",
+      "lane": "fast",
+      "kind": "runner",
+      "required": true,
+      "adapter": "node_test",
+      "script": "tests/runner/runner.test.mjs",
+      "args": [],
+      "timeout_ms": 60000,
+      "max_output_bytes": 262144
+    }
+  ]
+}

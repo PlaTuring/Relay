@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "1.0.0",
+  "managedRootCases": [
+    {
+      "name": "unicode-space-non-system",
+      "candidate": "D:\\MiniMax H3\\模型 Ω",
+      "systemDrive": "C:",
+      "expected": {
+        "accepted": true,
+        "displayPath": "D:\\MiniMax H3\\模型 Ω",
+        "drive": "D:",
+        "isSystemDrive": false,
+        "containsSpaces": true,
+        "containsUnicode": true
+      }
+    },
+    {
+      "name": "explicit-system-drive",
+      "candidate": "C:\\MiniMaxH3",
+      "systemDrive": "C:",
+      "expected": {
+        "accepted": true,
+        "displayPath": "C:\\MiniMaxH3",
+        "drive": "C:",
+        "isSystemDrive": true,
+        "containsSpaces": false,
+        "containsUnicode": false
+      }
+    },
+    {
+      "name": "relative-rejected",
+      "candidate": "MiniMaxH3\\models",
+      "systemDrive": "C:",
+      "expected": {
+        "accepted": false
+      }
+    },
+    {
+      "name": "unc-rejected",
+      "candidate": "\\\\server\\share\\MiniMaxH3",
+      "systemDrive": "C:",
+      "expected": {
+        "accepted": false
+      }
+    },
+    {
+      "name": "device-namespace-rejected",
+      "candidate": "\\\\?\\D:\\MiniMaxH3",
+      "systemDrive": "C:",
+      "expected": {
+        "accepted": false
+      }
+    }
+  ],
+  "suggestionCases": [
+    {
+      "name": "supported-d",
+      "supportedDrives": ["D:"],
+      "expected": "D:\\MiniMaxH3"
+    },
+    {
+      "name": "no-supported-d",
+      "supportedDrives": [],
+      "expected": null
+    }
+  ],
+  "childLabels": [
+    "路径 含空格 Ω #1",
+    "路径 含空格 Ω #2",
+    "路径 含空格 Ω #3",
+    "路径 含空格 Ω #4",
+    "路径 含空格 Ω #5"
+  ]
+}
+

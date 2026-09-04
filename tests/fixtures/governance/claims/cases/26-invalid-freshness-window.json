@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"expiry-must-follow-observation","mutations":[{"op":"replace","path":"/records/0/evidence/freshness/expires_at_utc","value":"2026-08-25T00:00:00.000Z"}],"expected":{"code":"CLAIM.INVALID_FRESHNESS_WINDOW","instance_path":"/records/0/evidence/freshness/expires_at_utc","rule_id":"claim.freshness.expires_after_observed"}}

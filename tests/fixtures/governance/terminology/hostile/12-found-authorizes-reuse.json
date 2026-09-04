@@ -1,0 +1,1 @@
+{"fixture_version":"1.0.0","fixture_id":"found-authorizes-reuse","target":"glossary","mutation":{"kind":"set_model_state_field","state":"found","field":"reuse_authorized","value":true},"expected":{"code":"TERM.MODEL_STATE.SEMANTIC_DRIFT","rule_id":"terminology.model_lifecycle.no_discovery_promotion"}}

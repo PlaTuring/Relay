@@ -1,0 +1,280 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:minimax-h3-tool:schema:alpha-recipe:1.0.0",
+  "title": "MiniMax H3 Tool minimal Alpha recipe",
+  "description": "Immutable authority for one non-runnable Alpha-0 profile. It grants no download, execution, queue or media-generation authority.",
+  "type": "object",
+  "x-primary-trust-class": "immutable_authority",
+  "additionalProperties": false,
+  "required": ["contract_id", "schema_version", "document_id", "document_revision", "recipe_id", "recipe_version", "authority", "source_bindings", "profile", "disposition", "integrity"],
+  "properties": {
+    "contract_id": {"const": "minimax-h3-tool.alpha-recipe", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.envelope.contract_id"},
+    "schema_version": {"const": "1.0.0", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.envelope.schema_version"},
+    "document_id": {"$ref": "#/$defs/uuid_v4", "x-sensitive": "public", "x-trust-impact": ["artifact"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.envelope.document_id"},
+    "document_revision": {"const": 1, "x-sensitive": "public", "x-trust-impact": ["artifact"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.envelope.document_revision"},
+    "recipe_id": {"const": "alpha0-t2va-5s-poc", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.identity.recipe_id"},
+    "recipe_version": {"const": "1.0.0", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.identity.recipe_version"},
+    "authority": {"$ref": "#/$defs/authority", "x-sensitive": "public", "x-trust-impact": ["execution", "ownership", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.authority.exact"},
+    "source_bindings": {"$ref": "#/$defs/source_bindings", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.sources.exact"},
+    "profile": {"$ref": "#/$defs/profile", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.profile.exact"},
+    "extensions": {"$ref": "#/$defs/extensions", "description": "Omitted means no display-only metadata is preserved.", "x-sensitive": "internal", "x-trust-impact": ["display"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.extensions.display_only"},
+    "disposition": {"$ref": "#/$defs/disposition", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.disposition.active"},
+    "integrity": {"$ref": "#/$defs/integrity", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.integrity.exact"}
+  },
+  "$defs": {
+    "uuid_v4": {"type": "string", "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$", "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.type.uuid_v4"},
+    "sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$", "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.type.sha256"},
+    "git_revision": {"type": "string", "pattern": "^[0-9a-f]{40}$", "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.type.git_revision"},
+    "reason_code": {"type": "string", "minLength": 3, "maxLength": 96, "pattern": "^[A-Z][A-Z0-9_]*(?:\\.[A-Z][A-Z0-9_]*)+$", "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.type.reason_code"},
+    "authority": {
+      "type": "object", "additionalProperties": false,
+      "required": ["publisher", "immutability", "product_boundary", "authority_effect", "grants"],
+      "properties": {
+        "publisher": {"const": "minimax_h3_tool_release", "x-sensitive": "public", "x-trust-impact": ["artifact"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.authority.publisher"},
+        "immutability": {"const": "replace_with_new_document", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.authority.immutability"},
+        "product_boundary": {"const": "compile_and_handoff_only_user_runs_h3_in_comfyui", "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.authority.product_boundary"},
+        "authority_effect": {"const": "data_only_no_action_authority", "x-sensitive": "public", "x-trust-impact": ["execution", "ownership", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.authority.data_only"},
+        "grants": {"$ref": "#/$defs/grants", "x-sensitive": "public", "x-trust-impact": ["execution", "ownership", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.authority.grants_none"}
+      },
+      "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.authority.closed"
+    },
+    "grants": {
+      "type": "object", "additionalProperties": false,
+      "required": ["download", "materialization", "execution", "ownership", "deletion", "launch", "queue_submission"],
+      "properties": {
+        "download": {"const": false, "x-sensitive": "public", "x-trust-impact": ["artifact"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.grants.download_false"},
+        "materialization": {"const": false, "x-sensitive": "public", "x-trust-impact": ["ownership", "artifact"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.grants.materialization_false"},
+        "execution": {"const": false, "x-sensitive": "public", "x-trust-impact": ["execution"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.grants.execution_false"},
+        "ownership": {"const": false, "x-sensitive": "public", "x-trust-impact": ["ownership"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.grants.ownership_false"},
+        "deletion": {"const": false, "x-sensitive": "public", "x-trust-impact": ["ownership"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.grants.deletion_false"},
+        "launch": {"const": false, "x-sensitive": "public", "x-trust-impact": ["execution"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.grants.launch_false"},
+        "queue_submission": {"const": false, "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.grants.queue_false"}
+      },
+      "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.grants.closed"
+    },
+    "document_ref": {
+      "type": "object", "additionalProperties": false,
+      "required": ["contract_id", "schema_version", "schema_id", "schema_content_sha256", "source_document_id", "source_document_revision", "source_content_sha256"],
+      "properties": {
+        "contract_id": {"enum": ["minimax-h3-tool.capability-catalog", "minimax-h3-tool.node-allowlist", "minimax-h3-tool.component-manifest"], "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.ref.contract_id"},
+        "schema_version": {"const": "1.0.0", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.ref.schema_version"},
+        "schema_id": {"type": "string", "minLength": 32, "maxLength": 128, "pattern": "^urn:minimax-h3-tool:schema:[a-z-]+:1\\.0\\.0$", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.ref.schema_id"},
+        "schema_content_sha256": {"$ref": "#/$defs/sha256", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.ref.schema_digest"},
+        "source_document_id": {"$ref": "#/$defs/uuid_v4", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.ref.document_id"},
+        "source_document_revision": {"const": 1, "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.ref.document_revision"},
+        "source_content_sha256": {"$ref": "#/$defs/sha256", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.ref.document_digest"}
+      },
+      "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.ref.closed"
+    },
+    "source_bindings": {
+      "type": "object", "additionalProperties": false,
+      "required": ["capability_catalog", "node_allowlist", "component_manifest"],
+      "properties": {
+        "capability_catalog": {"$ref": "#/$defs/document_ref", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.sources.capability"},
+        "node_allowlist": {"$ref": "#/$defs/document_ref", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.sources.nodes"},
+        "component_manifest": {"$ref": "#/$defs/document_ref", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.sources.components"}
+      },
+      "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.sources.closed"
+    },
+    "profile": {
+      "type": "object", "additionalProperties": false,
+      "required": ["profile_id", "publication_status", "runnable", "selectable", "reason_codes", "capability", "control_plane", "nodes", "components", "models", "legal", "hardware", "output"],
+      "properties": {
+        "profile_id": {"const": "alpha0-t2va-5s-nonempty", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.profile.id"},
+        "publication_status": {"const": "poc_pending", "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.profile.status_pending"},
+        "runnable": {"const": false, "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.profile.runnable_false"},
+        "selectable": {"const": false, "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.profile.selectable_false"},
+        "reason_codes": {"const": ["RECIPE.CAPABILITY_POC_PENDING", "RECIPE.NODE_RUNTIME_POC_PENDING", "RECIPE.COMPONENTS_BLOCKED", "RECIPE.BACKEND_COMPONENT_MISSING", "RECIPE.MODEL_COMPONENTS_MISSING", "RECIPE.LICENSE_APPROVAL_PENDING", "RECIPE.HARDWARE_CERTIFICATION_PENDING", "RECIPE.OUTPUT_POC_PENDING"], "x-sensitive": "public", "x-trust-impact": ["display", "execution"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.profile.reasons"},
+        "capability": {"$ref": "#/$defs/capability_binding", "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.profile.capability"},
+        "control_plane": {"$ref": "#/$defs/control_plane", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.profile.control_plane"},
+        "nodes": {"type": "array", "minItems": 4, "maxItems": 4, "items": {"$ref": "#/$defs/node_binding", "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.profile.node_item"}, "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.profile.nodes"},
+        "components": {"$ref": "#/$defs/component_set", "x-sensitive": "public", "x-trust-impact": ["execution", "ownership", "artifact"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.profile.components"},
+        "models": {"$ref": "#/$defs/model_set", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.profile.models"},
+        "legal": {"$ref": "#/$defs/legal", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.profile.legal"},
+        "hardware": {"$ref": "#/$defs/hardware", "x-sensitive": "public", "x-trust-impact": ["observation", "execution"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.profile.hardware"},
+        "output": {"$ref": "#/$defs/output", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.profile.output"}
+      },
+      "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.profile.closed"
+    },
+    "capability_binding": {
+      "type": "object", "additionalProperties": false,
+      "required": ["capability_id", "publication_status", "evidence_status", "disposition"],
+      "properties": {
+        "capability_id": {"const": "alpha0-t2va-5s-nonempty", "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.capability.id"},
+        "publication_status": {"const": "poc_pending", "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.capability.status"},
+        "evidence_status": {"const": "proven", "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.capability.evidence"},
+        "disposition": {"const": "active", "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.capability.disposition"}
+      },
+      "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.capability.closed"
+    },
+    "control_plane": {
+      "type": "object", "additionalProperties": false,
+      "required": ["topology", "app_id", "app_version", "app_build_id", "backend_origin_uri", "backend_locked_revision", "listen_scope", "api_nodes", "unknown_custom_nodes", "manager_runtime_downloads", "workflow_handoff"],
+      "properties": {
+        "topology": {"const": "managed_core", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.control.topology"},
+        "app_id": {"const": "minimax-h3-tool", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.control.app_id"},
+        "app_version": {"const": "0.1.0", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.control.app_version"},
+        "app_build_id": {"const": "alpha0-schema-fixture", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.control.app_build"},
+        "backend_origin_uri": {"const": "https://github.com/Comfy-Org/ComfyUI", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.control.backend_origin"},
+        "backend_locked_revision": {"$ref": "#/$defs/git_revision", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.control.backend_revision"},
+        "listen_scope": {"const": "loopback_only", "x-sensitive": "public", "x-trust-impact": ["execution"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.control.loopback"},
+        "api_nodes": {"const": "disabled", "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.control.api_disabled"},
+        "unknown_custom_nodes": {"const": "disabled", "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.control.unknown_nodes_disabled"},
+        "manager_runtime_downloads": {"const": "disabled", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.control.downloads_disabled"},
+        "workflow_handoff": {"const": "persist_only_user_must_click_run", "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.control.user_run"}
+      },
+      "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.control.closed"
+    },
+    "node_binding": {
+      "type": "object", "additionalProperties": false,
+      "required": ["class_type", "input_schema_sha256", "output_schema_sha256", "combined_schema_sha256", "source_path", "git_blob_sha", "locked_revision", "local_only", "is_api_node", "runtime_acceptance", "disposition"],
+      "properties": {
+        "class_type": {"type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[A-Za-z_][A-Za-z0-9_]*$", "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.node.class_type"},
+        "input_schema_sha256": {"$ref": "#/$defs/sha256", "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.node.input_digest"},
+        "output_schema_sha256": {"$ref": "#/$defs/sha256", "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.node.output_digest"},
+        "combined_schema_sha256": {"$ref": "#/$defs/sha256", "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.node.combined_digest"},
+        "source_path": {"type": "string", "minLength": 1, "maxLength": 256, "pattern": "^[a-zA-Z0-9_./-]+$", "x-sensitive": "public", "x-trust-impact": ["artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.node.source_path"},
+        "git_blob_sha": {"$ref": "#/$defs/git_revision", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.node.blob"},
+        "locked_revision": {"$ref": "#/$defs/git_revision", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.node.revision"},
+        "local_only": {"const": true, "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.node.local_only"},
+        "is_api_node": {"const": false, "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.node.not_api"},
+        "runtime_acceptance": {"const": "poc_pending", "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.node.pending"},
+        "disposition": {"const": "active", "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.node.active"}
+      },
+      "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.node.closed"
+    },
+    "python_runtime_slot": {
+      "const": {"binding_state": "resolved_blocked", "component_id": "python-runtime-fixture", "component_version": "3.12.0", "component_role": "python_runtime", "artifact_sha256": "sha256:1111111111111111111111111111111111111111111111111111111111111111", "release_state": "blocked", "license_state": "pending_external", "disposition": "active"},
+      "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.slot.python_runtime.exact"
+    },
+    "comfy_backend_slot": {
+      "const": {"binding_state": "unresolved", "requirement_id": "comfyui-core-locked", "component_role": "comfy_backend", "readiness": "blocked", "reason_code": "RECIPE.BACKEND_COMPONENT_MISSING"},
+      "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.slot.comfy_backend.exact"
+    },
+    "comfy_frontend_slot": {
+      "const": {"binding_state": "resolved_blocked", "component_id": "comfy-frontend-fixture", "component_version": "1.0.0", "component_role": "comfy_frontend", "artifact_sha256": "sha256:2222222222222222222222222222222222222222222222222222222222222222", "release_state": "blocked", "license_state": "pending_external", "disposition": "active"},
+      "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.slot.comfy_frontend.exact"
+    },
+    "local_node_pack_slot": {
+      "const": {"binding_state": "resolved_blocked", "component_id": "local-node-fixture", "component_version": "1.0.0", "component_role": "local_node", "artifact_sha256": "sha256:3333333333333333333333333333333333333333333333333333333333333333", "release_state": "blocked", "license_state": "pending_external", "disposition": "active"},
+      "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.slot.local_node_pack.exact"
+    },
+    "base_diffusion_slot": {
+      "const": {"binding_state": "resolved_blocked", "component_id": "h3-model-fixture", "component_version": "1.0.0", "component_role": "model_diffusion", "artifact_sha256": "sha256:4444444444444444444444444444444444444444444444444444444444444444", "release_state": "blocked", "license_state": "pending_external", "disposition": "active"},
+      "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.slot.base_diffusion.exact"
+    },
+    "fl2va_diffusion_slot": {
+      "const": {"binding_state": "unresolved", "requirement_id": "h3-fl2va-model", "component_role": "model_diffusion", "readiness": "blocked", "reason_code": "RECIPE.FL2VA_COMPONENT_MISSING"},
+      "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.slot.fl2va_diffusion.exact"
+    },
+    "text_encoder_slot": {
+      "const": {"binding_state": "unresolved", "requirement_id": "h3-text-encoder", "component_role": "model_text_encoder", "readiness": "blocked", "reason_code": "RECIPE.TEXT_ENCODER_COMPONENT_MISSING"},
+      "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.slot.text_encoder.exact"
+    },
+    "video_vae_slot": {
+      "const": {"binding_state": "unresolved", "requirement_id": "h3-video-vae", "component_role": "model_video_vae", "readiness": "blocked", "reason_code": "RECIPE.VIDEO_VAE_COMPONENT_MISSING"},
+      "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.slot.video_vae.exact"
+    },
+    "audio_vae_slot": {
+      "const": {"binding_state": "unresolved", "requirement_id": "h3-audio-vae", "component_role": "model_audio_vae", "readiness": "blocked", "reason_code": "RECIPE.AUDIO_VAE_COMPONENT_MISSING"},
+      "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.slot.audio_vae.exact"
+    },
+    "component_set": {
+      "type": "object", "additionalProperties": false,
+      "required": ["python_runtime", "comfy_backend", "comfy_frontend", "local_node_pack"],
+      "properties": {
+        "python_runtime": {"$ref": "#/$defs/python_runtime_slot", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.components.runtime"},
+        "comfy_backend": {"$ref": "#/$defs/comfy_backend_slot", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.components.backend"},
+        "comfy_frontend": {"$ref": "#/$defs/comfy_frontend_slot", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.components.frontend"},
+        "local_node_pack": {"$ref": "#/$defs/local_node_pack_slot", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.components.nodes"}
+      },
+      "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.components.closed"
+    },
+    "model_set": {
+      "type": "object", "additionalProperties": false,
+      "required": ["base_diffusion", "fl2va_diffusion", "text_encoder", "video_vae", "audio_vae"],
+      "properties": {
+        "base_diffusion": {"$ref": "#/$defs/base_diffusion_slot", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.models.base"},
+        "fl2va_diffusion": {"$ref": "#/$defs/fl2va_diffusion_slot", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.models.fl2va"},
+        "text_encoder": {"$ref": "#/$defs/text_encoder_slot", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.models.text_encoder"},
+        "video_vae": {"$ref": "#/$defs/video_vae_slot", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.models.video_vae"},
+        "audio_vae": {"$ref": "#/$defs/audio_vae_slot", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.models.audio_vae"}
+      },
+      "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.models.closed"
+    },
+    "legal": {
+      "type": "object", "additionalProperties": false,
+      "required": ["license_requirement_ids", "review_state", "authority", "readiness"],
+      "properties": {
+        "license_requirement_ids": {"type": "array", "minItems": 3, "maxItems": 3, "uniqueItems": true, "items": {"enum": ["h3-license", "comfy-license", "codec-license"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.legal.requirement_item"}, "x-sensitive": "public", "x-trust-impact": ["execution", "artifact"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.legal.requirements"},
+        "review_state": {"const": "pending_external", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.legal.pending"},
+        "authority": {"const": "human_legal_owner", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.legal.human"},
+        "readiness": {"const": "poc_pending", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.legal.not_ready"}
+      },
+      "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.legal.closed"
+    },
+    "hardware": {
+      "type": "object", "additionalProperties": false,
+      "required": ["profile_id", "requirement_id", "evidence_status", "readiness", "selection_authority", "reason_code"],
+      "properties": {
+        "profile_id": {"const": "first-certified-profile", "x-sensitive": "public", "x-trust-impact": ["observation", "execution"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.hardware.profile"},
+        "requirement_id": {"const": "first-certified-profile", "x-sensitive": "public", "x-trust-impact": ["observation", "execution"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.hardware.requirement"},
+        "evidence_status": {"const": "proven", "x-sensitive": "public", "x-trust-impact": ["observation", "execution"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.hardware.evidence"},
+        "readiness": {"const": "poc_pending", "x-sensitive": "public", "x-trust-impact": ["observation", "execution"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.hardware.pending"},
+        "selection_authority": {"const": "none_until_exact_hardware_report_match", "x-sensitive": "public", "x-trust-impact": ["observation", "execution"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.hardware.no_selection"},
+        "reason_code": {"const": "CAPABILITY.HARDWARE_MATRIX_PENDING", "x-sensitive": "public", "x-trust-impact": ["display", "observation", "execution"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.hardware.reason"}
+      },
+      "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.hardware.closed"
+    },
+    "rational": {
+      "type": "object", "additionalProperties": false, "required": ["numerator", "denominator"],
+      "properties": {
+        "numerator": {"const": 24, "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.output.fps_numerator"},
+        "denominator": {"const": 1, "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.output.fps_denominator"}
+      },
+      "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.output.fps_closed"
+    },
+    "output": {
+      "type": "object", "additionalProperties": false,
+      "required": ["capability_id", "route", "requested_seconds", "frame_rate", "nonempty_prompt_required", "endpoint_mode", "native_audio_required", "sample_rate_hz", "channels", "writer", "external_ffmpeg_requirement", "readiness", "runnable"],
+      "properties": {
+        "capability_id": {"const": "alpha0-t2va-5s-nonempty", "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.output.capability"},
+        "route": {"const": "t2va", "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.output.route"},
+        "requested_seconds": {"const": 5, "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.output.duration"},
+        "frame_rate": {"$ref": "#/$defs/rational", "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.output.frame_rate"},
+        "nonempty_prompt_required": {"const": true, "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.output.nonempty_prompt"},
+        "endpoint_mode": {"const": "none", "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.output.endpoint"},
+        "native_audio_required": {"const": true, "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.output.native_audio"},
+        "sample_rate_hz": {"const": 32000, "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.output.sample_rate"},
+        "channels": {"const": 2, "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.output.channels"},
+        "writer": {"const": "core_createvideo_savevideo_pyav", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.output.writer"},
+        "external_ffmpeg_requirement": {"const": "not_declared", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.output.no_ffmpeg_claim"},
+        "readiness": {"const": "poc_pending", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.output.pending"},
+        "runnable": {"const": false, "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.output.not_runnable"}
+      },
+      "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.output.closed"
+    },
+    "extension": {
+      "type": "object", "additionalProperties": false, "required": ["extension_version", "effect", "data"],
+      "properties": {
+        "extension_version": {"type": "string", "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$", "x-sensitive": "public", "x-trust-impact": ["display"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.extension.version"},
+        "effect": {"const": "display_metadata", "x-sensitive": "public", "x-trust-impact": ["display"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.extension.effect"},
+        "data": {"type": "object", "maxProperties": 128, "x-sensitive": "internal", "x-trust-impact": ["display"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.extension.data"}
+      },
+      "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.extension.closed"
+    },
+    "extensions": {"type": "object", "minProperties": 1, "maxProperties": 32, "propertyNames": {"pattern": "^[a-z][a-z0-9]*(?:\\.[a-z][a-z0-9_]*){2,}$", "maxLength": 128, "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.extensions.namespace"}, "additionalProperties": {"$ref": "#/$defs/extension", "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.extensions.item"}, "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.extensions.closed"},
+    "disposition": {"type": "object", "additionalProperties": false, "required": ["kind"], "properties": {"kind": {"const": "active", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.disposition.kind"}}, "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.disposition.closed"},
+    "integrity": {
+      "type": "object", "additionalProperties": false, "required": ["algorithm", "canonicalization", "content_sha256"],
+      "properties": {
+        "algorithm": {"const": "sha256", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.integrity.algorithm"},
+        "canonicalization": {"const": "rfc8785_jcs_root_integrity_omitted", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.integrity.canonicalization"},
+        "content_sha256": {"$ref": "#/$defs/sha256", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.integrity.content_digest"}
+      },
+      "x-error-code": "RECIPE.SCHEMA_CONSTRAINT", "x-rule-id": "recipe.integrity.closed"
+    }
+  },
+  "x-error-code": "RECIPE.SCHEMA_CONSTRAINT",
+  "x-rule-id": "recipe.root.closed"
+}

@@ -1,0 +1,10 @@
+{
+  "fixture_id": "decision-unknown-approval-authority",
+  "mutation": {
+    "kind": "set_decision_field",
+    "decision_id": "DEC-H3-ATTRIBUTION",
+    "field": "approval_authority_override",
+    "value": "agent"
+  },
+  "expected_code": "STRUCTURE.EXTERNAL_DECISION.UNKNOWN_KEY"
+}

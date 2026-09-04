@@ -1,0 +1,16 @@
+{
+  "name": "@minimax-h3-tool/embedded-catalog-loader",
+  "version": "0.1.0",
+  "private": true,
+  "license": "Apache-2.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.mjs"
+  },
+  "scripts": {
+    "test": "node ./test/catalog-loader.test.mjs"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  }
+}

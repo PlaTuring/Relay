@@ -1,0 +1,9 @@
+{
+  "fixture_id": "file-identifier-authorizes-media-mutation",
+  "mutation": {
+    "kind": "set_product_boundary_field",
+    "field": "tool_may_write_file_identifiers",
+    "value": true
+  },
+  "expected_code": "PRODUCT_BOUNDARY.AUTHORITY_FORBIDDEN"
+}

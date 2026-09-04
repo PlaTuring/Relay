@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"display-extension","base":"valid/alpha0-poc-pending-recipe.json","mutations":[{"op":"add","path":"/extensions","value":{"org.example.recipe_notes":{"extension_version":"1.0.0","effect":"display_metadata","data":{"label":"auto_run is inert display text"}}}}],"expected":"valid"}

@@ -1,0 +1,18 @@
+{
+  "source_document_version": "1.0.0",
+  "source_id": "SRC-SYNTH-PROOF-REPORT",
+  "source_kind": "repeatable_test",
+  "publisher": "synthetic-governance-fixture",
+  "immutable_revision": "fixture:proof-report-r1",
+  "component_ids": ["synthetic-governance-validator"],
+  "scope_ids": [
+    "scope-synth-proven-stable",
+    "scope-synth-proven-open-gate",
+    "scope-synth-proven-expired",
+    "scope-synth-proven-revoked"
+  ],
+  "repeatable": true,
+  "pass_count": 2,
+  "attempt_count": 2,
+  "test_case_ids": ["validator-run-1", "validator-run-2"]
+}

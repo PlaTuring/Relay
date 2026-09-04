@@ -1,0 +1,787 @@
+{
+  "contract_id": "minimax-h3-tool.evidence-claim-registry",
+  "schema_version": "1.0.0",
+  "document_id": "6d45b979-9009-4e66-a5ee-60a4e5d24e9b",
+  "document_revision": 1,
+  "registry_id": "CLAIM-REGISTRY-SYNTH-001",
+  "records": [
+    {
+      "claim_id": "CLAIM-SYNTH-PROVEN-STABLE",
+      "claim_code": "synthetic_repeatable_verification",
+      "subject": {
+        "kind": "technical_verification",
+        "subject_id": "SYNTH-PROVEN-STABLE",
+        "component_id": "synthetic-governance-validator",
+        "scope_id": "scope-synth-proven-stable",
+        "immutable_revision": "fixture:subject-proven-stable-r1",
+        "artifact_sha256": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+      },
+      "evidence": {
+        "level": "proven",
+        "source_refs": [
+          {
+            "source_id": "SRC-SYNTH-PROOF-REPORT",
+            "source_kind": "repeatable_test",
+            "locator": "sources/proof-report.json",
+            "publisher": "synthetic-governance-fixture",
+            "immutable_revision": "fixture:proof-report-r1",
+            "artifact_sha256": "sha256:91e9beed8f809896888830dcbdf389979550cd33ef8bd667ec7379fe07887091"
+          }
+        ],
+        "basis_codes": ["repeatable_direct_observation"],
+        "pending_requirements": [],
+        "limitations": [],
+        "freshness": {
+          "observed_at_utc": "2026-08-26T00:00:00.000Z",
+          "expires_at_utc": "2027-01-01T00:00:00.000Z",
+          "revalidation_triggers": ["evidence_expiry", "gate_reopened", "reproducibility_failure", "scope_changed", "source_hash_drift", "upstream_revision_changed"]
+        }
+      },
+      "gate_requirements": {
+        "requirement_key": "req-synth-proven-stable",
+        "requirements_source_ref": {
+          "source_id": "SRC-SYNTH-GATE-CATALOG",
+          "source_kind": "gate_catalog",
+          "locator": "sources/gate-catalog.json",
+          "publisher": "synthetic-governance-fixture",
+          "immutable_revision": "fixture:gate-catalog-r1",
+          "artifact_sha256": "sha256:eda7ae37eca6dd8b5422ee9ca913026663a056797937b479a398f08d51dc4b02"
+        },
+        "complete": true,
+        "gates": [
+          {
+            "gate_id": "EXT-SYNTH-DISTRIBUTION",
+            "gate_type": "external",
+            "state": "closed",
+            "decision_ref": {
+              "source_id": "SRC-SYNTH-GATE-DECISIONS",
+              "source_kind": "gate_decision_pack",
+              "locator": "sources/gate-decisions.json",
+              "publisher": "synthetic-governance-fixture",
+              "immutable_revision": "fixture:gate-decisions-r1",
+              "artifact_sha256": "sha256:c3a707655e540fa2573e7beb2448957fd9daa55a6e94fe9224495c439982c0a6",
+              "decision_id": "DEC-SYNTH-EXT-CLOSED"
+            }
+          },
+          {
+            "gate_id": "HUM-SYNTH-REVIEW",
+            "gate_type": "human",
+            "state": "closed",
+            "decision_ref": {
+              "source_id": "SRC-SYNTH-GATE-DECISIONS",
+              "source_kind": "gate_decision_pack",
+              "locator": "sources/gate-decisions.json",
+              "publisher": "synthetic-governance-fixture",
+              "immutable_revision": "fixture:gate-decisions-r1",
+              "artifact_sha256": "sha256:c3a707655e540fa2573e7beb2448957fd9daa55a6e94fe9224495c439982c0a6",
+              "decision_id": "DEC-SYNTH-HUM-CLOSED"
+            }
+          }
+        ]
+      },
+      "lifecycle": {
+        "state": "active",
+        "effective_at_utc": "2026-08-26T00:00:00.000Z",
+        "reason_code": "initial_assessment"
+      },
+      "downgrade_policy": {
+        "on_expiry": "poc_pending",
+        "on_source_drift": "poc_pending",
+        "on_scope_change": "poc_pending",
+        "on_gate_reopen": "poc_pending",
+        "on_reproducibility_failure": "poc_pending",
+        "on_revocation": "poc_pending",
+        "public_withdrawal": "immediate"
+      },
+      "eligibility": {
+        "stable_eligible": true,
+        "public_claim_eligible": true,
+        "public_tier": "stable",
+        "stable_blockers": [],
+        "public_blockers": []
+      }
+    },
+    {
+      "claim_id": "CLAIM-SYNTH-INFERRED",
+      "claim_code": "synthetic_reasoned_inference",
+      "subject": {
+        "kind": "governance_rule",
+        "subject_id": "SYNTH-INFERRED",
+        "component_id": "synthetic-governance-validator",
+        "scope_id": "scope-synth-inferred",
+        "immutable_revision": "fixture:subject-inferred-r1",
+        "artifact_sha256": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+      },
+      "evidence": {
+        "level": "inferred",
+        "source_refs": [
+          {
+            "source_id": "SRC-SYNTH-INFERENCE-NOTE",
+            "source_kind": "reasoned_analysis",
+            "locator": "sources/inference-note.json",
+            "publisher": "synthetic-governance-fixture",
+            "immutable_revision": "fixture:inference-note-r1",
+            "artifact_sha256": "sha256:f8bd6a20187fc46023f1b304ba56b8f8be57718fc93f65f73543c6ad5923043e"
+          }
+        ],
+        "basis_codes": ["immutable_inputs_without_direct_repeatability"],
+        "pending_requirements": ["repeatable_direct_test_required"],
+        "limitations": ["not_directly_observed"],
+        "freshness": {
+          "observed_at_utc": "2026-08-26T00:00:00.000Z",
+          "expires_at_utc": "2027-01-01T00:00:00.000Z",
+          "revalidation_triggers": ["evidence_expiry", "gate_reopened", "reproducibility_failure", "scope_changed", "source_hash_drift", "upstream_revision_changed"]
+        }
+      },
+      "gate_requirements": {
+        "requirement_key": "req-synth-inferred",
+        "requirements_source_ref": {
+          "source_id": "SRC-SYNTH-GATE-CATALOG",
+          "source_kind": "gate_catalog",
+          "locator": "sources/gate-catalog.json",
+          "publisher": "synthetic-governance-fixture",
+          "immutable_revision": "fixture:gate-catalog-r1",
+          "artifact_sha256": "sha256:eda7ae37eca6dd8b5422ee9ca913026663a056797937b479a398f08d51dc4b02"
+        },
+        "complete": true,
+        "gates": []
+      },
+      "lifecycle": {
+        "state": "active",
+        "effective_at_utc": "2026-08-26T00:00:00.000Z",
+        "reason_code": "initial_assessment"
+      },
+      "downgrade_policy": {
+        "on_expiry": "poc_pending",
+        "on_source_drift": "poc_pending",
+        "on_scope_change": "poc_pending",
+        "on_gate_reopen": "poc_pending",
+        "on_reproducibility_failure": "poc_pending",
+        "on_revocation": "poc_pending",
+        "public_withdrawal": "immediate"
+      },
+      "eligibility": {
+        "stable_eligible": false,
+        "public_claim_eligible": false,
+        "public_tier": "none",
+        "stable_blockers": ["evidence_level_inferred"],
+        "public_blockers": ["evidence_level_inferred"]
+      }
+    },
+    {
+      "claim_id": "CLAIM-SYNTH-POC-PENDING",
+      "claim_code": "synthetic_unproven_hypothesis",
+      "subject": {
+        "kind": "technical_verification",
+        "subject_id": "SYNTH-POC-PENDING",
+        "component_id": "synthetic-governance-validator",
+        "scope_id": "scope-synth-poc-pending",
+        "immutable_revision": "fixture:subject-poc-pending-r1",
+        "artifact_sha256": "sha256:3333333333333333333333333333333333333333333333333333333333333333"
+      },
+      "evidence": {
+        "level": "poc_pending",
+        "source_refs": [],
+        "basis_codes": [],
+        "pending_requirements": ["repeatable_direct_test_required"],
+        "limitations": ["no_evidence_source_available"],
+        "freshness": {
+          "observed_at_utc": "2026-08-26T00:00:00.000Z",
+          "expires_at_utc": "2027-01-01T00:00:00.000Z",
+          "revalidation_triggers": ["evidence_expiry", "gate_reopened", "reproducibility_failure", "scope_changed", "source_hash_drift", "upstream_revision_changed"]
+        }
+      },
+      "gate_requirements": {
+        "requirement_key": "req-synth-poc-pending",
+        "requirements_source_ref": {
+          "source_id": "SRC-SYNTH-GATE-CATALOG",
+          "source_kind": "gate_catalog",
+          "locator": "sources/gate-catalog.json",
+          "publisher": "synthetic-governance-fixture",
+          "immutable_revision": "fixture:gate-catalog-r1",
+          "artifact_sha256": "sha256:eda7ae37eca6dd8b5422ee9ca913026663a056797937b479a398f08d51dc4b02"
+        },
+        "complete": true,
+        "gates": []
+      },
+      "lifecycle": {
+        "state": "active",
+        "effective_at_utc": "2026-08-26T00:00:00.000Z",
+        "reason_code": "initial_assessment"
+      },
+      "downgrade_policy": {
+        "on_expiry": "poc_pending",
+        "on_source_drift": "poc_pending",
+        "on_scope_change": "poc_pending",
+        "on_gate_reopen": "poc_pending",
+        "on_reproducibility_failure": "poc_pending",
+        "on_revocation": "poc_pending",
+        "public_withdrawal": "immediate"
+      },
+      "eligibility": {
+        "stable_eligible": false,
+        "public_claim_eligible": false,
+        "public_tier": "none",
+        "stable_blockers": ["evidence_missing", "evidence_level_poc_pending"],
+        "public_blockers": ["evidence_missing", "evidence_level_poc_pending"]
+      }
+    },
+    {
+      "claim_id": "CLAIM-SYNTH-EXPERIMENTAL",
+      "claim_code": "synthetic_bounded_experiment",
+      "subject": {
+        "kind": "technical_verification",
+        "subject_id": "SYNTH-EXPERIMENTAL",
+        "component_id": "synthetic-governance-validator",
+        "scope_id": "scope-synth-experimental",
+        "immutable_revision": "fixture:subject-experimental-r1",
+        "artifact_sha256": "sha256:4444444444444444444444444444444444444444444444444444444444444444"
+      },
+      "evidence": {
+        "level": "experimental",
+        "source_refs": [
+          {
+            "source_id": "SRC-SYNTH-EXPERIMENTAL-POC",
+            "source_kind": "accepted_poc",
+            "locator": "sources/experimental-poc.json",
+            "publisher": "synthetic-governance-fixture",
+            "immutable_revision": "fixture:experimental-poc-r1",
+            "artifact_sha256": "sha256:629fbf88725d856f39a3593fafb2b19330b51d5a19d71a0370d9acc434ae2c09"
+          }
+        ],
+        "basis_codes": ["bounded_direct_observation"],
+        "pending_requirements": ["broader_repetition_required"],
+        "limitations": ["synthetic_scope_only"],
+        "freshness": {
+          "observed_at_utc": "2026-08-26T00:00:00.000Z",
+          "expires_at_utc": "2027-01-01T00:00:00.000Z",
+          "revalidation_triggers": ["evidence_expiry", "gate_reopened", "reproducibility_failure", "scope_changed", "source_hash_drift", "upstream_revision_changed"]
+        }
+      },
+      "gate_requirements": {
+        "requirement_key": "req-synth-experimental",
+        "requirements_source_ref": {
+          "source_id": "SRC-SYNTH-GATE-CATALOG",
+          "source_kind": "gate_catalog",
+          "locator": "sources/gate-catalog.json",
+          "publisher": "synthetic-governance-fixture",
+          "immutable_revision": "fixture:gate-catalog-r1",
+          "artifact_sha256": "sha256:eda7ae37eca6dd8b5422ee9ca913026663a056797937b479a398f08d51dc4b02"
+        },
+        "complete": true,
+        "gates": [
+          {
+            "gate_id": "EXT-SYNTH-DISTRIBUTION",
+            "gate_type": "external",
+            "state": "closed",
+            "decision_ref": {
+              "source_id": "SRC-SYNTH-GATE-DECISIONS",
+              "source_kind": "gate_decision_pack",
+              "locator": "sources/gate-decisions.json",
+              "publisher": "synthetic-governance-fixture",
+              "immutable_revision": "fixture:gate-decisions-r1",
+              "artifact_sha256": "sha256:c3a707655e540fa2573e7beb2448957fd9daa55a6e94fe9224495c439982c0a6",
+              "decision_id": "DEC-SYNTH-EXT-CLOSED"
+            }
+          },
+          {
+            "gate_id": "HUM-SYNTH-REVIEW",
+            "gate_type": "human",
+            "state": "closed",
+            "decision_ref": {
+              "source_id": "SRC-SYNTH-GATE-DECISIONS",
+              "source_kind": "gate_decision_pack",
+              "locator": "sources/gate-decisions.json",
+              "publisher": "synthetic-governance-fixture",
+              "immutable_revision": "fixture:gate-decisions-r1",
+              "artifact_sha256": "sha256:c3a707655e540fa2573e7beb2448957fd9daa55a6e94fe9224495c439982c0a6",
+              "decision_id": "DEC-SYNTH-HUM-CLOSED"
+            }
+          }
+        ]
+      },
+      "lifecycle": {
+        "state": "active",
+        "effective_at_utc": "2026-08-26T00:00:00.000Z",
+        "reason_code": "initial_assessment"
+      },
+      "downgrade_policy": {
+        "on_expiry": "poc_pending",
+        "on_source_drift": "poc_pending",
+        "on_scope_change": "poc_pending",
+        "on_gate_reopen": "poc_pending",
+        "on_reproducibility_failure": "poc_pending",
+        "on_revocation": "poc_pending",
+        "public_withdrawal": "immediate"
+      },
+      "experimental_controls": {
+        "surface": "advanced_only",
+        "default_enabled": false,
+        "disclosure_code": "experimental_not_stable",
+        "fallback_code": "withdraw_claim"
+      },
+      "eligibility": {
+        "stable_eligible": false,
+        "public_claim_eligible": true,
+        "public_tier": "experimental",
+        "stable_blockers": ["evidence_level_experimental"],
+        "public_blockers": []
+      }
+    },
+    {
+      "claim_id": "CLAIM-SYNTH-PROVEN-OPEN-GATE",
+      "claim_code": "synthetic_proof_with_open_gate",
+      "subject": {
+        "kind": "technical_verification",
+        "subject_id": "SYNTH-PROVEN-OPEN-GATE",
+        "component_id": "synthetic-governance-validator",
+        "scope_id": "scope-synth-proven-open-gate",
+        "immutable_revision": "fixture:subject-proven-open-gate-r1",
+        "artifact_sha256": "sha256:5555555555555555555555555555555555555555555555555555555555555555"
+      },
+      "evidence": {
+        "level": "proven",
+        "source_refs": [
+          {
+            "source_id": "SRC-SYNTH-PROOF-REPORT",
+            "source_kind": "repeatable_test",
+            "locator": "sources/proof-report.json",
+            "publisher": "synthetic-governance-fixture",
+            "immutable_revision": "fixture:proof-report-r1",
+            "artifact_sha256": "sha256:91e9beed8f809896888830dcbdf389979550cd33ef8bd667ec7379fe07887091"
+          }
+        ],
+        "basis_codes": ["repeatable_direct_observation"],
+        "pending_requirements": [],
+        "limitations": [],
+        "freshness": {
+          "observed_at_utc": "2026-08-26T00:00:00.000Z",
+          "expires_at_utc": "2027-01-01T00:00:00.000Z",
+          "revalidation_triggers": ["evidence_expiry", "gate_reopened", "reproducibility_failure", "scope_changed", "source_hash_drift", "upstream_revision_changed"]
+        }
+      },
+      "gate_requirements": {
+        "requirement_key": "req-synth-proven-open-gate",
+        "requirements_source_ref": {
+          "source_id": "SRC-SYNTH-GATE-CATALOG",
+          "source_kind": "gate_catalog",
+          "locator": "sources/gate-catalog.json",
+          "publisher": "synthetic-governance-fixture",
+          "immutable_revision": "fixture:gate-catalog-r1",
+          "artifact_sha256": "sha256:eda7ae37eca6dd8b5422ee9ca913026663a056797937b479a398f08d51dc4b02"
+        },
+        "complete": true,
+        "gates": [
+          {"gate_id": "HUM-SYNTH-REVIEW", "gate_type": "human", "state": "open"}
+        ]
+      },
+      "lifecycle": {
+        "state": "active",
+        "effective_at_utc": "2026-08-26T00:00:00.000Z",
+        "reason_code": "initial_assessment"
+      },
+      "downgrade_policy": {
+        "on_expiry": "poc_pending",
+        "on_source_drift": "poc_pending",
+        "on_scope_change": "poc_pending",
+        "on_gate_reopen": "poc_pending",
+        "on_reproducibility_failure": "poc_pending",
+        "on_revocation": "poc_pending",
+        "public_withdrawal": "immediate"
+      },
+      "eligibility": {
+        "stable_eligible": false,
+        "public_claim_eligible": false,
+        "public_tier": "none",
+        "stable_blockers": ["gate_open"],
+        "public_blockers": ["gate_open"]
+      }
+    },
+    {
+      "claim_id": "CLAIM-SYNTH-PROVEN-EXPIRED",
+      "claim_code": "synthetic_expired_proof",
+      "subject": {
+        "kind": "technical_verification",
+        "subject_id": "SYNTH-PROVEN-EXPIRED",
+        "component_id": "synthetic-governance-validator",
+        "scope_id": "scope-synth-proven-expired",
+        "immutable_revision": "fixture:subject-proven-expired-r1",
+        "artifact_sha256": "sha256:6666666666666666666666666666666666666666666666666666666666666666"
+      },
+      "evidence": {
+        "level": "proven",
+        "source_refs": [
+          {
+            "source_id": "SRC-SYNTH-PROOF-REPORT",
+            "source_kind": "repeatable_test",
+            "locator": "sources/proof-report.json",
+            "publisher": "synthetic-governance-fixture",
+            "immutable_revision": "fixture:proof-report-r1",
+            "artifact_sha256": "sha256:91e9beed8f809896888830dcbdf389979550cd33ef8bd667ec7379fe07887091"
+          }
+        ],
+        "basis_codes": ["repeatable_direct_observation"],
+        "pending_requirements": [],
+        "limitations": [],
+        "freshness": {
+          "observed_at_utc": "2026-08-26T00:00:00.000Z",
+          "expires_at_utc": "2026-08-27T11:59:59.999Z",
+          "revalidation_triggers": ["evidence_expiry", "gate_reopened", "reproducibility_failure", "scope_changed", "source_hash_drift", "upstream_revision_changed"]
+        }
+      },
+      "gate_requirements": {
+        "requirement_key": "req-synth-proven-expired",
+        "requirements_source_ref": {
+          "source_id": "SRC-SYNTH-GATE-CATALOG",
+          "source_kind": "gate_catalog",
+          "locator": "sources/gate-catalog.json",
+          "publisher": "synthetic-governance-fixture",
+          "immutable_revision": "fixture:gate-catalog-r1",
+          "artifact_sha256": "sha256:eda7ae37eca6dd8b5422ee9ca913026663a056797937b479a398f08d51dc4b02"
+        },
+        "complete": true,
+        "gates": [
+          {
+            "gate_id": "EXT-SYNTH-DISTRIBUTION",
+            "gate_type": "external",
+            "state": "closed",
+            "decision_ref": {
+              "source_id": "SRC-SYNTH-GATE-DECISIONS",
+              "source_kind": "gate_decision_pack",
+              "locator": "sources/gate-decisions.json",
+              "publisher": "synthetic-governance-fixture",
+              "immutable_revision": "fixture:gate-decisions-r1",
+              "artifact_sha256": "sha256:c3a707655e540fa2573e7beb2448957fd9daa55a6e94fe9224495c439982c0a6",
+              "decision_id": "DEC-SYNTH-EXT-CLOSED"
+            }
+          }
+        ]
+      },
+      "lifecycle": {
+        "state": "active",
+        "effective_at_utc": "2026-08-26T00:00:00.000Z",
+        "reason_code": "initial_assessment"
+      },
+      "downgrade_policy": {
+        "on_expiry": "poc_pending",
+        "on_source_drift": "poc_pending",
+        "on_scope_change": "poc_pending",
+        "on_gate_reopen": "poc_pending",
+        "on_reproducibility_failure": "poc_pending",
+        "on_revocation": "poc_pending",
+        "public_withdrawal": "immediate"
+      },
+      "eligibility": {
+        "stable_eligible": false,
+        "public_claim_eligible": false,
+        "public_tier": "none",
+        "stable_blockers": ["evidence_expired"],
+        "public_blockers": ["evidence_expired"]
+      }
+    },
+    {
+      "claim_id": "CLAIM-SYNTH-PROVEN-REVOKED",
+      "claim_code": "synthetic_revoked_proof",
+      "subject": {
+        "kind": "technical_verification",
+        "subject_id": "SYNTH-PROVEN-REVOKED",
+        "component_id": "synthetic-governance-validator",
+        "scope_id": "scope-synth-proven-revoked",
+        "immutable_revision": "fixture:subject-proven-revoked-r1",
+        "artifact_sha256": "sha256:7777777777777777777777777777777777777777777777777777777777777777"
+      },
+      "evidence": {
+        "level": "proven",
+        "source_refs": [
+          {
+            "source_id": "SRC-SYNTH-PROOF-REPORT",
+            "source_kind": "repeatable_test",
+            "locator": "sources/proof-report.json",
+            "publisher": "synthetic-governance-fixture",
+            "immutable_revision": "fixture:proof-report-r1",
+            "artifact_sha256": "sha256:91e9beed8f809896888830dcbdf389979550cd33ef8bd667ec7379fe07887091"
+          }
+        ],
+        "basis_codes": ["repeatable_direct_observation"],
+        "pending_requirements": [],
+        "limitations": [],
+        "freshness": {
+          "observed_at_utc": "2026-08-26T00:00:00.000Z",
+          "expires_at_utc": "2027-01-01T00:00:00.000Z",
+          "revalidation_triggers": ["evidence_expiry", "gate_reopened", "reproducibility_failure", "scope_changed", "source_hash_drift", "upstream_revision_changed"]
+        }
+      },
+      "gate_requirements": {
+        "requirement_key": "req-synth-proven-revoked",
+        "requirements_source_ref": {
+          "source_id": "SRC-SYNTH-GATE-CATALOG",
+          "source_kind": "gate_catalog",
+          "locator": "sources/gate-catalog.json",
+          "publisher": "synthetic-governance-fixture",
+          "immutable_revision": "fixture:gate-catalog-r1",
+          "artifact_sha256": "sha256:eda7ae37eca6dd8b5422ee9ca913026663a056797937b479a398f08d51dc4b02"
+        },
+        "complete": true,
+        "gates": [
+          {
+            "gate_id": "EXT-SYNTH-DISTRIBUTION",
+            "gate_type": "external",
+            "state": "closed",
+            "decision_ref": {
+              "source_id": "SRC-SYNTH-GATE-DECISIONS",
+              "source_kind": "gate_decision_pack",
+              "locator": "sources/gate-decisions.json",
+              "publisher": "synthetic-governance-fixture",
+              "immutable_revision": "fixture:gate-decisions-r1",
+              "artifact_sha256": "sha256:c3a707655e540fa2573e7beb2448957fd9daa55a6e94fe9224495c439982c0a6",
+              "decision_id": "DEC-SYNTH-EXT-CLOSED"
+            }
+          }
+        ]
+      },
+      "lifecycle": {
+        "state": "revoked",
+        "effective_at_utc": "2026-08-27T10:00:00.000Z",
+        "reason_code": "synthetic_source_withdrawn",
+        "decision_ref": {
+          "source_id": "SRC-SYNTH-REVOCATION-DECISIONS",
+          "source_kind": "revocation_decision_pack",
+          "locator": "sources/revocation-decisions.json",
+          "publisher": "synthetic-governance-fixture",
+          "immutable_revision": "fixture:revocation-decisions-r1",
+          "artifact_sha256": "sha256:8e7f44afa4d94d339bee2080734d2816ae851f09538b3bcc26b81a4585db4f3d",
+          "decision_id": "DEC-SYNTH-CLAIM-REVOKED"
+        }
+      },
+      "downgrade_policy": {
+        "on_expiry": "poc_pending",
+        "on_source_drift": "poc_pending",
+        "on_scope_change": "poc_pending",
+        "on_gate_reopen": "poc_pending",
+        "on_reproducibility_failure": "poc_pending",
+        "on_revocation": "poc_pending",
+        "public_withdrawal": "immediate"
+      },
+      "eligibility": {
+        "stable_eligible": false,
+        "public_claim_eligible": false,
+        "public_tier": "none",
+        "stable_blockers": ["claim_revoked"],
+        "public_blockers": ["claim_revoked"]
+      }
+    },
+    {
+      "claim_id": "CLAIM-SYNTH-H3-AGREEMENT-COPY",
+      "claim_code": "source_wording_h3_agreement_copy",
+      "subject": {
+        "kind": "license_obligation",
+        "subject_id": "MINIMAX-H3-AGREEMENT-COPY",
+        "component_id": "minimax-h3",
+        "scope_id": "scope-synth-h3-agreement-copy",
+        "immutable_revision": "git:5d9b308a59ab12e67147f191e184baf704185bd1",
+        "artifact_sha256": "sha256:b2f934cbaf30a32054f29511acedc6b1773b84d0546d86829bb9a250c917969e"
+      },
+      "evidence": {
+        "level": "inferred",
+        "source_refs": [
+          {
+            "source_id": "SRC-SYNTH-LICENSE-OBLIGATIONS",
+            "source_kind": "license_obligation_extract",
+            "locator": "sources/license-obligations.json",
+            "publisher": "synthetic-governance-fixture",
+            "immutable_revision": "fixture:license-obligations-r1",
+            "artifact_sha256": "sha256:b2f934cbaf30a32054f29511acedc6b1773b84d0546d86829bb9a250c917969e"
+          }
+        ],
+        "basis_codes": ["root_verified_official_source_wording"],
+        "pending_requirements": ["human_legal_applicability_review"],
+        "limitations": ["source_wording_only_not_legal_approval"],
+        "freshness": {
+          "observed_at_utc": "2026-08-27T00:00:00.000Z",
+          "expires_at_utc": "2026-09-27T00:00:00.000Z",
+          "revalidation_triggers": ["evidence_expiry", "gate_reopened", "reproducibility_failure", "scope_changed", "source_hash_drift", "upstream_revision_changed"]
+        }
+      },
+      "source_assertion": {
+        "source_id": "SRC-SYNTH-LICENSE-OBLIGATIONS",
+        "clause_id": "iii-1-agreement-copy",
+        "source_text_sha256": "sha256:848e98762852ad176e1dbba6a907802de4606d523df96d68749af72dcd0fcbd8",
+        "statement_code": "provide_agreement_copy",
+        "asserted_modality": "must_when_condition",
+        "condition_code": "distribution_to_third_party"
+      },
+      "gate_requirements": {
+        "requirement_key": "req-synth-h3-agreement-copy",
+        "requirements_source_ref": {
+          "source_id": "SRC-SYNTH-GATE-CATALOG",
+          "source_kind": "gate_catalog",
+          "locator": "sources/gate-catalog.json",
+          "publisher": "synthetic-governance-fixture",
+          "immutable_revision": "fixture:gate-catalog-r1",
+          "artifact_sha256": "sha256:eda7ae37eca6dd8b5422ee9ca913026663a056797937b479a398f08d51dc4b02"
+        },
+        "complete": true,
+        "gates": [{"gate_id": "EXT-SYNTH-LEGAL-REVIEW", "gate_type": "external", "state": "open"}]
+      },
+      "lifecycle": {"state": "active", "effective_at_utc": "2026-08-27T00:00:00.000Z", "reason_code": "source_wording_recorded"},
+      "downgrade_policy": {
+        "on_expiry": "poc_pending", "on_source_drift": "poc_pending", "on_scope_change": "poc_pending", "on_gate_reopen": "poc_pending", "on_reproducibility_failure": "poc_pending", "on_revocation": "poc_pending", "public_withdrawal": "immediate"
+      },
+      "eligibility": {"stable_eligible": false, "public_claim_eligible": false, "public_tier": "none", "stable_blockers": ["evidence_level_inferred", "gate_open"], "public_blockers": ["evidence_level_inferred", "gate_open"]}
+    },
+    {
+      "claim_id": "CLAIM-SYNTH-H3-NOTICE",
+      "claim_code": "source_wording_h3_notice",
+      "subject": {
+        "kind": "license_obligation",
+        "subject_id": "MINIMAX-H3-NOTICE",
+        "component_id": "minimax-h3",
+        "scope_id": "scope-synth-h3-notice",
+        "immutable_revision": "git:5d9b308a59ab12e67147f191e184baf704185bd1",
+        "artifact_sha256": "sha256:b2f934cbaf30a32054f29511acedc6b1773b84d0546d86829bb9a250c917969e"
+      },
+      "evidence": {
+        "level": "inferred",
+        "source_refs": [{"source_id": "SRC-SYNTH-LICENSE-OBLIGATIONS", "source_kind": "license_obligation_extract", "locator": "sources/license-obligations.json", "publisher": "synthetic-governance-fixture", "immutable_revision": "fixture:license-obligations-r1", "artifact_sha256": "sha256:b2f934cbaf30a32054f29511acedc6b1773b84d0546d86829bb9a250c917969e"}],
+        "basis_codes": ["root_verified_official_source_wording"],
+        "pending_requirements": ["human_legal_applicability_review"],
+        "limitations": ["source_wording_only_not_legal_approval"],
+        "freshness": {"observed_at_utc": "2026-08-27T00:00:00.000Z", "expires_at_utc": "2026-09-27T00:00:00.000Z", "revalidation_triggers": ["evidence_expiry", "gate_reopened", "reproducibility_failure", "scope_changed", "source_hash_drift", "upstream_revision_changed"]}
+      },
+      "source_assertion": {"source_id": "SRC-SYNTH-LICENSE-OBLIGATIONS", "clause_id": "iii-4-notice", "source_text_sha256": "sha256:65cb1c66a9730e7e7a0c322e4dba73b7ff0ca3b05543f4432dee364dc8c7a514", "statement_code": "accompany_distribution_with_notice", "asserted_modality": "must_when_condition", "condition_code": "non_hosted_distribution_to_third_party"},
+      "gate_requirements": {
+        "requirement_key": "req-synth-h3-notice",
+        "requirements_source_ref": {"source_id": "SRC-SYNTH-GATE-CATALOG", "source_kind": "gate_catalog", "locator": "sources/gate-catalog.json", "publisher": "synthetic-governance-fixture", "immutable_revision": "fixture:gate-catalog-r1", "artifact_sha256": "sha256:eda7ae37eca6dd8b5422ee9ca913026663a056797937b479a398f08d51dc4b02"},
+        "complete": true,
+        "gates": [{"gate_id": "EXT-SYNTH-LEGAL-REVIEW", "gate_type": "external", "state": "open"}]
+      },
+      "lifecycle": {"state": "active", "effective_at_utc": "2026-08-27T00:00:00.000Z", "reason_code": "source_wording_recorded"},
+      "downgrade_policy": {"on_expiry": "poc_pending", "on_source_drift": "poc_pending", "on_scope_change": "poc_pending", "on_gate_reopen": "poc_pending", "on_reproducibility_failure": "poc_pending", "on_revocation": "poc_pending", "public_withdrawal": "immediate"},
+      "eligibility": {"stable_eligible": false, "public_claim_eligible": false, "public_tier": "none", "stable_blockers": ["evidence_level_inferred", "gate_open"], "public_blockers": ["evidence_level_inferred", "gate_open"]}
+    },
+    {
+      "claim_id": "CLAIM-SYNTH-H3-FILE-IDENTIFIER",
+      "claim_code": "source_wording_h3_file_identifier",
+      "subject": {
+        "kind": "license_obligation",
+        "subject_id": "MINIMAX-H3-FILE-IDENTIFIER",
+        "component_id": "minimax-h3",
+        "scope_id": "scope-synth-h3-file-identifier",
+        "immutable_revision": "git:5d9b308a59ab12e67147f191e184baf704185bd1",
+        "artifact_sha256": "sha256:b2f934cbaf30a32054f29511acedc6b1773b84d0546d86829bb9a250c917969e"
+      },
+      "evidence": {
+        "level": "inferred",
+        "source_refs": [{"source_id": "SRC-SYNTH-LICENSE-OBLIGATIONS", "source_kind": "license_obligation_extract", "locator": "sources/license-obligations.json", "publisher": "synthetic-governance-fixture", "immutable_revision": "fixture:license-obligations-r1", "artifact_sha256": "sha256:b2f934cbaf30a32054f29511acedc6b1773b84d0546d86829bb9a250c917969e"}],
+        "basis_codes": ["root_verified_official_source_wording"],
+        "pending_requirements": ["human_legal_applicability_review"],
+        "limitations": ["source_wording_only_not_legal_approval"],
+        "freshness": {"observed_at_utc": "2026-08-27T00:00:00.000Z", "expires_at_utc": "2026-09-27T00:00:00.000Z", "revalidation_triggers": ["evidence_expiry", "gate_reopened", "reproducibility_failure", "scope_changed", "source_hash_drift", "upstream_revision_changed"]}
+      },
+      "source_assertion": {"source_id": "SRC-SYNTH-LICENSE-OBLIGATIONS", "clause_id": "iii-3-b-ai-file-identifier", "source_text_sha256": "sha256:4d1bbd707dc510f016c11531d438d6f40d52d79aa6cb262d3ca41372687b66a3", "statement_code": "add_ai_generation_file_identifier", "asserted_modality": "encouraged", "condition_code": "distribution_section_applies"},
+      "gate_requirements": {
+        "requirement_key": "req-synth-h3-file-identifier",
+        "requirements_source_ref": {"source_id": "SRC-SYNTH-GATE-CATALOG", "source_kind": "gate_catalog", "locator": "sources/gate-catalog.json", "publisher": "synthetic-governance-fixture", "immutable_revision": "fixture:gate-catalog-r1", "artifact_sha256": "sha256:eda7ae37eca6dd8b5422ee9ca913026663a056797937b479a398f08d51dc4b02"},
+        "complete": true,
+        "gates": [{"gate_id": "EXT-SYNTH-LEGAL-REVIEW", "gate_type": "external", "state": "open"}]
+      },
+      "lifecycle": {"state": "active", "effective_at_utc": "2026-08-27T00:00:00.000Z", "reason_code": "source_wording_recorded"},
+      "downgrade_policy": {"on_expiry": "poc_pending", "on_source_drift": "poc_pending", "on_scope_change": "poc_pending", "on_gate_reopen": "poc_pending", "on_reproducibility_failure": "poc_pending", "on_revocation": "poc_pending", "public_withdrawal": "immediate"},
+      "eligibility": {"stable_eligible": false, "public_claim_eligible": false, "public_tier": "none", "stable_blockers": ["evidence_level_inferred", "gate_open"], "public_blockers": ["evidence_level_inferred", "gate_open"]}
+    },
+    {
+      "claim_id": "CLAIM-SYNTH-H3-PUBLIC-DISCLOSURE",
+      "claim_code": "source_wording_h3_public_disclosure",
+      "subject": {
+        "kind": "license_obligation",
+        "subject_id": "MINIMAX-H3-PUBLIC-DISCLOSURE",
+        "component_id": "minimax-h3",
+        "scope_id": "scope-synth-h3-public-disclosure",
+        "immutable_revision": "git:5d9b308a59ab12e67147f191e184baf704185bd1",
+        "artifact_sha256": "sha256:b2f934cbaf30a32054f29511acedc6b1773b84d0546d86829bb9a250c917969e"
+      },
+      "evidence": {
+        "level": "inferred",
+        "source_refs": [{"source_id": "SRC-SYNTH-LICENSE-OBLIGATIONS", "source_kind": "license_obligation_extract", "locator": "sources/license-obligations.json", "publisher": "synthetic-governance-fixture", "immutable_revision": "fixture:license-obligations-r1", "artifact_sha256": "sha256:b2f934cbaf30a32054f29511acedc6b1773b84d0546d86829bb9a250c917969e"}],
+        "basis_codes": ["root_verified_official_source_wording"],
+        "pending_requirements": ["human_legal_applicability_review"],
+        "limitations": ["source_wording_only_not_legal_approval"],
+        "freshness": {"observed_at_utc": "2026-08-27T00:00:00.000Z", "expires_at_utc": "2026-09-27T00:00:00.000Z", "revalidation_triggers": ["evidence_expiry", "gate_reopened", "reproducibility_failure", "scope_changed", "source_hash_drift", "upstream_revision_changed"]}
+      },
+      "source_assertion": {"source_id": "SRC-SYNTH-LICENSE-OBLIGATIONS", "clause_id": "exhibit-a-12-public-disclosure", "source_text_sha256": "sha256:52792d3532586147220aa6743853ca87a79b517e01114521e1ed9902a9083317", "statement_code": "disclose_machine_generated_public_content", "asserted_modality": "must_when_condition", "condition_code": "information_disseminated_in_public_environment"},
+      "gate_requirements": {
+        "requirement_key": "req-synth-h3-public-disclosure",
+        "requirements_source_ref": {"source_id": "SRC-SYNTH-GATE-CATALOG", "source_kind": "gate_catalog", "locator": "sources/gate-catalog.json", "publisher": "synthetic-governance-fixture", "immutable_revision": "fixture:gate-catalog-r1", "artifact_sha256": "sha256:eda7ae37eca6dd8b5422ee9ca913026663a056797937b479a398f08d51dc4b02"},
+        "complete": true,
+        "gates": [{"gate_id": "EXT-SYNTH-LEGAL-REVIEW", "gate_type": "external", "state": "open"}]
+      },
+      "lifecycle": {"state": "active", "effective_at_utc": "2026-08-27T00:00:00.000Z", "reason_code": "source_wording_recorded"},
+      "downgrade_policy": {"on_expiry": "poc_pending", "on_source_drift": "poc_pending", "on_scope_change": "poc_pending", "on_gate_reopen": "poc_pending", "on_reproducibility_failure": "poc_pending", "on_revocation": "poc_pending", "public_withdrawal": "immediate"},
+      "eligibility": {"stable_eligible": false, "public_claim_eligible": false, "public_tier": "none", "stable_blockers": ["evidence_level_inferred", "gate_open"], "public_blockers": ["evidence_level_inferred", "gate_open"]}
+    },
+    {
+      "claim_id": "CLAIM-SYNTH-QWEN-LICENSE",
+      "claim_code": "source_wording_qwen_license",
+      "subject": {
+        "kind": "license_obligation",
+        "subject_id": "QWEN3-VL-32B-INSTRUCT-LICENSE",
+        "component_id": "qwen3-vl-32b-instruct",
+        "scope_id": "scope-synth-qwen-license",
+        "immutable_revision": "git:0cfaf48183f594c314753d30a4c4974bc75f3ccb",
+        "artifact_sha256": "sha256:b2f934cbaf30a32054f29511acedc6b1773b84d0546d86829bb9a250c917969e"
+      },
+      "evidence": {
+        "level": "inferred",
+        "source_refs": [{"source_id": "SRC-SYNTH-LICENSE-OBLIGATIONS", "source_kind": "license_obligation_extract", "locator": "sources/license-obligations.json", "publisher": "synthetic-governance-fixture", "immutable_revision": "fixture:license-obligations-r1", "artifact_sha256": "sha256:b2f934cbaf30a32054f29511acedc6b1773b84d0546d86829bb9a250c917969e"}],
+        "basis_codes": ["root_verified_official_source_wording"],
+        "pending_requirements": ["human_legal_applicability_review"],
+        "limitations": ["source_wording_only_not_legal_approval"],
+        "freshness": {"observed_at_utc": "2026-08-27T00:00:00.000Z", "expires_at_utc": "2026-09-27T00:00:00.000Z", "revalidation_triggers": ["evidence_expiry", "gate_reopened", "reproducibility_failure", "scope_changed", "source_hash_drift", "upstream_revision_changed"]}
+      },
+      "source_assertion": {"source_id": "SRC-SYNTH-LICENSE-OBLIGATIONS", "clause_id": "model-card-license", "source_text_sha256": "sha256:4b77b33be70c243e93630753368638e28bb66e77935606b15aba3614339c3ee0", "statement_code": "license_apache_2_0", "asserted_modality": "declarative", "condition_code": "source_identity_only"},
+      "gate_requirements": {
+        "requirement_key": "req-synth-qwen-license",
+        "requirements_source_ref": {"source_id": "SRC-SYNTH-GATE-CATALOG", "source_kind": "gate_catalog", "locator": "sources/gate-catalog.json", "publisher": "synthetic-governance-fixture", "immutable_revision": "fixture:gate-catalog-r1", "artifact_sha256": "sha256:eda7ae37eca6dd8b5422ee9ca913026663a056797937b479a398f08d51dc4b02"},
+        "complete": true,
+        "gates": [{"gate_id": "EXT-SYNTH-LEGAL-REVIEW", "gate_type": "external", "state": "open"}]
+      },
+      "lifecycle": {"state": "active", "effective_at_utc": "2026-08-27T00:00:00.000Z", "reason_code": "source_wording_recorded"},
+      "downgrade_policy": {"on_expiry": "poc_pending", "on_source_drift": "poc_pending", "on_scope_change": "poc_pending", "on_gate_reopen": "poc_pending", "on_reproducibility_failure": "poc_pending", "on_revocation": "poc_pending", "public_withdrawal": "immediate"},
+      "eligibility": {"stable_eligible": false, "public_claim_eligible": false, "public_tier": "none", "stable_blockers": ["evidence_level_inferred", "gate_open"], "public_blockers": ["evidence_level_inferred", "gate_open"]}
+    },
+    {
+      "claim_id": "CLAIM-SYNTH-H3-LICENSE",
+      "claim_code": "source_wording_h3_license",
+      "subject": {
+        "kind": "license_obligation",
+        "subject_id": "MINIMAX-H3-LICENSE",
+        "component_id": "minimax-h3",
+        "scope_id": "scope-synth-h3-agreement-copy",
+        "immutable_revision": "git:5d9b308a59ab12e67147f191e184baf704185bd1",
+        "artifact_sha256": "sha256:b2f934cbaf30a32054f29511acedc6b1773b84d0546d86829bb9a250c917969e"
+      },
+      "evidence": {
+        "level": "inferred",
+        "source_refs": [{"source_id": "SRC-SYNTH-LICENSE-OBLIGATIONS", "source_kind": "license_obligation_extract", "locator": "sources/license-obligations.json", "publisher": "synthetic-governance-fixture", "immutable_revision": "fixture:license-obligations-r1", "artifact_sha256": "sha256:b2f934cbaf30a32054f29511acedc6b1773b84d0546d86829bb9a250c917969e"}],
+        "basis_codes": ["root_verified_official_source_wording"],
+        "pending_requirements": ["human_legal_applicability_review"],
+        "limitations": ["source_wording_only_not_legal_approval"],
+        "freshness": {"observed_at_utc": "2026-08-27T00:00:00.000Z", "expires_at_utc": "2026-09-27T00:00:00.000Z", "revalidation_triggers": ["evidence_expiry", "gate_reopened", "reproducibility_failure", "scope_changed", "source_hash_drift", "upstream_revision_changed"]}
+      },
+      "source_assertion": {"source_id": "SRC-SYNTH-LICENSE-OBLIGATIONS", "clause_id": "model-card-license", "source_text_sha256": "sha256:4f87f41ee7aff7284c5113a81cd3e74de9e69f455fc0ed42635b7bf10eb447cc", "statement_code": "license_minimax_h3_community", "asserted_modality": "declarative", "condition_code": "source_identity_only"},
+      "gate_requirements": {
+        "requirement_key": "req-synth-h3-agreement-copy",
+        "requirements_source_ref": {"source_id": "SRC-SYNTH-GATE-CATALOG", "source_kind": "gate_catalog", "locator": "sources/gate-catalog.json", "publisher": "synthetic-governance-fixture", "immutable_revision": "fixture:gate-catalog-r1", "artifact_sha256": "sha256:eda7ae37eca6dd8b5422ee9ca913026663a056797937b479a398f08d51dc4b02"},
+        "complete": true,
+        "gates": [{"gate_id": "EXT-SYNTH-LEGAL-REVIEW", "gate_type": "external", "state": "open"}]
+      },
+      "lifecycle": {"state": "active", "effective_at_utc": "2026-08-27T00:00:00.000Z", "reason_code": "source_wording_recorded"},
+      "downgrade_policy": {"on_expiry": "poc_pending", "on_source_drift": "poc_pending", "on_scope_change": "poc_pending", "on_gate_reopen": "poc_pending", "on_reproducibility_failure": "poc_pending", "on_revocation": "poc_pending", "public_withdrawal": "immediate"},
+      "eligibility": {"stable_eligible": false, "public_claim_eligible": false, "public_tier": "none", "stable_blockers": ["evidence_level_inferred", "gate_open"], "public_blockers": ["evidence_level_inferred", "gate_open"]}
+    }
+  ],
+  "integrity": {
+    "profile": "rfc8785-sha256-v1",
+    "content_sha256": "sha256:d91bcac682d7c8972463dc73066ea2848678ef1b1dded6a3da5313b4ab3642d7"
+  }
+}

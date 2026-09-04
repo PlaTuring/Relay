@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"revoked-claim-cannot-be-public","mutations":[{"op":"replace","path":"/records/6/eligibility/public_claim_eligible","value":true}],"expected":{"code":"CLAIM.PUBLIC_FORBIDDEN_WHEN_REVOKED","instance_path":"/records/6/lifecycle/state","rule_id":"claim.eligibility.public.active"}}

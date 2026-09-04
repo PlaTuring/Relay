@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"unknown-gate-state-fails-closed","mutations":[{"op":"replace","path":"/records/4/gate_requirements/gates/0/state","value":"unknown"}],"expected":{"code":"CLAIM.UNKNOWN_GATE_STATE","instance_path":"/records/4/gate_requirements/gates/0/state","rule_id":"claim.gate.state.known"}}

@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"unknown-operational-field-fails-closed","mutations":[{"op":"add","path":"/records/0/queue_intent","value":true}],"expected":{"code":"CONTRACT.UNKNOWN_FIELD","instance_path":"/records/0/queue_intent","rule_id":"claim.record.closed"}}

@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "product": "relay-winbroker",
+  "capability_profile": {
+    "id": "relay.win32.path-inspection",
+    "version": "1.0.0",
+    "sha256": "5aca87f71d4e81e81c6c2d6a7a36c1096e39b16830eb56c5516aea0aa270f0c5",
+    "enabled_opcodes": [
+      257,
+      258
+    ],
+    "reserved_not_enabled_opcodes": [
+      259,
+      513,
+      514,
+      769,
+      770,
+      771
+    ]
+  },
+  "protocol_argument": "--capability-profile=path-inspection-v1",
+  "architecture": "x64",
+  "release_state": "internal_unsigned",
+  "compiler": {
+    "implementation": "msvc",
+    "version": "19.44.35228",
+    "toolset": "14.44.35207"
+  },
+  "windows_sdk_version": "10.0.26100.0",
+  "sources": [
+    {
+      "path": "src/main.cpp",
+      "sha256": "07c1f5b581a5e1df1382707edf73110ac0d2127d4f42ef36ed773a91d8212edd"
+    },
+    {
+      "path": "src/json.cpp",
+      "sha256": "cb9e1cec61450553b37fa922670e72d59a4a91eb00a3db7d66a0bc220ec7fb13"
+    },
+    {
+      "path": "src/json.hpp",
+      "sha256": "73577158b1f2a600fcdde1b804b28730603636a8193364aaa1df9175ae0beda0"
+    }
+  ],
+  "abi_header_sha256": "50580dbaf4e8ba47cf5958aaa74e764b4389058ec1904f7d954fe9ae4367d935",
+  "binary": {
+    "filename": "relay-winbroker.exe",
+    "bytes": 175104,
+    "sha256": "f97ce1361e29c01432cdef0adcae9cb0d1136935d83d70ee50fdb75b21ed2335"
+  },
+  "reproducible_unsigned_payload": {
+    "builds": 2,
+    "byte_identical": true,
+    "sha256": "f97ce1361e29c01432cdef0adcae9cb0d1136935d83d70ee50fdb75b21ed2335"
+  },
+  "imported_dlls": [
+    "kernel32.dll"
+  ],
+  "forbidden_surfaces": [
+    "network",
+    "shell",
+    "download",
+    "comfy_queue",
+    "prompt_endpoint",
+    "media_generation"
+  ]
+}

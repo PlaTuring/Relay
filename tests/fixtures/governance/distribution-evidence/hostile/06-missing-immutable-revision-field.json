@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"06-missing-immutable-revision-field","base":"../index.valid.json","mutations":[{"op":"remove","path":"/components/0/source/immutable_revision","value":null}],"expected":{"code":"SHAPE.MISSING_KEY","instance_path":"/components/0/source/immutable_revision","rule_id":"DIST-SHAPE-002"}}

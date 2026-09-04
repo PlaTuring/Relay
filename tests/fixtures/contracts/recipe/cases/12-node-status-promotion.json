@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"node-status-promotion","base":"valid/alpha0-poc-pending-recipe.json","mutations":[{"op":"replace","path":"/profile/nodes/0/runtime_acceptance","value":"passed"}],"expected":{"code":"RECIPE.NODE_STATUS_PROMOTION","instance_path":"/profile/nodes/0/runtime_acceptance","rule_id":"recipe.nodes.status_cannot_promote"}}

@@ -1,0 +1,9 @@
+{
+  "fixture_id": "license-applicability-unknown-approval-field",
+  "mutation": {
+    "kind": "set_license_applicability_field",
+    "field": "approved_by_agent",
+    "value": true
+  },
+  "expected_code": "STRUCTURE.LICENSE_APPLICABILITY.UNKNOWN_KEY"
+}

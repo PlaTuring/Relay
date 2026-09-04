@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"encouraged-cannot-be-promoted-to-must","mutations":[{"op":"replace","path":"/records/9/source_assertion/asserted_modality","value":"must"}],"expected":{"code":"CLAIM.OBLIGATION_MODALITY_MISMATCH","instance_path":"/records/9/source_assertion/asserted_modality","rule_id":"claim.obligation.modality.exact_no_promotion_or_weakening"}}

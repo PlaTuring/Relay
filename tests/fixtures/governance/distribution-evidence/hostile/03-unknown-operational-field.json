@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"03-unknown-operational-field","base":"../index.valid.json","mutations":[{"op":"add","path":"/components/0/download_url","value":"https://invalid.example/forbidden"}],"expected":{"code":"SHAPE.UNKNOWN_KEY","instance_path":"/components/0/download_url","rule_id":"DIST-SHAPE-003"}}

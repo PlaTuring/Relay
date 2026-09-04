@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "blocked-exact-resolution-unavailable",
+  "reason": "No local Rust/Cargo/Tauri/MSVC toolchain is installed; no network or toolchain installation is authorized.",
+  "plannedRoles": [
+    {
+      "role": "tauri-application-runtime",
+      "ecosystem": "cargo",
+      "exactPackage": null,
+      "exactVersion": null,
+      "resolutionStatus": "blocked"
+    },
+    {
+      "role": "serde-contracts",
+      "ecosystem": "cargo",
+      "exactPackage": null,
+      "exactVersion": null,
+      "resolutionStatus": "blocked"
+    },
+    {
+      "role": "native-directory-picker",
+      "ecosystem": "cargo-or-tauri-plugin",
+      "exactPackage": null,
+      "exactVersion": null,
+      "resolutionStatus": "blocked"
+    },
+    {
+      "role": "typed-renderer-bridge",
+      "ecosystem": "npm-or-generated-tauri-api",
+      "exactPackage": null,
+      "exactVersion": null,
+      "resolutionStatus": "blocked"
+    }
+  ],
+  "requiredFutureEvidence": [
+    "Cargo.lock with exact checksums",
+    "cargo metadata/tree",
+    "crate and packaged-binary SBOM",
+    "license allowlist",
+    "cargo audit or equivalent advisory snapshot",
+    "build scripts and native binary provenance",
+    "WebView2 loader/runtime distribution policy"
+  ]
+}
+

@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"missing-artifact-hash","base":"valid/component-role-examples.json","mutations":[{"op":"remove","path":"/components/0/artifact/artifact_sha256"}],"expected":{"code":"COMPONENT.ARTIFACT_HASH_REQUIRED","instance_path":"/components/0/artifact/artifact_sha256","rule_id":"component.artifact.hash.required"}}

@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"48-media-branding-authority-enabled","base":"../index.valid.json","mutations":[{"op":"replace","path":"/brand_boundary/media_branding_authority","value":true}],"expected":{"code":"BRAND.BOUNDARY_DRIFT","instance_path":"/brand_boundary","rule_id":"DIST-BRAND-002"}}

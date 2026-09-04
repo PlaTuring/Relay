@@ -1,0 +1,643 @@
+[
+  {
+    "fixture_case_version": 1,
+    "case_id": "model-integrity-precedes-shape",
+    "kind": "mutation",
+    "base": "model-registry-found.json",
+    "mutations": [
+      {
+        "op": "add",
+        "path": "/unexpected_root",
+        "value": true
+      }
+    ],
+    "refresh_integrity": false,
+    "expected": {
+      "code": "CONTRACT.INTEGRITY_MISMATCH",
+      "instance_path": "/integrity/content_sha256",
+      "rule_id": "contract.integrity.root_content_sha256"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "model-closed-root",
+    "kind": "mutation",
+    "base": "model-registry-found.json",
+    "mutations": [
+      {
+        "op": "add",
+        "path": "/unexpected_root",
+        "value": true
+      }
+    ],
+    "expected": {
+      "code": "CONTRACT.UNKNOWN_FIELD",
+      "instance_path": "/unexpected_root",
+      "rule_id": "model.root.closed"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "model-external-never-tool-owned",
+    "kind": "mutation",
+    "base": "model-registry-found.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/candidates/0/location/tool_owned",
+        "value": true
+      }
+    ],
+    "expected": {
+      "code": "MODEL.SCHEMA_CONSTRAINT",
+      "instance_path": "/candidates/0/location/tool_owned",
+      "rule_id": "model.location.external.tool_owned"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "model-external-never-deletable",
+    "kind": "mutation",
+    "base": "model-registry-found.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/candidates/0/location/delete_authority",
+        "value": "tool_uninstall"
+      }
+    ],
+    "expected": {
+      "code": "MODEL.SCHEMA_CONSTRAINT",
+      "instance_path": "/candidates/0/location/delete_authority",
+      "rule_id": "model.location.external.delete_authority"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "model-common-drive-scan-forbidden",
+    "kind": "mutation",
+    "base": "model-registry-found.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/candidates/0/location/discovery_scope",
+        "value": "common_drive_scan"
+      },
+      {
+        "op": "replace",
+        "path": "/candidates/0/stage_history/0/evidence/discovery_scope",
+        "value": "common_drive_scan"
+      }
+    ],
+    "expected": [
+      {
+        "code": "CONTRACT.UNKNOWN_ENUM",
+        "instance_path": "/candidates/0/location/discovery_scope",
+        "rule_id": "model.location.external.discovery_scope"
+      },
+      {
+        "code": "CONTRACT.UNKNOWN_ENUM",
+        "instance_path": "/candidates/0/stage_history/0/evidence/discovery_scope",
+        "rule_id": "model.found.discovery_scope"
+      }
+    ]
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "model-found-cannot-carry-full-hash",
+    "kind": "mutation",
+    "base": "model-registry-found.json",
+    "mutations": [
+      {
+        "op": "add",
+        "path": "/candidates/0/stage_history/0/evidence/artifact_sha256",
+        "value": "sha256:9999999999999999999999999999999999999999999999999999999999999999"
+      }
+    ],
+    "expected": {
+      "code": "CONTRACT.UNKNOWN_FIELD",
+      "instance_path": "/candidates/0/stage_history/0/evidence/artifact_sha256",
+      "rule_id": "model.found.closed"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "model-unsupported-filename-cannot-progress",
+    "kind": "mutation",
+    "base": "model-registry-selected-external.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/candidates/0/stage_history/0/evidence/finding_class",
+        "value": "unsupported_format"
+      },
+      {
+        "op": "replace",
+        "path": "/candidates/0/stage_history/0/evidence/container_hint",
+        "value": "gguf"
+      }
+    ],
+    "expected": {
+      "code": "MODEL.UNSUPPORTED_FORMAT_PROGRESSION",
+      "instance_path": "/candidates/0/stage_history/0/evidence/finding_class",
+      "rule_id": "model.progression.supported_candidate_required"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "model-stage-progression-cannot-skip",
+    "kind": "mutation",
+    "base": "model-registry-selected-external.json",
+    "mutations": [
+      {
+        "op": "remove",
+        "path": "/candidates/0/stage_history/1"
+      }
+    ],
+    "expected": {
+      "code": "MODEL.PROGRESSION_SKIPPED",
+      "instance_path": "/candidates/0/stage_history",
+      "rule_id": "model.progression.contiguous_prefix"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "model-current-stage-is-last",
+    "kind": "mutation",
+    "base": "model-registry-selected-external.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/candidates/0/current_stage",
+        "value": "approved"
+      }
+    ],
+    "expected": [
+      {
+        "code": "MODEL.CURRENT_STAGE_MISMATCH",
+        "instance_path": "/candidates/0/current_stage",
+        "rule_id": "model.progression.current_is_last"
+      },
+      {
+        "code": "MODEL.PROGRESSION_INCOMPLETE",
+        "instance_path": "/candidates/0/reuse_decision",
+        "rule_id": "model.reuse.full_progression_required"
+      }
+    ]
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "model-stage-time-monotonic",
+    "kind": "mutation",
+    "base": "model-registry-selected-external.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/candidates/0/stage_history/1/recorded_at_utc",
+        "value": "2025-12-31T23:59:59Z"
+      }
+    ],
+    "expected": {
+      "code": "MODEL.STAGE_TIME_REGRESSION",
+      "instance_path": "/candidates/0/stage_history/1/recorded_at_utc",
+      "rule_id": "model.progression.time_monotonic"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "model-identified-role-must-match",
+    "kind": "mutation",
+    "base": "model-registry-selected-external.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/candidates/0/stage_history/1/evidence/tensor_role",
+        "value": "model_text_encoder"
+      }
+    ],
+    "expected": {
+      "code": "MODEL.ROLE_MISMATCH",
+      "instance_path": "/candidates/0/stage_history/1/evidence/tensor_role",
+      "rule_id": "model.identified.role_matches_candidate"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "model-manifest-match-required",
+    "kind": "mutation",
+    "base": "model-registry-selected-external.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/candidates/0/stage_history/1/evidence/manifest_match",
+        "value": "no_match"
+      }
+    ],
+    "expected": {
+      "code": "MODEL.MANIFEST_MATCH_REQUIRED",
+      "instance_path": "/candidates/0/stage_history/1/evidence/manifest_match",
+      "rule_id": "model.identified.manifest_exact_for_progression"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "model-found-length-must-match-identity",
+    "kind": "mutation",
+    "base": "model-registry-found.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/candidates/0/stage_history/0/evidence/file_identity/byte_length",
+        "value": 2048
+      }
+    ],
+    "expected": {
+      "code": "MODEL.FILE_IDENTITY_LENGTH_MISMATCH",
+      "instance_path": "/candidates/0/stage_history/0/evidence/file_identity/byte_length",
+      "rule_id": "model.found.length_identity_exact"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "model-verified-requires-full-hash",
+    "kind": "mutation",
+    "base": "model-registry-selected-external.json",
+    "mutations": [
+      {
+        "op": "remove",
+        "path": "/candidates/0/stage_history/2/evidence/artifact_sha256"
+      }
+    ],
+    "expected": {
+      "code": "MODEL.SCHEMA_CONSTRAINT",
+      "instance_path": "/candidates/0/stage_history/2/evidence/artifact_sha256",
+      "rule_id": "model.verified.closed"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "model-hash-cache-identity-stale",
+    "kind": "mutation",
+    "base": "model-registry-selected-external.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/candidates/0/stage_history/2/evidence/file_identity/modified_filetime_ticks",
+        "value": 3001
+      }
+    ],
+    "expected": {
+      "code": "MODEL.HASH_CACHE_STALE",
+      "instance_path": "/candidates/0/stage_history/2/evidence/file_identity",
+      "rule_id": "model.verified.file_identity_exact"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "model-compatible-hash-must-match",
+    "kind": "mutation",
+    "base": "model-registry-selected-external.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/candidates/0/stage_history/3/evidence/artifact_sha256",
+        "value": "sha256:9999999999999999999999999999999999999999999999999999999999999999"
+      }
+    ],
+    "expected": {
+      "code": "MODEL.ARTIFACT_IDENTITY_DRIFT",
+      "instance_path": "/candidates/0/stage_history/3/evidence/artifact_sha256",
+      "rule_id": "model.progression.artifact_hash_exact"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "model-hardware-binding-stale",
+    "kind": "mutation",
+    "base": "model-registry-selected-external.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/candidates/0/stage_history/3/evidence/hardware_report_ref/source_content_sha256",
+        "value": "sha256:9999999999999999999999999999999999999999999999999999999999999999"
+      }
+    ],
+    "expected": [
+      {
+        "code": "MODEL.HARDWARE_BINDING_STALE",
+        "instance_path": "/candidates/0/stage_history/3/evidence/hardware_report_ref",
+        "rule_id": "model.compatible.hardware_snapshot_exact"
+      },
+      {
+        "code": "MODEL.SELECTION_BINDING_STALE",
+        "instance_path": "/candidates/0/stage_history/5/evidence/hardware_report_ref",
+        "rule_id": "model.selected.bindings_match_approved_compatible"
+      }
+    ]
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "model-hardware-binding-non-actionable",
+    "kind": "mutation",
+    "base": "model-registry-selected-external.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/candidates/0/stage_history/3/evidence/hardware_report_ref/source_document_id",
+        "value": "10000000-0000-4000-8000-000000000003"
+      },
+      {
+        "op": "replace",
+        "path": "/candidates/0/stage_history/3/evidence/hardware_report_ref/source_content_sha256",
+        "value": "sha256:d55b11a54e0c09e4c25a6c20fcc7e7806d90723bf3a071848f93268e0ea0ba72"
+      },
+      {
+        "op": "replace",
+        "path": "/candidates/0/stage_history/3/evidence/hardware_report_ref/report_id",
+        "value": "hardware-vram-conflict-fixture"
+      },
+      {
+        "op": "replace",
+        "path": "/candidates/0/stage_history/3/evidence/gpu_subject_id",
+        "value": "gpu-c"
+      },
+      {
+        "op": "replace",
+        "path": "/candidates/0/stage_history/5/evidence/hardware_report_ref/source_document_id",
+        "value": "10000000-0000-4000-8000-000000000003"
+      },
+      {
+        "op": "replace",
+        "path": "/candidates/0/stage_history/5/evidence/hardware_report_ref/source_content_sha256",
+        "value": "sha256:d55b11a54e0c09e4c25a6c20fcc7e7806d90723bf3a071848f93268e0ea0ba72"
+      },
+      {
+        "op": "replace",
+        "path": "/candidates/0/stage_history/5/evidence/hardware_report_ref/report_id",
+        "value": "hardware-vram-conflict-fixture"
+      },
+      {
+        "op": "replace",
+        "path": "/candidates/0/stage_history/5/evidence/gpu_subject_id",
+        "value": "gpu-c"
+      }
+    ],
+    "expected": {
+      "code": "MODEL.HARDWARE_BINDING_NON_ACTIONABLE",
+      "instance_path": "/candidates/0/stage_history/3/evidence/gpu_subject_id",
+      "rule_id": "model.compatible.hardware_gpu_resolved"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "model-approved-hash-must-match",
+    "kind": "mutation",
+    "base": "model-registry-selected-external.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/candidates/0/stage_history/4/evidence/artifact_sha256",
+        "value": "sha256:9999999999999999999999999999999999999999999999999999999999999999"
+      }
+    ],
+    "expected": {
+      "code": "MODEL.ARTIFACT_IDENTITY_DRIFT",
+      "instance_path": "/candidates/0/stage_history/4/evidence/artifact_sha256",
+      "rule_id": "model.progression.artifact_hash_exact"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "model-provenance-role-exact",
+    "kind": "mutation",
+    "base": "model-registry-selected-external.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/candidates/0/stage_history/4/evidence/provenance/packager/role",
+        "value": "publisher"
+      }
+    ],
+    "expected": {
+      "code": "MODEL.PROVENANCE_ROLE_MISMATCH",
+      "instance_path": "/candidates/0/stage_history/4/evidence/provenance/packager/role",
+      "rule_id": "model.provenance.party_roles_exact"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "model-provenance-original-not-repacked",
+    "kind": "mutation",
+    "base": "model-registry-selected-external.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/candidates/0/stage_history/4/evidence/provenance/transformation",
+        "value": "original_bytes"
+      }
+    ],
+    "expected": {
+      "code": "MODEL.PROVENANCE_MISLABEL",
+      "instance_path": "/candidates/0/stage_history/4/evidence/provenance/transformation",
+      "rule_id": "model.provenance.original_requires_same_party"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "model-provenance-revision-immutable",
+    "kind": "mutation",
+    "base": "model-registry-selected-external.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/candidates/0/stage_history/4/evidence/provenance/immutable_source_revision",
+        "value": "main"
+      }
+    ],
+    "expected": {
+      "code": "MODEL.SCHEMA_CONSTRAINT",
+      "instance_path": "/candidates/0/stage_history/4/evidence/provenance/immutable_source_revision",
+      "rule_id": "model.provenance.source_revision"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "model-selected-role-must-match",
+    "kind": "mutation",
+    "base": "model-registry-selected-external.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/candidates/0/stage_history/5/evidence/model_role",
+        "value": "model_text_encoder"
+      }
+    ],
+    "expected": {
+      "code": "MODEL.ROLE_MISMATCH",
+      "instance_path": "/candidates/0/stage_history/5/evidence/model_role",
+      "rule_id": "model.selected.role_matches_candidate"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "model-selected-support-binding-exact",
+    "kind": "mutation",
+    "base": "model-registry-selected-external.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/candidates/0/stage_history/5/evidence/support_status",
+        "value": "supported_by_exact_recipe"
+      }
+    ],
+    "expected": {
+      "code": "MODEL.SELECTION_BINDING_STALE",
+      "instance_path": "/candidates/0/stage_history/5/evidence/support_status",
+      "rule_id": "model.selected.bindings_match_approved_compatible"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "model-selected-recipe-binding-exact",
+    "kind": "mutation",
+    "base": "model-registry-selected-external.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/candidates/0/stage_history/5/evidence/recipe_ref/source_content_sha256",
+        "value": "sha256:9999999999999999999999999999999999999999999999999999999999999999"
+      }
+    ],
+    "expected": [
+      {
+        "code": "MODEL.REUSE_BINDING_STALE",
+        "instance_path": "/candidates/0/reuse_decision/recipe_ref",
+        "rule_id": "model.reuse.bindings_match_selected"
+      },
+      {
+        "code": "MODEL.SELECTION_BINDING_STALE",
+        "instance_path": "/candidates/0/stage_history/5/evidence/recipe_ref",
+        "rule_id": "model.selected.bindings_match_approved_compatible"
+      }
+    ]
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "model-reuse-binding-exact",
+    "kind": "mutation",
+    "base": "model-registry-selected-external.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/candidates/0/reuse_decision/artifact_sha256",
+        "value": "sha256:9999999999999999999999999999999999999999999999999999999999999999"
+      }
+    ],
+    "expected": {
+      "code": "MODEL.REUSE_BINDING_STALE",
+      "instance_path": "/candidates/0/reuse_decision/artifact_sha256",
+      "rule_id": "model.reuse.bindings_match_selected"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "model-invalidated-never-reusable",
+    "kind": "mutation",
+    "base": "model-registry-selected-external.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/candidates/0/lifecycle_status",
+        "value": {
+          "kind": "invalidated",
+          "invalidated_at_utc": "2026-01-01T02:06:00Z",
+          "reason": "file_identity_changed"
+        }
+      }
+    ],
+    "expected": {
+      "code": "MODEL.INVALIDATED_REUSE_FORBIDDEN",
+      "instance_path": "/candidates/0/reuse_decision",
+      "rule_id": "model.invalidated.never_reusable"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "model-one-candidate-per-recipe-slot",
+    "kind": "mutation",
+    "base": "model-registry-selected-external.json",
+    "mutations": [
+      {
+        "op": "copy",
+        "from": "/candidates/0",
+        "path": "/candidates/-"
+      },
+      {
+        "op": "replace",
+        "path": "/candidates/1/candidate_id",
+        "value": "candidate-selected-copy"
+      }
+    ],
+    "expected": {
+      "code": "MODEL.DUPLICATE_RECIPE_SLOT_SELECTION",
+      "instance_path": "/candidates/1/stage_history/5/evidence/slot_id",
+      "rule_id": "model.selected.one_candidate_per_recipe_slot"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "model-incomplete-progression-not-reusable",
+    "kind": "mutation",
+    "base": "model-registry-selected-external.json",
+    "mutations": [
+      {
+        "op": "remove",
+        "path": "/candidates/0/stage_history/1"
+      },
+      {
+        "op": "remove",
+        "path": "/candidates/0/stage_history/1"
+      },
+      {
+        "op": "remove",
+        "path": "/candidates/0/stage_history/1"
+      },
+      {
+        "op": "remove",
+        "path": "/candidates/0/stage_history/1"
+      },
+      {
+        "op": "remove",
+        "path": "/candidates/0/stage_history/1"
+      },
+      {
+        "op": "replace",
+        "path": "/candidates/0/current_stage",
+        "value": "found"
+      }
+    ],
+    "expected": {
+      "code": "MODEL.PROGRESSION_INCOMPLETE",
+      "instance_path": "/candidates/0/reuse_decision",
+      "rule_id": "model.reuse.full_progression_required"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "model-discovery-scope-matches-location",
+    "kind": "mutation",
+    "base": "model-registry-found.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/candidates/0/stage_history/0/evidence/discovery_scope",
+        "value": "known_configuration_path"
+      }
+    ],
+    "expected": {
+      "code": "MODEL.DISCOVERY_SCOPE_MISMATCH",
+      "instance_path": "/candidates/0/stage_history/0/evidence/discovery_scope",
+      "rule_id": "model.discovery.scope_matches_location"
+    }
+  }
+]

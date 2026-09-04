@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "1.0.0",
+  "probeKind": "read-only-sanitized-dotnet-toolchain",
+  "operatingSystem": {
+    "platform": "windows",
+    "version": "10.0.26200.0",
+    "architecture": "x64"
+  },
+  "modernDotnet": {
+    "hostPresent": true,
+    "hostProductVersion": "8.0.21 @Commit: 362ab6669d55a75d51166f01b596c967c734ef4c",
+    "sdkPresent": false,
+    "sdkVersions": [],
+    "runtimes": [
+      {
+        "name": "Microsoft.NETCore.App",
+        "version": "8.0.21"
+      }
+    ],
+    "windowsDesktopRuntimePresent": false,
+    "frameworkDependentPublishSupported": false,
+    "selfContainedPublishSupported": false
+  },
+  "nativeBuild": {
+    "msbuildOnPathPresent": false,
+    "vswhereOnPathPresent": false,
+    "signtoolOnPathPresent": false,
+    "makeappxOnPathPresent": false,
+    "windowsSdkKnownRootPresent": false,
+    "visualStudio2022KnownRootPresent": false,
+    "winUiBuildSupported": false,
+    "msixBuildSupported": false
+  },
+  "legacyFramework": {
+    "registryVersion": "4.8.09221",
+    "registryRelease": 533509,
+    "compilerPresent": true,
+    "legacyMsbuildPresent": true,
+    "wpfRuntimeAssembliesPresent": true,
+    "referenceTargetingPackPresent": false,
+    "acceptedAsModernSdkSubstitute": false
+  },
+  "guarantees": {
+    "fileWrites": false,
+    "networkAccess": false,
+    "toolchainMutation": false,
+    "privatePathsEmitted": false,
+    "rawEnvironmentDumped": false
+  }
+}
+

@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "1.0.0",
+  "probeKind": "read-only-sanitized-host-toolchain",
+  "operatingSystem": {
+    "platform": "windows",
+    "version": "10.0.26200.0",
+    "architecture": "x64"
+  },
+  "harness": {
+    "pwsh": {
+      "present": true,
+      "version": "PowerShell 7.6.4"
+    }
+  },
+  "javascript": {
+    "node": {
+      "present": true,
+      "version": "v24.19.0"
+    },
+    "npm": {
+      "present": true,
+      "version": "11.17.0"
+    },
+    "tauriCli": {
+      "present": false,
+      "version": null
+    }
+  },
+  "rust": {
+    "rustc": {
+      "present": false,
+      "version": null
+    },
+    "cargo": {
+      "present": false,
+      "version": null
+    },
+    "rustup": {
+      "present": false,
+      "version": null
+    },
+    "cargoTauri": {
+      "present": false,
+      "version": null
+    }
+  },
+  "nativeBuild": {
+    "clPresent": false,
+    "linkPresent": false,
+    "msbuildPresent": false,
+    "vswherePresent": false,
+    "signtoolPresent": false,
+    "windowsSdkKnownRootPresent": false,
+    "visualStudio2022KnownRootPresent": false
+  },
+  "webView2": {
+    "machineRuntimePresent": true,
+    "version": "151.0.4129.107",
+    "registrationScope": "machine"
+  },
+  "guarantees": {
+    "fileWrites": false,
+    "networkAccess": false,
+    "toolchainMutation": false,
+    "privatePathsEmitted": false
+  }
+}

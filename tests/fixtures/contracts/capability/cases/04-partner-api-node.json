@@ -1,0 +1,11 @@
+{
+  "fixture_case_version": "1.0.0",
+  "case_id": "partner-api-node-denied",
+  "base": "valid/alpha0-local-node-allowlist.json",
+  "mutations": [
+    {"op": "copy", "from": "/entries/0", "path": "/entries/-"},
+    {"op": "replace", "path": "/entries/4/class_type", "value": "MinimaxHailuo03TextToVideoNode"},
+    {"op": "replace", "path": "/entries/4/display_name", "value": "Partner API candidate"}
+  ],
+  "expected": {"code": "NODE.PARTNER_API_FORBIDDEN", "instance_path": "/entries/4/class_type", "rule_id": "node.identity.partner_api_forbidden"}
+}

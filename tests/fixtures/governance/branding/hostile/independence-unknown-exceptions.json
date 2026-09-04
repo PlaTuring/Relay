@@ -1,0 +1,11 @@
+{
+  "fixture_id": "independence-unknown-exceptions",
+  "mutation": {
+    "kind": "set_independence_field",
+    "field": "exceptions",
+    "value": [
+      "user_brand"
+    ]
+  },
+  "expected_code": "STRUCTURE.INDEPENDENCE.UNKNOWN_KEY"
+}

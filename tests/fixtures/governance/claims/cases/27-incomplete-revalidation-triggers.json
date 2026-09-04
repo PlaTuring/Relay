@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"all-revalidation-triggers-are-required","mutations":[{"op":"remove","path":"/records/0/evidence/freshness/revalidation_triggers/5"}],"expected":{"code":"CLAIM.REVALIDATION_TRIGGERS_INCOMPLETE","instance_path":"/records/0/evidence/freshness/revalidation_triggers","rule_id":"claim.freshness.triggers.complete"}}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "tests": [
+    {
+      "id": "private-path",
+      "lane": "fast",
+      "kind": "runner",
+      "required": true,
+      "adapter": "node_script",
+      "script": "tests/runner/fixtures/scripts/sensitive-output.mjs",
+      "args": [],
+      "timeout_ms": 5000,
+      "max_output_bytes": 4096
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "alpha-clean-build-plan",
+  "private": true,
+  "version": "0.1.0-alpha.1",
+  "scripts": {
+    "verify": "node verify-local-plan.mjs"
+  },
+  "dependencies": {}
+}

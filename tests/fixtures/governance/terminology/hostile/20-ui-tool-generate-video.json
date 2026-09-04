@@ -1,0 +1,1 @@
+{"fixture_version":"1.0.0","fixture_id":"ui-tool-generate-video","target":"ui_copy","entry":{"copy_id":"hostile-tool-generator","surface":"project_primary_action","locale":"zh-CN","text":"生成视频和声音","context":{"actor":"tool_control_plane","operation":"media_generation"}},"expected":{"code":"TERM.UI.TOOL_GENERATOR","rule_id":"terminology.ui.control_plane.no_media_generation"}}

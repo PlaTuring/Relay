@@ -1,0 +1,1 @@
+{"fixture_version":"1.0.0","fixture_id":"ui-runtime-generation-as-video","target":"ui_copy","entry":{"copy_id":"hostile-generation-ambiguous","surface":"runtime_generation_label","locale":"zh-CN","text":"视频生成版本","context":{"term":"runtime_generation"}},"expected":{"code":"TERM.UI.GENERATION_AMBIGUOUS","rule_id":"terminology.ui.runtime_generation.qualify"}}

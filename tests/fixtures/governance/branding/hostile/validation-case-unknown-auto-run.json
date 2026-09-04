@@ -1,0 +1,10 @@
+{
+  "fixture_id": "validation-case-unknown-auto-run",
+  "mutation": {
+    "kind": "set_case_field",
+    "case_id": "brand-asset-absent-no-op",
+    "field": "auto_run",
+    "value": true
+  },
+  "expected_code": "STRUCTURE.VALIDATION_CASE.UNKNOWN_KEY"
+}

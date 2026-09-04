@@ -1,0 +1,9 @@
+{
+  "fixture_id": "top-level-unknown-auto-run",
+  "mutation": {
+    "kind": "set_top_level_field",
+    "field": "auto_run",
+    "value": true
+  },
+  "expected_code": "STRUCTURE.TOP_LEVEL.UNKNOWN_KEY"
+}

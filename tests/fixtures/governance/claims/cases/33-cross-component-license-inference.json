@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"h3-obligation-cannot-be-inferred-for-qwen","mutations":[{"op":"replace","path":"/records/9/subject/component_id","value":"qwen3-vl-32b-instruct"}],"expected":{"code":"CLAIM.OBLIGATION_COMPONENT_SCOPE_MISMATCH","instance_path":"/records/9/source_assertion/clause_id","rule_id":"claim.obligation.component_exact"}}

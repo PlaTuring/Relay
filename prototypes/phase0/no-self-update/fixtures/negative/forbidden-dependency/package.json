@@ -1,0 +1,7 @@
+{
+  "name": "negative-updater-dependency",
+  "private": true,
+  "dependencies": {
+    "electron-updater": "6.6.2"
+  }
+}

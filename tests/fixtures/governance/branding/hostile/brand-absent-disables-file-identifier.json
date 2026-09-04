@@ -1,0 +1,10 @@
+{
+  "fixture_id": "brand-absent-disables-file-identifier",
+  "mutation": {
+    "kind": "set_case_field",
+    "case_id": "brand-asset-absent-no-op",
+    "field": "file_ai_generation_identifier_policy",
+    "value": "disabled_by_brand_state"
+  },
+  "expected_code": "CASE.BRAND_STATE_OVERRIDES_FILE_IDENTIFIER"
+}

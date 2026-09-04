@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"mutable-source-revision-is-not-evidence","mutations":[{"op":"replace","path":"/records/0/evidence/source_refs/0/immutable_revision","value":"fixture:latest"}],"expected":{"code":"CLAIM.SOURCE_REVISION_NOT_IMMUTABLE","instance_path":"/records/0/evidence/source_refs/0/immutable_revision","rule_id":"claim.source.revision.immutable"}}

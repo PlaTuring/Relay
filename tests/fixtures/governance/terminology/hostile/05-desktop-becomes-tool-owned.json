@@ -1,0 +1,1 @@
+{"fixture_version":"1.0.0","fixture_id":"desktop-becomes-tool-owned","target":"glossary","mutation":{"kind":"set_topology_field","topology_id":"desktop","field":"ownership","value":"tool_owned"},"expected":{"code":"TERM.RUNTIME_TOPOLOGY.SEMANTIC_DRIFT","rule_id":"terminology.runtime_topology.ownership_exact"}}

@@ -1,0 +1,10 @@
+{
+  "fixture_id": "brand-substitutes-h3",
+  "mutation": {
+    "kind": "append_layer_relation",
+    "layer_id": "user_brand",
+    "field": "may_substitute_for",
+    "target_layer_id": "minimax_h3_attribution"
+  },
+  "expected_code": "LAYER.SUBSTITUTION_FORBIDDEN"
+}

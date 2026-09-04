@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"auto-prompt-field","base":"valid/alpha0-poc-pending-recipe.json","mutations":[{"op":"add","path":"/profile/control_plane/prompt_endpoint","value":"/prompt"}],"expected":{"code":"RECIPE.AUTO_PROMPT_FORBIDDEN","instance_path":"/profile/control_plane/prompt_endpoint","rule_id":"recipe.boundary.no_auto_prompt"}}

@@ -1,0 +1,325 @@
+{
+  "fixture_version": "1.0.0",
+  "messages": [
+    {
+      "case_id": "signed-client-hello",
+      "direction": "caller_to_helper",
+      "frame": { "message_kind": 1, "opcode": 0, "sequence": 0 },
+      "payload": {
+        "contract_id": "minimax-h3-tool.win32-helper-wire",
+        "schema_version": "1.0.0",
+        "document_id": "10000000-0000-4000-8000-000000000001",
+        "document_revision": 1,
+        "message_kind": "client_hello",
+        "session_id": "11111111-1111-4111-8111-111111111111",
+        "abi_version": "1.0.0",
+        "abi_manifest_sha256": "sha256:9ec29a44e4fa3292c6e77cce98a104fe4e6f36aa56d173b64d1ff00f490fa085",
+        "caller_nonce": "1111111111111111111111111111111111111111111111111111111111111111",
+        "caller_identity": {
+          "role": "electron_main",
+          "product_id": "minimax-h3-tool.control-plane",
+          "version": "0.1.0",
+          "build_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "build_manifest_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "image_sha256": "sha256:abababababababababababababababababababababababababababababababab",
+          "release_state": "authenticode_release",
+          "signature": {
+            "state": "valid",
+            "publisher_spki_sha256": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+            "timestamp_state": "valid"
+          },
+          "parent": {
+            "pid": 4242,
+            "creation_filetime": { "high_u32": 31234567, "low_u32": 2309737967 },
+            "canonical_image_sha256": "sha256:abababababababababababababababababababababababababababababababab"
+          }
+        },
+        "expected_helper": {
+          "product_id": "minimax-h3-tool.winbroker",
+          "version": "1.0.0",
+          "build_id": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "build_manifest_sha256": "sha256:bcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbc",
+          "image_sha256": "sha256:bdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbd",
+          "release_state": "authenticode_release",
+          "publisher_spki_sha256": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "build_authorization": {
+          "state": "valid",
+          "pairing_manifest_sha256": "sha256:dededededededededededededededededededededededededededededededede",
+          "publisher_spki_sha256": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "integrity": { "profile": "rfc8785-sha256-v1", "content_sha256": "sha256:17990e8bf55fc4bf21418df64cfc334604f6a4cce475340c8c7e89407277410f" }
+      }
+    },
+    {
+      "case_id": "signed-server-hello",
+      "direction": "helper_to_caller",
+      "frame": { "message_kind": 2, "opcode": 0, "sequence": 0 },
+      "payload": {
+        "contract_id": "minimax-h3-tool.win32-helper-wire",
+        "schema_version": "1.0.0",
+        "document_id": "10000000-0000-4000-8000-000000000002",
+        "document_revision": 1,
+        "message_kind": "server_hello",
+        "session_id": "11111111-1111-4111-8111-111111111111",
+        "abi_version": "1.0.0",
+        "abi_manifest_sha256": "sha256:9ec29a44e4fa3292c6e77cce98a104fe4e6f36aa56d173b64d1ff00f490fa085",
+        "caller_nonce_echo": "1111111111111111111111111111111111111111111111111111111111111111",
+        "helper_nonce": "2222222222222222222222222222222222222222222222222222222222222222",
+        "observed_parent": {
+          "pid": 4242,
+          "creation_filetime": { "high_u32": 31234567, "low_u32": 2309737967 },
+          "canonical_image_sha256": "sha256:abababababababababababababababababababababababababababababababab",
+          "build_manifest_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "helper_identity": {
+          "product_id": "minimax-h3-tool.winbroker",
+          "version": "1.0.0",
+          "build_id": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "build_manifest_sha256": "sha256:bcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbc",
+          "image_sha256": "sha256:bdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbd",
+          "release_state": "authenticode_release",
+          "signature": {
+            "state": "valid",
+            "publisher_spki_sha256": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+            "timestamp_state": "valid"
+          }
+        },
+        "build_authorization_status": "valid",
+        "integrity": { "profile": "rfc8785-sha256-v1", "content_sha256": "sha256:a240160b642951278423431805596de7d83c24ba3a0459dd7eaaa3d7d218e415" }
+      }
+    },
+    {
+      "case_id": "internal-client-hello",
+      "direction": "caller_to_helper",
+      "frame": { "message_kind": 1, "opcode": 0, "sequence": 0 },
+      "payload": {
+        "contract_id": "minimax-h3-tool.win32-helper-wire",
+        "schema_version": "1.0.0",
+        "document_id": "20000000-0000-4000-8000-000000000001",
+        "document_revision": 1,
+        "message_kind": "client_hello",
+        "session_id": "22222222-2222-4222-8222-222222222222",
+        "abi_version": "1.0.0",
+        "abi_manifest_sha256": "sha256:9ec29a44e4fa3292c6e77cce98a104fe4e6f36aa56d173b64d1ff00f490fa085",
+        "caller_nonce": "3333333333333333333333333333333333333333333333333333333333333333",
+        "caller_identity": {
+          "role": "electron_main",
+          "product_id": "minimax-h3-tool.control-plane",
+          "version": "0.1.0",
+          "build_id": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+          "build_manifest_sha256": "sha256:dadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadada",
+          "image_sha256": "sha256:dbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdb",
+          "release_state": "internal_unsigned",
+          "signature": { "state": "unsigned" },
+          "parent": {
+            "pid": 5151,
+            "creation_filetime": { "high_u32": 31234568, "low_u32": 1985229328 },
+            "canonical_image_sha256": "sha256:dbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdb"
+          }
+        },
+        "expected_helper": {
+          "product_id": "minimax-h3-tool.winbroker",
+          "version": "1.0.0",
+          "build_id": "eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee",
+          "build_manifest_sha256": "sha256:eaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaea",
+          "image_sha256": "sha256:ebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebeb",
+          "release_state": "internal_unsigned"
+        },
+        "build_authorization": {
+          "state": "internal_unsigned",
+          "pairing_manifest_sha256": "sha256:ecececececececececececececececececececececececececececececececec"
+        },
+        "integrity": { "profile": "rfc8785-sha256-v1", "content_sha256": "sha256:82ed74c12d8effbd3a88862763074ff71e982116ed28595ce6f6a0fbffbd37d0" }
+      }
+    },
+    {
+      "case_id": "internal-server-hello",
+      "direction": "helper_to_caller",
+      "frame": { "message_kind": 2, "opcode": 0, "sequence": 0 },
+      "payload": {
+        "contract_id": "minimax-h3-tool.win32-helper-wire",
+        "schema_version": "1.0.0",
+        "document_id": "20000000-0000-4000-8000-000000000002",
+        "document_revision": 1,
+        "message_kind": "server_hello",
+        "session_id": "22222222-2222-4222-8222-222222222222",
+        "abi_version": "1.0.0",
+        "abi_manifest_sha256": "sha256:9ec29a44e4fa3292c6e77cce98a104fe4e6f36aa56d173b64d1ff00f490fa085",
+        "caller_nonce_echo": "3333333333333333333333333333333333333333333333333333333333333333",
+        "helper_nonce": "4444444444444444444444444444444444444444444444444444444444444444",
+        "observed_parent": {
+          "pid": 5151,
+          "creation_filetime": { "high_u32": 31234568, "low_u32": 1985229328 },
+          "canonical_image_sha256": "sha256:dbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdb",
+          "build_manifest_sha256": "sha256:dadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadada"
+        },
+        "helper_identity": {
+          "product_id": "minimax-h3-tool.winbroker",
+          "version": "1.0.0",
+          "build_id": "eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee",
+          "build_manifest_sha256": "sha256:eaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaea",
+          "image_sha256": "sha256:ebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebeb",
+          "release_state": "internal_unsigned",
+          "signature": { "state": "unsigned" }
+        },
+        "build_authorization_status": "internal_unsigned",
+        "integrity": { "profile": "rfc8785-sha256-v1", "content_sha256": "sha256:95f1fa6fb6a134d19743712fe9cc8562cfbd1fbce5d91b0ae95564ecdbd1aae7" }
+      }
+    },
+    {
+      "case_id": "request-inspect-volume",
+      "direction": "caller_to_helper",
+      "frame": { "message_kind": 3, "opcode": 257, "sequence": 1 },
+      "payload": {
+        "contract_id": "minimax-h3-tool.win32-helper-wire", "schema_version": "1.0.0",
+        "document_id": "30000000-0000-4000-8000-000000000001", "document_revision": 1,
+        "message_kind": "request", "session_id": "11111111-1111-4111-8111-111111111111",
+        "request_id": "31000000-0000-4000-8000-000000000001", "correlation_id": "32000000-0000-4000-8000-000000000001",
+        "operation": { "kind": "inspect_volume_candidate", "timeout_ms": 5000, "body": { "candidate_path": "D:\\MiniMaxH3\\项目-é", "candidate_kind": "managed_root", "required_filesystem": "ntfs", "require_fixed_local": true } },
+        "integrity": { "profile": "rfc8785-sha256-v1", "content_sha256": "sha256:65b1e7832018ea4bda598c48c252cf900521cae3d0ab05901a32d51907f416ce" }
+      }
+    },
+    {
+      "case_id": "request-validate-path",
+      "direction": "caller_to_helper",
+      "frame": { "message_kind": 3, "opcode": 258, "sequence": 2 },
+      "payload": {
+        "contract_id": "minimax-h3-tool.win32-helper-wire", "schema_version": "1.0.0",
+        "document_id": "30000000-0000-4000-8000-000000000002", "document_revision": 1,
+        "message_kind": "request", "session_id": "11111111-1111-4111-8111-111111111111",
+        "request_id": "31000000-0000-4000-8000-000000000002", "correlation_id": "32000000-0000-4000-8000-000000000002",
+        "operation": { "kind": "validate_path_identity", "timeout_ms": 15000, "body": { "candidate_path": "D:\\Models\\MiniMaxH3", "purpose": "external_read_only", "mutation_policy": "read_only" } },
+        "integrity": { "profile": "rfc8785-sha256-v1", "content_sha256": "sha256:c39ce807f869f03260876808729cc0587830ce64d6ce421330e94adfa17c1ceb" }
+      }
+    },
+    {
+      "case_id": "request-prepare-root",
+      "direction": "caller_to_helper",
+      "frame": { "message_kind": 3, "opcode": 259, "sequence": 3 },
+      "payload": {
+        "contract_id": "minimax-h3-tool.win32-helper-wire", "schema_version": "1.0.0",
+        "document_id": "30000000-0000-4000-8000-000000000003", "document_revision": 1,
+        "message_kind": "request", "session_id": "11111111-1111-4111-8111-111111111111",
+        "request_id": "31000000-0000-4000-8000-000000000003", "correlation_id": "32000000-0000-4000-8000-000000000003",
+        "operation": { "kind": "prepare_owned_root", "timeout_ms": 15000, "body": { "path_ref": "41000000-0000-4000-8000-000000000001", "owner_id": "minimax-h3-tool", "owner_marker_sha256": "sha256:1111111111111111111111111111111111111111111111111111111111111111" } },
+        "integrity": { "profile": "rfc8785-sha256-v1", "content_sha256": "sha256:17d0073e999f6911732918753e128895cedb2d59ac7bd890bcf64068a22401ac" }
+      }
+    },
+    {
+      "case_id": "request-materialize-artifact",
+      "direction": "caller_to_helper",
+      "frame": { "message_kind": 3, "opcode": 513, "sequence": 4 },
+      "payload": {
+        "contract_id": "minimax-h3-tool.win32-helper-wire", "schema_version": "1.0.0",
+        "document_id": "30000000-0000-4000-8000-000000000004", "document_revision": 1,
+        "message_kind": "request", "session_id": "11111111-1111-4111-8111-111111111111",
+        "request_id": "31000000-0000-4000-8000-000000000004", "correlation_id": "32000000-0000-4000-8000-000000000004",
+        "operation": { "kind": "materialize_owned_artifact", "timeout_ms": 14400000, "body": { "owned_root_ref": "42000000-0000-4000-8000-000000000001", "relative_locator": "artifacts/runtime.bin", "artifact_role": "runtime_archive", "expected_length_bytes": 6, "expected_sha256": "sha256:bef57ec7f53a6d40beb640a780a639c83bc29ac8a9816f1fc6c5c6dcd93c4721", "stream_ref": "43000000-0000-4000-8000-000000000001" } },
+        "integrity": { "profile": "rfc8785-sha256-v1", "content_sha256": "sha256:d76e589949aa84bc65af26210d5de3e7e5763871095033480df43f884b516527" }
+      }
+    },
+    {
+      "case_id": "request-commit-state",
+      "direction": "caller_to_helper",
+      "frame": { "message_kind": 3, "opcode": 514, "sequence": 5 },
+      "payload": {
+        "contract_id": "minimax-h3-tool.win32-helper-wire", "schema_version": "1.0.0",
+        "document_id": "30000000-0000-4000-8000-000000000005", "document_revision": 1,
+        "message_kind": "request", "session_id": "11111111-1111-4111-8111-111111111111",
+        "request_id": "31000000-0000-4000-8000-000000000005", "correlation_id": "32000000-0000-4000-8000-000000000005",
+        "operation": { "kind": "commit_owned_state", "timeout_ms": 30000, "body": { "owned_root_ref": "42000000-0000-4000-8000-000000000001", "relative_locator": "state/active-generation.json", "state_role": "active_generation_pointer", "prior_state": { "kind": "exact", "revision": 3, "content_sha256": "sha256:3333333333333333333333333333333333333333333333333333333333333333" }, "candidate_length_bytes": 6, "candidate_sha256": "sha256:bef57ec7f53a6d40beb640a780a639c83bc29ac8a9816f1fc6c5c6dcd93c4721", "stream_ref": "43000000-0000-4000-8000-000000000002" } },
+        "integrity": { "profile": "rfc8785-sha256-v1", "content_sha256": "sha256:4240b96101c89b05adf494bc7cc8b9366eae4b1a3964d7cd638d859d589e18cd" }
+      }
+    },
+    {
+      "case_id": "request-launch-core",
+      "direction": "caller_to_helper",
+      "frame": { "message_kind": 3, "opcode": 769, "sequence": 6 },
+      "payload": {
+        "contract_id": "minimax-h3-tool.win32-helper-wire", "schema_version": "1.0.0",
+        "document_id": "30000000-0000-4000-8000-000000000006", "document_revision": 1,
+        "message_kind": "request", "session_id": "11111111-1111-4111-8111-111111111111",
+        "request_id": "31000000-0000-4000-8000-000000000006", "correlation_id": "32000000-0000-4000-8000-000000000006",
+        "operation": { "kind": "launch_managed_core", "timeout_ms": 60000, "body": { "owned_root_ref": "42000000-0000-4000-8000-000000000001", "generation_id": "alpha-generation-0001", "launch_manifest_ref": "44000000-0000-4000-8000-000000000001", "launch_manifest_sha256": "sha256:4444444444444444444444444444444444444444444444444444444444444444", "runtime_lease_ref": "45000000-0000-4000-8000-000000000001", "port_policy": "ephemeral_ipv4_loopback" } },
+        "integrity": { "profile": "rfc8785-sha256-v1", "content_sha256": "sha256:9562e803a9f14fdcc48892a10c2aad74d7bdfa235d0d865466cb001110d5256c" }
+      }
+    },
+    {
+      "case_id": "request-verify-loopback",
+      "direction": "caller_to_helper",
+      "frame": { "message_kind": 3, "opcode": 770, "sequence": 7 },
+      "payload": {
+        "contract_id": "minimax-h3-tool.win32-helper-wire", "schema_version": "1.0.0",
+        "document_id": "30000000-0000-4000-8000-000000000007", "document_revision": 1,
+        "message_kind": "request", "session_id": "11111111-1111-4111-8111-111111111111",
+        "request_id": "31000000-0000-4000-8000-000000000007", "correlation_id": "32000000-0000-4000-8000-000000000007",
+        "operation": { "kind": "verify_loopback_owner", "timeout_ms": 30000, "body": { "launch_ref": "46000000-0000-4000-8000-000000000001", "listener_ref": "47000000-0000-4000-8000-000000000001" } },
+        "integrity": { "profile": "rfc8785-sha256-v1", "content_sha256": "sha256:9d3412ce85089f14aa20021a0c467c8c0be51cc1e1177e19954d07d95d871cb6" }
+      }
+    },
+    {
+      "case_id": "request-query-owned-launch",
+      "direction": "caller_to_helper",
+      "frame": { "message_kind": 3, "opcode": 771, "sequence": 8 },
+      "payload": {
+        "contract_id": "minimax-h3-tool.win32-helper-wire", "schema_version": "1.0.0",
+        "document_id": "30000000-0000-4000-8000-000000000008", "document_revision": 1,
+        "message_kind": "request", "session_id": "11111111-1111-4111-8111-111111111111",
+        "request_id": "31000000-0000-4000-8000-000000000008", "correlation_id": "32000000-0000-4000-8000-000000000008",
+        "operation": { "kind": "query_or_stop_owned_launch", "timeout_ms": 5000, "body": { "launch_ref": "46000000-0000-4000-8000-000000000001", "action": "query", "stop_policy_id": "managed-core-stop-v1" } },
+        "integrity": { "profile": "rfc8785-sha256-v1", "content_sha256": "sha256:af4e032ea47625b6e3a28defac24ebe45dac59aa920b4eecd3a5bee6ac8ba79d" }
+      }
+    },
+    {
+      "case_id": "response-volume-success",
+      "direction": "helper_to_caller",
+      "frame": { "message_kind": 4, "opcode": 257, "sequence": 1 },
+      "payload": {
+        "contract_id": "minimax-h3-tool.win32-helper-wire", "schema_version": "1.0.0",
+        "document_id": "50000000-0000-4000-8000-000000000001", "document_revision": 1,
+        "message_kind": "response", "session_id": "11111111-1111-4111-8111-111111111111",
+        "reply_to_request_id": "31000000-0000-4000-8000-000000000001", "reply_to_document_id": "30000000-0000-4000-8000-000000000001",
+        "status": "success", "result": { "kind": "volume_observation", "drive_type": "fixed", "filesystem": "ntfs", "free_bytes": 1099511627776, "volume_ref": "48000000-0000-4000-8000-000000000001", "policy_result": "eligible" },
+        "integrity": { "profile": "rfc8785-sha256-v1", "content_sha256": "sha256:3a14c1f5d2a6f89a1251bfb29f4aa6f58069b007369367a8691a936cdbbddb37" }
+      }
+    },
+    {
+      "case_id": "response-path-error",
+      "direction": "helper_to_caller",
+      "frame": { "message_kind": 4, "opcode": 258, "sequence": 2 },
+      "payload": {
+        "contract_id": "minimax-h3-tool.win32-helper-wire", "schema_version": "1.0.0",
+        "document_id": "50000000-0000-4000-8000-000000000002", "document_revision": 1,
+        "message_kind": "response", "session_id": "11111111-1111-4111-8111-111111111111",
+        "reply_to_request_id": "31000000-0000-4000-8000-000000000002", "reply_to_document_id": "30000000-0000-4000-8000-000000000002",
+        "status": "error", "error": { "code": "WIN32_HELPER.PATH_INVALID", "numeric_code": 4002, "instance_path": "/operation/body/candidate_path", "rule_id": "path.lexical.allowed_form", "retryability": "after_user_change", "session_action": "continue", "operation_effect": "none" },
+        "integrity": { "profile": "rfc8785-sha256-v1", "content_sha256": "sha256:3e92a1e8dab2a037561d12258ef73a4d6fbc4ab844bdd1c9faa50341b967cb42" }
+      }
+    },
+    {
+      "case_id": "cancel-request",
+      "direction": "caller_to_helper",
+      "frame": { "message_kind": 5, "opcode": 0, "sequence": 9 },
+      "payload": {
+        "contract_id": "minimax-h3-tool.win32-helper-wire", "schema_version": "1.0.0",
+        "document_id": "60000000-0000-4000-8000-000000000001", "document_revision": 1,
+        "message_kind": "cancel_request", "session_id": "11111111-1111-4111-8111-111111111111",
+        "target_request_id": "31000000-0000-4000-8000-000000000004",
+        "integrity": { "profile": "rfc8785-sha256-v1", "content_sha256": "sha256:341426ecbbd035e006988f45de7223e1335a294c797139fc7a4c447643a4bb73" }
+      }
+    },
+    {
+      "case_id": "cancel-result",
+      "direction": "helper_to_caller",
+      "frame": { "message_kind": 6, "opcode": 0, "sequence": 3 },
+      "payload": {
+        "contract_id": "minimax-h3-tool.win32-helper-wire", "schema_version": "1.0.0",
+        "document_id": "60000000-0000-4000-8000-000000000002", "document_revision": 1,
+        "message_kind": "cancel_result", "session_id": "11111111-1111-4111-8111-111111111111",
+        "target_request_id": "31000000-0000-4000-8000-000000000004", "status": "accepted",
+        "integrity": { "profile": "rfc8785-sha256-v1", "content_sha256": "sha256:c7c78644667f14dc02aa3d9dda7b16962ed87d6b1cfb6ae3589e1867316c6695" }
+      }
+    }
+  ]
+}

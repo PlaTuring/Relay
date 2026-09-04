@@ -1,0 +1,10 @@
+{
+  "fixture_id": "h3-attribution-made-optional",
+  "mutation": {
+    "kind": "set_layer_field",
+    "layer_id": "minimax_h3_attribution",
+    "field": "release_enforcement",
+    "value": "optional"
+  },
+  "expected_code": "LAYER.REQUIRED_WHEN_APPLICABLE"
+}

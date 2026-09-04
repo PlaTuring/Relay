@@ -1,0 +1,302 @@
+{
+  "contract_id": "brand-attribution-disclosure-boundary",
+  "contract_version": "0.4.0-draft",
+  "task_id": "P0-GOV-009",
+  "status": "draft_external_blocked",
+  "product_boundary": {
+    "tool_may_generate_media": false,
+    "tool_may_create_brand_assets": false,
+    "tool_may_mutate_media": false,
+    "tool_may_write_file_identifiers": false,
+    "tool_may_supply_prompts": false,
+    "tool_may_invoke_inference": false,
+    "generation_component": "MiniMax H3 inside ComfyUI after the user clicks Run"
+  },
+  "software_brand_boundary": {
+    "software_brand_only": true,
+    "media_branding_authority": false,
+    "external_gate": "EXT-BRAND-ASSET",
+    "allowed_asset_surfaces": [
+      "software_name",
+      "software_logo",
+      "software_author_attribution",
+      "software_about_page",
+      "installer_brand_assets"
+    ],
+    "media_watermark_authority": false,
+    "output_file_brand_mutation_authority": false,
+    "video_watermark_toggle_allowed": false,
+    "media_finalizer_brand_authority": false
+  },
+  "official_sources": {
+    "h3_model_card": {
+      "url": "https://huggingface.co/MiniMaxAI/MiniMax-H3",
+      "license_declaration": "minimax-h3-community-license-agreement",
+      "revision_status": "mutable_upstream_revalidation_required"
+    },
+    "h3_license": {
+      "url": "https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/LICENSE",
+      "license_name": "MiniMax H3 Community License Agreement",
+      "revision_status": "mutable_upstream_revalidation_required"
+    },
+    "qwen_encoder_model_card": {
+      "url": "https://huggingface.co/Qwen/Qwen3-VL-32B-Instruct",
+      "model_id": "Qwen/Qwen3-VL-32B-Instruct",
+      "license_declaration": "apache-2.0",
+      "determines_h3_license": false,
+      "revision_status": "mutable_upstream_revalidation_required"
+    }
+  },
+  "layer_order": [
+    "user_brand",
+    "minimax_h3_attribution",
+    "ai_generated_disclosure"
+  ],
+  "layers": [
+    {
+      "id": "user_brand",
+      "role": "optional_owner_supplied_software_identity",
+      "surface_intent": "software_name_logo_author_about_installer",
+      "normative_strength": "optional",
+      "release_enforcement": "optional",
+      "asset_input": "owner_supplied_only",
+      "asset_state": "absent",
+      "absence_behavior": "valid_no_op",
+      "runtime_user_toggle_allowed": false,
+      "external_decision_id": "DEC-USER-BRAND",
+      "may_substitute_for": [],
+      "may_disable": []
+    },
+    {
+      "id": "minimax_h3_attribution",
+      "role": "minimax_h3_model_attribution",
+      "surface_intent": "applicable_commercial_ui",
+      "normative_strength": "mandatory_when_applicable",
+      "release_enforcement": "required_when_human_legal_applicability_true",
+      "asset_input": "not_applicable",
+      "asset_state": "not_applicable",
+      "absence_behavior": "block_external_release",
+      "runtime_user_toggle_allowed": false,
+      "external_decision_id": "DEC-H3-ATTRIBUTION",
+      "may_substitute_for": [],
+      "may_disable": []
+    },
+    {
+      "id": "ai_generated_disclosure",
+      "role": "ai_generated_public_output_disclosure",
+      "surface_intent": "public_output_release_policy",
+      "normative_strength": "mandatory_when_applicable",
+      "release_enforcement": "required_when_human_legal_applicability_true",
+      "asset_input": "not_applicable",
+      "asset_state": "not_applicable",
+      "absence_behavior": "block_external_release",
+      "runtime_user_toggle_allowed": false,
+      "external_decision_id": "DEC-AI-DISCLOSURE",
+      "may_substitute_for": [],
+      "may_disable": []
+    }
+  ],
+  "independence": {
+    "substitution_forbidden": [
+      { "from": "user_brand", "to": "minimax_h3_attribution" },
+      { "from": "user_brand", "to": "ai_generated_disclosure" },
+      { "from": "minimax_h3_attribution", "to": "user_brand" },
+      { "from": "minimax_h3_attribution", "to": "ai_generated_disclosure" },
+      { "from": "ai_generated_disclosure", "to": "user_brand" },
+      { "from": "ai_generated_disclosure", "to": "minimax_h3_attribution" }
+    ],
+    "disablement_forbidden": [
+      { "from": "user_brand", "to": "minimax_h3_attribution" },
+      { "from": "user_brand", "to": "ai_generated_disclosure" },
+      { "from": "minimax_h3_attribution", "to": "user_brand" },
+      { "from": "minimax_h3_attribution", "to": "ai_generated_disclosure" },
+      { "from": "ai_generated_disclosure", "to": "user_brand" },
+      { "from": "ai_generated_disclosure", "to": "minimax_h3_attribution" }
+    ]
+  },
+  "brand_absence": {
+    "asset_state": "absent",
+    "valid": true,
+    "effect": "no_op",
+    "preserves": [
+      "minimax_h3_attribution",
+      "ai_generated_disclosure"
+    ],
+    "generate_placeholder": false
+  },
+  "release_requirements": {
+    "protected_layers": [
+      "minimax_h3_attribution",
+      "ai_generated_disclosure"
+    ],
+    "brand_layer_optional": true,
+    "brand_absence_action": "continue_with_unbranded_software_identity",
+    "missing_protected_layer_action": "block_external_release",
+    "layer_decisions_must_be_separate": true
+  },
+  "license_policy": {
+    "applicability_decision": {
+      "gate_id": "EXT-H3-LICENSE",
+      "status": "blocked_external",
+      "authority": "human_external",
+      "agent_may_close": false
+    },
+    "obligations": [
+      {
+        "id": "file_ai_generation_identifier",
+        "source_clause": "III.3(b)",
+        "normative_strength": "encouraged",
+        "default_policy": "default_recommended",
+        "user_configurable": true,
+        "implementation_state": "policy_only_not_implemented",
+        "brand_state_may_override": false,
+        "substitutable_by_layers": []
+      },
+      {
+        "id": "agreement_copy_to_covered_third_parties",
+        "source_clause": "III.1",
+        "normative_strength": "mandatory_when_applicable",
+        "default_policy": "block_covered_distribution_if_missing",
+        "user_configurable": false,
+        "implementation_state": "external_applicability_blocked",
+        "brand_state_may_override": false,
+        "substitutable_by_layers": []
+      },
+      {
+        "id": "notice_for_covered_non_hosted_third_party_distribution",
+        "source_clause": "III.4",
+        "normative_strength": "mandatory_when_applicable",
+        "default_policy": "block_covered_distribution_if_missing",
+        "user_configurable": false,
+        "implementation_state": "external_applicability_blocked",
+        "brand_state_may_override": false,
+        "substitutable_by_layers": []
+      },
+      {
+        "id": "territory_and_commercial_authorization",
+        "source_clause": "II; IV.1; V.4",
+        "normative_strength": "mandatory_when_applicable",
+        "default_policy": "block_release_until_applicability_approved",
+        "user_configurable": false,
+        "implementation_state": "external_applicability_blocked",
+        "brand_state_may_override": false,
+        "substitutable_by_layers": []
+      },
+      {
+        "id": "commercial_ui_h3_attribution",
+        "source_clause": "IV.2",
+        "normative_strength": "mandatory_when_applicable",
+        "default_policy": "block_applicable_commercial_release_if_missing",
+        "user_configurable": false,
+        "implementation_state": "external_applicability_blocked",
+        "layer_id": "minimax_h3_attribution",
+        "brand_state_may_override": false,
+        "substitutable_by_layers": []
+      },
+      {
+        "id": "public_environment_machine_generated_disclosure",
+        "source_clause": "Exhibit A.12",
+        "normative_strength": "mandatory_when_applicable",
+        "default_policy": "block_applicable_public_release_if_missing",
+        "user_configurable": false,
+        "implementation_state": "external_applicability_blocked",
+        "layer_id": "ai_generated_disclosure",
+        "brand_state_may_override": false,
+        "substitutable_by_layers": []
+      }
+    ]
+  },
+  "external_decisions": [
+    {
+      "id": "DEC-USER-BRAND",
+      "layer_id": "user_brand",
+      "gate_id": "EXT-BRAND-ASSET",
+      "status": "blocked_external",
+      "authority": "human_external",
+      "required_owner_roles": [
+        "brand_owner",
+        "product_owner"
+      ],
+      "agent_may_prepare_evidence": true,
+      "agent_may_close": false,
+      "approved_policy": null,
+      "approval_evidence": null,
+      "implies_decisions": []
+    },
+    {
+      "id": "DEC-H3-ATTRIBUTION",
+      "layer_id": "minimax_h3_attribution",
+      "gate_id": "EXT-H3-LICENSE",
+      "status": "blocked_external",
+      "authority": "human_external",
+      "required_owner_roles": [
+        "legal_owner",
+        "product_owner"
+      ],
+      "agent_may_prepare_evidence": true,
+      "agent_may_close": false,
+      "approved_policy": null,
+      "approval_evidence": null,
+      "implies_decisions": []
+    },
+    {
+      "id": "DEC-AI-DISCLOSURE",
+      "layer_id": "ai_generated_disclosure",
+      "gate_id": "EXT-H3-LICENSE",
+      "status": "blocked_external",
+      "authority": "human_external",
+      "required_owner_roles": [
+        "legal_owner",
+        "product_owner"
+      ],
+      "agent_may_prepare_evidence": true,
+      "agent_may_close": false,
+      "approved_policy": null,
+      "approval_evidence": null,
+      "implies_decisions": []
+    }
+  ],
+  "validation_cases": [
+    {
+      "id": "brand-asset-absent-no-op",
+      "brand_asset_present": false,
+      "brand_layer_state": "absent_no_op",
+      "active_layers": [
+        "minimax_h3_attribution",
+        "ai_generated_disclosure"
+      ],
+      "expected_policy_result": "valid",
+      "release_authority": "blocked_external",
+      "file_ai_generation_identifier_policy": "default_recommended",
+      "public_environment_disclosure_policy": "mandatory_when_applicable"
+    },
+    {
+      "id": "brand-asset-present-independent",
+      "brand_asset_present": true,
+      "brand_layer_state": "software_assets_enabled",
+      "active_layers": [
+        "user_brand",
+        "minimax_h3_attribution",
+        "ai_generated_disclosure"
+      ],
+      "expected_policy_result": "valid",
+      "release_authority": "blocked_external",
+      "file_ai_generation_identifier_policy": "default_recommended",
+      "public_environment_disclosure_policy": "mandatory_when_applicable"
+    },
+    {
+      "id": "brand-assets-authorized-software-only",
+      "brand_asset_present": true,
+      "brand_layer_state": "software_surfaces_only",
+      "active_layers": [
+        "user_brand",
+        "minimax_h3_attribution",
+        "ai_generated_disclosure"
+      ],
+      "expected_policy_result": "valid",
+      "release_authority": "blocked_external",
+      "file_ai_generation_identifier_policy": "default_recommended",
+      "public_environment_disclosure_policy": "mandatory_when_applicable"
+    }
+  ]
+}

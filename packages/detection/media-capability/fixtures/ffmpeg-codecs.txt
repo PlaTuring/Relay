@@ -1,0 +1,9 @@
+Codecs:
+ D..... = Decoding supported
+ .E.... = Encoding supported
+ ..V... = Video codec
+ ..A... = Audio codec
+ -------
+ DEV.LS h264                 H.264 / AVC
+ DEA.L. aac                  AAC
+

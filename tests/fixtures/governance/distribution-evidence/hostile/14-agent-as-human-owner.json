@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"14-agent-as-human-owner","base":"../index.valid.json","mutations":[{"op":"replace","path":"/components/9/human_owner/owner_id","value":"release-automation-bot"}],"expected":{"code":"AUTHORITY.AGENT_AS_HUMAN_OWNER","instance_path":"/components/9/human_owner/owner_id","rule_id":"DIST-AUTH-006"}}

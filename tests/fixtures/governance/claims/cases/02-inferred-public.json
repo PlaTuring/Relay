@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"inferred-cannot-be-public","mutations":[{"op":"replace","path":"/records/1/eligibility/public_claim_eligible","value":true}],"expected":{"code":"CLAIM.PUBLIC_REQUIRES_PROVEN_OR_EXPERIMENTAL","instance_path":"/records/1/evidence/level","rule_id":"claim.eligibility.public.level"}}

@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"42-component-claim-mapping-omitted","base":"../index.valid.json","mutations":[{"op":"remove","path":"/components/0/claim/claim_ids/3","value":null}],"expected":{"code":"COMPONENT.CLAIM_SET","instance_path":"/components/0/claim/claim_ids","rule_id":"DIST-COMP-005"}}

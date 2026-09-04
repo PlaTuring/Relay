@@ -1,0 +1,9 @@
+{
+  "fixture_case_version": "1.0.0",
+  "case_id": "forward-safe-display-metadata",
+  "base": "valid/alpha0-t2va-capability.json",
+  "mutations": [
+    {"op": "add", "path": "/extensions", "value": {"org.example.capability_badge": {"extension_version": "1.0.0", "effect": "display_metadata", "data": {"badge": "Alpha-0 schema fixture"}}}}
+  ],
+  "expected": "valid"
+}

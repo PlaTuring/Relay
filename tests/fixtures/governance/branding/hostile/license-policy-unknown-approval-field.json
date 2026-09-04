@@ -1,0 +1,9 @@
+{
+  "fixture_id": "license-policy-unknown-approval-field",
+  "mutation": {
+    "kind": "set_license_policy_field",
+    "field": "agent_approval",
+    "value": "closed"
+  },
+  "expected_code": "STRUCTURE.LICENSE_POLICY.UNKNOWN_KEY"
+}

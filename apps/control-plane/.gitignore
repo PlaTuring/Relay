@@ -1,0 +1,13 @@
+node_modules/
+dist/
+artifacts/
+.npm-cache/
+.cache/
+.build-cache/
+release/
+release-alpha/
+release-unsigned/
+
+# This workspace's declarative build graph is source, not generated output.
+!build/
+!build/**

@@ -1,0 +1,65 @@
+{
+  "contract_id": "minimax-h3-tool.model-registry",
+  "schema_version": "1.0.0",
+  "document_id": "20000000-0000-4000-8000-000000000001",
+  "document_revision": 1,
+  "registry_id": "model-registry-found-fixture",
+  "created_at_utc": "2026-01-01T01:00:00.000Z",
+  "updated_at_utc": "2026-01-01T01:00:00.000Z",
+  "sequence": 1,
+  "candidates": [
+    {
+      "candidate_id": "candidate-found",
+      "model_role": "model_diffusion",
+      "location": {
+        "kind": "external_file",
+        "absolute_path": "Z:\\ContractFixture\\candidate-found.safetensors",
+        "discovery_scope": "user_selected_folder",
+        "ownership_class": "external_read_only",
+        "tool_owned": false,
+        "delete_authority": "never",
+        "mutation_policy": "forbid_move_rename_overwrite_delete",
+        "read_revalidation_policy": "handle_identity_size_mtime_reparse_before_each_read"
+      },
+      "created_at_utc": "2026-01-01T01:00:00.000Z",
+      "current_stage": "found",
+      "stage_history": [
+        {
+          "stage": "found",
+          "sequence": 1,
+          "recorded_at_utc": "2026-01-01T01:00:00.000Z",
+          "evidence": {
+            "kind": "found_evidence",
+            "discovery_scope": "user_selected_folder",
+            "finding_class": "candidate",
+            "container_hint": "safetensors",
+            "observed_filename": "candidate-found.safetensors",
+            "observed_byte_length": 1024,
+            "file_identity": {
+              "kind": "windows_file_snapshot",
+              "opaque_volume_id": "21000000-0000-4000-8000-000000000001",
+              "opaque_file_id": "21000000-0000-4000-8000-000000000002",
+              "byte_length": 1024,
+              "modified_filetime_ticks": 1000
+            },
+            "reuse_authority": false
+          }
+        }
+      ],
+      "lifecycle_status": {"kind": "active"},
+      "reuse_decision": {"kind": "not_authorized", "reuse_permitted": false, "reason_code": "MODEL.FULL_PROGRESSION_REQUIRED"}
+    }
+  ],
+  "authority": {
+    "discovery_scopes": ["known_configuration_path", "user_selected_folder"],
+    "verification_policy": "full_hash_only_after_explicit_user_reuse_verification",
+    "selection_authority": "registry_only_after_exact_full_progression",
+    "external_ownership_policy": "permanently_external_read_only_never_tool_owned_or_deleted",
+    "managed_ownership_policy": "separate_exact_ownership_ledger_required",
+    "download_authority": "none",
+    "inference_authority": "none",
+    "queue_authority": "none_user_clicks_run_in_comfyui",
+    "product_boundary": "compile_and_handoff_only_user_runs_h3_in_comfyui"
+  },
+  "integrity": {"profile": "rfc8785-sha256-v1", "content_sha256": "sha256:565c28f266895f8b615e666ded514d81f248a40af1565489675a3997de41c897"}
+}

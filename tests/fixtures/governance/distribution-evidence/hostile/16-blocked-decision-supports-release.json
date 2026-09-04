@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"16-blocked-decision-supports-release","base":"../index.valid.json","mutations":[{"op":"replace","path":"/human_decisions/0/supports_external_distribution","value":true}],"expected":{"code":"AUTHORITY.NON_ACCEPTED_SUPPORT","instance_path":"/human_decisions/0/supports_external_distribution","rule_id":"DIST-AUTH-005"}}

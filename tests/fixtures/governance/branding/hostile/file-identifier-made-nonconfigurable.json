@@ -1,0 +1,10 @@
+{
+  "fixture_id": "file-identifier-made-nonconfigurable",
+  "mutation": {
+    "kind": "set_obligation_field",
+    "obligation_id": "file_ai_generation_identifier",
+    "field": "user_configurable",
+    "value": false
+  },
+  "expected_code": "LICENSE_POLICY.FILE_IDENTIFIER_USER_CONFIGURABLE"
+}

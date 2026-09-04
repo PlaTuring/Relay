@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"29-qwen-license-conflated-with-h3","base":"../index.valid.json","mutations":[{"op":"replace","path":"/license_records/3/declared_license_id","value":"minimax-h3-community-license-agreement"}],"expected":{"code":"LICENSE_RECORD.IDENTITY_DRIFT","instance_path":"/license_records/3","rule_id":"DIST-LICREC-002"}}

@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"download-authority-escalation","base":"valid/alpha0-poc-pending-recipe.json","mutations":[{"op":"replace","path":"/authority/grants/download","value":true}],"expected":{"code":"RECIPE.AUTHORITY_ESCALATION","instance_path":"/authority/grants/download","rule_id":"recipe.authority.no_action_grants"}}

@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"conditional-obligation-cannot-drop-source-condition","mutations":[{"op":"replace","path":"/records/10/source_assertion/condition_code","value":"always"}],"expected":{"code":"CLAIM.OBLIGATION_CONDITION_MISMATCH","instance_path":"/records/10/source_assertion/condition_code","rule_id":"claim.obligation.condition.exact"}}

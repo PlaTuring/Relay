@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"unknown-evidence-level-fails-closed","mutations":[{"op":"replace","path":"/records/1/evidence/level","value":"community_confirmed"}],"expected":{"code":"CLAIM.UNKNOWN_EVIDENCE_LEVEL","instance_path":"/records/1/evidence/level","rule_id":"claim.evidence.level.known"}}

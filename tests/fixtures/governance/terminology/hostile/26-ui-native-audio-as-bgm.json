@@ -1,0 +1,1 @@
+{"fixture_version":"1.0.0","fixture_id":"ui-native-audio-as-bgm","target":"ui_copy","entry":{"copy_id":"hostile-native-bgm","surface":"native_audio_label","locale":"zh-CN","text":"自动 BGM 配乐","context":{"audio_kind":"h3_native"}},"expected":{"code":"TERM.UI.NATIVE_AUDIO_CONFLATION","rule_id":"terminology.ui.native_audio.not_post_audio"}}

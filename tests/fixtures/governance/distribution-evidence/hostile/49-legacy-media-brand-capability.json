@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"49-legacy-media-brand-capability","base":"../index.valid.json","mutations":[{"op":"replace","path":"/human_decisions/2/scope/capability_ids/0","value":"CAP-BRAND-WATERMARK"}],"expected":{"code":"BRAND.LEGACY_MEDIA_CAPABILITY","instance_path":"/brand_boundary","rule_id":"DIST-BRAND-003"}}

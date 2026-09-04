@@ -1,0 +1,1 @@
+{"fixture_version":"1.0.0","fixture_id":"tool-produces-native-audio","target":"glossary","mutation":{"kind":"set_native_audio_field","field":"producer","value":"tool_control_plane"},"expected":{"code":"TERM.NATIVE_AUDIO.SEMANTIC_DRIFT","rule_id":"terminology.native_audio.h3_only_exact"}}

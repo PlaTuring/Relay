@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "tests": [
+    {
+      "id": "unicode-space",
+      "lane": "fast",
+      "kind": "runner",
+      "required": true,
+      "adapter": "node_script",
+      "script": "tests/runner/fixtures/路径 含空格 Ω/pass.mjs",
+      "args": [],
+      "timeout_ms": 5000,
+      "max_output_bytes": 4096
+    }
+  ]
+}

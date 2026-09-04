@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"hardware-identity-drift","base":"valid/alpha0-poc-pending-recipe.json","mutations":[{"op":"replace","path":"/profile/hardware/profile_id","value":"uncertified-gpu-profile"}],"expected":{"code":"RECIPE.HARDWARE_IDENTITY_DRIFT","instance_path":"/profile/hardware/profile_id","rule_id":"recipe.hardware.requirement_exact"}}

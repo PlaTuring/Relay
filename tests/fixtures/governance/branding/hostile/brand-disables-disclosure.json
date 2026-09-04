@@ -1,0 +1,10 @@
+{
+  "fixture_id": "brand-disables-disclosure",
+  "mutation": {
+    "kind": "append_layer_relation",
+    "layer_id": "user_brand",
+    "field": "may_disable",
+    "target_layer_id": "ai_generated_disclosure"
+  },
+  "expected_code": "LAYER.DISABLEMENT_FORBIDDEN"
+}

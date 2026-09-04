@@ -1,0 +1,119 @@
+{
+  "fixture_version": "1.0.0",
+  "copy_set_id": "minimax-h3-tool.terminology.ui-copy.valid",
+  "entries": [
+    {
+      "copy_id": "product-boundary-summary",
+      "surface": "product_boundary_summary",
+      "locale": "zh-CN",
+      "text": "本工具负责安装、检测、配置、工作流编译和交接；用户在 ComfyUI 中点击 Run 后，MiniMax H3 才生成实际视频和原生声音。",
+      "context": {
+        "actor": "tool_control_plane",
+        "operation": "compile_and_handoff"
+      }
+    },
+    {
+      "copy_id": "project-primary-action",
+      "surface": "project_primary_action",
+      "locale": "zh-CN",
+      "text": "生成工作流并打开 ComfyUI",
+      "context": {
+        "actor": "tool_control_plane",
+        "operation": "compile_and_handoff"
+      }
+    },
+    {
+      "copy_id": "handoff-instruction",
+      "surface": "handoff_instruction",
+      "locale": "zh-CN",
+      "text": "工作流已打开。请检查图，然后在 ComfyUI 中点击 Run。",
+      "context": {
+        "actor": "user",
+        "operation": "run",
+        "queue_submission": "after_explicit_user_run"
+      }
+    },
+    {
+      "copy_id": "found-model-summary",
+      "surface": "model_reuse_summary",
+      "locale": "zh-CN",
+      "text": "已发现候选模型；完成身份、哈希、兼容性和批准检查后才能复用。",
+      "context": {
+        "model_state": "found"
+      }
+    },
+    {
+      "copy_id": "selected-model-summary",
+      "surface": "model_reuse_summary",
+      "locale": "zh-CN",
+      "text": "模型已批准并选入当前配方。",
+      "context": {
+        "model_state": "selected"
+      }
+    },
+    {
+      "copy_id": "managed-core-label",
+      "surface": "runtime_topology_label",
+      "locale": "zh-CN",
+      "text": "独立 H3 环境（推荐）",
+      "context": {
+        "runtime_topology": "managed_core"
+      }
+    },
+    {
+      "copy_id": "desktop-detection-summary",
+      "surface": "external_instance_summary",
+      "locale": "zh-CN",
+      "text": "已检测到 ComfyUI Desktop；不会修改现有环境。",
+      "context": {
+        "runtime_topology": "desktop",
+        "attach_only": true
+      }
+    },
+    {
+      "copy_id": "runtime-component-summary",
+      "surface": "runtime_component_summary",
+      "locale": "zh-CN",
+      "text": "运行环境提供 ComfyUI 与执行依赖；模型权重单独验证和安装。",
+      "context": {
+        "runtime_includes_models": false
+      }
+    },
+    {
+      "copy_id": "runtime-generation-label",
+      "surface": "runtime_generation_label",
+      "locale": "zh-CN",
+      "text": "运行环境版本",
+      "context": {
+        "term": "runtime_generation"
+      }
+    },
+    {
+      "copy_id": "native-audio-label",
+      "surface": "native_audio_label",
+      "locale": "zh-CN",
+      "text": "H3 原生声音",
+      "context": {
+        "audio_kind": "h3_native"
+      }
+    },
+    {
+      "copy_id": "poc-pending-label",
+      "surface": "capability_badge",
+      "locale": "zh-CN",
+      "text": "正在验证",
+      "context": {
+        "capability_status": "poc_pending"
+      }
+    },
+    {
+      "copy_id": "certified-label",
+      "surface": "capability_badge",
+      "locale": "zh-CN",
+      "text": "Stable",
+      "context": {
+        "capability_status": "certified"
+      }
+    }
+  ]
+}

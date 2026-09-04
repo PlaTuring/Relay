@@ -1,0 +1,7 @@
+{
+  "fixture_case_version": "1.0.0",
+  "case_id": "endpoint-gate-is-independent",
+  "base": "valid/alpha0-t2va-capability.json",
+  "mutations": [{"op": "remove", "path": "/capabilities/0/gates/endpoint"}],
+  "expected": {"code": "CAPABILITY.GATE_REQUIRED", "instance_path": "/capabilities/0/gates/endpoint", "rule_id": "capability.feature.endpoint.required"}
+}

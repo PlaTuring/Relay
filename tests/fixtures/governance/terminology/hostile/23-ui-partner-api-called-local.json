@@ -1,0 +1,1 @@
+{"fixture_version":"1.0.0","fixture_id":"ui-partner-api-called-local","target":"ui_copy","entry":{"copy_id":"hostile-partner-local","surface":"node_origin_summary","locale":"zh-CN","text":"MiniMax Partner API 本地节点，可离线运行。","context":{"node_origin":"partner_api"}},"expected":{"code":"TERM.UI.PARTNER_AS_LOCAL","rule_id":"terminology.ui.partner_api.never_local"}}

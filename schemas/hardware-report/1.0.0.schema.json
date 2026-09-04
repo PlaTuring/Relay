@@ -1,0 +1,763 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:minimax-h3-tool:schema:hardware-report:1.0.0",
+  "title": "MiniMax H3 Tool hardware report",
+  "description": "Immutable runtime-observation snapshot. It never grants recipe, model, path, launch, queue or generation authority.",
+  "type": "object",
+  "x-primary-trust-class": "runtime_observation",
+  "additionalProperties": false,
+  "required": [
+    "contract_id",
+    "schema_version",
+    "document_id",
+    "document_revision",
+    "report_id",
+    "observed_at_utc",
+    "freshness",
+    "sources",
+    "resolutions",
+    "conflicts",
+    "authority",
+    "integrity"
+  ],
+  "properties": {
+    "contract_id": {
+      "const": "minimax-h3-tool.hardware-report",
+      "x-sensitive": "public",
+      "x-trust-impact": ["observation", "execution"],
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.root.contract_id"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "x-sensitive": "public",
+      "x-trust-impact": ["observation", "execution"],
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.root.schema_version"
+    },
+    "document_id": {
+      "$ref": "#/$defs/uuid_v4",
+      "x-sensitive": "public",
+      "x-trust-impact": ["observation", "artifact"],
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.root.document_id"
+    },
+    "document_revision": {
+      "const": 1,
+      "x-sensitive": "public",
+      "x-trust-impact": ["observation", "artifact"],
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.root.document_revision"
+    },
+    "report_id": {
+      "$ref": "#/$defs/domain_id",
+      "x-sensitive": "public",
+      "x-trust-impact": ["observation"],
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.root.report_id"
+    },
+    "observed_at_utc": {
+      "$ref": "#/$defs/utc_date_time_ms",
+      "x-sensitive": "internal",
+      "x-trust-impact": ["observation"],
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.root.observed_at"
+    },
+    "freshness": {
+      "$ref": "#/$defs/freshness",
+      "x-sensitive": "internal",
+      "x-trust-impact": ["observation", "execution"],
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.root.freshness"
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 64,
+      "items": {
+        "$ref": "#/$defs/source",
+        "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+        "x-rule-id": "hardware.root.sources.item"
+      },
+      "x-sensitive": "internal",
+      "x-trust-impact": ["observation", "execution"],
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.root.sources"
+    },
+    "resolutions": {
+      "$ref": "#/$defs/resolutions",
+      "x-sensitive": "internal",
+      "x-trust-impact": ["observation", "execution", "path"],
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.root.resolutions"
+    },
+    "conflicts": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 128,
+      "items": {
+        "$ref": "#/$defs/conflict",
+        "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+        "x-rule-id": "hardware.root.conflicts.item"
+      },
+      "description": "An empty array means that the producer detected no conflicting normalized claims in this snapshot.",
+      "x-sensitive": "internal",
+      "x-trust-impact": ["observation", "execution", "path"],
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.root.conflicts"
+    },
+    "authority": {
+      "$ref": "#/$defs/authority",
+      "x-sensitive": "public",
+      "x-trust-impact": ["observation", "execution", "ownership", "path"],
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.root.authority"
+    },
+    "extensions": {
+      "$ref": "#/$defs/extensions",
+      "description": "Omitted means that no display-only extension metadata is carried.",
+      "x-sensitive": "internal",
+      "x-trust-impact": ["display"],
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.root.extensions"
+    },
+    "integrity": {
+      "$ref": "#/$defs/integrity",
+      "x-sensitive": "public",
+      "x-trust-impact": ["observation", "execution", "artifact"],
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.root.integrity"
+    }
+  },
+  "$defs": {
+    "uuid_v4": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.type.uuid_v4"
+    },
+    "semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.type.semver"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.type.sha256"
+    },
+    "domain_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[a-z][a-z0-9]*(?:[-_][a-z0-9]+)*$",
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.type.domain_id"
+    },
+    "reason_code": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 96,
+      "pattern": "^[A-Z][A-Z0-9_]*(?:\\.[A-Z][A-Z0-9_]*)+$",
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.type.reason_code"
+    },
+    "utc_date_time_ms": {
+      "type": "string",
+      "format": "utc-date-time-ms",
+      "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-([0-2][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]\\.[0-9]{3}Z$",
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.type.utc_date_time_ms"
+    },
+    "compute_capability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["major", "minor"],
+      "properties": {
+        "major": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99,
+          "x-sensitive": "public",
+          "x-trust-impact": ["observation", "execution"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.compute.major"
+        },
+        "minor": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99,
+          "x-sensitive": "public",
+          "x-trust-impact": ["observation", "execution"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.compute.minor"
+        }
+      },
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.compute.closed"
+    },
+    "freshness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evaluated_at_utc", "max_age_ms", "status", "stale_source_ids", "unknown_source_ids"],
+      "properties": {
+        "evaluated_at_utc": {
+          "$ref": "#/$defs/utc_date_time_ms",
+          "x-sensitive": "internal",
+          "x-trust-impact": ["observation", "execution"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.freshness.evaluated_at"
+        },
+        "max_age_ms": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 86400000,
+          "x-sensitive": "public",
+          "x-trust-impact": ["observation", "execution"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.freshness.max_age_ms"
+        },
+        "status": {
+          "enum": ["fresh", "stale", "mixed", "unknown"],
+          "x-sensitive": "public",
+          "x-trust-impact": ["observation", "execution"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.freshness.status"
+        },
+        "stale_source_ids": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 64,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/domain_id",
+            "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+            "x-rule-id": "hardware.freshness.stale_source_ids.item"
+          },
+          "description": "An empty array means that no source exceeded max_age_ms.",
+          "x-sensitive": "internal",
+          "x-trust-impact": ["observation", "execution"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.freshness.stale_source_ids"
+        },
+        "unknown_source_ids": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 64,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/domain_id",
+            "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+            "x-rule-id": "hardware.freshness.unknown_source_ids.item"
+          },
+          "description": "An empty array means that every source had a determinable observation time.",
+          "x-sensitive": "internal",
+          "x-trust-impact": ["observation", "execution"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.freshness.unknown_source_ids"
+        }
+      },
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.freshness.closed"
+    },
+    "gpu_observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "subject_id", "vendor", "product_name", "architecture", "compute_capability", "driver_version", "vram_bytes"],
+      "properties": {
+        "kind": {
+          "const": "gpu",
+          "x-sensitive": "public",
+          "x-trust-impact": ["observation"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.gpu_observation.kind"
+        },
+        "subject_id": {
+          "$ref": "#/$defs/domain_id",
+          "x-sensitive": "internal",
+          "x-trust-impact": ["observation"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.gpu_observation.subject_id"
+        },
+        "vendor": {
+          "enum": ["nvidia", "amd", "intel", "unknown"],
+          "x-sensitive": "public",
+          "x-trust-impact": ["observation", "execution"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.gpu_observation.vendor"
+        },
+        "product_name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "x-sensitive": "internal",
+          "x-trust-impact": ["display", "observation", "execution"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.gpu_observation.product_name"
+        },
+        "architecture": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "pattern": "^[a-z][a-z0-9_]*$",
+          "x-sensitive": "public",
+          "x-trust-impact": ["observation", "execution"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.gpu_observation.architecture"
+        },
+        "compute_capability": {
+          "$ref": "#/$defs/compute_capability",
+          "x-sensitive": "public",
+          "x-trust-impact": ["observation", "execution"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.gpu_observation.compute_capability"
+        },
+        "driver_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "pattern": "^[0-9]+(?:\\.[0-9]+){1,3}$",
+          "x-sensitive": "public",
+          "x-trust-impact": ["observation", "execution"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.gpu_observation.driver_version"
+        },
+        "vram_bytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991,
+          "x-sensitive": "public",
+          "x-trust-impact": ["observation", "execution"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.gpu_observation.vram_bytes"
+        }
+      },
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.gpu_observation.closed"
+    },
+    "host_observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "subject_id", "windows_build", "cpu_architecture", "logical_processor_count", "system_ram_bytes"],
+      "properties": {
+        "kind": {
+          "const": "host",
+          "x-sensitive": "public",
+          "x-trust-impact": ["observation"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.host_observation.kind"
+        },
+        "subject_id": {
+          "$ref": "#/$defs/domain_id",
+          "x-sensitive": "internal",
+          "x-trust-impact": ["observation"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.host_observation.subject_id"
+        },
+        "windows_build": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991,
+          "x-sensitive": "public",
+          "x-trust-impact": ["observation", "execution"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.host_observation.windows_build"
+        },
+        "cpu_architecture": {
+          "enum": ["x86_64", "arm64", "unknown"],
+          "x-sensitive": "public",
+          "x-trust-impact": ["observation", "execution"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.host_observation.cpu_architecture"
+        },
+        "logical_processor_count": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4096,
+          "x-sensitive": "internal",
+          "x-trust-impact": ["observation", "execution"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.host_observation.logical_processor_count"
+        },
+        "system_ram_bytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991,
+          "x-sensitive": "internal",
+          "x-trust-impact": ["observation", "execution"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.host_observation.system_ram_bytes"
+        }
+      },
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.host_observation.closed"
+    },
+    "volume_observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "subject_id", "drive_letter", "drive_type", "filesystem", "capacity_bytes", "free_bytes"],
+      "properties": {
+        "kind": {
+          "const": "volume",
+          "x-sensitive": "public",
+          "x-trust-impact": ["observation", "path"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.volume_observation.kind"
+        },
+        "subject_id": {
+          "$ref": "#/$defs/domain_id",
+          "x-sensitive": "internal",
+          "x-trust-impact": ["observation", "path"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.volume_observation.subject_id"
+        },
+        "drive_letter": {
+          "type": "string",
+          "pattern": "^[A-Z]:$",
+          "x-sensitive": "local_path",
+          "x-trust-impact": ["observation", "path"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.volume_observation.drive_letter"
+        },
+        "drive_type": {
+          "enum": ["fixed_local", "removable", "network", "unknown"],
+          "x-sensitive": "public",
+          "x-trust-impact": ["observation", "path"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.volume_observation.drive_type"
+        },
+        "filesystem": {
+          "enum": ["ntfs", "refs", "fat32", "exfat", "unknown"],
+          "x-sensitive": "public",
+          "x-trust-impact": ["observation", "path"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.volume_observation.filesystem"
+        },
+        "capacity_bytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991,
+          "x-sensitive": "internal",
+          "x-trust-impact": ["observation", "path"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.volume_observation.capacity_bytes"
+        },
+        "free_bytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991,
+          "x-sensitive": "internal",
+          "x-trust-impact": ["observation", "path"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.volume_observation.free_bytes"
+        }
+      },
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.volume_observation.closed"
+    },
+    "unknown_observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "subject_id", "raw_kind", "reason_code", "actionable"],
+      "properties": {
+        "kind": {
+          "const": "unknown",
+          "x-sensitive": "public",
+          "x-trust-impact": ["observation"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.unknown_observation.kind"
+        },
+        "subject_id": {
+          "$ref": "#/$defs/domain_id",
+          "x-sensitive": "internal",
+          "x-trust-impact": ["observation"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.unknown_observation.subject_id"
+        },
+        "raw_kind": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "x-sensitive": "internal",
+          "x-trust-impact": ["display", "observation"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.unknown_observation.raw_kind"
+        },
+        "reason_code": {
+          "$ref": "#/$defs/reason_code",
+          "x-sensitive": "public",
+          "x-trust-impact": ["display", "observation", "execution"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.unknown_observation.reason_code"
+        },
+        "actionable": {
+          "const": false,
+          "x-sensitive": "public",
+          "x-trust-impact": ["observation", "execution"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.unknown_observation.actionable"
+        }
+      },
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.unknown_observation.closed"
+    },
+    "observation": {
+      "oneOf": [
+        {"$ref": "#/$defs/gpu_observation", "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.observation.gpu"},
+        {"$ref": "#/$defs/host_observation", "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.observation.host"},
+        {"$ref": "#/$defs/volume_observation", "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.observation.volume"},
+        {"$ref": "#/$defs/unknown_observation", "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.observation.unknown"}
+      ],
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.observation.union"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_id", "source_kind", "source_tier", "confidence_basis_points", "observed_at_utc", "freshness_status", "authority", "observations"],
+      "properties": {
+        "source_id": {
+          "$ref": "#/$defs/domain_id",
+          "x-sensitive": "internal",
+          "x-trust-impact": ["observation"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.source.source_id"
+        },
+        "source_kind": {
+          "enum": ["nvml", "nvidia_smi", "nvidia_driver_api", "windows_system_api", "wmi_cim", "unknown"],
+          "x-sensitive": "public",
+          "x-trust-impact": ["observation", "execution", "path"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.source.source_kind"
+        },
+        "source_tier": {
+          "enum": ["preferred_vendor_api", "preferred_vendor_cli", "os_native", "fallback_wmi", "unknown"],
+          "x-sensitive": "public",
+          "x-trust-impact": ["observation", "execution", "path"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.source.source_tier"
+        },
+        "confidence_basis_points": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000,
+          "x-sensitive": "public",
+          "x-trust-impact": ["observation", "execution", "path"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.source.confidence_basis_points"
+        },
+        "observed_at_utc": {
+          "$ref": "#/$defs/utc_date_time_ms",
+          "x-sensitive": "internal",
+          "x-trust-impact": ["observation"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.source.observed_at"
+        },
+        "freshness_status": {
+          "enum": ["fresh", "stale", "unknown"],
+          "x-sensitive": "public",
+          "x-trust-impact": ["observation", "execution", "path"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.source.freshness_status"
+        },
+        "authority": {
+          "const": "observation_only",
+          "x-sensitive": "public",
+          "x-trust-impact": ["observation", "execution", "ownership", "path"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.source.authority"
+        },
+        "observations": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 128,
+          "items": {
+            "$ref": "#/$defs/observation",
+            "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+            "x-rule-id": "hardware.source.observations.item"
+          },
+          "x-sensitive": "internal",
+          "x-trust-impact": ["observation", "execution", "path"],
+          "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "hardware.source.observations"
+        }
+      },
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.source.closed"
+    },
+    "gpu_resolution_resolved": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "subject_id", "source_ids", "confidence_basis_points", "vendor", "product_name", "architecture", "compute_capability", "driver_version", "vram_bytes", "support_status", "recipe_gate", "selection_authority"],
+      "properties": {
+        "kind": {"const": "resolved", "x-sensitive": "public", "x-trust-impact": ["observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.gpu_resolution.resolved.kind"},
+        "subject_id": {"$ref": "#/$defs/domain_id", "x-sensitive": "internal", "x-trust-impact": ["observation"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.gpu_resolution.resolved.subject_id"},
+        "source_ids": {"$ref": "#/$defs/source_id_array", "x-sensitive": "internal", "x-trust-impact": ["observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.gpu_resolution.resolved.source_ids"},
+        "confidence_basis_points": {"type": "integer", "minimum": 9000, "maximum": 10000, "x-sensitive": "public", "x-trust-impact": ["observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.gpu_resolution.resolved.confidence"},
+        "vendor": {"const": "nvidia", "x-sensitive": "public", "x-trust-impact": ["observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.gpu_resolution.resolved.vendor"},
+        "product_name": {"type": "string", "minLength": 1, "maxLength": 256, "x-sensitive": "internal", "x-trust-impact": ["display", "observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.gpu_resolution.resolved.product_name"},
+        "architecture": {"type": "string", "minLength": 1, "maxLength": 64, "pattern": "^[a-z][a-z0-9_]*$", "x-sensitive": "public", "x-trust-impact": ["observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.gpu_resolution.resolved.architecture"},
+        "compute_capability": {"$ref": "#/$defs/compute_capability", "x-sensitive": "public", "x-trust-impact": ["observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.gpu_resolution.resolved.compute_capability"},
+        "driver_version": {"type": "string", "minLength": 1, "maxLength": 64, "pattern": "^[0-9]+(?:\\.[0-9]+){1,3}$", "x-sensitive": "public", "x-trust-impact": ["observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.gpu_resolution.resolved.driver_version"},
+        "vram_bytes": {"type": "integer", "minimum": 1, "maximum": 9007199254740991, "x-sensitive": "public", "x-trust-impact": ["observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.gpu_resolution.resolved.vram_bytes"},
+        "support_status": {"enum": ["observation_only", "experimental_self_poc"], "x-sensitive": "public", "x-trust-impact": ["display", "observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.gpu_resolution.resolved.support_status"},
+        "recipe_gate": {"const": "eligible_for_separate_exact_recipe_resolution", "x-sensitive": "public", "x-trust-impact": ["observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.gpu_resolution.resolved.recipe_gate"},
+        "selection_authority": {"const": "none_observation_only", "x-sensitive": "public", "x-trust-impact": ["observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.gpu_resolution.resolved.selection_authority"}
+      },
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.gpu_resolution.resolved.closed"
+    },
+    "gpu_resolution_non_actionable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "subject_id", "source_ids", "reason", "conflict_ids", "support_status", "recipe_gate", "selection_authority"],
+      "properties": {
+        "kind": {"const": "non_actionable", "x-sensitive": "public", "x-trust-impact": ["observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.gpu_resolution.blocked.kind"},
+        "subject_id": {"$ref": "#/$defs/domain_id", "x-sensitive": "internal", "x-trust-impact": ["observation"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.gpu_resolution.blocked.subject_id"},
+        "source_ids": {"$ref": "#/$defs/source_id_array", "x-sensitive": "internal", "x-trust-impact": ["observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.gpu_resolution.blocked.source_ids"},
+        "reason": {"enum": ["conflicted", "insufficient", "unsupported", "stale", "ambiguous_identity"], "x-sensitive": "public", "x-trust-impact": ["display", "observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.gpu_resolution.blocked.reason"},
+        "conflict_ids": {"type": "array", "minItems": 0, "maxItems": 128, "uniqueItems": true, "items": {"$ref": "#/$defs/domain_id", "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.gpu_resolution.blocked.conflict_ids.item"}, "description": "An empty array means the non-actionable reason is not a detected value conflict.", "x-sensitive": "internal", "x-trust-impact": ["observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.gpu_resolution.blocked.conflict_ids"},
+        "support_status": {"enum": ["observation_only", "experimental_self_poc"], "x-sensitive": "public", "x-trust-impact": ["display", "observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.gpu_resolution.blocked.support_status"},
+        "recipe_gate": {"const": "blocked", "x-sensitive": "public", "x-trust-impact": ["observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.gpu_resolution.blocked.recipe_gate"},
+        "selection_authority": {"const": "none_observation_only", "x-sensitive": "public", "x-trust-impact": ["observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.gpu_resolution.blocked.selection_authority"}
+      },
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.gpu_resolution.blocked.closed"
+    },
+    "gpu_resolution": {
+      "oneOf": [
+        {"$ref": "#/$defs/gpu_resolution_resolved", "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.gpu_resolution.union.resolved"},
+        {"$ref": "#/$defs/gpu_resolution_non_actionable", "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.gpu_resolution.union.blocked"}
+      ],
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.gpu_resolution.union"
+    },
+    "host_resolution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "subject_id", "source_ids", "windows_build", "cpu_architecture", "logical_processor_count", "system_ram_bytes", "recipe_gate", "selection_authority"],
+      "properties": {
+        "kind": {"const": "resolved", "x-sensitive": "public", "x-trust-impact": ["observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.host_resolution.kind"},
+        "subject_id": {"$ref": "#/$defs/domain_id", "x-sensitive": "internal", "x-trust-impact": ["observation"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.host_resolution.subject_id"},
+        "source_ids": {"$ref": "#/$defs/source_id_array", "x-sensitive": "internal", "x-trust-impact": ["observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.host_resolution.source_ids"},
+        "windows_build": {"type": "integer", "minimum": 1, "maximum": 9007199254740991, "x-sensitive": "public", "x-trust-impact": ["observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.host_resolution.windows_build"},
+        "cpu_architecture": {"enum": ["x86_64", "arm64"], "x-sensitive": "public", "x-trust-impact": ["observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.host_resolution.cpu_architecture"},
+        "logical_processor_count": {"type": "integer", "minimum": 1, "maximum": 4096, "x-sensitive": "internal", "x-trust-impact": ["observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.host_resolution.logical_processor_count"},
+        "system_ram_bytes": {"type": "integer", "minimum": 1, "maximum": 9007199254740991, "x-sensitive": "internal", "x-trust-impact": ["observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.host_resolution.system_ram_bytes"},
+        "recipe_gate": {"const": "eligible_for_separate_exact_recipe_resolution", "x-sensitive": "public", "x-trust-impact": ["observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.host_resolution.recipe_gate"},
+        "selection_authority": {"const": "none_observation_only", "x-sensitive": "public", "x-trust-impact": ["observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.host_resolution.selection_authority"}
+      },
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.host_resolution.closed"
+    },
+    "volume_resolution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "subject_id", "source_ids", "drive_letter", "drive_type", "filesystem", "capacity_bytes", "free_bytes", "managed_root_gate", "selection_authority"],
+      "properties": {
+        "kind": {"const": "resolved", "x-sensitive": "public", "x-trust-impact": ["observation", "path"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.volume_resolution.kind"},
+        "subject_id": {"$ref": "#/$defs/domain_id", "x-sensitive": "internal", "x-trust-impact": ["observation", "path"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.volume_resolution.subject_id"},
+        "source_ids": {"$ref": "#/$defs/source_id_array", "x-sensitive": "internal", "x-trust-impact": ["observation", "path"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.volume_resolution.source_ids"},
+        "drive_letter": {"type": "string", "pattern": "^[A-Z]:$", "x-sensitive": "local_path", "x-trust-impact": ["observation", "path"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.volume_resolution.drive_letter"},
+        "drive_type": {"enum": ["fixed_local", "removable", "network", "unknown"], "x-sensitive": "public", "x-trust-impact": ["observation", "path"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.volume_resolution.drive_type"},
+        "filesystem": {"enum": ["ntfs", "refs", "fat32", "exfat", "unknown"], "x-sensitive": "public", "x-trust-impact": ["observation", "path"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.volume_resolution.filesystem"},
+        "capacity_bytes": {"type": "integer", "minimum": 1, "maximum": 9007199254740991, "x-sensitive": "internal", "x-trust-impact": ["observation", "path"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.volume_resolution.capacity_bytes"},
+        "free_bytes": {"type": "integer", "minimum": 0, "maximum": 9007199254740991, "x-sensitive": "internal", "x-trust-impact": ["observation", "path"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.volume_resolution.free_bytes"},
+        "managed_root_gate": {"enum": ["eligible_for_separate_path_validation", "blocked"], "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "path"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.volume_resolution.managed_root_gate"},
+        "selection_authority": {"const": "none_requires_user_choice_and_handle_validation", "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "ownership", "path"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.volume_resolution.selection_authority"}
+      },
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.volume_resolution.closed"
+    },
+    "source_id_array": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 64,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/domain_id", "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.source_id_array.item"},
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.source_id_array"
+    },
+    "resolutions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["host", "gpus", "volumes"],
+      "properties": {
+        "host": {"$ref": "#/$defs/host_resolution", "x-sensitive": "internal", "x-trust-impact": ["observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.resolutions.host"},
+        "gpus": {"type": "array", "minItems": 0, "maxItems": 32, "items": {"$ref": "#/$defs/gpu_resolution", "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.resolutions.gpus.item"}, "description": "An empty array means that no GPU subject was observed.", "x-sensitive": "internal", "x-trust-impact": ["observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.resolutions.gpus"},
+        "volumes": {"type": "array", "minItems": 0, "maxItems": 64, "items": {"$ref": "#/$defs/volume_resolution", "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.resolutions.volumes.item"}, "description": "An empty array means that no supported volume subject was observed.", "x-sensitive": "local_path", "x-trust-impact": ["observation", "path"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.resolutions.volumes"}
+      },
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.resolutions.closed"
+    },
+    "conflict": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["conflict_id", "subject_id", "metric", "source_ids", "status", "action", "reason_code"],
+      "properties": {
+        "conflict_id": {"$ref": "#/$defs/domain_id", "x-sensitive": "internal", "x-trust-impact": ["observation", "execution", "path"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.conflict.conflict_id"},
+        "subject_id": {"$ref": "#/$defs/domain_id", "x-sensitive": "internal", "x-trust-impact": ["observation", "execution", "path"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.conflict.subject_id"},
+        "metric": {"enum": ["gpu_vram_bytes", "gpu_product_name", "gpu_architecture", "gpu_driver_version", "host_system_ram_bytes", "volume_capacity_bytes", "volume_free_bytes"], "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "path"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.conflict.metric"},
+        "source_ids": {"type": "array", "minItems": 2, "maxItems": 64, "uniqueItems": true, "items": {"$ref": "#/$defs/domain_id", "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.conflict.source_ids.item"}, "x-sensitive": "internal", "x-trust-impact": ["observation", "execution", "path"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.conflict.source_ids"},
+        "status": {"const": "unresolved", "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "path"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.conflict.status"},
+        "action": {"const": "block_corresponding_resolution", "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "path"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.conflict.action"},
+        "reason_code": {"$ref": "#/$defs/reason_code", "x-sensitive": "public", "x-trust-impact": ["display", "observation", "execution", "path"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.conflict.reason_code"}
+      },
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.conflict.closed"
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["observation_authority", "recipe_selection_authority", "model_selection_authority", "path_selection_authority", "matching_policy", "official_minimum_vram_claim", "observed_capacity_claim", "product_boundary"],
+      "properties": {
+        "observation_authority": {"const": "record_only", "x-sensitive": "public", "x-trust-impact": ["observation"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.authority.observation"},
+        "recipe_selection_authority": {"const": "none_requires_exact_certified_recipe_resolver", "x-sensitive": "public", "x-trust-impact": ["observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.authority.recipe_selection"},
+        "model_selection_authority": {"const": "none", "x-sensitive": "public", "x-trust-impact": ["observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.authority.model_selection"},
+        "path_selection_authority": {"const": "none_requires_user_choice_and_handle_validation", "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "ownership", "path"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.authority.path_selection"},
+        "matching_policy": {"const": "exact_values_only_no_nearest_name_inheritance", "x-sensitive": "public", "x-trust-impact": ["observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.authority.matching_policy"},
+        "official_minimum_vram_claim": {"const": "none_known", "x-sensitive": "public", "x-trust-impact": ["display", "observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.authority.official_minimum_vram_claim"},
+        "observed_capacity_claim": {"const": "observation_or_experimental_self_poc_never_official_support", "x-sensitive": "public", "x-trust-impact": ["display", "observation", "execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.authority.observed_capacity_claim"},
+        "product_boundary": {"const": "compile_and_handoff_only_user_runs_h3_in_comfyui", "x-sensitive": "public", "x-trust-impact": ["execution"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.authority.product_boundary"}
+      },
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.authority.closed"
+    },
+    "extension": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["extension_version", "effect", "data"],
+      "properties": {
+        "extension_version": {"$ref": "#/$defs/semver", "x-sensitive": "public", "x-trust-impact": ["display"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.extension.version"},
+        "effect": {"const": "display_metadata", "x-sensitive": "public", "x-trust-impact": ["display"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.extension.effect"},
+        "data": {"type": "object", "maxProperties": 128, "x-sensitive": "internal", "x-trust-impact": ["display"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.extension.data"}
+      },
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.extension.closed"
+    },
+    "extensions": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 32,
+      "propertyNames": {"pattern": "^[a-z][a-z0-9]*(?:\\.[a-z][a-z0-9_]*){2,}$", "maxLength": 128, "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.extensions.namespace"},
+      "additionalProperties": {"$ref": "#/$defs/extension", "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.extensions.item"},
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.extensions.closed"
+    },
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profile", "content_sha256"],
+      "properties": {
+        "profile": {"const": "rfc8785-sha256-v1", "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.integrity.profile"},
+        "content_sha256": {"$ref": "#/$defs/sha256", "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT", "x-rule-id": "hardware.integrity.content_sha256"}
+      },
+      "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "hardware.integrity.closed"
+    }
+  },
+  "x-error-code": "HARDWARE.SCHEMA_CONSTRAINT",
+  "x-rule-id": "hardware.root.closed"
+}

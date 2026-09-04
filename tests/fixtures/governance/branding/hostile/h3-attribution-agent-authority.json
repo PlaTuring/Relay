@@ -1,0 +1,10 @@
+{
+  "fixture_id": "h3-attribution-agent-authority",
+  "mutation": {
+    "kind": "set_decision_field",
+    "decision_id": "DEC-H3-ATTRIBUTION",
+    "field": "authority",
+    "value": "agent"
+  },
+  "expected_code": "DECISION.HUMAN_EXTERNAL"
+}

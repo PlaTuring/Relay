@@ -1,0 +1,9 @@
+{
+  "fixture_case_version": "1.0.0",
+  "case_id": "missing-hardware-prerequisite-gate",
+  "base": "valid/alpha0-t2va-capability.json",
+  "mutations": [
+    {"op": "remove", "path": "/capabilities/0/prerequisites/hardware"}
+  ],
+  "expected": {"code": "CAPABILITY.GATE_REQUIRED", "instance_path": "/capabilities/0/prerequisites/hardware", "rule_id": "capability.prerequisite.hardware.required"}
+}

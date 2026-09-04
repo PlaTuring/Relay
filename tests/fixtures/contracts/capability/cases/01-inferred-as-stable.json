@@ -1,0 +1,10 @@
+{
+  "fixture_case_version": "1.0.0",
+  "case_id": "inferred-capability-rejected-as-stable",
+  "base": "valid/alpha0-t2va-capability.json",
+  "mutations": [
+    {"op": "replace", "path": "/capabilities/0/publication_status", "value": "stable"},
+    {"op": "replace", "path": "/capabilities/0/evidence_status", "value": "inferred"}
+  ],
+  "expected": {"code": "CAPABILITY.STABLE_REQUIRES_PROVEN", "instance_path": "/capabilities/0/evidence_status", "rule_id": "capability.stable.evidence.proven"}
+}

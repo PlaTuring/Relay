@@ -1,0 +1,10 @@
+{
+  "fixture_id": "h3-attribution-substitutes-disclosure",
+  "mutation": {
+    "kind": "append_layer_relation",
+    "layer_id": "minimax_h3_attribution",
+    "field": "may_substitute_for",
+    "target_layer_id": "ai_generated_disclosure"
+  },
+  "expected_code": "LAYER.SUBSTITUTION_FORBIDDEN"
+}

@@ -1,0 +1,10 @@
+{
+  "fixture_id": "territory-commercial-made-optional",
+  "mutation": {
+    "kind": "set_obligation_field",
+    "obligation_id": "territory_and_commercial_authorization",
+    "field": "normative_strength",
+    "value": "optional"
+  },
+  "expected_code": "LICENSE_POLICY.OBLIGATION_STRENGTH"
+}

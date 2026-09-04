@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; font-src 'none'; media-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'" />
+    <title>Relay 数据目录修复</title>
+    <link rel="stylesheet" href="./startup-recovery.css" />
+  </head>
+  <body>
+    <main class="recovery" aria-labelledby="recovery-title">
+      <div class="mark" aria-hidden="true">R</div>
+      <p class="eyebrow">启动需要处理</p>
+      <h1 id="recovery-title">重新选择 Relay 数据目录</h1>
+      <p id="recovery-message" class="message">正在读取诊断信息…</p>
+      <p class="boundary">项目、素材、模型和工作流仍保留在你选择的数据目录中；Relay 不会把这些业务数据静默迁回 C 盘。</p>
+      <p class="diagnostic-code">诊断代码：<code id="recovery-code">—</code></p>
+      <div class="actions" aria-label="修复操作">
+        <button id="recovery-choose" class="primary" type="button">选择数据目录</button>
+        <button id="recovery-retry" type="button">重试</button>
+        <button id="recovery-diagnostics" type="button">打开诊断信息</button>
+        <button id="recovery-exit" type="button">退出</button>
+      </div>
+    </main>
+    <script src="./startup-recovery.js"></script>
+  </body>
+</html>
+

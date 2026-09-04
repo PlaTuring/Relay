@@ -1,0 +1,10 @@
+{
+  "fixture_case_version": "1.0.0",
+  "case_id": "display-name-cannot-authorize-node",
+  "base": "valid/alpha0-local-node-allowlist.json",
+  "mutations": [
+    {"op": "copy", "from": "/entries/0", "path": "/entries/-"},
+    {"op": "replace", "path": "/entries/4/class_type", "value": "DisplayNameDecoyNode"}
+  ],
+  "expected": {"code": "NODE.DISPLAY_NAME_COLLISION", "instance_path": "/entries/4/display_name", "rule_id": "node.identity.display_name_non_authoritative"}
+}

@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"15-open-gate-supports-release","base":"../index.valid.json","mutations":[{"op":"replace","path":"/external_gates/0/supports_external_distribution","value":true}],"expected":{"code":"GATE.OPEN_SUPPORT","instance_path":"/external_gates/0/supports_external_distribution","rule_id":"DIST-GATE-002"}}

@@ -1,0 +1,189 @@
+{
+  "contract_id": "minimax-h3-tool.alpha-recipe",
+  "schema_version": "1.0.0",
+  "document_id": "40000000-0000-4000-8000-000000000001",
+  "document_revision": 1,
+  "recipe_id": "alpha0-t2va-5s-poc",
+  "recipe_version": "1.0.0",
+  "authority": {
+    "publisher": "minimax_h3_tool_release",
+    "immutability": "replace_with_new_document",
+    "product_boundary": "compile_and_handoff_only_user_runs_h3_in_comfyui",
+    "authority_effect": "data_only_no_action_authority",
+    "grants": {
+      "download": false,
+      "materialization": false,
+      "execution": false,
+      "ownership": false,
+      "deletion": false,
+      "launch": false,
+      "queue_submission": false
+    }
+  },
+  "source_bindings": {
+    "capability_catalog": {
+      "contract_id": "minimax-h3-tool.capability-catalog",
+      "schema_version": "1.0.0",
+      "schema_id": "urn:minimax-h3-tool:schema:capability-catalog:1.0.0",
+      "schema_content_sha256": "sha256:e3ec4c0c1cefbec0ac4f0bf7d1853c125b02521f617dd581506ee77b8441d12d",
+      "source_document_id": "20000000-0000-4000-8000-000000000001",
+      "source_document_revision": 1,
+      "source_content_sha256": "sha256:d67584f0f514ec8dc86668874d71ff4cd425fc390ba355a58fc58cc68c3fcb6d"
+    },
+    "node_allowlist": {
+      "contract_id": "minimax-h3-tool.node-allowlist",
+      "schema_version": "1.0.0",
+      "schema_id": "urn:minimax-h3-tool:schema:node-allowlist:1.0.0",
+      "schema_content_sha256": "sha256:831cdae6677c2d735844245fade720f13e9b8717c41bda25f0626319d88a7b48",
+      "source_document_id": "10000000-0000-4000-8000-000000000001",
+      "source_document_revision": 1,
+      "source_content_sha256": "sha256:483262e8c31d1a47fa6c2bccd110bc64889b4c9ef2b0be032bd01c9367dbf300"
+    },
+    "component_manifest": {
+      "contract_id": "minimax-h3-tool.component-manifest",
+      "schema_version": "1.0.0",
+      "schema_id": "urn:minimax-h3-tool:schema:component-manifest:1.0.0",
+      "schema_content_sha256": "sha256:62704fae90e6f9d1895a3d1351b8664f67222aedb8db390ab46e674394236608",
+      "source_document_id": "30000000-0000-4000-8000-000000000001",
+      "source_document_revision": 1,
+      "source_content_sha256": "sha256:a886e46ee176eee2bfbda7ba66d2c9d89a095ebc816977dddeb89e564e21dc75"
+    }
+  },
+  "profile": {
+    "profile_id": "alpha0-t2va-5s-nonempty",
+    "publication_status": "poc_pending",
+    "runnable": false,
+    "selectable": false,
+    "reason_codes": [
+      "RECIPE.CAPABILITY_POC_PENDING",
+      "RECIPE.NODE_RUNTIME_POC_PENDING",
+      "RECIPE.COMPONENTS_BLOCKED",
+      "RECIPE.BACKEND_COMPONENT_MISSING",
+      "RECIPE.MODEL_COMPONENTS_MISSING",
+      "RECIPE.LICENSE_APPROVAL_PENDING",
+      "RECIPE.HARDWARE_CERTIFICATION_PENDING",
+      "RECIPE.OUTPUT_POC_PENDING"
+    ],
+    "capability": {
+      "capability_id": "alpha0-t2va-5s-nonempty",
+      "publication_status": "poc_pending",
+      "evidence_status": "proven",
+      "disposition": "active"
+    },
+    "control_plane": {
+      "topology": "managed_core",
+      "app_id": "minimax-h3-tool",
+      "app_version": "0.1.0",
+      "app_build_id": "alpha0-schema-fixture",
+      "backend_origin_uri": "https://github.com/Comfy-Org/ComfyUI",
+      "backend_locked_revision": "d8e7bbc9d586d95f758d6b0ed23d519088be578a",
+      "listen_scope": "loopback_only",
+      "api_nodes": "disabled",
+      "unknown_custom_nodes": "disabled",
+      "manager_runtime_downloads": "disabled",
+      "workflow_handoff": "persist_only_user_must_click_run"
+    },
+    "nodes": [
+      {
+        "class_type": "MiniMaxH3ImageToVideo",
+        "input_schema_sha256": "sha256:f0d916a84a6fa13603198d4242adb9012a8a3cff3c2b1a67ce544ae78ca9632b",
+        "output_schema_sha256": "sha256:ff2c10d6cf27e6a7560c322a49f4d9ca459036f8763998ef99c199b10d5274e4",
+        "combined_schema_sha256": "sha256:701870ddeb11c2ac58c1dd2d3ce39ac2df5fd2ec3bb601804f49ff60e22c9818",
+        "source_path": "comfy_extras/nodes_minimax_h3.py",
+        "git_blob_sha": "0a08f185fd1155f18f16757c02553ff48cf365eb",
+        "locked_revision": "d8e7bbc9d586d95f758d6b0ed23d519088be578a",
+        "local_only": true,
+        "is_api_node": false,
+        "runtime_acceptance": "poc_pending",
+        "disposition": "active"
+      },
+      {
+        "class_type": "MiniMaxH3SigmaShift",
+        "input_schema_sha256": "sha256:43f5d1ebad50412eaaebbace9e6719ec9ae1e416b08688f3285164cc2e67958f",
+        "output_schema_sha256": "sha256:651d5b4ef3a85699db10e47a202aeee3836c9f7f6f25276306c685a77b9cddbc",
+        "combined_schema_sha256": "sha256:def7b38f215736b2bcfc09aa593097f240fde31c32266c8f1b032e11b5e561b8",
+        "source_path": "comfy_extras/nodes_minimax_h3.py",
+        "git_blob_sha": "0a08f185fd1155f18f16757c02553ff48cf365eb",
+        "locked_revision": "d8e7bbc9d586d95f758d6b0ed23d519088be578a",
+        "local_only": true,
+        "is_api_node": false,
+        "runtime_acceptance": "poc_pending",
+        "disposition": "active"
+      },
+      {
+        "class_type": "CreateVideo",
+        "input_schema_sha256": "sha256:1281b8e8dce7e78910d22ae1add69c26a37d140189009e5653bff70024d44101",
+        "output_schema_sha256": "sha256:ec146e9038deeadf99d62e2cf3af5025f9b6e0a78019f9f937d0f30671a05a0c",
+        "combined_schema_sha256": "sha256:cb95bed0f73f12f7c4b215c32bc3e70d13472d28f9fe621312df9ff45eda823d",
+        "source_path": "comfy_extras/nodes_video.py",
+        "git_blob_sha": "58f58aaf4daecd08e3b7488c5f313377e6f527e2",
+        "locked_revision": "d8e7bbc9d586d95f758d6b0ed23d519088be578a",
+        "local_only": true,
+        "is_api_node": false,
+        "runtime_acceptance": "poc_pending",
+        "disposition": "active"
+      },
+      {
+        "class_type": "SaveVideo",
+        "input_schema_sha256": "sha256:a5478ce0c6b7c398c0b4775514b7cd206f20511f37f53a5e97e454caa6fb7581",
+        "output_schema_sha256": "sha256:cd23616031d7bc8462ec3e910be4f8061f98844643f0e187a51a139f72133e7d",
+        "combined_schema_sha256": "sha256:1ec11f525cacbf909a4527a3ec54df0d8d065b1ecc07229178a1d9a101f93996",
+        "source_path": "comfy_extras/nodes_video.py",
+        "git_blob_sha": "58f58aaf4daecd08e3b7488c5f313377e6f527e2",
+        "locked_revision": "d8e7bbc9d586d95f758d6b0ed23d519088be578a",
+        "local_only": true,
+        "is_api_node": false,
+        "runtime_acceptance": "poc_pending",
+        "disposition": "active"
+      }
+    ],
+    "components": {
+      "python_runtime": {"binding_state": "resolved_blocked", "component_id": "python-runtime-fixture", "component_version": "3.12.0", "component_role": "python_runtime", "artifact_sha256": "sha256:1111111111111111111111111111111111111111111111111111111111111111", "release_state": "blocked", "license_state": "pending_external", "disposition": "active"},
+      "comfy_backend": {"binding_state": "unresolved", "requirement_id": "comfyui-core-locked", "component_role": "comfy_backend", "readiness": "blocked", "reason_code": "RECIPE.BACKEND_COMPONENT_MISSING"},
+      "comfy_frontend": {"binding_state": "resolved_blocked", "component_id": "comfy-frontend-fixture", "component_version": "1.0.0", "component_role": "comfy_frontend", "artifact_sha256": "sha256:2222222222222222222222222222222222222222222222222222222222222222", "release_state": "blocked", "license_state": "pending_external", "disposition": "active"},
+      "local_node_pack": {"binding_state": "resolved_blocked", "component_id": "local-node-fixture", "component_version": "1.0.0", "component_role": "local_node", "artifact_sha256": "sha256:3333333333333333333333333333333333333333333333333333333333333333", "release_state": "blocked", "license_state": "pending_external", "disposition": "active"}
+    },
+    "models": {
+      "base_diffusion": {"binding_state": "resolved_blocked", "component_id": "h3-model-fixture", "component_version": "1.0.0", "component_role": "model_diffusion", "artifact_sha256": "sha256:4444444444444444444444444444444444444444444444444444444444444444", "release_state": "blocked", "license_state": "pending_external", "disposition": "active"},
+      "fl2va_diffusion": {"binding_state": "unresolved", "requirement_id": "h3-fl2va-model", "component_role": "model_diffusion", "readiness": "blocked", "reason_code": "RECIPE.FL2VA_COMPONENT_MISSING"},
+      "text_encoder": {"binding_state": "unresolved", "requirement_id": "h3-text-encoder", "component_role": "model_text_encoder", "readiness": "blocked", "reason_code": "RECIPE.TEXT_ENCODER_COMPONENT_MISSING"},
+      "video_vae": {"binding_state": "unresolved", "requirement_id": "h3-video-vae", "component_role": "model_video_vae", "readiness": "blocked", "reason_code": "RECIPE.VIDEO_VAE_COMPONENT_MISSING"},
+      "audio_vae": {"binding_state": "unresolved", "requirement_id": "h3-audio-vae", "component_role": "model_audio_vae", "readiness": "blocked", "reason_code": "RECIPE.AUDIO_VAE_COMPONENT_MISSING"}
+    },
+    "legal": {
+      "license_requirement_ids": ["h3-license", "comfy-license", "codec-license"],
+      "review_state": "pending_external",
+      "authority": "human_legal_owner",
+      "readiness": "poc_pending"
+    },
+    "hardware": {
+      "profile_id": "first-certified-profile",
+      "requirement_id": "first-certified-profile",
+      "evidence_status": "proven",
+      "readiness": "poc_pending",
+      "selection_authority": "none_until_exact_hardware_report_match",
+      "reason_code": "CAPABILITY.HARDWARE_MATRIX_PENDING"
+    },
+    "output": {
+      "capability_id": "alpha0-t2va-5s-nonempty",
+      "route": "t2va",
+      "requested_seconds": 5,
+      "frame_rate": {"numerator": 24, "denominator": 1},
+      "nonempty_prompt_required": true,
+      "endpoint_mode": "none",
+      "native_audio_required": true,
+      "sample_rate_hz": 32000,
+      "channels": 2,
+      "writer": "core_createvideo_savevideo_pyav",
+      "external_ffmpeg_requirement": "not_declared",
+      "readiness": "poc_pending",
+      "runnable": false
+    }
+  },
+  "disposition": {"kind": "active"},
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "rfc8785_jcs_root_integrity_omitted",
+    "content_sha256": "sha256:1d7afdb7e18132b06f334f5a2463f3707d9b4cdf96a2dfb211f2392afe40194a"
+  }
+}

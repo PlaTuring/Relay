@@ -1,0 +1,7 @@
+File formats:
+ D. = Demuxing supported
+ .E = Muxing supported
+ --
+ DE mp4,mov                 QuickTime / MOV
+ D  matroska                Matroska
+

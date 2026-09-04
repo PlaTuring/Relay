@@ -1,0 +1,536 @@
+{
+  "schema_version": "0.1.0",
+  "updated_at": "2026-08-27T21:49:00+08:00",
+  "master_agent": "/root",
+  "product_boundary": "The tool installs, detects, verifies, configures, compiles and hands off. MiniMax H3 generates all video and native audio inside ComfyUI after the user clicks Run.",
+  "full_catalog": {
+    "path": "tasks/TASK_BREAKDOWN.md",
+    "task_count": 152,
+    "activation_policy": "Root materializes a registry entry before dispatch. The Markdown catalog is the dependency source for inactive backlog tasks; this JSON is authoritative for active status, owner and locks."
+  },
+  "status_values": [
+    "backlog",
+    "ready",
+    "assigned",
+    "in_progress",
+    "review",
+    "changes_requested",
+    "accepted",
+    "blocked_external",
+    "rejected_scope"
+  ],
+  "resource_locks": {
+    "SCHEMA": "/root/wave-6/P0-CON-008",
+    "ROOT-LOCKFILE": null,
+    "MODEL-DOWNLOAD": null,
+    "GPU-H3": null,
+    "COMFY-DESKTOP": null,
+    "WIN-VM": null
+  },
+  "external_gates": [
+    {
+      "id": "EXT-BRAND-ASSET",
+      "status": "blocked_external",
+      "owner": "release-owner",
+      "satisfies": "Owner supplies and approves the exact software UI/installer brand name, logo, authorship/about-page assets, usage policy and content hash; this gate grants no media or output-file branding authority."
+    },
+    {
+      "id": "EXT-REMOTE-UPDATE-DECISION",
+      "status": "blocked_external",
+      "owner": "release-owner",
+      "satisfies": "Release owner approves either no remote update in 1.0 or a separately reviewed signed remote-update program."
+    }
+  ],
+  "gates": [
+    {
+      "id": "G0",
+      "name": "scope",
+      "status": "accepted",
+      "requires": ["P0-GOV-003", "P0-GOV-004"],
+      "unlocks": ["P0-ARC-002", "P0-ARC-003", "P0-ARC-004"]
+    },
+    {
+      "id": "G1",
+      "name": "runtime_topology",
+      "status": "accepted",
+      "requires": ["P0-ARC-001", "P0-ARC-006", "P0-ARC-009"],
+      "unlocks": ["P0-CON-001", "P2-INS-010", "P2-INS-013"]
+    },
+    {
+      "id": "G2",
+      "name": "control_plane_stack",
+      "status": "accepted",
+      "requires": ["P0-ARC-002", "P0-ARC-003", "P0-ARC-004", "P0-ARC-005"],
+      "unlocks": ["P1-APP-001", "P1-NAT-001", "P1-DET-001", "QA-001"]
+    },
+    {
+      "id": "G3",
+      "name": "contracts",
+      "status": "not_started",
+      "requires": ["P0-CON-001", "P0-CON-002", "P0-CON-003", "P0-CON-004", "P0-CON-005", "P0-CON-006", "P0-CON-007", "P0-CON-008", "P0-CON-009", "P0-CON-010", "P0-CON-012"],
+      "unlocks": ["P1-APP-002"]
+    },
+    {
+      "id": "G4",
+      "name": "provenance",
+      "status": "not_started",
+      "requires": ["P0-GOV-008", "P0-CON-003", "P2-INS-002", "P2-INS-003", "P1-DET-008", "P1-DET-009", "P1-DET-010"],
+      "unlocks": ["P1-WF-013"]
+    },
+    {
+      "id": "G5",
+      "name": "managed_probe",
+      "status": "not_started",
+      "requires": ["P2-INS-010", "P2-INS-011", "P2-INS-012", "P2-INS-013", "P2-INS-014"],
+      "unlocks": ["P1-WF-012", "P1-WF-013"]
+    },
+    {
+      "id": "G6",
+      "name": "workflow",
+      "status": "not_started",
+      "requires": ["P1-WF-002", "P1-WF-003", "P1-WF-004", "P1-WF-005", "P1-WF-006", "P1-WF-007", "P1-WF-008", "P1-WF-009", "P1-WF-010", "P1-WF-011", "P1-WF-012"],
+      "unlocks": ["P1-WF-013"]
+    },
+    {
+      "id": "G7",
+      "name": "vertical_slice",
+      "status": "not_started",
+      "requires": ["P2-INS-015", "P1-APP-004", "P2-PKG-002", "P1-WF-013", "QA-008", "QA-010", "QA-011", "QA-012", "QA-013", "QA-014", "QA-016"],
+      "unlocks": ["P1-WF-018", "REF-001", "ACC-001", "LONG-001"]
+    },
+    {
+      "id": "G8",
+      "name": "alpha_1",
+      "status": "not_started",
+      "requires": ["P1-WF-018", "P2-UX-008", "QA-016", "QA-018", "QA-019", "QA-020", "P0-GOV-008"],
+      "unlocks": []
+    },
+    {
+      "id": "G9",
+      "name": "ref2va",
+      "status": "not_started",
+      "requires": ["REF-001", "REF-002", "REF-003", "REF-004", "REF-005", "REF-006", "REF-007"],
+      "unlocks": ["REL-004"]
+    },
+    {
+      "id": "G10",
+      "name": "runner",
+      "status": "not_started",
+      "requires": ["P0-CON-011", "LONG-001", "LONG-002", "LONG-003", "LONG-004", "LONG-005", "LONG-006", "LONG-007", "LONG-008", "LONG-009", "LONG-010", "LONG-011"],
+      "unlocks": ["LONG-012"]
+    },
+    {
+      "id": "G11",
+      "name": "release",
+      "status": "not_started",
+      "requires": ["QA-019", "QA-020", "LONG-012", "REF-007", "ACC-008", "REL-002", "REL-003", "REL-005"],
+      "unlocks": ["REL-006"]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "P0-GOV-001",
+      "title": "Repository and Agent operating contract",
+      "status": "accepted",
+      "owner": "/root",
+      "depends_on": [],
+      "allowed_paths": ["AGENTS.md", ".gitignore", "artifacts/.gitkeep"],
+      "locks": [],
+      "evidence": ["AGENTS.md", ".git/", ".gitignore"]
+    },
+    {
+      "id": "P0-GOV-002",
+      "title": "Consolidate audits and binding architecture",
+      "status": "accepted",
+      "owner": "/root",
+      "depends_on": ["P0-GOV-001"],
+      "allowed_paths": ["docs/OPTIMIZED_ARCHITECTURE.md", "docs/MASTER_ORCHESTRATION.md", "docs/DECISION_LOG.md", "docs/RISK_REGISTER.md", "docs/reviews/**"],
+      "locks": [],
+      "evidence": ["docs/reviews/", "docs/OPTIMIZED_ARCHITECTURE.md"]
+    },
+    {
+      "id": "P0-GOV-003",
+      "title": "Alpha capability matrix and external-owner gates",
+      "status": "accepted",
+      "owner": "/root/product_risk_review",
+      "depends_on": ["P0-GOV-002"],
+      "allowed_paths": ["docs/architecture/ALPHA_CAPABILITY_MATRIX.md", "docs/EXTERNAL_GATES.md"],
+      "locks": [],
+      "evidence": ["docs/architecture/ALPHA_CAPABILITY_MATRIX.md", "docs/EXTERNAL_GATES.md"]
+    },
+    {
+      "id": "P0-GOV-004",
+      "title": "Formal product/process boundary ADR",
+      "status": "accepted",
+      "owner": "/root/product_risk_review",
+      "depends_on": ["P0-GOV-002"],
+      "allowed_paths": ["docs/adr/ADR-001-product-process-boundary.md"],
+      "locks": [],
+      "acceptance": "No tool-side generation action; no pre-Run /prompt; Runner and smoke-test invariants are testable.",
+      "evidence": ["docs/adr/ADR-001-product-process-boundary.md"]
+    },
+    {
+      "id": "P0-GOV-010",
+      "title": "Gate/critical-path review",
+      "status": "accepted",
+      "owner": "/root/task-01-gate",
+      "thread_id": "01a04343-ef52-7ea3-b894-e666ccbefea7",
+      "depends_on": ["P0-GOV-003", "P0-GOV-004"],
+      "allowed_paths": ["docs/architecture/GATE_CATALOG.md", "docs/evidence/CRITICAL_PATH_GATE_REVIEW.md", "tests/fixtures/governance/gates/**"],
+      "locks": [],
+      "acceptance": "Every production task maps to an exact gate or external prerequisite; gate IDs/names are unique, false serialization is removed, and no closed gate can be bypassed.",
+      "review_note": "Accepted after Root rejected and the worker corrected a false G3 serialization of P0-CON-011. Root reran 10 hostile gate cases and the WBS validator twice with byte-identical summaries. The ten authoritative external gates remain Human-owned and blocked; EXT-REMOTE-UPDATE-DECISION remains a separate registry release prerequisite.",
+      "evidence": ["docs/architecture/GATE_CATALOG.md", "docs/evidence/CRITICAL_PATH_GATE_REVIEW.md", "tests/fixtures/governance/gates/catalog.valid.json", "tests/fixtures/governance/gates/validate-gates.mjs"]
+    },
+    {
+      "id": "P0-WF-001",
+      "title": "Pin official upstream capability snapshot",
+      "status": "accepted",
+      "owner": "/root/workflow_plan_review",
+      "depends_on": ["P0-GOV-002"],
+      "allowed_paths": ["docs/evidence/UPSTREAM_CAPABILITY_SNAPSHOT.md", "prototypes/phase0/capability-snapshot.json", "prototypes/phase0/capability-snapshot/**"],
+      "locks": [],
+      "acceptance": "Pinned local/API classes, schemas, templates, artifacts and evidence status; JSON parses.",
+      "evidence": ["docs/evidence/UPSTREAM_CAPABILITY_SNAPSHOT.md", "prototypes/phase0/capability-snapshot.json", "prototypes/phase0/capability-snapshot/validate-snapshot.mjs"]
+    },
+    {
+      "id": "P0-ARC-001",
+      "title": "Runtime topology options and read-only probe",
+      "status": "accepted",
+      "owner": "/root/installer_plan_review",
+      "depends_on": ["P0-GOV-002"],
+      "allowed_paths": ["docs/architecture/RUNTIME_TOPOLOGY_OPTIONS.md", "prototypes/phase0/runtime-probe/**"],
+      "locks": [],
+      "acceptance": "Managed Core/Desktop/restricted CLI contracts and a no-execute Windows probe are reproducible.",
+      "evidence": ["docs/architecture/RUNTIME_TOPOLOGY_OPTIONS.md", "prototypes/phase0/runtime-probe/README.md", "prototypes/phase0/runtime-probe/evidence/HOST_PROBE_2026-08-27.md"]
+    },
+    {
+      "id": "P0-ARC-012",
+      "title": "Resource-lease protocol with fake workers",
+      "status": "accepted",
+      "owner": "/root/installer_plan_review",
+      "depends_on": ["P0-GOV-001"],
+      "allowed_paths": ["docs/adr/ADR-009-resource-leases.md", "prototypes/phase0/resource-leases/**"],
+      "locks": [],
+      "acceptance": "Artifact/volume/runtime/GPU/project leases serialize and safely recover stale fake owners.",
+      "evidence": ["docs/adr/ADR-009-resource-leases.md", "prototypes/phase0/resource-leases/evidence/TEST_RESULTS.md", "prototypes/phase0/resource-leases/tests/Run-Tests.ps1"]
+    },
+    {
+      "id": "P0-ARC-002",
+      "title": "Electron/TypeScript bounded stack spike",
+      "status": "accepted",
+      "owner": "/root/product_risk_review",
+      "depends_on": ["P0-GOV-004"],
+      "allowed_paths": ["prototypes/phase0/stack-electron/**", "docs/evidence/STACK_ELECTRON.md"],
+      "locks": [],
+      "evidence": ["docs/evidence/STACK_ELECTRON.md", "prototypes/phase0/stack-electron/package-lock.json", "prototypes/phase0/stack-electron/artifacts/sbom.cdx.json"]
+    },
+    {
+      "id": "P0-ARC-003",
+      "title": "Tauri/Rust bounded stack spike",
+      "status": "accepted",
+      "owner": "/root/installer_plan_review",
+      "depends_on": ["P0-GOV-004"],
+      "allowed_paths": ["prototypes/phase0/stack-tauri/**", "docs/evidence/STACK_TAURI.md"],
+      "locks": [],
+      "evidence": ["docs/evidence/STACK_TAURI.md", "prototypes/phase0/stack-tauri/evidence/TEST_RESULTS.md", "prototypes/phase0/stack-tauri/scripts/verify-static.mjs"],
+      "acceptance_note": "Accepted as an honest conditional-candidate spike: 31 static/local assertions proven twice; 11 build/runtime/package categories remain explicitly blocked and cannot support a Tauri production claim."
+    },
+    {
+      "id": "P0-ARC-004",
+      "title": ".NET desktop bounded stack spike",
+      "status": "accepted",
+      "owner": "/root/product_risk_review",
+      "depends_on": ["P0-GOV-004"],
+      "allowed_paths": ["prototypes/phase0/stack-dotnet/**", "docs/evidence/STACK_DOTNET.md"],
+      "locks": [],
+      "evidence": ["docs/evidence/STACK_DOTNET.md", "prototypes/phase0/stack-dotnet/evidence/TEST_RESULTS.md", "prototypes/phase0/stack-dotnet/scripts/verify-static.mjs"],
+      "acceptance_note": "Accepted as an honest conditional-candidate spike: 34 static/local assertions proven twice; 14 build/runtime/package categories remain explicitly blocked and cannot support a .NET production claim."
+    },
+    {
+      "id": "P0-ARC-005",
+      "title": "Technology-stack ADR",
+      "status": "accepted",
+      "owner": "/root/product_risk_review",
+      "depends_on": ["P0-ARC-002", "P0-ARC-003", "P0-ARC-004"],
+      "allowed_paths": ["docs/adr/ADR-003-technology-stack.md"],
+      "locks": [],
+      "acceptance": "One production control-plane stack is selected; blocked evidence is not scored as runtime proof and the signed native-helper boundary is explicit.",
+      "evidence": ["docs/adr/ADR-003-technology-stack.md"]
+    },
+    {
+      "id": "P0-ARC-006",
+      "title": "Managed Core final-path layout spike",
+      "status": "accepted",
+      "owner": "/root/workflow_plan_review",
+      "depends_on": ["P0-ARC-001"],
+      "allowed_paths": ["prototypes/phase0/managed-core-layout/**", "docs/evidence/MANAGED_CORE_LAYOUT.md"],
+      "locks": [],
+      "evidence": ["docs/evidence/MANAGED_CORE_LAYOUT.md", "prototypes/phase0/managed-core-layout/Invoke-ManagedCoreLayoutSpike.ps1", "prototypes/phase0/managed-core-layout/evidence/LAST_RUN.json"]
+    },
+    {
+      "id": "P0-ARC-010",
+      "title": "Managed process/network ownership ADR",
+      "status": "accepted",
+      "owner": "/root/product_risk_review",
+      "depends_on": ["P0-ARC-006"],
+      "allowed_paths": ["docs/adr/ADR-012-managed-process-network-ownership.md", "prototypes/phase0/managed-process-ownership/**"],
+      "locks": [],
+      "acceptance": "Owned loopback process identity, pre-first-instruction Job containment, shutdown, descendant and fail-closed network boundaries pass fake-process negative tests.",
+      "review_note": "Accepted after 14/14 fake-process tests and a two-level network gate: base offline/capture qualification remains mandatory per recipe; OS-enforced zero-egress is a separate stronger optional claim.",
+      "evidence": ["docs/adr/ADR-012-managed-process-network-ownership.md", "prototypes/phase0/managed-process-ownership/evidence/TEST_RESULTS.md", "prototypes/phase0/managed-process-ownership/evidence/LAST_RUN.json"]
+    },
+    {
+      "id": "P0-ARC-011",
+      "title": "Generation/active-pointer crash PoC",
+      "status": "accepted",
+      "owner": "/root/product_risk_review",
+      "depends_on": ["P0-ARC-006"],
+      "allowed_paths": ["prototypes/phase0/generation-crash/**", "docs/evidence/GENERATION_CRASH_POC.md"],
+      "locks": [],
+      "acceptance": "Incomplete generation never launches; verified old active remains valid across every injected crash and retry; pointer switch is atomic and owned-only.",
+      "evidence": ["docs/evidence/GENERATION_CRASH_POC.md", "prototypes/phase0/generation-crash/evidence/LAST_RUN.json", "prototypes/phase0/generation-crash/scripts/run-harness.mjs"]
+    },
+    {
+      "id": "P0-ARC-007",
+      "title": "Current Desktop OPEN_AND_FOCUS PoC",
+      "status": "blocked_external",
+      "owner": null,
+      "depends_on": ["P0-ARC-001"],
+      "allowed_paths": ["prototypes/phase0/desktop-open/**", "docs/evidence/DESKTOP_OPEN_POC.md"],
+      "locks": ["COMFY-DESKTOP"],
+      "blocker": "No Comfy Desktop installation is currently present. Installing or provisioning the test fixture requires explicit environment approval."
+    },
+    {
+      "id": "P0-ARC-008",
+      "title": "Restricted comfy-cli helper PoC",
+      "status": "backlog",
+      "owner": null,
+      "depends_on": ["P0-ARC-001", "P0-GOV-007"],
+      "allowed_paths": ["prototypes/phase0/comfy-cli-restricted/**", "docs/evidence/COMFY_CLI_RESTRICTED.md"],
+      "locks": ["WIN-VM"]
+    },
+    {
+      "id": "P0-GOV-007",
+      "title": "Alpha no-self-update policy",
+      "status": "accepted",
+      "owner": "/root/installer_plan_review",
+      "depends_on": ["P0-GOV-004"],
+      "allowed_paths": ["docs/adr/ADR-011-alpha-no-self-update.md", "prototypes/phase0/no-self-update/**"],
+      "locks": [],
+      "acceptance": "Alpha build policy has no updater service/channel/latest lookup; deterministic negative fixtures fail closed.",
+      "evidence": ["docs/adr/ADR-011-alpha-no-self-update.md", "prototypes/phase0/no-self-update/evidence/TEST_RESULTS.md", "prototypes/phase0/no-self-update/test-policy.mjs"]
+    },
+    {
+      "id": "P0-ARC-009",
+      "title": "Runtime topology ADR",
+      "status": "accepted",
+      "owner": "/root/workflow_plan_review",
+      "depends_on": ["P0-ARC-001", "P0-ARC-006"],
+      "allowed_paths": ["docs/adr/ADR-002-runtime-topology.md"],
+      "locks": [],
+      "acceptance": "Managed Core main path is reconstructable; Desktop/CLI remain separately gated optional adapters and do not block Alpha-0.",
+      "evidence": ["docs/adr/ADR-002-runtime-topology.md"]
+    },
+    {
+      "id": "P0-CON-001",
+      "title": "Contract conventions and compatibility",
+      "status": "accepted",
+      "owner": "/root/workflow_plan_review",
+      "depends_on": ["P0-GOV-004", "P0-ARC-009"],
+      "allowed_paths": ["docs/adr/ADR-004-contract-conventions.md", "schemas/README.md"],
+      "locks": ["SCHEMA"],
+      "evidence": ["docs/adr/ADR-004-contract-conventions.md", "schemas/README.md"]
+    },
+    {
+      "id": "P0-CON-002",
+      "title": "Capability catalog and local-node allowlist schema",
+      "status": "accepted",
+      "owner": "/root/workflow_plan_review",
+      "depends_on": ["P0-CON-001", "P0-WF-001"],
+      "allowed_paths": ["schemas/capability-catalog/**", "schemas/node-allowlist/**", "tests/fixtures/contracts/capability/**", "docs/evidence/CAPABILITY_SCHEMA.md"],
+      "locks": ["SCHEMA"],
+      "acceptance": "Proven/status/hardware/license/class/schema fingerprints validate; inferred, Partner/API, display-name and schema-drift fixtures fail exact rules.",
+      "evidence": ["schemas/capability-catalog/1.0.0.schema.json", "schemas/node-allowlist/1.0.0.schema.json", "tests/fixtures/contracts/capability/validate.mjs", "docs/evidence/CAPABILITY_SCHEMA.md"]
+    },
+    {
+      "id": "P0-CON-003",
+      "title": "Component manifest and provenance schema",
+      "status": "accepted",
+      "owner": "/root/workflow_plan_review",
+      "depends_on": ["P0-CON-001"],
+      "allowed_paths": ["schemas/component-manifest/**", "tests/fixtures/contracts/component/**", "docs/evidence/COMPONENT_MANIFEST_SCHEMA.md"],
+      "locks": ["SCHEMA"],
+      "acceptance": "URL/revision/length/hash/role/creator/packager/license/ownership are required; mutable refs, path abuse and false tool ownership fail exact rules.",
+      "review_note": "Accepted after three independent red-team rounds closed all P0/P1 findings. Root reran 44 negative cases, four valid mutation cases, schema parsing, deterministic-output and USERNAME privacy canaries. The manifest is data-only and grants no download, materialization, execution, ownership or deletion authority.",
+      "evidence": ["schemas/component-manifest/1.0.0.schema.json", "tests/fixtures/contracts/component/validate.mjs", "docs/evidence/COMPONENT_MANIFEST_SCHEMA.md"]
+    },
+    {
+      "id": "P0-CON-004",
+      "title": "Minimal Alpha recipe schema",
+      "status": "accepted",
+      "owner": "/root/task-02-recipe",
+      "thread_id": "01a04344-1985-7053-b76f-f41c56d53dcf",
+      "depends_on": ["P0-CON-001", "P0-CON-002", "P0-CON-003"],
+      "allowed_paths": ["schemas/alpha-recipe/**", "tests/fixtures/contracts/recipe/**", "docs/evidence/ALPHA_RECIPE_SCHEMA.md"],
+      "locks": ["SCHEMA"],
+      "acceptance": "One exact Alpha profile is reconstructable, while every poc_pending/blocked capability or component remains non-runnable and cannot be promoted by recipe data.",
+      "review_note": "Accepted after Root rejected cross-slot component/model substitution and the worker added slot-specific schema consts, semantic upstream-slot checks, and 19 targeted hostile fixtures. Root reran 53 negative cases and one display-only positive case twice with byte-identical output. The profile remains poc_pending, runnable=false, selectable=false, and grants no download, execution, launch or queue authority.",
+      "evidence": ["schemas/alpha-recipe/1.0.0.schema.json", "schemas/alpha-recipe/README.md", "tests/fixtures/contracts/recipe/validate.mjs", "tests/fixtures/contracts/recipe/valid/alpha0-poc-pending-recipe.json", "docs/evidence/ALPHA_RECIPE_SCHEMA.md"]
+    },
+    {
+      "id": "P1-APP-001",
+      "title": "Production Electron workspace and locked build graph",
+      "status": "accepted",
+      "owner": "/root/task-03-electron",
+      "thread_id": "01a04344-326c-7393-afd9-77c919cc03e7",
+      "depends_on": ["P0-ARC-005", "QA-001"],
+      "allowed_paths": ["apps/control-plane/**", "docs/evidence/PRODUCTION_APP_SCAFFOLD.md"],
+      "locks": ["ROOT-LOCKFILE"],
+      "acceptance": "Production/dev/package inputs are exact and reproducible; spike-only dependencies, mutable fetches, updater surfaces, generic command bridges and generation authority are absent.",
+      "review_note": "Accepted after Root independently confirmed the 399-entry exact offline lock graph, absent Electron runtime materialization, closed one-channel read-only IPC, sandbox/CSP/navigation/permission controls, public-evidence lint, and two byte-identical verify:offline plus root fast-test runs. Package materialization, native helper, signing, VM installation and packaged-runtime claims remain blocked.",
+      "evidence": ["apps/control-plane/package.json", "apps/control-plane/package-lock.json", "apps/control-plane/scripts/verify-offline.mjs", "apps/control-plane/tests/scaffold.test.mjs", "docs/evidence/PRODUCTION_APP_SCAFFOLD.md"]
+    },
+    {
+      "id": "P1-WF-008",
+      "title": "FrameAudioPlan rational timebase core",
+      "status": "backlog",
+      "owner": null,
+      "depends_on": ["P0-CON-009", "P0-WF-001"],
+      "allowed_paths": ["prototypes/phase0/frame-audio-plan/**", "docs/evidence/FRAME_AUDIO_PLAN.md"],
+      "locks": []
+    },
+    {
+      "id": "QA-001",
+      "title": "Unit/contract test runner",
+      "status": "accepted",
+      "owner": "/root/product_risk_review",
+      "depends_on": ["P0-ARC-005", "P0-CON-001"],
+      "allowed_paths": ["package.json", "package-lock.json", "scripts/test/**", "tests/runner/**", "docs/evidence/FAST_TEST_RUNNER.md"],
+      "locks": ["ROOT-LOCKFILE"],
+      "acceptance": "One deterministic fast/offline command runs allowlisted unit/contract tests without model, Comfy, GPU, Desktop, VM or network; hostile runner fixtures fail exact rules.",
+      "evidence": ["package.json", "package-lock.json", "scripts/test/run-tests.mjs", "tests/runner/runner.test.mjs", "docs/evidence/FAST_TEST_RUNNER.md"]
+    },
+    {
+      "id": "P0-GOV-005",
+      "title": "Evidence-level and claim registry convention",
+      "status": "backlog",
+      "owner": null,
+      "thread_id": "01a04365-cf64-79e1-842a-31d65a5effb1",
+      "depends_on": ["P0-GOV-003"],
+      "allowed_paths": ["docs/architecture/EVIDENCE_CLAIM_CONVENTION.md", "tests/fixtures/governance/claims/**"],
+      "locks": [],
+      "acceptance": "proven/inferred/poc_pending/experimental and expiry rules are deterministic and lintable."
+    },
+    {
+      "id": "P0-GOV-006",
+      "title": "Terminology and UI-language glossary",
+      "status": "accepted",
+      "owner": "/root/wave-6/P0-GOV-006",
+      "thread_id": "01a04365-ea88-7f80-910b-5f5d68182c89",
+      "depends_on": ["P0-GOV-003"],
+      "allowed_paths": ["docs/architecture/TERMINOLOGY_GLOSSARY.md", "tests/fixtures/governance/terminology/**"],
+      "locks": [],
+      "acceptance": "T2VA/I2VA/L2VA/FL2VA, runtime/model/Desktop and handoff terms have one machine-lintable meaning.",
+      "review_note": "Accepted after Root independently checked the validator, reran 23 hostile cases twice with byte-identical output, and confirmed exact route, model-role, topology, operation, status and UI-copy vocabularies. The glossary keeps compile/handoff separate from the user's Run action and from MiniMax H3 media generation inside ComfyUI.",
+      "evidence": ["docs/architecture/TERMINOLOGY_GLOSSARY.md", "tests/fixtures/governance/terminology/glossary.valid.json", "tests/fixtures/governance/terminology/ui-copy.valid.json", "tests/fixtures/governance/terminology/validate-terminology.mjs"]
+    },
+    {
+      "id": "P0-GOV-008",
+      "title": "External distribution evidence checklist",
+      "status": "backlog",
+      "owner": null,
+      "thread_id": "01a04366-0a1c-7b13-86a5-4a419db554ec",
+      "depends_on": ["P0-GOV-003"],
+      "allowed_paths": ["docs/architecture/EXTERNAL_DISTRIBUTION_EVIDENCE_CHECKLIST.md", "tests/fixtures/governance/distribution-evidence/**"],
+      "locks": [],
+      "acceptance": "H3, Core, frontend, Runner, PyAV, FFmpeg, CLI and signing evidence fields are complete without converting Human decisions into Agent authority."
+    },
+    {
+      "id": "P0-GOV-009",
+      "title": "Brand, H3 attribution, AI disclosure separation",
+      "status": "backlog",
+      "owner": null,
+      "thread_id": "01a04366-2400-7b90-8db2-81a761b572fe",
+      "depends_on": ["P0-GOV-004"],
+      "allowed_paths": ["docs/architecture/BRAND_ATTRIBUTION_DISCLOSURE_BOUNDARY.md", "tests/fixtures/governance/branding/**"],
+      "locks": [],
+      "acceptance": "Brand, MiniMax H3 attribution and AI disclosure are independent layers that cannot disable or replace one another.",
+      "review_note": "Previous acceptance revoked after the product owner clarified that user branding applies only to the software UI/about page/installer, never to generated media or output files. Revision must encode software_brand_only=true and media_branding_authority=false, remove media-watermark settings/extension semantics, retain independent H3 attribution/NOTICE/conditional disclosure gates, and add hostile cases for media-branding authority smuggling.",
+      "evidence": ["docs/architecture/BRAND_ATTRIBUTION_DISCLOSURE_BOUNDARY.md", "tests/fixtures/governance/branding/boundary-policy.valid.json", "tests/fixtures/governance/branding/validate-branding.mjs", "tests/fixtures/governance/branding/hostile/**"]
+    },
+    {
+      "id": "P1-NAT-001",
+      "title": "Stream C - Electron, Win32 helper, IPC, launch, and Windows package",
+      "status": "in_progress",
+      "owner": "/root/wave-6/P1-NAT-001",
+      "thread_id": "01a04366-4354-7613-988e-752f1fbf030e",
+      "depends_on": ["P0-ARC-005", "P0-ARC-010", "P0-CON-001"],
+      "allowed_paths": ["apps/control-plane/**"],
+      "locks": [],
+      "acceptance": "A launchable Electron control plane composes the bounded helper and parameter-array IPC, implements installer/project UI, enforces software_brand_only=true and media_branding_authority=false, exposes no tool-side generation action, and produces a Windows package smoke artifact."
+    },
+    {
+      "id": "P0-CON-008",
+      "title": "Stream A - detection, verified model reuse, managed root, and install transactions",
+      "status": "in_progress",
+      "owner": "/root/wave-6/P0-CON-008",
+      "thread_id": "01a04366-5e5f-71c3-bd99-b607fcdc3836",
+      "depends_on": ["P0-CON-001"],
+      "allowed_paths": ["packages/local-runtime/**"],
+      "locks": ["SCHEMA"],
+      "acceptance": "One runnable local service detects Windows/GPU/RAM/fixed NTFS roots and existing Portable ComfyUI without executing unknown code, verifies the five supplied local assets by full SHA-256, reports 0 GB reuse when exact, plans a visible D-root install, and runs restart-safe install transactions without model download or H3 execution."
+    },
+    {
+      "id": "P1-DET-011",
+      "title": "PyAV/private-FFmpeg capability probe",
+      "status": "backlog",
+      "owner": null,
+      "thread_id": "01a04366-7a9d-7961-a373-d1422f129144",
+      "depends_on": ["P0-CON-004"],
+      "allowed_paths": ["packages/detection/media-capability/**", "docs/evidence/MEDIA_CAPABILITY_PROBE.md"],
+      "locks": [],
+      "acceptance": "Actual PyAV/FFmpeg versions, codecs, build flags and metadata paths are reported through parameter arrays without shell strings or ambient execution authority."
+    },
+    {
+      "id": "P2-INS-002",
+      "title": "Embedded catalog loader",
+      "status": "backlog",
+      "owner": null,
+      "thread_id": "01a04366-97e7-7f03-b9f7-c853273d3be3",
+      "depends_on": ["P0-CON-003", "P0-GOV-007"],
+      "allowed_paths": ["packages/installer/catalog-loader/**", "docs/evidence/EMBEDDED_CATALOG_LOADER.md"],
+      "locks": [],
+      "acceptance": "Only the exact signed current-app build tuple loads as lazy data; drift, network fallback and action authority fail closed."
+    },
+    {
+      "id": "P2-INS-005",
+      "title": "Download partial-sidecar format",
+      "status": "backlog",
+      "owner": null,
+      "thread_id": "01a04366-b0cb-7532-985a-3c2ae6eb0410",
+      "depends_on": ["P0-CON-003", "P0-ARC-012"],
+      "allowed_paths": ["packages/installer/download-sidecar/**", "docs/evidence/DOWNLOAD_PARTIAL_SIDECAR.md"],
+      "locks": [],
+      "acceptance": "URL, immutable revision, ETag, range, length, hash and owner are recorded without performing a network download."
+    },
+    {
+      "id": "P1-WF-002",
+      "title": "Stream B - ProjectSpec to official workflow compile, lint, export, and visible handoff",
+      "status": "in_progress",
+      "owner": "/root/wave-6/P1-WF-002",
+      "thread_id": "01a04366-cbac-73c1-a929-9af0fcaa1b22",
+      "depends_on": ["P0-WF-001", "P0-CON-002"],
+      "allowed_paths": ["packages/workflow/h3-compiler/**"],
+      "locks": [],
+      "acceptance": "A runnable compiler accepts only prompt/mode/duration/canvas, binds a pinned or locally authenticated official H3 template, maps 30/60 seconds to segment plans, lints canonical graphs and subgraphs fail closed, exports to a user-selected workflow directory, and produces a visible handoff with zero /prompt submissions."
+    }
+  ],
+  "current_wave": {
+    "id": "wave-6-production-foundations",
+    "status": "in_progress",
+    "tasks": ["P0-CON-008", "P1-WF-002", "P1-NAT-001"],
+    "root_work": ["merge the three code streams", "keep shared schemas minimal", "run minimal smoke tests", "perform a real attach-only Portable handoff without model download, H3 execution, or /prompt"],
+    "next_ready": []
+  }
+}

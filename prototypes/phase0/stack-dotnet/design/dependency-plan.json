@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "blocked-exact-resolution-unavailable",
+  "nugetRestorePerformed": false,
+  "plannedRoles": [
+    {
+      "role": "modern-dotnet-sdk",
+      "exactPackage": null,
+      "exactVersion": null,
+      "resolutionStatus": "blocked-no-sdk"
+    },
+    {
+      "role": "windows-desktop-runtime-and-targeting-pack",
+      "exactPackage": null,
+      "exactVersion": null,
+      "resolutionStatus": "blocked-no-windowsdesktop-runtime-or-sdk"
+    },
+    {
+      "role": "windows-sdk-and-packaging-tools",
+      "exactPackage": null,
+      "exactVersion": null,
+      "resolutionStatus": "blocked-no-windows-sdk"
+    },
+    {
+      "role": "installer-format-and-toolchain",
+      "exactPackage": null,
+      "exactVersion": null,
+      "resolutionStatus": "blocked-requires-stack-and-installer-decision"
+    }
+  ],
+  "futureRequiredEvidence": [
+    "global-json-sdk-pin-and-sdk-artifact-hash",
+    "assets-file-and-transitive-nuget-graph",
+    "framework-dependent-publish-manifest-and-size",
+    "self-contained-win-x64-runtime-manifest-and-size",
+    "runtime-and-native-binary-sbom",
+    "license-notices-and-security-advisory-snapshot",
+    "packager-and-signing-tool-provenance"
+  ]
+}
+

@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"output-status-promotion","base":"valid/alpha0-poc-pending-recipe.json","mutations":[{"op":"replace","path":"/profile/output/readiness","value":"passed"}],"expected":{"code":"RECIPE.OUTPUT_STATUS_PROMOTION","instance_path":"/profile/output/readiness","rule_id":"recipe.output.pending_cannot_run"}}

@@ -1,0 +1,11 @@
+ffmpeg version 7.1.1-static Copyright (c) the FFmpeg developers
+built with gcc 14.2.0
+configuration: --enable-gpl --enable-version3 --arch=x86_64 --target-os=mingw32 --prefix=C:\private build\ffmpeg
+libavutil      59. 39.100 / 59. 39.100
+libavcodec     61. 19.100 / 61. 19.100
+libavformat    61.  7.100 / 61.  7.100
+libavdevice    61.  3.100 / 61.  3.100
+libavfilter    10.  4.100 / 10.  4.100
+libswscale      8.  3.100 /  8.  3.100
+libswresample   5.  3.100 /  5.  3.100
+

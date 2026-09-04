@@ -1,0 +1,11 @@
+{
+  "fixture_id": "official-sources-unknown-license-override",
+  "mutation": {
+    "kind": "set_official_sources_field",
+    "field": "h3_license_override",
+    "value": {
+      "license_declaration": "apache-2.0"
+    }
+  },
+  "expected_code": "STRUCTURE.OFFICIAL_SOURCES.UNKNOWN_KEY"
+}

@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"app-identity-drift","base":"valid/alpha0-poc-pending-recipe.json","mutations":[{"op":"replace","path":"/profile/control_plane/app_build_id","value":"different-build"}],"expected":{"code":"RECIPE.APP_IDENTITY_DRIFT","instance_path":"/profile/control_plane/app_build_id","rule_id":"recipe.control.app_tuple_exact"}}

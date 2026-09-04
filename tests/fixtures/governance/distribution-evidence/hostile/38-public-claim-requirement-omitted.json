@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"38-public-claim-requirement-omitted","base":"../index.valid.json","mutations":[{"op":"remove","path":"/public_claims/1/required_gate_ids/2","value":null}],"expected":{"code":"PUBLIC_CLAIM.REQUIREMENT_SET","instance_path":"/public_claims/1","rule_id":"DIST-CLAIM-011"}}

@@ -1,0 +1,1 @@
+{"fixture_id":"alpha-contract-run-schema-false-serialization","mutation":{"kind":"add_gate_requirement","gate_id":"G3","task_id":"P0-CON-011"},"expected_code":"GATE.ALPHA_CONTRACT_FALSE_SERIALIZATION"}

@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"23-approved-label-without-release-support","base":"../index.valid.json","mutations":[{"op":"replace","path":"/release_candidate/status","value":"approved"}],"expected":{"code":"RELEASE.APPROVED_WITHOUT_SUPPORT","instance_path":"/release_candidate/supports_external_distribution","rule_id":"DIST-REL-004"}}

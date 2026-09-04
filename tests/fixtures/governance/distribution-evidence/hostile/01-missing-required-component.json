@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"01-missing-required-component","base":"../index.valid.json","mutations":[{"op":"remove","path":"/components/0","value":null}],"expected":{"code":"COVERAGE.COMPONENT_SET","instance_path":"/components","rule_id":"DIST-COV-001"}}

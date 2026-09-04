@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Relay</title>
+  <desc id="desc">An open-loop Relay R in a blue, indigo and cyan product palette.</desc>
+  <defs>
+    <linearGradient id="relay-bg" x1="64" y1="48" x2="448" y2="464" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2563EB"/>
+      <stop offset="0.52" stop-color="#4F46E5"/>
+      <stop offset="1" stop-color="#0891B2"/>
+    </linearGradient>
+    <radialGradient id="relay-glow" cx="0" cy="0" r="1" gradientTransform="translate(356 148) rotate(132) scale(286)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#67E8F9" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#60A5FA" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="relay-shadow" x="24" y="28" width="464" height="468" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#0F172A" flood-opacity="0.28"/>
+    </filter>
+    <clipPath id="relay-plate"><rect x="40" y="40" width="432" height="432" rx="112"/></clipPath>
+  </defs>
+
+  <g filter="url(#relay-shadow)">
+    <rect x="40" y="40" width="432" height="432" rx="112" fill="url(#relay-bg)"/>
+    <rect x="41.5" y="41.5" width="429" height="429" rx="110.5" fill="url(#relay-glow)" stroke="#FFFFFF" stroke-opacity="0.2" stroke-width="3"/>
+  </g>
+
+  <g clip-path="url(#relay-plate)">
+    <circle cx="358" cy="146" r="154" fill="none" stroke="#DBEAFE" stroke-opacity="0.12" stroke-width="4"/>
+    <circle cx="358" cy="146" r="104" fill="none" stroke="#C7D2FE" stroke-opacity="0.14" stroke-width="4"/>
+    <circle cx="358" cy="42" r="8" fill="#67E8F9" fill-opacity="0.72"/>
+    <circle cx="462" cy="146" r="8" fill="#C4B5FD" fill-opacity="0.72"/>
+  </g>
+
+  <path d="M112 126H304C366 126 404 164 404 226V318C404 378 370 410 308 410H180C116 410 86 377 86 314V212C86 174 105 156 143 156H257C312 156 338 183 338 232C338 261 327 278 307 296L271 329H215" fill="none" stroke="#FFFFFF" stroke-width="40" stroke-linecap="square" stroke-linejoin="round"/>
+  <path d="M282 319L352 386" fill="none" stroke="#FFFFFF" stroke-width="40" stroke-linecap="square" stroke-linejoin="round"/>
+  <path d="M112 126H184" stroke="#CFFAFE" stroke-width="8" stroke-linecap="square"/>
+  <path d="M324 359L352 386" stroke="#DDD6FE" stroke-width="8" stroke-linecap="square"/>
+</svg>

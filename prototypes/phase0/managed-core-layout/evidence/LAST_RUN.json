@@ -1,0 +1,113 @@
+{
+    "schema_version":  1,
+    "task":  "P0-ARC-006",
+    "status":  "pass",
+    "deterministic_time":  "2000-01-01T00:00:00.0000000Z",
+    "managed_root":  "work/受管 Core 布局测试/Managed Core Root",
+    "volume":  {
+                   "drive_type":  "Fixed",
+                   "format":  "NTFS"
+               },
+    "boundaries":  {
+                       "real_comfyui_started":  false,
+                       "real_h3_started":  false,
+                       "models_downloaded":  false,
+                       "gpu_used":  false,
+                       "network_used":  false,
+                       "cloud_api_used":  false,
+                       "python_invoked":  false,
+                       "global_path_or_registry_written":  false
+                   },
+    "global_state_digest_before":  "c596fc50a6de0a299383c7339a029987891334b8d2722ed9a1b244d6eac91e95",
+    "global_state_digest_after":  "c596fc50a6de0a299383c7339a029987891334b8d2722ed9a1b244d6eac91e95",
+    "final_active_generation":  "gen-0001",
+    "final_active_pointer_bytes":  201,
+    "result_count":  17,
+    "results":  [
+                    {
+                        "id":  "fixed_ntfs_space_unicode_root",
+                        "status":  "pass",
+                        "evidence":  "Selected workspace volume is Fixed/NTFS; managed root contains spaces and Chinese characters."
+                    },
+                    {
+                        "id":  "generation_built_directly_at_final_path",
+                        "status":  "pass",
+                        "evidence":  "gen-0001 private runtime and fake Python were created inside their final immutable generation path."
+                    },
+                    {
+                        "id":  "private_environment_final_path_bound",
+                        "status":  "pass",
+                        "evidence":  "Inert pyvenv fixture embeds only the final absolute private path and reports relocated=false."
+                    },
+                    {
+                        "id":  "verified_generation_activates",
+                        "status":  "pass",
+                        "evidence":  "Only verified, owned gen-0001 was published through active.json."
+                    },
+                    {
+                        "id":  "build_interrupt_preserves_old_active",
+                        "status":  "pass",
+                        "evidence":  "Interrupted generation remains building, is not activatable, and gen-0001 stays active."
+                    },
+                    {
+                        "id":  "pre_replace_interrupt_preserves_old_active",
+                        "status":  "pass",
+                        "evidence":  "A durable .next exists, but active.json still resolves to gen-0001."
+                    },
+                    {
+                        "id":  "atomic_pointer_retry_switches_generation",
+                        "status":  "pass",
+                        "evidence":  "Same-directory File.Replace atomically switched active.json to verified gen-0002."
+                    },
+                    {
+                        "id":  "negative_incomplete_pointer_rejected",
+                        "status":  "pass",
+                        "evidence":  "Static pointer fixture targeting a building generation is rejected; real active.json is unchanged."
+                    },
+                    {
+                        "id":  "negative_staging_origin_rejected",
+                        "status":  "pass",
+                        "evidence":  "Static manifest containing a staging-origin sentinel fails closed before readiness checks."
+                    },
+                    {
+                        "id":  "unowned_switch_and_delete_rejected",
+                        "status":  "pass",
+                        "evidence":  "Generation without this fixture owner marker can neither activate nor be deleted."
+                    },
+                    {
+                        "id":  "delete_scope_requires_owned_inactive_generation",
+                        "status":  "pass",
+                        "evidence":  "Owned inactive fixture deletion succeeds; active fixture deletion is refused."
+                    },
+                    {
+                        "id":  "switch_scope_requires_verified_owned_generation",
+                        "status":  "pass",
+                        "evidence":  "Switch-back succeeds only after ownership/readiness/hash validation of gen-0001."
+                    },
+                    {
+                        "id":  "positive_state_has_no_staging_reference",
+                        "status":  "pass",
+                        "evidence":  "Managed paths plus journal/manifests/config fixtures contain no staging token or directory."
+                    },
+                    {
+                        "id":  "active_pointer_is_small_and_relative",
+                        "status":  "pass",
+                        "evidence":  "active.json is 201 bytes and contains no absolute path."
+                    },
+                    {
+                        "id":  "global_path_registry_python_unchanged",
+                        "status":  "pass",
+                        "evidence":  "Before/after global-state digest is c596fc50a6de0a299383c7339a029987891334b8d2722ed9a1b244d6eac91e95; Python was discovered read-only and never invoked."
+                    },
+                    {
+                        "id":  "only_owned_fixture_targets_mutated",
+                        "status":  "pass",
+                        "evidence":  "Outside-work sentinel and unowned generation remain byte-for-byte/present after reset, switch, and delete tests."
+                    },
+                    {
+                        "id":  "public_evidence_is_profile_path_sanitized",
+                        "status":  "pass",
+                        "evidence":  "README, report, and final machine evidence contain neither the current account name nor a Windows user-profile absolute path."
+                    }
+                ]
+}

@@ -1,0 +1,83 @@
+{
+  "source_document_version": "1.0.0",
+  "source_id": "SRC-SYNTH-LICENSE-OBLIGATIONS",
+  "source_kind": "license_obligation_extract",
+  "publisher": "synthetic-governance-fixture",
+  "immutable_revision": "fixture:license-obligations-r1",
+  "component_ids": ["minimax-h3", "qwen3-vl-32b-instruct"],
+  "scope_ids": [
+    "scope-synth-h3-agreement-copy",
+    "scope-synth-h3-notice",
+    "scope-synth-h3-file-identifier",
+    "scope-synth-h3-public-disclosure",
+    "scope-synth-qwen-license"
+  ],
+  "obligations": [
+    {
+      "component_id": "minimax-h3",
+      "clause_id": "model-card-license",
+      "statement_code": "license_minimax_h3_community",
+      "wording_fragment": "minimax-h3-community-license-agreement",
+      "source_text_sha256": "sha256:4f87f41ee7aff7284c5113a81cd3e74de9e69f455fc0ed42635b7bf10eb447cc",
+      "source_modality": "declarative",
+      "condition_code": "source_identity_only",
+      "upstream_locator": "https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/5d9b308a59ab12e67147f191e184baf704185bd1/LICENSE",
+      "upstream_revision": "git:5d9b308a59ab12e67147f191e184baf704185bd1"
+    },
+    {
+      "component_id": "minimax-h3",
+      "clause_id": "iii-1-agreement-copy",
+      "statement_code": "provide_agreement_copy",
+      "wording_fragment": "provide a copy of this Agreement",
+      "source_text_sha256": "sha256:848e98762852ad176e1dbba6a907802de4606d523df96d68749af72dcd0fcbd8",
+      "source_modality": "must_when_condition",
+      "condition_code": "distribution_to_third_party",
+      "upstream_locator": "https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/5d9b308a59ab12e67147f191e184baf704185bd1/LICENSE",
+      "upstream_revision": "git:5d9b308a59ab12e67147f191e184baf704185bd1"
+    },
+    {
+      "component_id": "minimax-h3",
+      "clause_id": "iii-4-notice",
+      "statement_code": "accompany_distribution_with_notice",
+      "wording_fragment": "accompanied by a “NOTICE” text file containing the following notice:",
+      "source_text_sha256": "sha256:65cb1c66a9730e7e7a0c322e4dba73b7ff0ca3b05543f4432dee364dc8c7a514",
+      "source_modality": "must_when_condition",
+      "condition_code": "non_hosted_distribution_to_third_party",
+      "upstream_locator": "https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/5d9b308a59ab12e67147f191e184baf704185bd1/LICENSE",
+      "upstream_revision": "git:5d9b308a59ab12e67147f191e184baf704185bd1"
+    },
+    {
+      "component_id": "minimax-h3",
+      "clause_id": "iii-3-b-ai-file-identifier",
+      "statement_code": "add_ai_generation_file_identifier",
+      "wording_fragment": "add an AI-generation identifier to files",
+      "source_text_sha256": "sha256:4d1bbd707dc510f016c11531d438d6f40d52d79aa6cb262d3ca41372687b66a3",
+      "source_modality": "encouraged",
+      "condition_code": "distribution_section_applies",
+      "upstream_locator": "https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/5d9b308a59ab12e67147f191e184baf704185bd1/LICENSE",
+      "upstream_revision": "git:5d9b308a59ab12e67147f191e184baf704185bd1"
+    },
+    {
+      "component_id": "minimax-h3",
+      "clause_id": "exhibit-a-12-public-disclosure",
+      "statement_code": "disclose_machine_generated_public_content",
+      "wording_fragment": "clearly and prominently disclosing that such information and/or content is machine-generated",
+      "source_text_sha256": "sha256:52792d3532586147220aa6743853ca87a79b517e01114521e1ed9902a9083317",
+      "source_modality": "must_when_condition",
+      "condition_code": "information_disseminated_in_public_environment",
+      "upstream_locator": "https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/5d9b308a59ab12e67147f191e184baf704185bd1/LICENSE",
+      "upstream_revision": "git:5d9b308a59ab12e67147f191e184baf704185bd1"
+    },
+    {
+      "component_id": "qwen3-vl-32b-instruct",
+      "clause_id": "model-card-license",
+      "statement_code": "license_apache_2_0",
+      "wording_fragment": "apache-2.0",
+      "source_text_sha256": "sha256:4b77b33be70c243e93630753368638e28bb66e77935606b15aba3614339c3ee0",
+      "source_modality": "declarative",
+      "condition_code": "source_identity_only",
+      "upstream_locator": "https://huggingface.co/Qwen/Qwen3-VL-32B-Instruct/commit/0cfaf48183f594c314753d30a4c4974bc75f3ccb",
+      "upstream_revision": "git:0cfaf48183f594c314753d30a4c4974bc75f3ccb"
+    }
+  ]
+}

@@ -1,0 +1,198 @@
+{
+  "name": "minimax-h3-control-plane",
+  "version": "1.0.2",
+  "private": true,
+  "description": "Windows installation, configuration and ComfyUI workflow handoff control plane.",
+  "author": "Relay contributors",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "dist/main/main.js",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/start.mjs --dev",
+    "start": "node scripts/start.mjs",
+    "smoke": "node scripts/smoke.mjs",
+    "dist": "node scripts/package.mjs --target nsis",
+    "dist:win": "node scripts/package.mjs --target nsis",
+    "dist:portable": "node scripts/package.mjs --target portable",
+    "dist:signed": "node scripts/signed-release.mjs",
+    "package:dir": "node scripts/package.mjs --dir",
+    "inventory:refresh": "node scripts/refresh-input-inventory.mjs",
+    "licenses:source": "node scripts/generate-supply-chain.mjs --licenses",
+    "sbom:source": "node scripts/generate-supply-chain.mjs --sbom",
+    "test": "node scripts/test.mjs",
+    "typecheck": "node scripts/typecheck.mjs",
+    "verify:offline": "node scripts/verify-offline.mjs",
+    "verify:oss": "node scripts/verify-open-source-hygiene.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "26.4.0",
+    "electron": "44.0.0",
+    "electron-builder": "26.15.3",
+    "esbuild": "0.28.2",
+    "typescript": "7.0.2",
+    "vitest": "4.1.11"
+  },
+  "build": {
+    "appId": "io.github.platuring.relay",
+    "productName": "Relay",
+    "asar": true,
+    "asarUnpack": [
+      "dist/main/native/*"
+    ],
+    "npmRebuild": false,
+    "electronDist": "node_modules/electron/dist",
+    "forceCodeSigning": false,
+    "publish": null,
+    "directories": {
+      "output": "release-unsigned"
+    },
+    "files": [
+      "dist/main/**/*",
+      "dist/preload/**/*",
+      "dist/renderer/**/*",
+      "dist/shared/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "../../packages/local-runtime/bin",
+        "to": "runtime/packages/local-runtime/bin",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "../../packages/local-runtime/src",
+        "to": "runtime/packages/local-runtime/src",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "../../packages/installer/catalog-loader/src",
+        "to": "runtime/packages/installer/catalog-loader/src",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "../../packages/installer/download-sidecar/src",
+        "to": "runtime/packages/installer/download-sidecar/src",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "../../packages/detection/media-capability/src",
+        "to": "runtime/packages/detection/media-capability/src",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "../../schemas/component-manifest/1.0.0.schema.json",
+        "to": "runtime/schemas/component-manifest/1.0.0.schema.json"
+      },
+      {
+        "from": "../../packages/workflow/h3-compiler/bin",
+        "to": "runtime/packages/workflow/h3-compiler/bin",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "../../packages/workflow/h3-compiler/src",
+        "to": "runtime/packages/workflow/h3-compiler/src",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "../../packages/workflow/h3-compiler/templates",
+        "to": "runtime/packages/workflow/h3-compiler/templates",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "../../packages/workflow/static-graph-lint/src",
+        "to": "runtime/packages/workflow/static-graph-lint/src",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "../../LICENSE",
+        "to": "licenses/Relay/LICENSE"
+      },
+      {
+        "from": "../../NOTICE",
+        "to": "licenses/Relay/NOTICE"
+      },
+      {
+        "from": "../../THIRD_PARTY_NOTICES.md",
+        "to": "licenses/Relay/THIRD_PARTY_NOTICES.md"
+      },
+      {
+        "from": "dist/main/services/electron-utility-wrapper.cjs",
+        "to": "runtime/electron-utility-wrapper.cjs"
+      },
+      {
+        "from": "dist/main/services/electron-workflow-compiler-wrapper.cjs",
+        "to": "runtime/electron-workflow-compiler-wrapper.cjs"
+      }
+    ],
+    "electronFuses": {
+      "runAsNode": false,
+      "enableCookieEncryption": true,
+      "enableNodeOptionsEnvironmentVariable": false,
+      "enableNodeCliInspectArguments": false,
+      "enableEmbeddedAsarIntegrityValidation": true,
+      "onlyLoadAppFromAsar": true
+    },
+    "win": {
+      "icon": "src/renderer/assets/relay-icon.ico",
+      "executableName": "Relay",
+      "signExts": [
+        ".exe"
+      ],
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "include": "build/installer.nsh",
+      "artifactName": "Relay-${version}-${arch}-Setup.${ext}",
+      "installerIcon": "src/renderer/assets/relay-icon.ico",
+      "uninstallerIcon": "src/renderer/assets/relay-icon.ico",
+      "installerHeader": "src/renderer/assets/relay-installer-header.bmp",
+      "installerSidebar": "src/renderer/assets/relay-installer-sidebar.bmp",
+      "uninstallerSidebar": "src/renderer/assets/relay-installer-sidebar.bmp",
+      "oneClick": false,
+      "perMachine": false,
+      "allowElevation": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "deleteAppDataOnUninstall": false,
+      "differentialPackage": false,
+      "runAfterFinish": true,
+      "warningsAsErrors": true
+    },
+    "portable": {
+      "artifactName": "Relay-${version}-${arch}-Portable.${ext}"
+    }
+  }
+}

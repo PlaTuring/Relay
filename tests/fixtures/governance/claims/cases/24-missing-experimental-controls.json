@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"public-experiment-requires-controls","mutations":[{"op":"remove","path":"/records/3/experimental_controls"}],"expected":{"code":"CONTRACT.MISSING_FIELD","instance_path":"/records/3/experimental_controls","rule_id":"claim.experimental.controls.required"}}

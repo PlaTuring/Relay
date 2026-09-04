@@ -1,0 +1,20 @@
+{
+  "name": "@minimax-h3/h3-compiler",
+  "version": "0.1.0",
+  "private": true,
+  "license": "Apache-2.0",
+  "description": "Deterministic ProjectSpec to pinned local MiniMax H3 ComfyUI visual workflow compiler",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "exports": {
+    ".": "./src/index.mjs"
+  },
+  "bin": {
+    "minimax-h3-compile": "./bin/h3-compiler.mjs"
+  },
+  "scripts": {
+    "test": "node --test --test-reporter=dot"
+  }
+}

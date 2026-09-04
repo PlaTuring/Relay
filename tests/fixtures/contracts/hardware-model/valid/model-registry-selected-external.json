@@ -1,0 +1,209 @@
+{
+  "contract_id": "minimax-h3-tool.model-registry",
+  "schema_version": "1.0.0",
+  "document_id": "20000000-0000-4000-8000-000000000003",
+  "document_revision": 1,
+  "registry_id": "model-registry-selected-fixture",
+  "created_at_utc": "2026-01-01T02:00:00.000Z",
+  "updated_at_utc": "2026-01-01T02:05:00.000Z",
+  "sequence": 6,
+  "candidates": [
+    {
+      "candidate_id": "candidate-selected",
+      "model_role": "model_diffusion",
+      "location": {
+        "kind": "external_file",
+        "absolute_path": "Z:\\ContractFixture\\candidate-selected.safetensors",
+        "discovery_scope": "known_configuration_path",
+        "ownership_class": "external_read_only",
+        "tool_owned": false,
+        "delete_authority": "never",
+        "mutation_policy": "forbid_move_rename_overwrite_delete",
+        "read_revalidation_policy": "handle_identity_size_mtime_reparse_before_each_read"
+      },
+      "created_at_utc": "2026-01-01T02:00:00.000Z",
+      "current_stage": "selected",
+      "stage_history": [
+        {
+          "stage": "found",
+          "sequence": 1,
+          "recorded_at_utc": "2026-01-01T02:00:00.000Z",
+          "evidence": {
+            "kind": "found_evidence",
+            "discovery_scope": "known_configuration_path",
+            "finding_class": "candidate",
+            "container_hint": "safetensors",
+            "observed_filename": "candidate-selected.safetensors",
+            "observed_byte_length": 4096,
+            "file_identity": {"kind": "windows_file_snapshot", "opaque_volume_id": "23000000-0000-4000-8000-000000000001", "opaque_file_id": "23000000-0000-4000-8000-000000000002", "byte_length": 4096, "modified_filetime_ticks": 3000},
+            "reuse_authority": false
+          }
+        },
+        {
+          "stage": "identified",
+          "sequence": 2,
+          "recorded_at_utc": "2026-01-01T02:01:00.000Z",
+          "evidence": {
+            "kind": "identified_evidence",
+            "container_format": "safetensors",
+            "extension": ".safetensors",
+            "byte_length": 4096,
+            "bounded_header_length_bytes": 512,
+            "bounded_header_sha256": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+            "tensor_fingerprint_sha256": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+            "shape_fingerprint_sha256": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+            "tensor_role": "model_diffusion",
+            "dtype_set": ["bf16"],
+            "manifest_match": "exact_candidate",
+            "identification_policy": "bounded_header_only_no_pickle_or_model_load",
+            "reuse_authority": false
+          }
+        },
+        {
+          "stage": "verified",
+          "sequence": 3,
+          "recorded_at_utc": "2026-01-01T02:02:00.000Z",
+          "evidence": {
+            "kind": "verified_evidence",
+            "verification_trigger": "explicit_user_reuse_verification",
+            "artifact_sha256": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+            "byte_length": 4096,
+            "file_identity": {"kind": "windows_file_snapshot", "opaque_volume_id": "23000000-0000-4000-8000-000000000001", "opaque_file_id": "23000000-0000-4000-8000-000000000002", "byte_length": 4096, "modified_filetime_ticks": 3000},
+            "cache_profile": "file_identity_size_mtime_full_sha256_v1",
+            "reuse_authority": false
+          }
+        },
+        {
+          "stage": "compatible",
+          "sequence": 4,
+          "recorded_at_utc": "2026-01-01T02:03:00.000Z",
+          "evidence": {
+            "kind": "compatible_evidence",
+            "artifact_sha256": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+            "component_manifest_ref": {
+              "contract_id": "minimax-h3-tool.component-manifest",
+              "schema_version": "1.0.0",
+              "schema_content_sha256": "sha256:62704fae90e6f9d1895a3d1351b8664f67222aedb8db390ab46e674394236608",
+              "source_document_id": "23000000-0000-4000-8000-000000000003",
+              "source_document_revision": 1,
+              "source_content_sha256": "sha256:5555555555555555555555555555555555555555555555555555555555555555"
+            },
+            "component_id": "synthetic-model-component",
+            "component_version": "1.0.0",
+            "component_role": "model_diffusion",
+            "recipe_ref": {
+              "contract_id": "minimax-h3-tool.alpha-recipe",
+              "schema_version": "1.0.0",
+              "schema_content_sha256": "sha256:f790df52fa505653ba1e194508acde1ca8641d4878820d227c3c541fd7c5ef79",
+              "source_document_id": "23000000-0000-4000-8000-000000000004",
+              "source_document_revision": 1,
+              "source_content_sha256": "sha256:6666666666666666666666666666666666666666666666666666666666666666"
+            },
+            "profile_id": "synthetic-experimental-profile",
+            "slot_id": "diffusion-slot",
+            "hardware_report_ref": {
+              "contract_id": "minimax-h3-tool.hardware-report",
+              "schema_version": "1.0.0",
+              "schema_content_sha256": "sha256:ffdf1e3df554d77bf678d833a2887bdad65dcbe597b842040f7bc36b18bc2853",
+              "source_document_id": "10000000-0000-4000-8000-000000000001",
+              "source_document_revision": 1,
+              "source_content_sha256": "sha256:efda495959a107acbeedc41436244889f214f06001a1df4ccefb651946353a22",
+              "report_id": "hardware-resolved-fixture"
+            },
+            "gpu_subject_id": "gpu-a",
+            "compatibility_status": "exact_match",
+            "reuse_authority": false
+          }
+        },
+        {
+          "stage": "approved",
+          "sequence": 5,
+          "recorded_at_utc": "2026-01-01T02:04:00.000Z",
+          "evidence": {
+            "kind": "approved_evidence",
+            "artifact_sha256": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+            "approval_id": "synthetic-approval",
+            "approval_policy": "exact_artifact_role_license_provenance_support_and_user_consent",
+            "license_status": "approved_for_scope",
+            "support_status": "experimental_self_poc",
+            "provenance": {
+              "creator": {"party_id": "synthetic-creator", "display_name": "Synthetic Creator", "role": "creator"},
+              "publisher": {"party_id": "synthetic-publisher", "display_name": "Synthetic Publisher", "role": "publisher"},
+              "packager": {"party_id": "synthetic-packager", "display_name": "Synthetic Packager", "role": "packager"},
+              "converter": {"kind": "not_applicable"},
+              "transformation": "repacked",
+              "immutable_source_revision": "7777777777777777777777777777777777777777",
+              "license_ref": {"license_id": "LicenseRef-Synthetic", "license_record_content_sha256": "sha256:8888888888888888888888888888888888888888888888888888888888888888", "human_decision_id": "synthetic-license-decision", "decision": "approved_for_scope"}
+            },
+            "user_consent": "explicit_reuse_approval",
+            "reuse_authority": false
+          }
+        },
+        {
+          "stage": "selected",
+          "sequence": 6,
+          "recorded_at_utc": "2026-01-01T02:05:00.000Z",
+          "evidence": {
+            "kind": "selected_evidence",
+            "artifact_sha256": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+            "selection_id": "synthetic-selection",
+            "recipe_ref": {
+              "contract_id": "minimax-h3-tool.alpha-recipe",
+              "schema_version": "1.0.0",
+              "schema_content_sha256": "sha256:f790df52fa505653ba1e194508acde1ca8641d4878820d227c3c541fd7c5ef79",
+              "source_document_id": "23000000-0000-4000-8000-000000000004",
+              "source_document_revision": 1,
+              "source_content_sha256": "sha256:6666666666666666666666666666666666666666666666666666666666666666"
+            },
+            "profile_id": "synthetic-experimental-profile",
+            "slot_id": "diffusion-slot",
+            "model_role": "model_diffusion",
+            "hardware_report_ref": {
+              "contract_id": "minimax-h3-tool.hardware-report",
+              "schema_version": "1.0.0",
+              "schema_content_sha256": "sha256:ffdf1e3df554d77bf678d833a2887bdad65dcbe597b842040f7bc36b18bc2853",
+              "source_document_id": "10000000-0000-4000-8000-000000000001",
+              "source_document_revision": 1,
+              "source_content_sha256": "sha256:efda495959a107acbeedc41436244889f214f06001a1df4ccefb651946353a22",
+              "report_id": "hardware-resolved-fixture"
+            },
+            "gpu_subject_id": "gpu-a",
+            "support_status": "experimental_self_poc",
+            "selection_policy": "exact_full_progression_one_recipe_slot",
+            "read_revalidation_policy": "location_policy_before_each_read",
+            "reuse_authority": true
+          }
+        }
+      ],
+      "lifecycle_status": {"kind": "active"},
+      "reuse_decision": {
+        "kind": "selected_for_recipe",
+        "reuse_permitted": true,
+        "selection_id": "synthetic-selection",
+        "artifact_sha256": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+        "recipe_ref": {
+          "contract_id": "minimax-h3-tool.alpha-recipe",
+          "schema_version": "1.0.0",
+          "schema_content_sha256": "sha256:f790df52fa505653ba1e194508acde1ca8641d4878820d227c3c541fd7c5ef79",
+          "source_document_id": "23000000-0000-4000-8000-000000000004",
+          "source_document_revision": 1,
+          "source_content_sha256": "sha256:6666666666666666666666666666666666666666666666666666666666666666"
+        },
+        "profile_id": "synthetic-experimental-profile",
+        "slot_id": "diffusion-slot"
+      }
+    }
+  ],
+  "authority": {
+    "discovery_scopes": ["known_configuration_path", "user_selected_folder"],
+    "verification_policy": "full_hash_only_after_explicit_user_reuse_verification",
+    "selection_authority": "registry_only_after_exact_full_progression",
+    "external_ownership_policy": "permanently_external_read_only_never_tool_owned_or_deleted",
+    "managed_ownership_policy": "separate_exact_ownership_ledger_required",
+    "download_authority": "none",
+    "inference_authority": "none",
+    "queue_authority": "none_user_clicks_run_in_comfyui",
+    "product_boundary": "compile_and_handoff_only_user_runs_h3_in_comfyui"
+  },
+  "integrity": {"profile": "rfc8785-sha256-v1", "content_sha256": "sha256:8ee710e9a920488109c303026134fb4031a1f8110b554597d738086d0e745218"}
+}

@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"absent-license-review-decision","base":"valid/component-role-examples.json","mutations":[{"op":"remove","path":"/license_records/0/review"}],"expected":{"code":"COMPONENT.LICENSE_REVIEW_REQUIRED","instance_path":"/license_records/0/review","rule_id":"component.license.review.required"}}

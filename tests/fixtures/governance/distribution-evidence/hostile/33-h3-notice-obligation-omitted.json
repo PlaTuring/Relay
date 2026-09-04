@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"33-h3-notice-obligation-omitted","base":"../index.valid.json","mutations":[{"op":"remove","path":"/license_records/1/obligations/2","value":null}],"expected":{"code":"LICENSE_RECORD.OBLIGATION_SET","instance_path":"/license_records/1/obligations","rule_id":"DIST-LICREC-005"}}

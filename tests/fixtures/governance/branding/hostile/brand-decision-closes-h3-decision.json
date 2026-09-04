@@ -1,0 +1,9 @@
+{
+  "fixture_id": "brand-decision-closes-h3-decision",
+  "mutation": {
+    "kind": "append_decision_implication",
+    "decision_id": "DEC-USER-BRAND",
+    "target_decision_id": "DEC-H3-ATTRIBUTION"
+  },
+  "expected_code": "DECISION.IMPLICATION_FORBIDDEN"
+}

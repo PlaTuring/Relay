@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "1.0.0",
+  "task": "P0-ARC-010",
+  "scope": "fake-process-loopback-only",
+  "status": "pass",
+  "passed": 14,
+  "failed": 0,
+  "tests": [
+    { "id": "MP-001-containment-before-first-instruction", "status": "pass", "code": "PASS" },
+    { "id": "MP-002-runtime-lease-before-create", "status": "pass", "code": "PASS" },
+    { "id": "MP-003-preassignment-escape-negative-control", "status": "pass", "code": "PASS" },
+    { "id": "MP-004-breakaway-config-and-attempt", "status": "pass", "code": "PASS" },
+    { "id": "MP-005-nested-preexisting-job", "status": "pass", "code": "PASS" },
+    { "id": "MP-006-pid-creation-identity", "status": "pass", "code": "PASS" },
+    { "id": "MP-007-image-and-generation-allowlist", "status": "pass", "code": "PASS" },
+    { "id": "MP-008-port-owner-and-transfer", "status": "pass", "code": "PASS" },
+    { "id": "MP-009-token-port-and-runtime-identity", "status": "pass", "code": "PASS" },
+    { "id": "MP-010-loopback-only-bind", "status": "pass", "code": "PASS" },
+    { "id": "MP-011-contained-egress-capture-boundary", "status": "pass", "code": "PASS" },
+    { "id": "MP-012-shell-metacharacter-literal-argument", "status": "pass", "code": "PASS" },
+    { "id": "MP-013-parent-crash-kills-job-tree", "status": "pass", "code": "PASS" },
+    { "id": "MP-014-timeout-escalation-preserves-unrelated", "status": "pass", "code": "PASS" }
+  ],
+  "publicEvidence": { "containsTokens": false, "containsPrivateAbsolutePaths": false },
+  "productBoundary": { "comfyStarted": false, "modelUsed": false, "gpuUsed": false, "promptSubmitted": false, "externalNetworkUsed": false }
+}

@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"private-ffmpeg-without-capability","base":"valid/alpha0-poc-pending-recipe.json","mutations":[{"op":"add","path":"/profile/output/private_ffmpeg","value":"required"}],"expected":{"code":"RECIPE.FFMPEG_UNGROUNDED","instance_path":"/profile/output/private_ffmpeg","rule_id":"recipe.output.ffmpeg_requires_capability"}}

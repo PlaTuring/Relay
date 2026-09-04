@@ -1,0 +1,23 @@
+{
+  "name": "@minimax-h3-tool/local-runtime",
+  "version": "0.1.0",
+  "private": true,
+  "license": "Apache-2.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./src/index.mjs"
+    }
+  },
+  "bin": {
+    "minimax-h3-local-runtime": "./bin/local-runtime.mjs"
+  },
+  "scripts": {
+    "smoke": "node ./bin/local-runtime.mjs smoke",
+    "test": "node --test ./test/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  }
+}

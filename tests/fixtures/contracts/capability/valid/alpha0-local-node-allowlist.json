@@ -1,0 +1,136 @@
+{
+  "contract_id": "minimax-h3-tool.node-allowlist",
+  "schema_version": "1.0.0",
+  "document_id": "10000000-0000-4000-8000-000000000001",
+  "document_revision": 1,
+  "allowlist_id": "alpha0-local-h3-core",
+  "scope": {
+    "runtime_topology": "managed_core",
+    "backend_origin_uri": "https://github.com/Comfy-Org/ComfyUI",
+    "backend_locked_revision": "d8e7bbc9d586d95f758d6b0ed23d519088be578a",
+    "policy": "exact_class_type_and_all_fingerprints_local_only"
+  },
+  "fingerprint_profile": {
+    "algorithm": "sha256",
+    "normalization": "sha256_c14n_json_sort_keys_v1",
+    "input_projection": "required_inputs_optional_inputs_hidden_inputs",
+    "output_projection": "outputs",
+    "combined_projection": "class_type_required_inputs_optional_inputs_hidden_inputs_outputs_flags"
+  },
+  "evidence_sources": [
+    {
+      "source_id": "p0-wf-001-snapshot",
+      "locator": "repo:prototypes/phase0/capability-snapshot.json",
+      "revision": "P0-WF-001",
+      "content_sha256": "sha256:d123836a883573ad5bd957935af11ab5b8812bd2ad3f12bc21e0c50ae89b3bfd",
+      "evidence_status": "proven"
+    }
+  ],
+  "entries": [
+    {
+      "class_type": "MiniMaxH3ImageToVideo",
+      "display_name": "MiniMax H3 Image To Video",
+      "schema_fingerprints": {
+        "input_schema_sha256": "sha256:f0d916a84a6fa13603198d4242adb9012a8a3cff3c2b1a67ce544ae78ca9632b",
+        "output_schema_sha256": "sha256:ff2c10d6cf27e6a7560c322a49f4d9ca459036f8763998ef99c199b10d5274e4",
+        "combined_schema_sha256": "sha256:701870ddeb11c2ac58c1dd2d3ce39ac2df5fd2ec3bb601804f49ff60e22c9818"
+      },
+      "origin": {
+        "upstream_id": "comfyui-core",
+        "origin_uri": "https://github.com/Comfy-Org/ComfyUI",
+        "locked_revision": "d8e7bbc9d586d95f758d6b0ed23d519088be578a",
+        "source_path": "comfy_extras/nodes_minimax_h3.py",
+        "git_blob_sha": "0a08f185fd1155f18f16757c02553ff48cf365eb",
+        "first_introduced_revision": "57500fc5bc92566a63f2046824f522cd55c335ca",
+        "evidence_source_ids": ["p0-wf-001-snapshot"]
+      },
+      "flags": {"local_only": true, "is_api_node": false, "is_output_node": false},
+      "evidence_status": "proven",
+      "runtime_acceptance": "poc_pending",
+      "disposition": {"kind": "active"}
+    },
+    {
+      "class_type": "MiniMaxH3SigmaShift",
+      "display_name": "MiniMax H3 Sigma Shift",
+      "schema_fingerprints": {
+        "input_schema_sha256": "sha256:43f5d1ebad50412eaaebbace9e6719ec9ae1e416b08688f3285164cc2e67958f",
+        "output_schema_sha256": "sha256:651d5b4ef3a85699db10e47a202aeee3836c9f7f6f25276306c685a77b9cddbc",
+        "combined_schema_sha256": "sha256:def7b38f215736b2bcfc09aa593097f240fde31c32266c8f1b032e11b5e561b8"
+      },
+      "origin": {
+        "upstream_id": "comfyui-core",
+        "origin_uri": "https://github.com/Comfy-Org/ComfyUI",
+        "locked_revision": "d8e7bbc9d586d95f758d6b0ed23d519088be578a",
+        "source_path": "comfy_extras/nodes_minimax_h3.py",
+        "git_blob_sha": "0a08f185fd1155f18f16757c02553ff48cf365eb",
+        "first_introduced_revision": "57500fc5bc92566a63f2046824f522cd55c335ca",
+        "evidence_source_ids": ["p0-wf-001-snapshot"]
+      },
+      "flags": {"local_only": true, "is_api_node": false, "is_output_node": false},
+      "evidence_status": "proven",
+      "runtime_acceptance": "poc_pending",
+      "disposition": {"kind": "active"}
+    },
+    {
+      "class_type": "CreateVideo",
+      "display_name": "Create Video",
+      "schema_fingerprints": {
+        "input_schema_sha256": "sha256:1281b8e8dce7e78910d22ae1add69c26a37d140189009e5653bff70024d44101",
+        "output_schema_sha256": "sha256:ec146e9038deeadf99d62e2cf3af5025f9b6e0a78019f9f937d0f30671a05a0c",
+        "combined_schema_sha256": "sha256:cb95bed0f73f12f7c4b215c32bc3e70d13472d28f9fe621312df9ff45eda823d"
+      },
+      "origin": {
+        "upstream_id": "comfyui-core",
+        "origin_uri": "https://github.com/Comfy-Org/ComfyUI",
+        "locked_revision": "d8e7bbc9d586d95f758d6b0ed23d519088be578a",
+        "source_path": "comfy_extras/nodes_video.py",
+        "git_blob_sha": "58f58aaf4daecd08e3b7488c5f313377e6f527e2",
+        "first_introduced_revision": "68f0d3529667a2b34b27cc0ac5051bc0e8c45b49",
+        "evidence_source_ids": ["p0-wf-001-snapshot"]
+      },
+      "flags": {"local_only": true, "is_api_node": false, "is_output_node": false},
+      "evidence_status": "proven",
+      "runtime_acceptance": "poc_pending",
+      "disposition": {"kind": "active"}
+    },
+    {
+      "class_type": "SaveVideo",
+      "display_name": "Save Video",
+      "schema_fingerprints": {
+        "input_schema_sha256": "sha256:a5478ce0c6b7c398c0b4775514b7cd206f20511f37f53a5e97e454caa6fb7581",
+        "output_schema_sha256": "sha256:cd23616031d7bc8462ec3e910be4f8061f98844643f0e187a51a139f72133e7d",
+        "combined_schema_sha256": "sha256:1ec11f525cacbf909a4527a3ec54df0d8d065b1ecc07229178a1d9a101f93996"
+      },
+      "origin": {
+        "upstream_id": "comfyui-core",
+        "origin_uri": "https://github.com/Comfy-Org/ComfyUI",
+        "locked_revision": "d8e7bbc9d586d95f758d6b0ed23d519088be578a",
+        "source_path": "comfy_extras/nodes_video.py",
+        "git_blob_sha": "58f58aaf4daecd08e3b7488c5f313377e6f527e2",
+        "first_introduced_revision": "68f0d3529667a2b34b27cc0ac5051bc0e8c45b49",
+        "evidence_source_ids": ["p0-wf-001-snapshot"]
+      },
+      "flags": {"local_only": true, "is_api_node": false, "is_output_node": true},
+      "evidence_status": "proven",
+      "runtime_acceptance": "poc_pending",
+      "disposition": {"kind": "active"}
+    }
+  ],
+  "forbidden_identities": [
+    {"class_type": "MinimaxTextToVideoNode", "registered_at_locked_revision": true, "is_api_node": true, "local_only": false, "origin": {"origin_uri": "https://github.com/Comfy-Org/ComfyUI", "locked_revision": "d8e7bbc9d586d95f758d6b0ed23d519088be578a", "source_path": "comfy_api_nodes/nodes_minimax.py", "git_blob_sha": "de3895221eb8261ee2650b020727d670079f0f23"}, "first_introduced_revision": "1271c4ef9df2b4eb037688da514f63e1bd8bd727", "reason_code": "NODE.PARTNER_API_FORBIDDEN"},
+    {"class_type": "MinimaxImageToVideoNode", "registered_at_locked_revision": true, "is_api_node": true, "local_only": false, "origin": {"origin_uri": "https://github.com/Comfy-Org/ComfyUI", "locked_revision": "d8e7bbc9d586d95f758d6b0ed23d519088be578a", "source_path": "comfy_api_nodes/nodes_minimax.py", "git_blob_sha": "de3895221eb8261ee2650b020727d670079f0f23"}, "first_introduced_revision": "1271c4ef9df2b4eb037688da514f63e1bd8bd727", "reason_code": "NODE.PARTNER_API_FORBIDDEN"},
+    {"class_type": "MinimaxSubjectToVideoNode", "registered_at_locked_revision": false, "is_api_node": true, "local_only": false, "origin": {"origin_uri": "https://github.com/Comfy-Org/ComfyUI", "locked_revision": "d8e7bbc9d586d95f758d6b0ed23d519088be578a", "source_path": "comfy_api_nodes/nodes_minimax.py", "git_blob_sha": "de3895221eb8261ee2650b020727d670079f0f23"}, "first_introduced_revision": "1271c4ef9df2b4eb037688da514f63e1bd8bd727", "reason_code": "NODE.PARTNER_API_FORBIDDEN"},
+    {"class_type": "MinimaxHailuoVideoNode", "registered_at_locked_revision": true, "is_api_node": true, "local_only": false, "origin": {"origin_uri": "https://github.com/Comfy-Org/ComfyUI", "locked_revision": "d8e7bbc9d586d95f758d6b0ed23d519088be578a", "source_path": "comfy_api_nodes/nodes_minimax.py", "git_blob_sha": "de3895221eb8261ee2650b020727d670079f0f23"}, "first_introduced_revision": "f16a70ba670e11de549af188663a87c77c5bc0c2", "reason_code": "NODE.PARTNER_API_FORBIDDEN"},
+    {"class_type": "MinimaxHailuo03TextToVideoNode", "registered_at_locked_revision": true, "is_api_node": true, "local_only": false, "origin": {"origin_uri": "https://github.com/Comfy-Org/ComfyUI", "locked_revision": "d8e7bbc9d586d95f758d6b0ed23d519088be578a", "source_path": "comfy_api_nodes/nodes_minimax.py", "git_blob_sha": "de3895221eb8261ee2650b020727d670079f0f23"}, "first_introduced_revision": "7dd46274601239644fff19b1b069cff199fcf738", "reason_code": "NODE.PARTNER_API_FORBIDDEN"},
+    {"class_type": "MinimaxHailuo03FirstLastFrameNode", "registered_at_locked_revision": true, "is_api_node": true, "local_only": false, "origin": {"origin_uri": "https://github.com/Comfy-Org/ComfyUI", "locked_revision": "d8e7bbc9d586d95f758d6b0ed23d519088be578a", "source_path": "comfy_api_nodes/nodes_minimax.py", "git_blob_sha": "de3895221eb8261ee2650b020727d670079f0f23"}, "first_introduced_revision": "7dd46274601239644fff19b1b069cff199fcf738", "reason_code": "NODE.PARTNER_API_FORBIDDEN"},
+    {"class_type": "MinimaxHailuo03ReferenceNode", "registered_at_locked_revision": true, "is_api_node": true, "local_only": false, "origin": {"origin_uri": "https://github.com/Comfy-Org/ComfyUI", "locked_revision": "d8e7bbc9d586d95f758d6b0ed23d519088be578a", "source_path": "comfy_api_nodes/nodes_minimax.py", "git_blob_sha": "de3895221eb8261ee2650b020727d670079f0f23"}, "first_introduced_revision": "7dd46274601239644fff19b1b069cff199fcf738", "reason_code": "NODE.PARTNER_API_FORBIDDEN"},
+    {"class_type": "MinimaxHailuo03ContextIRNode", "registered_at_locked_revision": true, "is_api_node": true, "local_only": false, "origin": {"origin_uri": "https://github.com/Comfy-Org/ComfyUI", "locked_revision": "d8e7bbc9d586d95f758d6b0ed23d519088be578a", "source_path": "comfy_api_nodes/nodes_minimax.py", "git_blob_sha": "de3895221eb8261ee2650b020727d670079f0f23"}, "first_introduced_revision": "12666983cba9b43254ed993c2894dc727ca8ecfd", "reason_code": "NODE.PARTNER_API_FORBIDDEN"},
+    {"class_type": "MinimaxHailuo03RegenerateNode", "registered_at_locked_revision": true, "is_api_node": true, "local_only": false, "origin": {"origin_uri": "https://github.com/Comfy-Org/ComfyUI", "locked_revision": "d8e7bbc9d586d95f758d6b0ed23d519088be578a", "source_path": "comfy_api_nodes/nodes_minimax.py", "git_blob_sha": "de3895221eb8261ee2650b020727d670079f0f23"}, "first_introduced_revision": "12666983cba9b43254ed993c2894dc727ca8ecfd", "reason_code": "NODE.PARTNER_API_FORBIDDEN"}
+  ],
+  "disposition": {"kind": "active"},
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "rfc8785_jcs_root_integrity_omitted",
+    "content_sha256": "sha256:483262e8c31d1a47fa6c2bccd110bc64889b4c9ef2b0be032bd01c9367dbf300"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "fixture_id": "brand-user-disable-removes-h3",
+  "mutation": {
+    "kind": "set_layer_field",
+    "layer_id": "user_brand",
+    "field": "runtime_user_toggle_allowed",
+    "value": true
+  },
+  "expected_code": "BRAND.RUNTIME_TOGGLE_FORBIDDEN"
+}

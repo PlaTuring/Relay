@@ -1,0 +1,167 @@
+{
+  "contract_id": "minimax-h3-tool.hardware-report",
+  "schema_version": "1.0.0",
+  "document_id": "10000000-0000-4000-8000-000000000001",
+  "document_revision": 1,
+  "report_id": "hardware-resolved-fixture",
+  "observed_at_utc": "2026-01-01T00:00:00.000Z",
+  "freshness": {
+    "evaluated_at_utc": "2026-01-01T00:00:30.000Z",
+    "max_age_ms": 60000,
+    "status": "fresh",
+    "stale_source_ids": [],
+    "unknown_source_ids": []
+  },
+  "sources": [
+    {
+      "source_id": "source-system",
+      "source_kind": "windows_system_api",
+      "source_tier": "os_native",
+      "confidence_basis_points": 10000,
+      "observed_at_utc": "2026-01-01T00:00:00.000Z",
+      "freshness_status": "fresh",
+      "authority": "observation_only",
+      "observations": [
+        {
+          "kind": "host",
+          "subject_id": "host-a",
+          "windows_build": 26100,
+          "cpu_architecture": "x86_64",
+          "logical_processor_count": 16,
+          "system_ram_bytes": 34359738368
+        },
+        {
+          "kind": "volume",
+          "subject_id": "volume-a",
+          "drive_letter": "D:",
+          "drive_type": "fixed_local",
+          "filesystem": "ntfs",
+          "capacity_bytes": 1099511627776,
+          "free_bytes": 549755813888
+        }
+      ]
+    },
+    {
+      "source_id": "source-nvml",
+      "source_kind": "nvml",
+      "source_tier": "preferred_vendor_api",
+      "confidence_basis_points": 10000,
+      "observed_at_utc": "2026-01-01T00:00:01.000Z",
+      "freshness_status": "fresh",
+      "authority": "observation_only",
+      "observations": [
+        {
+          "kind": "gpu",
+          "subject_id": "gpu-a",
+          "vendor": "nvidia",
+          "product_name": "Synthetic GPU A",
+          "architecture": "synthetic_arch",
+          "compute_capability": {"major": 1, "minor": 0},
+          "driver_version": "600.00",
+          "vram_bytes": 17179869184
+        }
+      ]
+    },
+    {
+      "source_id": "source-smi",
+      "source_kind": "nvidia_smi",
+      "source_tier": "preferred_vendor_cli",
+      "confidence_basis_points": 9500,
+      "observed_at_utc": "2026-01-01T00:00:02.000Z",
+      "freshness_status": "fresh",
+      "authority": "observation_only",
+      "observations": [
+        {
+          "kind": "gpu",
+          "subject_id": "gpu-a",
+          "vendor": "nvidia",
+          "product_name": "Synthetic GPU A",
+          "architecture": "synthetic_arch",
+          "compute_capability": {"major": 1, "minor": 0},
+          "driver_version": "600.00",
+          "vram_bytes": 17179869184
+        }
+      ]
+    },
+    {
+      "source_id": "source-wmi",
+      "source_kind": "wmi_cim",
+      "source_tier": "fallback_wmi",
+      "confidence_basis_points": 2500,
+      "observed_at_utc": "2026-01-01T00:00:03.000Z",
+      "freshness_status": "fresh",
+      "authority": "observation_only",
+      "observations": [
+        {
+          "kind": "gpu",
+          "subject_id": "gpu-a",
+          "vendor": "nvidia",
+          "product_name": "Synthetic GPU A",
+          "architecture": "synthetic_arch",
+          "compute_capability": {"major": 1, "minor": 0},
+          "driver_version": "600.00",
+          "vram_bytes": 17179869184
+        }
+      ]
+    }
+  ],
+  "resolutions": {
+    "host": {
+      "kind": "resolved",
+      "subject_id": "host-a",
+      "source_ids": ["source-system"],
+      "windows_build": 26100,
+      "cpu_architecture": "x86_64",
+      "logical_processor_count": 16,
+      "system_ram_bytes": 34359738368,
+      "recipe_gate": "eligible_for_separate_exact_recipe_resolution",
+      "selection_authority": "none_observation_only"
+    },
+    "gpus": [
+      {
+        "kind": "resolved",
+        "subject_id": "gpu-a",
+        "source_ids": ["source-nvml", "source-smi"],
+        "confidence_basis_points": 9500,
+        "vendor": "nvidia",
+        "product_name": "Synthetic GPU A",
+        "architecture": "synthetic_arch",
+        "compute_capability": {"major": 1, "minor": 0},
+        "driver_version": "600.00",
+        "vram_bytes": 17179869184,
+        "support_status": "observation_only",
+        "recipe_gate": "eligible_for_separate_exact_recipe_resolution",
+        "selection_authority": "none_observation_only"
+      }
+    ],
+    "volumes": [
+      {
+        "kind": "resolved",
+        "subject_id": "volume-a",
+        "source_ids": ["source-system"],
+        "drive_letter": "D:",
+        "drive_type": "fixed_local",
+        "filesystem": "ntfs",
+        "capacity_bytes": 1099511627776,
+        "free_bytes": 549755813888,
+        "managed_root_gate": "eligible_for_separate_path_validation",
+        "selection_authority": "none_requires_user_choice_and_handle_validation"
+      }
+    ]
+  },
+  "conflicts": [],
+  "authority": {
+    "observation_authority": "record_only",
+    "recipe_selection_authority": "none_requires_exact_certified_recipe_resolver",
+    "model_selection_authority": "none",
+    "path_selection_authority": "none_requires_user_choice_and_handle_validation",
+    "matching_policy": "exact_values_only_no_nearest_name_inheritance",
+    "official_minimum_vram_claim": "none_known",
+    "observed_capacity_claim": "observation_or_experimental_self_poc_never_official_support",
+    "product_boundary": "compile_and_handoff_only_user_runs_h3_in_comfyui"
+  },
+  "integrity": {
+    "profile": "rfc8785-sha256-v1",
+    "content_sha256": "sha256:efda495959a107acbeedc41436244889f214f06001a1df4ccefb651946353a22"
+  }
+}

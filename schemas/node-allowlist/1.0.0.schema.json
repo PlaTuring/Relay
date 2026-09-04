@@ -1,0 +1,1745 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:minimax-h3-tool:schema:node-allowlist:1.0.0",
+  "title": "MiniMax H3 Tool exact local-node allowlist",
+  "description": "Immutable authority for exact local Comfy node identities. Display names are non-authoritative; Partner/API, unknown, or drifted identities are rejected.",
+  "type": "object",
+  "x-primary-trust-class": "immutable_authority",
+  "additionalProperties": false,
+  "required": [
+    "contract_id",
+    "schema_version",
+    "document_id",
+    "document_revision",
+    "allowlist_id",
+    "scope",
+    "fingerprint_profile",
+    "evidence_sources",
+    "entries",
+    "forbidden_identities",
+    "disposition",
+    "integrity"
+  ],
+  "properties": {
+    "contract_id": {
+      "const": "minimax-h3-tool.node-allowlist",
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "execution",
+        "artifact",
+        "graph"
+      ],
+      "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "node.schema.1_0_0.f29bf11e1a87afa9b344ec43"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "execution",
+        "artifact",
+        "graph"
+      ],
+      "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "node.schema.1_0_0.873ac2b4b3347bc5eaabd348"
+    },
+    "document_id": {
+      "$ref": "#/$defs/uuid_v4",
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "artifact"
+      ],
+      "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "node.schema.1_0_0.65d8063b694fb6ba851732b8"
+    },
+    "document_revision": {
+      "const": 1,
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "artifact"
+      ],
+      "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "node.schema.1_0_0.13ca4cffe78ccf65c148c487"
+    },
+    "allowlist_id": {
+      "$ref": "#/$defs/domain_id",
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "execution",
+        "artifact",
+        "graph"
+      ],
+      "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "node.schema.1_0_0.c563b4af654d7de7a929dac0"
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtime_topology",
+        "backend_origin_uri",
+        "backend_locked_revision",
+        "policy"
+      ],
+      "properties": {
+        "runtime_topology": {
+          "const": "managed_core",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.5fc890f58d7ab3b727365b81"
+        },
+        "backend_origin_uri": {
+          "const": "https://github.com/Comfy-Org/ComfyUI",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.7be4310b81afc52650b72284"
+        },
+        "backend_locked_revision": {
+          "const": "d8e7bbc9d586d95f758d6b0ed23d519088be578a",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.9518a40e4a38f346d7a6362c"
+        },
+        "policy": {
+          "const": "exact_class_type_and_all_fingerprints_local_only",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.41017dc3b5292086049007d1"
+        }
+      },
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "execution",
+        "artifact",
+        "graph"
+      ],
+      "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "node.schema.1_0_0.f27471686b578d707fb902e1"
+    },
+    "fingerprint_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "algorithm",
+        "normalization",
+        "input_projection",
+        "output_projection",
+        "combined_projection"
+      ],
+      "properties": {
+        "algorithm": {
+          "const": "sha256",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.ba4a45cc4f68184883b67411"
+        },
+        "normalization": {
+          "const": "sha256_c14n_json_sort_keys_v1",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.e2a93410bfcf2700798decd0"
+        },
+        "input_projection": {
+          "const": "required_inputs_optional_inputs_hidden_inputs",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.503888f3735fd2fe38b94998"
+        },
+        "output_projection": {
+          "const": "outputs",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.b71742e25aba83925dd61cb3"
+        },
+        "combined_projection": {
+          "const": "class_type_required_inputs_optional_inputs_hidden_inputs_outputs_flags",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.37b6e174ec14d609df565073"
+        }
+      },
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "execution",
+        "artifact",
+        "graph"
+      ],
+      "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "node.schema.1_0_0.fb84073e021bbeb998bfbe6f"
+    },
+    "evidence_sources": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 32,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/evidence_source",
+        "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+        "x-rule-id": "node.schema.1_0_0.638a57a39eccc8f66c8534b1"
+      },
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "observation",
+        "execution",
+        "artifact",
+        "graph"
+      ],
+      "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "node.schema.1_0_0.c4f4485c177bb2ac16f04399"
+    },
+    "entries": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 64,
+      "items": {
+        "$ref": "#/$defs/node_entry",
+        "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+        "x-rule-id": "node.schema.1_0_0.a0c8b16b6d9f1d5dd8b4f883"
+      },
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "execution",
+        "artifact",
+        "graph"
+      ],
+      "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "node.schema.1_0_0.a35b11d41a5f3e23e28b3e5b"
+    },
+    "forbidden_identities": {
+      "type": "array",
+      "minItems": 9,
+      "maxItems": 64,
+      "items": {
+        "$ref": "#/$defs/forbidden_identity",
+        "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+        "x-rule-id": "node.schema.1_0_0.07a10ff7ca905256780d73e0"
+      },
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "execution",
+        "artifact",
+        "graph"
+      ],
+      "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "node.schema.1_0_0.0ffd11607ddd240c6a7ceb18"
+    },
+    "disposition": {
+      "$ref": "#/$defs/disposition",
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "execution",
+        "artifact",
+        "graph"
+      ],
+      "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "node.schema.1_0_0.60f948f3fabc434e9ed02325"
+    },
+    "extensions": {
+      "$ref": "#/$defs/extensions",
+      "description": "Omitted means that no display-only extension metadata is carried.",
+      "x-sensitive": "internal",
+      "x-trust-impact": [
+        "display"
+      ],
+      "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "node.schema.1_0_0.96864966c5c1586397039be2"
+    },
+    "integrity": {
+      "$ref": "#/$defs/integrity",
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "execution",
+        "artifact",
+        "graph"
+      ],
+      "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "node.schema.1_0_0.5030952bcfc82501910264f1"
+    }
+  },
+  "$defs": {
+    "uuid_v4": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+      "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "node.schema.1_0_0.e9079d7b779d414eed562830"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "node.schema.1_0_0.e7d0de583091197888616e37"
+    },
+    "git_revision": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$",
+      "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "node.schema.1_0_0.c1807effed7da1aa1243b899"
+    },
+    "domain_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[a-z][a-z0-9]*(?:[-_][a-z0-9]+)*$",
+      "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "node.schema.1_0_0.1569b7c17cbdc8693d09ee74"
+    },
+    "reason_code": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 96,
+      "pattern": "^[A-Z][A-Z0-9_]*(?:\\.[A-Z][A-Z0-9_]*)+$",
+      "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "node.schema.1_0_0.0d263f81cedfac281cfcfd44"
+    },
+    "evidence_source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "locator",
+        "revision",
+        "content_sha256",
+        "evidence_status"
+      ],
+      "properties": {
+        "source_id": {
+          "$ref": "#/$defs/domain_id",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.0cf2c736c50b675dd0c41e0e"
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "^(repo:[a-zA-Z0-9._/-]+|https://[^?#]+)$",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.58937bd731095c7d537ba2be"
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 128,
+          "pattern": "^(P[0-9]+-[A-Z]+-[0-9]{3}|[0-9a-f]{40}|[0-9]+\\.[0-9]+\\.[0-9]+)$",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.c51a7f429cd4d0c7247ff2aa"
+        },
+        "content_sha256": {
+          "$ref": "#/$defs/sha256",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.e36d0bf6e6f26a2a76862d43"
+        },
+        "evidence_status": {
+          "const": "proven",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.626a3ce5f6d3778f2ead1f5b"
+        }
+      },
+      "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "node.schema.1_0_0.5da70442d4c1468f031bae51"
+    },
+    "schema_fingerprints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "input_schema_sha256",
+        "output_schema_sha256",
+        "combined_schema_sha256"
+      ],
+      "properties": {
+        "input_schema_sha256": {
+          "$ref": "#/$defs/sha256",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.15f44cd30d20bce9b6e8f07e"
+        },
+        "output_schema_sha256": {
+          "$ref": "#/$defs/sha256",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.33d017b4ed9398299f5149fa"
+        },
+        "combined_schema_sha256": {
+          "$ref": "#/$defs/sha256",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.d59cf67eb2c425f28efce088"
+        }
+      },
+      "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "node.schema.1_0_0.da0cb7184e7cc33918f4c0a8"
+    },
+    "node_origin": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "upstream_id",
+        "origin_uri",
+        "locked_revision",
+        "source_path",
+        "git_blob_sha",
+        "first_introduced_revision",
+        "evidence_source_ids"
+      ],
+      "properties": {
+        "upstream_id": {
+          "const": "comfyui-core",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.2946cd1eff76519276c59211"
+        },
+        "origin_uri": {
+          "const": "https://github.com/Comfy-Org/ComfyUI",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.a989c430fc504fc4dbf6b08d"
+        },
+        "locked_revision": {
+          "const": "d8e7bbc9d586d95f758d6b0ed23d519088be578a",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.8e908ed7372c62e5ab454a12"
+        },
+        "source_path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "^[a-zA-Z0-9_./-]+$",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.fef95764423297d812789c94"
+        },
+        "git_blob_sha": {
+          "$ref": "#/$defs/git_revision",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.bcf6c6c0b4b1b7c9d16dd7c0"
+        },
+        "first_introduced_revision": {
+          "$ref": "#/$defs/git_revision",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.6c96b7398e1bafb4ffb8039a"
+        },
+        "evidence_source_ids": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 16,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/domain_id",
+            "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+            "x-rule-id": "node.schema.1_0_0.25d2e47c78417b1be294dc75"
+          },
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.589724e7341b2cb9643d8af9"
+        }
+      },
+      "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "node.schema.1_0_0.33beb83a145726bf0315f762"
+    },
+    "node_flags": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "local_only",
+        "is_api_node",
+        "is_output_node"
+      ],
+      "properties": {
+        "local_only": {
+          "const": true,
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.50c8236c73be49e7d27fb197"
+        },
+        "is_api_node": {
+          "const": false,
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.983df3463076f386297875ca"
+        },
+        "is_output_node": {
+          "type": "boolean",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.a55c64e3e156f62a6060e722"
+        }
+      },
+      "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "node.schema.1_0_0.a35a75cbdd81dbdde6ba4746"
+    },
+    "node_entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "class_type",
+        "schema_fingerprints",
+        "origin",
+        "flags",
+        "evidence_status",
+        "runtime_acceptance",
+        "disposition"
+      ],
+      "properties": {
+        "class_type": {
+          "enum": [
+            "EmptyMiniMaxH3LatentAV",
+            "MiniMaxH3ImageToVideo",
+            "MiniMaxH3AddGuide",
+            "MiniMaxH3ReferenceToVideo",
+            "MiniMaxH3SigmaShift",
+            "CreateVideo",
+            "SaveVideo"
+          ],
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.5b74c280af7d73b3716d92b1"
+        },
+        "display_name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "description": "Omitted means that no non-authoritative UI label is recorded. It is never an identity input.",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "display"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.1b8d8925ae53201fa7475297"
+        },
+        "schema_fingerprints": {
+          "$ref": "#/$defs/schema_fingerprints",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.09db977273f17a9a02ed2aae"
+        },
+        "origin": {
+          "$ref": "#/$defs/node_origin",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.a0cf6577eac381169cd72499"
+        },
+        "flags": {
+          "$ref": "#/$defs/node_flags",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.00eda7f426b9ce516956493a"
+        },
+        "evidence_status": {
+          "const": "proven",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.62ecb56b354bcef7456a716b"
+        },
+        "runtime_acceptance": {
+          "enum": [
+            "passed",
+            "poc_pending",
+            "blocked"
+          ],
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.0439cda7defc53c202de3394"
+        },
+        "disposition": {
+          "$ref": "#/$defs/entry_disposition",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.faaaa40c2f3b7ccc585159e0"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "class_type": {
+                "const": "EmptyMiniMaxH3LatentAV",
+                "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                "x-rule-id": "node.schema.1_0_0.6c5d054cfd5a0b513976d6bb"
+              }
+            },
+            "required": [
+              "class_type"
+            ],
+            "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+            "x-rule-id": "node.schema.1_0_0.2cd84348f978f614061f0d31"
+          },
+          "then": {
+            "properties": {
+              "schema_fingerprints": {
+                "properties": {
+                  "input_schema_sha256": {
+                    "const": "sha256:2b04e745b0f8f5ac850030d97195eba13cb882f4fc4b0dfc853f4627c7f3f12b",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.2c3463d5c84c79f13a091d1e"
+                  },
+                  "output_schema_sha256": {
+                    "const": "sha256:c3f34bff7a7ea46e586c566918a22986fa026ba590f86414e73098edf2fa59c4",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.8258260a171474f6f34ec23c"
+                  },
+                  "combined_schema_sha256": {
+                    "const": "sha256:f23c9fb5c02ef0187d004a74f114735e26953c8d282147a45223de781a4860a2",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.ffc1af38b1d538cf42b04ec2"
+                  }
+                },
+                "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                "x-rule-id": "node.schema.1_0_0.0b8edf3e75d99b32d70dbdd2"
+              },
+              "origin": {
+                "properties": {
+                  "source_path": {
+                    "const": "comfy_extras/nodes_minimax_h3.py",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.db7e38bf165f6d8a2a912e4a"
+                  },
+                  "git_blob_sha": {
+                    "const": "0a08f185fd1155f18f16757c02553ff48cf365eb",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.4219451d34d6c43502fbf523"
+                  },
+                  "first_introduced_revision": {
+                    "const": "57500fc5bc92566a63f2046824f522cd55c335ca",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.8e9f62d27394ff46d6b37b20"
+                  }
+                },
+                "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                "x-rule-id": "node.schema.1_0_0.009fe3abf02bbf7737dae509"
+              },
+              "flags": {
+                "properties": {
+                  "is_output_node": {
+                    "const": false,
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.fe1272d8426fe47c99bd37ec"
+                  }
+                },
+                "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                "x-rule-id": "node.schema.1_0_0.9ffc0d30b69904af873d0c6e"
+              }
+            },
+            "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+            "x-rule-id": "node.schema.1_0_0.d2733f98b7055b05838d01e3"
+          },
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.68ef759e83d2960abc557dea"
+        },
+        {
+          "if": {
+            "properties": {
+              "class_type": {
+                "const": "MiniMaxH3ImageToVideo",
+                "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                "x-rule-id": "node.schema.1_0_0.ef197f411932773096ad748a"
+              }
+            },
+            "required": [
+              "class_type"
+            ],
+            "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+            "x-rule-id": "node.schema.1_0_0.9ea40fdd6f2339fd49be803e"
+          },
+          "then": {
+            "properties": {
+              "schema_fingerprints": {
+                "properties": {
+                  "input_schema_sha256": {
+                    "const": "sha256:f0d916a84a6fa13603198d4242adb9012a8a3cff3c2b1a67ce544ae78ca9632b",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.cff2785c96b082e06e5b5397"
+                  },
+                  "output_schema_sha256": {
+                    "const": "sha256:ff2c10d6cf27e6a7560c322a49f4d9ca459036f8763998ef99c199b10d5274e4",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.ae0b81c1069fb33bdad8be60"
+                  },
+                  "combined_schema_sha256": {
+                    "const": "sha256:701870ddeb11c2ac58c1dd2d3ce39ac2df5fd2ec3bb601804f49ff60e22c9818",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.013c2827554701ca4b3cef38"
+                  }
+                },
+                "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                "x-rule-id": "node.schema.1_0_0.e92538fdb724b19f9fdee1de"
+              },
+              "origin": {
+                "properties": {
+                  "source_path": {
+                    "const": "comfy_extras/nodes_minimax_h3.py",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.12cf61d093a8aba74203703e"
+                  },
+                  "git_blob_sha": {
+                    "const": "0a08f185fd1155f18f16757c02553ff48cf365eb",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.dde2bd1caebddb5499f1fd8e"
+                  },
+                  "first_introduced_revision": {
+                    "const": "57500fc5bc92566a63f2046824f522cd55c335ca",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.20f0fc053b882a8b2baea788"
+                  }
+                },
+                "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                "x-rule-id": "node.schema.1_0_0.66af5b4617e8d2ce7d3d0c74"
+              },
+              "flags": {
+                "properties": {
+                  "is_output_node": {
+                    "const": false,
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.2af0c1ff5804f7215ad0cdc8"
+                  }
+                },
+                "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                "x-rule-id": "node.schema.1_0_0.4eaa2a4ff1cd4ac2567b6124"
+              }
+            },
+            "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+            "x-rule-id": "node.schema.1_0_0.20523a15ad98e1ec1f0b37e2"
+          },
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.69ef7731aba78137b6cc0fc6"
+        },
+        {
+          "if": {
+            "properties": {
+              "class_type": {
+                "const": "MiniMaxH3AddGuide",
+                "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                "x-rule-id": "node.schema.1_0_0.f031fe32e21c6c8381226301"
+              }
+            },
+            "required": [
+              "class_type"
+            ],
+            "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+            "x-rule-id": "node.schema.1_0_0.886759f6aff4d3e601cabe2b"
+          },
+          "then": {
+            "properties": {
+              "schema_fingerprints": {
+                "properties": {
+                  "input_schema_sha256": {
+                    "const": "sha256:524876cb2baa092ffdeefb9ea4f3bf79c6a3f9f8b6dc43a45dd2da836401db70",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.67239653e20d11b352a8d15c"
+                  },
+                  "output_schema_sha256": {
+                    "const": "sha256:76110b0f5d08240b2a2b44baaf6b3df46a837b58e470d590689c850518e6993a",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.8140cc34970e838c4c583838"
+                  },
+                  "combined_schema_sha256": {
+                    "const": "sha256:bf7bfd2013db0bd45777568d6d67494f7bb99e803dd4cda3fbf3a40e857d2d62",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.b7dbfefe06e88dd50739844a"
+                  }
+                },
+                "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                "x-rule-id": "node.schema.1_0_0.72292b98c17baf98423e166a"
+              },
+              "origin": {
+                "properties": {
+                  "source_path": {
+                    "const": "comfy_extras/nodes_minimax_h3.py",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.45ad5a151b8620b07186737a"
+                  },
+                  "git_blob_sha": {
+                    "const": "0a08f185fd1155f18f16757c02553ff48cf365eb",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.436f63575af6e2c7e9899f65"
+                  },
+                  "first_introduced_revision": {
+                    "const": "e01fb4c56b7a88149d469b99cbbfe3223d715054",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.932886845253f48cc7496e58"
+                  }
+                },
+                "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                "x-rule-id": "node.schema.1_0_0.718766e94cf69ff5efbeecff"
+              },
+              "flags": {
+                "properties": {
+                  "is_output_node": {
+                    "const": false,
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.7616858ea7eb15165ff355cc"
+                  }
+                },
+                "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                "x-rule-id": "node.schema.1_0_0.91863aaed3d5f795e1094c2e"
+              }
+            },
+            "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+            "x-rule-id": "node.schema.1_0_0.f3debfc61d8e5437c69078b1"
+          },
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.66ef72783428bfb0d41c740e"
+        },
+        {
+          "if": {
+            "properties": {
+              "class_type": {
+                "const": "MiniMaxH3ReferenceToVideo",
+                "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                "x-rule-id": "node.schema.1_0_0.3934c2c7190c2da2bf63fa80"
+              }
+            },
+            "required": [
+              "class_type"
+            ],
+            "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+            "x-rule-id": "node.schema.1_0_0.01f2b47b4e4d58af30316708"
+          },
+          "then": {
+            "properties": {
+              "schema_fingerprints": {
+                "properties": {
+                  "input_schema_sha256": {
+                    "const": "sha256:61ec73f0f2d3081cc17ac821f09733a8ba1b896fd73df4d20f148df52f53d3b8",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.74da6f0a012108e294e3143d"
+                  },
+                  "output_schema_sha256": {
+                    "const": "sha256:ff2c10d6cf27e6a7560c322a49f4d9ca459036f8763998ef99c199b10d5274e4",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.abc8c79ba1c1eb91eeaab534"
+                  },
+                  "combined_schema_sha256": {
+                    "const": "sha256:65c8d527ba6024c0282d0763e90b648683ea100cff2d55f7582be6930e85059c",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.be098da52a1275f008e175b4"
+                  }
+                },
+                "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                "x-rule-id": "node.schema.1_0_0.b096866f4a1364e55e8c1616"
+              },
+              "origin": {
+                "properties": {
+                  "source_path": {
+                    "const": "comfy_extras/nodes_minimax_h3.py",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.31cc75f662e0aaade076b01e"
+                  },
+                  "git_blob_sha": {
+                    "const": "0a08f185fd1155f18f16757c02553ff48cf365eb",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.37c20ee6647588c6596e9b80"
+                  },
+                  "first_introduced_revision": {
+                    "const": "57500fc5bc92566a63f2046824f522cd55c335ca",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.ea6aff17b6b592d1193bfa08"
+                  }
+                },
+                "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                "x-rule-id": "node.schema.1_0_0.830aa254133c608c1e3c1b1a"
+              },
+              "flags": {
+                "properties": {
+                  "is_output_node": {
+                    "const": false,
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.427f94c5e2a6ee5b9f087d00"
+                  }
+                },
+                "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                "x-rule-id": "node.schema.1_0_0.0638bf0dcbff7fe87df93e10"
+              }
+            },
+            "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+            "x-rule-id": "node.schema.1_0_0.675c1e6315fc89fe5aded780"
+          },
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.67ef740b5bfdaaddb5ef02da"
+        },
+        {
+          "if": {
+            "properties": {
+              "class_type": {
+                "const": "MiniMaxH3SigmaShift",
+                "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                "x-rule-id": "node.schema.1_0_0.cad919d0332cca854f1ab26f"
+              }
+            },
+            "required": [
+              "class_type"
+            ],
+            "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+            "x-rule-id": "node.schema.1_0_0.13896c2ce18f97584204836d"
+          },
+          "then": {
+            "properties": {
+              "schema_fingerprints": {
+                "properties": {
+                  "input_schema_sha256": {
+                    "const": "sha256:43f5d1ebad50412eaaebbace9e6719ec9ae1e416b08688f3285164cc2e67958f",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.2526402909df989d4da11a22"
+                  },
+                  "output_schema_sha256": {
+                    "const": "sha256:651d5b4ef3a85699db10e47a202aeee3836c9f7f6f25276306c685a77b9cddbc",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.4cb182860dcf40f2f58d759c"
+                  },
+                  "combined_schema_sha256": {
+                    "const": "sha256:def7b38f215736b2bcfc09aa593097f240fde31c32266c8f1b032e11b5e561b8",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.399cbd94f8b5724b868cc42a"
+                  }
+                },
+                "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                "x-rule-id": "node.schema.1_0_0.aaf973325814f446230c9b6a"
+              },
+              "origin": {
+                "properties": {
+                  "source_path": {
+                    "const": "comfy_extras/nodes_minimax_h3.py",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.f226f21b7a3c5a46ee96168a"
+                  },
+                  "git_blob_sha": {
+                    "const": "0a08f185fd1155f18f16757c02553ff48cf365eb",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.3aa13e29e1a4341121e08b2f"
+                  },
+                  "first_introduced_revision": {
+                    "const": "57500fc5bc92566a63f2046824f522cd55c335ca",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.a915f16e52b113329ee82ed0"
+                  }
+                },
+                "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                "x-rule-id": "node.schema.1_0_0.ae40d9374fcd7fd3149e6cdd"
+              },
+              "flags": {
+                "properties": {
+                  "is_output_node": {
+                    "const": false,
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.cd5a6884d5d0d8c86f63ccfc"
+                  }
+                },
+                "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                "x-rule-id": "node.schema.1_0_0.a7319bb41dfc3f8b49cd62fe"
+              }
+            },
+            "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+            "x-rule-id": "node.schema.1_0_0.3acfb11c3d6ad29105f53417"
+          },
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.6cef7bea232642be035f94ba"
+        },
+        {
+          "if": {
+            "properties": {
+              "class_type": {
+                "const": "CreateVideo",
+                "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                "x-rule-id": "node.schema.1_0_0.92b615559d435b04bdb4fab6"
+              }
+            },
+            "required": [
+              "class_type"
+            ],
+            "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+            "x-rule-id": "node.schema.1_0_0.5279a7d1f701ec719df1e472"
+          },
+          "then": {
+            "properties": {
+              "schema_fingerprints": {
+                "properties": {
+                  "input_schema_sha256": {
+                    "const": "sha256:1281b8e8dce7e78910d22ae1add69c26a37d140189009e5653bff70024d44101",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.51c2d5c06443482c4eddcf73"
+                  },
+                  "output_schema_sha256": {
+                    "const": "sha256:ec146e9038deeadf99d62e2cf3af5025f9b6e0a78019f9f937d0f30671a05a0c",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.2c1132bd98e741d7e6a665e0"
+                  },
+                  "combined_schema_sha256": {
+                    "const": "sha256:cb95bed0f73f12f7c4b215c32bc3e70d13472d28f9fe621312df9ff45eda823d",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.3d0ec0d3916f6a26c4731bc8"
+                  }
+                },
+                "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                "x-rule-id": "node.schema.1_0_0.de0b74517023fe3337bf90d6"
+              },
+              "origin": {
+                "properties": {
+                  "source_path": {
+                    "const": "comfy_extras/nodes_video.py",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.d053c05c2921c253b8f6da8e"
+                  },
+                  "git_blob_sha": {
+                    "const": "58f58aaf4daecd08e3b7488c5f313377e6f527e2",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.0b3501384f35bd60f5a9a692"
+                  },
+                  "first_introduced_revision": {
+                    "const": "68f0d3529667a2b34b27cc0ac5051bc0e8c45b49",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.8ee814a1d4b2a5b736c9dc60"
+                  }
+                },
+                "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                "x-rule-id": "node.schema.1_0_0.2648af72733c4b0ab98c0e60"
+              },
+              "flags": {
+                "properties": {
+                  "is_output_node": {
+                    "const": false,
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.6c351bbb6f72de2d510be568"
+                  }
+                },
+                "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                "x-rule-id": "node.schema.1_0_0.d4ffc563d4422e0edb81cd0c"
+              }
+            },
+            "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+            "x-rule-id": "node.schema.1_0_0.104d2189c4f3cdf8dea8a48e"
+          },
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.6def7d7d4afb2deb5106c496"
+        },
+        {
+          "if": {
+            "properties": {
+              "class_type": {
+                "const": "SaveVideo",
+                "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                "x-rule-id": "node.schema.1_0_0.55ae99e6b8c723d7a00670cd"
+              }
+            },
+            "required": [
+              "class_type"
+            ],
+            "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+            "x-rule-id": "node.schema.1_0_0.01fa066a3eca3eaada0795ff"
+          },
+          "then": {
+            "properties": {
+              "schema_fingerprints": {
+                "properties": {
+                  "input_schema_sha256": {
+                    "const": "sha256:a5478ce0c6b7c398c0b4775514b7cd206f20511f37f53a5e97e454caa6fb7581",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.27e5292797c9b63f05864e38"
+                  },
+                  "output_schema_sha256": {
+                    "const": "sha256:cd23616031d7bc8462ec3e910be4f8061f98844643f0e187a51a139f72133e7d",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.d1fb5760780b4d28d83ea028"
+                  },
+                  "combined_schema_sha256": {
+                    "const": "sha256:1ec11f525cacbf909a4527a3ec54df0d8d065b1ecc07229178a1d9a101f93996",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.c80e7d2aa91878d1d66970fa"
+                  }
+                },
+                "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                "x-rule-id": "node.schema.1_0_0.566578ac7ff9166cd3563c0a"
+              },
+              "origin": {
+                "properties": {
+                  "source_path": {
+                    "const": "comfy_extras/nodes_video.py",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.3a8c7d41f45b04cc6db62832"
+                  },
+                  "git_blob_sha": {
+                    "const": "58f58aaf4daecd08e3b7488c5f313377e6f527e2",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.ae122f03d95615a34a8a23d9"
+                  },
+                  "first_introduced_revision": {
+                    "const": "68f0d3529667a2b34b27cc0ac5051bc0e8c45b49",
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.10540140af057b18f6f34130"
+                  }
+                },
+                "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                "x-rule-id": "node.schema.1_0_0.78c7ab1545b1ee11beee660b"
+              },
+              "flags": {
+                "properties": {
+                  "is_output_node": {
+                    "const": true,
+                    "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                    "x-rule-id": "node.schema.1_0_0.1df7795a0aaa66e25618d524"
+                  }
+                },
+                "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+                "x-rule-id": "node.schema.1_0_0.f1d130e2cead0611947c5526"
+              }
+            },
+            "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+            "x-rule-id": "node.schema.1_0_0.cc6a101a45e338e39a8f5bdd"
+          },
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.6aef78c4d37c6c645e5728de"
+        }
+      ],
+      "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "node.schema.1_0_0.ee5cf05c8592f47c33f0a453"
+    },
+    "forbidden_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "class_type",
+        "registered_at_locked_revision",
+        "is_api_node",
+        "local_only",
+        "origin",
+        "first_introduced_revision",
+        "reason_code"
+      ],
+      "properties": {
+        "class_type": {
+          "enum": [
+            "MinimaxTextToVideoNode",
+            "MinimaxImageToVideoNode",
+            "MinimaxSubjectToVideoNode",
+            "MinimaxHailuoVideoNode",
+            "MinimaxHailuo03TextToVideoNode",
+            "MinimaxHailuo03FirstLastFrameNode",
+            "MinimaxHailuo03ReferenceNode",
+            "MinimaxHailuo03ContextIRNode",
+            "MinimaxHailuo03RegenerateNode"
+          ],
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.19aeec93a8e1c94e6afbf53b"
+        },
+        "registered_at_locked_revision": {
+          "type": "boolean",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.fa538627c5fb1cf6760148f6"
+        },
+        "is_api_node": {
+          "const": true,
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.0434e46a51d0a92aa81b52fb"
+        },
+        "local_only": {
+          "const": false,
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.25902b50c68f835bc969bb52"
+        },
+        "origin": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "origin_uri",
+            "locked_revision",
+            "source_path",
+            "git_blob_sha"
+          ],
+          "properties": {
+            "origin_uri": {
+              "const": "https://github.com/Comfy-Org/ComfyUI",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+              "x-rule-id": "node.schema.1_0_0.3f18ce7e9f51fd4a51f206c2"
+            },
+            "locked_revision": {
+              "const": "d8e7bbc9d586d95f758d6b0ed23d519088be578a",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+              "x-rule-id": "node.schema.1_0_0.70f0f4a578a81e30f0d643b3"
+            },
+            "source_path": {
+              "const": "comfy_api_nodes/nodes_minimax.py",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+              "x-rule-id": "node.schema.1_0_0.77c27de21aec12c39ad1f039"
+            },
+            "git_blob_sha": {
+              "const": "de3895221eb8261ee2650b020727d670079f0f23",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+              "x-rule-id": "node.schema.1_0_0.de430c02b54c194d50c81163"
+            }
+          },
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.44457040139a7bab6d20c361"
+        },
+        "first_introduced_revision": {
+          "$ref": "#/$defs/git_revision",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.5b93fd9e14bec813692a0356"
+        },
+        "reason_code": {
+          "const": "NODE.PARTNER_API_FORBIDDEN",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "display",
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.0cf392365adad3b26c62f787"
+        }
+      },
+      "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "node.schema.1_0_0.c4951f67de9a52c13adf8c4b"
+    },
+    "entry_disposition": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind"
+          ],
+          "properties": {
+            "kind": {
+              "const": "active",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+              "x-rule-id": "node.schema.1_0_0.6e9d6fa35afad3876da6a496"
+            }
+          },
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.99c6ed3446c8a950ec56ccda"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "replacement_class_type",
+            "reason_code"
+          ],
+          "properties": {
+            "kind": {
+              "const": "superseded",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+              "x-rule-id": "node.schema.1_0_0.8fa33f780e363f8c767e76b0"
+            },
+            "replacement_class_type": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+              "x-rule-id": "node.schema.1_0_0.25d962823c959bbb79431caf"
+            },
+            "reason_code": {
+              "$ref": "#/$defs/reason_code",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "display",
+                "execution",
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+              "x-rule-id": "node.schema.1_0_0.32e4fcd6ee14e21d65d66c1a"
+            }
+          },
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.9ac6eec71ef3be235cfb2986"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "reason_code"
+          ],
+          "properties": {
+            "kind": {
+              "const": "revoked",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+              "x-rule-id": "node.schema.1_0_0.c968a5e17ca125d996feaa76"
+            },
+            "reason_code": {
+              "$ref": "#/$defs/reason_code",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "display",
+                "execution",
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+              "x-rule-id": "node.schema.1_0_0.a00c9b252b990714fb36b3b1"
+            }
+          },
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.9bc6f05af71ed2f6734cd172"
+        }
+      ],
+      "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "node.schema.1_0_0.7ef0fe5977c7d6bd593ff16b"
+    },
+    "disposition": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind"
+          ],
+          "properties": {
+            "kind": {
+              "const": "active",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+              "x-rule-id": "node.schema.1_0_0.25c47d14b14522cd0b05e2bf"
+            }
+          },
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.151013f34b3984cef5ba5861"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "replacement_document_id",
+            "replacement_content_sha256"
+          ],
+          "properties": {
+            "kind": {
+              "const": "superseded",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+              "x-rule-id": "node.schema.1_0_0.d2732b1fc317557a65dee547"
+            },
+            "replacement_document_id": {
+              "$ref": "#/$defs/uuid_v4",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+              "x-rule-id": "node.schema.1_0_0.19b2c483c4c6c7b1afa72995"
+            },
+            "replacement_content_sha256": {
+              "$ref": "#/$defs/sha256",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+              "x-rule-id": "node.schema.1_0_0.2a8c3ab534c233a1edc36376"
+            }
+          },
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.14101260236499a17191b813"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "reason_code"
+          ],
+          "properties": {
+            "kind": {
+              "const": "revoked",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+              "x-rule-id": "node.schema.1_0_0.74fa58e26d372f6718fa7393"
+            },
+            "reason_code": {
+              "$ref": "#/$defs/reason_code",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "display",
+                "execution",
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+              "x-rule-id": "node.schema.1_0_0.9b9c389021441490969acfe7"
+            }
+          },
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.17101719fb8fae740e037909"
+        }
+      ],
+      "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "node.schema.1_0_0.12c3bb7ece2dcbcbca46aa9a"
+    },
+    "extension": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "extension_version",
+        "effect",
+        "data"
+      ],
+      "properties": {
+        "extension_version": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "display"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.0c380e5d5a9c40137144b0e1"
+        },
+        "effect": {
+          "const": "display_metadata",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "display"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.b9399cd8dfd0d1dd9c81036d"
+        },
+        "data": {
+          "type": "object",
+          "maxProperties": 128,
+          "x-sensitive": "internal",
+          "x-trust-impact": [
+            "display"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.2fdab7d1645776bde45e9a1d"
+        }
+      },
+      "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "node.schema.1_0_0.8ac03380e252a464ea463c66"
+    },
+    "extensions": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 32,
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9]*(?:\\.[a-z][a-z0-9_]*){2,}$",
+        "maxLength": 128,
+        "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+        "x-rule-id": "node.schema.1_0_0.d39d63f54fd411e0dec96d0c"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/extension",
+        "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+        "x-rule-id": "node.schema.1_0_0.ec0aa6de6fa73af720cc0ae7"
+      },
+      "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "node.schema.1_0_0.5f91c7896633099b624beb7a"
+    },
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "algorithm",
+        "canonicalization",
+        "content_sha256"
+      ],
+      "properties": {
+        "algorithm": {
+          "const": "sha256",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.85ba5a34eebd24e0db9f7fbe"
+        },
+        "canonicalization": {
+          "const": "rfc8785_jcs_root_integrity_omitted",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.6bbc29ed97cfef11af74723a"
+        },
+        "content_sha256": {
+          "$ref": "#/$defs/sha256",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+          "x-rule-id": "node.schema.1_0_0.47b23c72f2cec8a3b4f1dcd2"
+        }
+      },
+      "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+      "x-rule-id": "node.schema.1_0_0.63d2ca26c04b7286fee23508"
+    }
+  },
+  "x-error-code": "NODE.SCHEMA_CONSTRAINT",
+  "x-rule-id": "node.schema.1_0_0.811c9dc59e3779b985ebca6b"
+}

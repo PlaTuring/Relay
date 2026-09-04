@@ -1,0 +1,9 @@
+{
+  "fixture_id": "release-requirements-unknown-replacement-field",
+  "mutation": {
+    "kind": "set_release_requirement_field",
+    "field": "brand_replaces_disclosure",
+    "value": true
+  },
+  "expected_code": "STRUCTURE.RELEASE_REQUIREMENTS.UNKNOWN_KEY"
+}

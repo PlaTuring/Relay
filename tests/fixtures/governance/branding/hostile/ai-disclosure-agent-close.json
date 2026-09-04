@@ -1,0 +1,10 @@
+{
+  "fixture_id": "ai-disclosure-agent-close",
+  "mutation": {
+    "kind": "set_decision_field",
+    "decision_id": "DEC-AI-DISCLOSURE",
+    "field": "agent_may_close",
+    "value": true
+  },
+  "expected_code": "DECISION.AGENT_CLOSE_FORBIDDEN"
+}

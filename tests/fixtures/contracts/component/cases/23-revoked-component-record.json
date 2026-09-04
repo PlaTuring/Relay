@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"revoked-component-readable-and-blocked","base":"valid/component-role-examples.json","mutations":[{"op":"replace","path":"/components/4/disposition","value":{"kind":"revoked","reason_code":"COMPONENT.REVOKED_BY_AUTHORITY"}}],"expected":"valid"}

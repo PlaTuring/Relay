@@ -1,0 +1,1 @@
+{"fixture_version":"1.0.0","fixture_id":"base-package-misses-audio-vae","target":"glossary","mutation":{"kind":"remove_model_role","slot_id":"audio_vae"},"expected":{"code":"TERM.MODEL_ROLE.SET_DRIFT","rule_id":"terminology.model_roles.base_package_exact"}}

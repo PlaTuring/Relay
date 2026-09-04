@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"05-pyav-private-ffmpeg-conflation","base":"../index.valid.json","mutations":[{"op":"replace","path":"/components/5/category","value":"pyav-wheel-and-linked-media-libraries"}],"expected":{"code":"COMPONENT.IDENTITY_DRIFT","instance_path":"/components/5","rule_id":"DIST-COMP-001"}}

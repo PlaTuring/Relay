@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"expired-evidence-cannot-be-public","mutations":[{"op":"replace","path":"/records/5/eligibility/public_claim_eligible","value":true}],"expected":{"code":"CLAIM.PUBLIC_REQUIRES_CURRENT_EVIDENCE","instance_path":"/records/5/evidence/freshness/expires_at_utc","rule_id":"claim.eligibility.public.current"}}

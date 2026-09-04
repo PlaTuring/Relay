@@ -1,0 +1,9 @@
+{
+  "fixture_id": "product-boundary-unknown-generation-authority",
+  "mutation": {
+    "kind": "set_product_boundary_field",
+    "field": "tool_may_generate_video",
+    "value": true
+  },
+  "expected_code": "STRUCTURE.PRODUCT_BOUNDARY.UNKNOWN_KEY"
+}

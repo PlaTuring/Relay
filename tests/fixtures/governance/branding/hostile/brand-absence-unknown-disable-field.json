@@ -1,0 +1,9 @@
+{
+  "fixture_id": "brand-absence-unknown-disable-field",
+  "mutation": {
+    "kind": "set_brand_absence_field",
+    "field": "disable_protected_layers",
+    "value": true
+  },
+  "expected_code": "STRUCTURE.BRAND_ABSENCE.UNKNOWN_KEY"
+}

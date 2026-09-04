@@ -1,0 +1,10 @@
+{
+  "fixture_id": "obligation-unknown-disable-authority",
+  "mutation": {
+    "kind": "set_obligation_field",
+    "obligation_id": "public_environment_machine_generated_disclosure",
+    "field": "disable_authority",
+    "value": "user_brand"
+  },
+  "expected_code": "STRUCTURE.LICENSE_OBLIGATION.UNKNOWN_KEY"
+}

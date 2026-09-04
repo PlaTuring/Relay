@@ -1,0 +1,183 @@
+{
+  "schemaVersion": "1.0.0",
+  "policyId": "alpha-no-self-update",
+  "policyStage": "alpha",
+  "rules": [
+    {
+      "id": "NSU-000",
+      "title": "Scan must be complete",
+      "description": "Unreadable, invalid JSON, or linked inputs fail closed."
+    },
+    {
+      "id": "NSU-001",
+      "title": "No updater dependency",
+      "description": "Packaged dependency graphs must not contain an application updater framework."
+    },
+    {
+      "id": "NSU-002",
+      "title": "No updater service/API",
+      "description": "Production source must not instantiate or invoke an updater service."
+    },
+    {
+      "id": "NSU-003",
+      "title": "No background update scheduler",
+      "description": "Production config/source must not schedule update checks or downloads."
+    },
+    {
+      "id": "NSU-004",
+      "title": "No update build/runtime script",
+      "description": "Packaged script registries must not expose update/check/self-update commands."
+    },
+    {
+      "id": "NSU-005",
+      "title": "No updater configuration",
+      "description": "Production config must not contain updater enablement, feed, or self-update keys."
+    },
+    {
+      "id": "NSU-006",
+      "title": "No update endpoint",
+      "description": "Production source/config must not contain appcast or update-service endpoints."
+    },
+    {
+      "id": "NSU-007",
+      "title": "No update channel",
+      "description": "Alpha must not contain Stable/Testing/Beta/Canary/Nightly updater channels."
+    },
+    {
+      "id": "NSU-008",
+      "title": "No mutable target reference",
+      "description": "Catalog and package targets must not resolve latest/main/master/HEAD or branch URLs."
+    },
+    {
+      "id": "NSU-009",
+      "title": "No remote catalog/manifest lookup",
+      "description": "The component catalog is embedded; production code/config cannot locate a remote catalog or manifest."
+    },
+    {
+      "id": "NSU-010",
+      "title": "No runtime dependency download/install",
+      "description": "Packaged production hooks cannot run pip/npm/Git/OS package or node installers at runtime."
+    },
+    {
+      "id": "NSU-011",
+      "title": "No update-all surface",
+      "description": "No command registry or production hook may expose update all."
+    }
+  ],
+  "forbiddenDependencies": [
+    "electron-updater",
+    "update-electron-app",
+    "@tauri-apps/plugin-updater",
+    "@tauri-apps/api/updater",
+    "tauri-plugin-updater",
+    "net.sparkleupdater",
+    "velopack",
+    "squirrel.windows",
+    "winsparkle"
+  ],
+  "forbiddenScriptNames": [
+    "update",
+    "update:all",
+    "update-all",
+    "update:app",
+    "update:components",
+    "check-updates",
+    "check:updates",
+    "self-update",
+    "release:update-metadata"
+  ],
+  "forbiddenConfigKeys": [
+    "autoupdate",
+    "autoupdater",
+    "selfupdate",
+    "checkforupdates",
+    "updateenabled",
+    "updaterenabled",
+    "feedurl",
+    "updateurl",
+    "appupdateconfig",
+    "downloadupdatesautomatically"
+  ],
+  "schedulerConfigKeys": [
+    "backgroundupdate",
+    "backgroundupdateinterval",
+    "backgroundupdateintervalminutes",
+    "updateinterval",
+    "updateintervalminutes",
+    "updateschedule",
+    "checkupdatesonstartup",
+    "autocheckforupdates"
+  ],
+  "channelConfigKeys": [
+    "updatechannel",
+    "updaterchannel"
+  ],
+  "mutableTargetKeys": [
+    "revision",
+    "sourcerevision",
+    "ref",
+    "commit",
+    "tag",
+    "version",
+    "url",
+    "sourceurl"
+  ],
+  "mutableTargetValues": [
+    "latest",
+    "main",
+    "master",
+    "head",
+    "refs/heads/main",
+    "refs/heads/master"
+  ],
+  "remoteCatalogKeys": [
+    "catalogurl",
+    "catalogendpoint",
+    "catalogprovider",
+    "remotecatalog",
+    "manifesturl",
+    "manifestendpoint",
+    "remotemanifest"
+  ],
+  "runtimeInstallConfigKeys": [
+    "runtimeinstallcommand",
+    "postlaunchinstall",
+    "downloadatruntime",
+    "runtimepackagedownload",
+    "runtimepackageinstall",
+    "managerdownloads"
+  ],
+  "ignoredProseExtensions": [
+    ".md",
+    ".txt",
+    ".rst",
+    ".adoc"
+  ],
+  "sourceExtensions": [
+    ".js",
+    ".mjs",
+    ".cjs",
+    ".jsx",
+    ".ts",
+    ".tsx",
+    ".cs",
+    ".rs",
+    ".go",
+    ".java",
+    ".py",
+    ".ps1",
+    ".psm1",
+    ".toml",
+    ".yaml",
+    ".yml"
+  ],
+  "ignoredDirectoryNames": [
+    ".git",
+    "node_modules",
+    "coverage",
+    "docs",
+    "test",
+    "tests",
+    "fixtures"
+  ]
+}

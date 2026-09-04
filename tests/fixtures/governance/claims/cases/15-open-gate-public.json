@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"open-human-gate-blocks-public","mutations":[{"op":"replace","path":"/records/4/eligibility/public_claim_eligible","value":true}],"expected":{"code":"CLAIM.PUBLIC_REQUIRES_CLOSED_GATES","instance_path":"/records/4/gate_requirements/gates","rule_id":"claim.eligibility.public.gates_closed"}}

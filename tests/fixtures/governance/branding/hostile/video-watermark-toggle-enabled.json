@@ -1,0 +1,9 @@
+{
+  "fixture_id": "video-watermark-toggle-enabled",
+  "mutation": {
+    "kind": "set_software_brand_boundary_field",
+    "field": "video_watermark_toggle_allowed",
+    "value": true
+  },
+  "expected_code": "BRAND.VIDEO_WATERMARK_TOGGLE_FORBIDDEN"
+}

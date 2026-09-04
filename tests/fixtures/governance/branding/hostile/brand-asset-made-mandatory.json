@@ -1,0 +1,10 @@
+{
+  "fixture_id": "brand-asset-made-mandatory",
+  "mutation": {
+    "kind": "set_layer_field",
+    "layer_id": "user_brand",
+    "field": "release_enforcement",
+    "value": "required"
+  },
+  "expected_code": "BRAND.ASSET_MUST_BE_OPTIONAL"
+}

@@ -1,0 +1,10 @@
+{
+  "fixture_id": "commercial-ui-attribution-made-optional",
+  "mutation": {
+    "kind": "set_obligation_field",
+    "obligation_id": "commercial_ui_h3_attribution",
+    "field": "normative_strength",
+    "value": "optional"
+  },
+  "expected_code": "LICENSE_POLICY.OBLIGATION_STRENGTH"
+}

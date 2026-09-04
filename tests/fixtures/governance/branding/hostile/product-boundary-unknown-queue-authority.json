@@ -1,0 +1,9 @@
+{
+  "fixture_id": "product-boundary-unknown-queue-authority",
+  "mutation": {
+    "kind": "set_product_boundary_field",
+    "field": "tool_may_submit_queue",
+    "value": true
+  },
+  "expected_code": "STRUCTURE.PRODUCT_BOUNDARY.UNKNOWN_KEY"
+}

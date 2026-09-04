@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"26-h3-file-identifier-modality-drift","base":"../index.valid.json","mutations":[{"op":"replace","path":"/license_records/2/obligations/0/modality","value":"must"}],"expected":{"code":"LICENSE_RECORD.MODALITY_DRIFT","instance_path":"/license_records/2/obligations/0/modality","rule_id":"DIST-LICREC-006"}}

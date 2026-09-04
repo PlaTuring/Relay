@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "1.0.0",
+  "candidate": "dotnet-wpf",
+  "evidenceKind": "uncompiled-design-fixture",
+  "productBoundary": {
+    "controlPlaneOnly": true,
+    "toolSubmitsFormalQueue": false,
+    "toolGeneratesMedia": false,
+    "h3GeneratesAfterVisibleUserRunInComfy": true
+  },
+  "uiChoice": {
+    "framework": "WPF",
+    "targetFrameworkIntent": "net8.0-windows",
+    "status": "blocked-no-dotnet-sdk-or-windows-desktop-pack",
+    "winUiAlternative": "blocked-no-windows-app-sdk-and-no-dotnet-sdk"
+  },
+  "commandSurface": [
+    {
+      "command": "GetSecuritySummaryAsync",
+      "status": "static-contract-only"
+    },
+    {
+      "command": "ChooseManagedRootAsync",
+      "status": "static-contract-only-native-picker-unrun"
+    },
+    {
+      "command": "InspectManagedRootAsync",
+      "status": "static-contract-only"
+    },
+    {
+      "command": "RunOwnedChildProbeAsync",
+      "status": "static-contract-only"
+    }
+  ],
+  "securityBoundaries": {
+    "genericCommandDispatcherExposed": false,
+    "shellExecutionAllowed": false,
+    "toolSideRunOrGeneration": false,
+    "automaticUpdater": false,
+    "telemetry": false,
+    "secretStorageNeededForSpike": false,
+    "dpapiStatus": "not-applicable-no-secrets; future-secret-use-requires-separate-reviewed-boundary",
+    "jobObjectStatus": "blocked-not-implemented-or-proven"
+  },
+  "blockedPrerequisites": [
+    "dotnet-sdk",
+    "microsoft-windowsdesktop-app-runtime-and-targeting-pack",
+    "windows-sdk",
+    "visual-studio-or-supported-msbuild",
+    "packaging-tool",
+    "signtool"
+  ]
+}
+

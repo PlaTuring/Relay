@@ -1,0 +1,12 @@
+{
+  "fixture_id": "independence-pair-unknown-replacement-flag",
+  "mutation": {
+    "kind": "set_independence_pair_field",
+    "matrix": "substitution_forbidden",
+    "from": "user_brand",
+    "to": "minimax_h3_attribution",
+    "field": "replacement_allowed",
+    "value": true
+  },
+  "expected_code": "STRUCTURE.INDEPENDENCE_PAIR.UNKNOWN_KEY"
+}

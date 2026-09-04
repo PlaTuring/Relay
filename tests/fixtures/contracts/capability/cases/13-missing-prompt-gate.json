@@ -1,0 +1,7 @@
+{
+  "fixture_case_version": "1.0.0",
+  "case_id": "empty-prompt-gate-is-independent",
+  "base": "valid/alpha0-t2va-capability.json",
+  "mutations": [{"op": "remove", "path": "/capabilities/0/gates/prompt"}],
+  "expected": {"code": "CAPABILITY.GATE_REQUIRED", "instance_path": "/capabilities/0/gates/prompt", "rule_id": "capability.feature.prompt.required"}
+}

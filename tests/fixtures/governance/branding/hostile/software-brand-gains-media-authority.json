@@ -1,0 +1,9 @@
+{
+  "fixture_id": "software-brand-gains-media-authority",
+  "mutation": {
+    "kind": "set_software_brand_boundary_field",
+    "field": "media_branding_authority",
+    "value": true
+  },
+  "expected_code": "BRAND.MEDIA_AUTHORITY_FORBIDDEN"
+}

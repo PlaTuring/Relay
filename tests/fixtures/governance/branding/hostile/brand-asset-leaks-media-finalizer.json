@@ -1,0 +1,9 @@
+{
+  "fixture_id": "brand-asset-leaks-media-finalizer",
+  "mutation": {
+    "kind": "set_software_brand_boundary_field",
+    "field": "media_finalizer_brand_authority",
+    "value": true
+  },
+  "expected_code": "BRAND.MEDIA_FINALIZER_AUTHORITY_FORBIDDEN"
+}

@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"hostile-null-shape-returns-deterministic-schema-error","base":"valid/component-role-examples.json","mutations":[{"op":"replace","path":"/catalog_binding","value":null}],"expected":{"code":"CONTRACT.SCHEMA_INVALID","instance_path":"/catalog_binding","rule_id":"component-manifest.schema.exact"}}

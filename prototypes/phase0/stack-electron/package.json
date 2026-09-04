@@ -1,0 +1,66 @@
+{
+  "name": "minimax-h3-electron-stack-spike",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Bounded Electron/TypeScript control-plane spike; contains no generation or cloud capability.",
+  "license": "Apache-2.0",
+  "main": "dist/src/main/main.js",
+  "scripts": {
+    "clean": "node scripts/clean.mjs",
+    "build": "npm run clean && tsc -p tsconfig.json && node scripts/build-static.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.test.json --noEmit",
+    "test": "npm run build && vitest run --reporter=verbose",
+    "smoke:electron": "npm run build && node scripts/run-electron-smoke.mjs",
+    "start": "npm run build && electron .",
+    "pack:dir": "npm run build && electron-builder --dir --win --x64",
+    "dist:win": "npm run build && electron-builder --win nsis --x64",
+    "sbom": "node scripts/generate-sbom.mjs",
+    "lint:public-evidence": "node scripts/lint-public-evidence.mjs",
+    "verify": "npm run typecheck && npm test && npm run smoke:electron && npm run sbom && npm run lint:public-evidence"
+  },
+  "devDependencies": {
+    "@types/node": "26.4.0",
+    "electron": "44.0.0",
+    "electron-builder": "26.15.3",
+    "esbuild": "0.28.2",
+    "typescript": "7.0.2",
+    "vitest": "4.1.11"
+  },
+  "build": {
+    "appId": "local.minimaxh3.controlplane.spike",
+    "productName": "MiniMax H3 Control Plane Spike",
+    "asar": true,
+    "npmRebuild": false,
+    "directories": {
+      "output": "release-alpha"
+    },
+    "files": [
+      "dist/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "MiniMaxH3-ControlPlane-Spike-${version}-${arch}-setup.${ext}",
+      "signAndEditExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowElevation": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": false,
+      "createStartMenuShortcut": true,
+      "deleteAppDataOnUninstall": false,
+      "differentialPackage": false,
+      "runAfterFinish": false,
+      "warningsAsErrors": true
+    }
+  }
+}

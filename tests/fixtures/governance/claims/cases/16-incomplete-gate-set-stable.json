@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"incomplete-gate-assessment-blocks-stable","mutations":[{"op":"replace","path":"/records/0/gate_requirements/complete","value":false}],"expected":{"code":"CLAIM.STABLE_REQUIRES_COMPLETE_GATE_SET","instance_path":"/records/0/gate_requirements/complete","rule_id":"claim.eligibility.stable.gates_complete"}}

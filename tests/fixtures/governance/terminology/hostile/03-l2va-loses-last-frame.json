@@ -1,0 +1,1 @@
+{"fixture_version":"1.0.0","fixture_id":"l2va-loses-last-frame","target":"glossary","mutation":{"kind":"set_route_field","route_id":"l2va","field":"last_frame","value":"absent"},"expected":{"code":"TERM.ROUTE.SEMANTIC_DRIFT","rule_id":"terminology.route.input_matrix_exact"}}

@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"02-duplicate-component","base":"../index.valid.json","mutations":[{"op":"copy","from":"/components/1","path":"/components/-"}],"expected":{"code":"COVERAGE.DUPLICATE_COMPONENT","instance_path":"/components/11/component_id","rule_id":"DIST-COV-001"}}

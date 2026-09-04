@@ -1,0 +1,7 @@
+{
+  "fixture_case_version": "1.0.0",
+  "case_id": "stale-cross-document-allowlist-reference",
+  "base": "valid/alpha0-t2va-capability.json",
+  "mutations": [{"op": "replace", "path": "/node_allowlist_ref/source_content_sha256", "value": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"}],
+  "expected": {"code": "CAPABILITY.ALLOWLIST_REFERENCE_STALE", "instance_path": "/node_allowlist_ref/source_content_sha256", "rule_id": "capability.node_allowlist_ref.content_exact"}
+}

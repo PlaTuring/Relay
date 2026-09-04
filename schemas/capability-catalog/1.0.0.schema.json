@@ -1,0 +1,1774 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:minimax-h3-tool:schema:capability-catalog:1.0.0",
+  "title": "MiniMax H3 Tool capability catalog",
+  "description": "Immutable authority catalog. It records evidence and independent product gates; it never grants queue submission or media-generation authority.",
+  "type": "object",
+  "x-primary-trust-class": "immutable_authority",
+  "additionalProperties": false,
+  "required": [
+    "contract_id",
+    "schema_version",
+    "document_id",
+    "document_revision",
+    "catalog_id",
+    "authority",
+    "upstreams",
+    "evidence_sources",
+    "node_allowlist_ref",
+    "capabilities",
+    "disposition",
+    "integrity"
+  ],
+  "properties": {
+    "contract_id": {
+      "const": "minimax-h3-tool.capability-catalog",
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "execution",
+        "artifact",
+        "graph"
+      ],
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.f29bf11e1a87afa9b344ec43"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "execution",
+        "artifact",
+        "graph"
+      ],
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.873ac2b4b3347bc5eaabd348"
+    },
+    "document_id": {
+      "$ref": "#/$defs/uuid_v4",
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "artifact"
+      ],
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.65d8063b694fb6ba851732b8"
+    },
+    "document_revision": {
+      "const": 1,
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "artifact"
+      ],
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.13ca4cffe78ccf65c148c487"
+    },
+    "catalog_id": {
+      "$ref": "#/$defs/domain_id",
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "execution",
+        "artifact",
+        "graph"
+      ],
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.7c398169666877c0cb97cfff"
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "publisher",
+        "immutability",
+        "product_boundary"
+      ],
+      "properties": {
+        "publisher": {
+          "const": "minimax_h3_tool_release",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "artifact"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.329210480652d511cfb90253"
+        },
+        "immutability": {
+          "const": "replace_with_new_document",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.61397fd29888806a7bbf6d62"
+        },
+        "product_boundary": {
+          "const": "compile_and_handoff_only_user_runs_h3_in_comfyui",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.b8b40f56b749b1ce17c1eb93"
+        }
+      },
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "execution",
+        "artifact",
+        "graph"
+      ],
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.9e612179a28441c36e20e301"
+    },
+    "upstreams": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 32,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/upstream",
+        "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+        "x-rule-id": "capability.schema.1_0_0.8d96ecc52bead2a814b8202e"
+      },
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "execution",
+        "artifact",
+        "graph"
+      ],
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.c4660ecea9e4d46ae8e64486"
+    },
+    "evidence_sources": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 128,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/evidence_source",
+        "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+        "x-rule-id": "capability.schema.1_0_0.638a57a39eccc8f66c8534b1"
+      },
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "observation",
+        "execution",
+        "artifact",
+        "graph"
+      ],
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.c4f4485c177bb2ac16f04399"
+    },
+    "node_allowlist_ref": {
+      "$ref": "#/$defs/document_ref",
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "execution",
+        "artifact",
+        "graph"
+      ],
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.8ad70e8cf98b4ab50dbbd239"
+    },
+    "capabilities": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 256,
+      "items": {
+        "$ref": "#/$defs/capability",
+        "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+        "x-rule-id": "capability.schema.1_0_0.fe243df178cb55bcc41241a2"
+      },
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "execution",
+        "artifact",
+        "graph"
+      ],
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.a87a672a3ca81c569ef4dfca"
+    },
+    "disposition": {
+      "$ref": "#/$defs/catalog_disposition",
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "execution",
+        "artifact",
+        "graph"
+      ],
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.60f948f3fabc434e9ed02325"
+    },
+    "extensions": {
+      "$ref": "#/$defs/extensions",
+      "description": "Omitted means that no display-only extension metadata is carried.",
+      "x-sensitive": "internal",
+      "x-trust-impact": [
+        "display"
+      ],
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.96864966c5c1586397039be2"
+    },
+    "integrity": {
+      "$ref": "#/$defs/integrity",
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "execution",
+        "artifact",
+        "graph"
+      ],
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.5030952bcfc82501910264f1"
+    }
+  },
+  "$defs": {
+    "uuid_v4": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.e9079d7b779d414eed562830"
+    },
+    "semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.402064bb83a533bda49e4f27"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.e7d0de583091197888616e37"
+    },
+    "git_revision": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$",
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.c1807effed7da1aa1243b899"
+    },
+    "domain_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[a-z][a-z0-9]*(?:[-_][a-z0-9]+)*$",
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.1569b7c17cbdc8693d09ee74"
+    },
+    "reason_code": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 96,
+      "pattern": "^[A-Z][A-Z0-9_]*(?:\\.[A-Z][A-Z0-9_]*)+$",
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.0d263f81cedfac281cfcfd44"
+    },
+    "evidence_status": {
+      "enum": [
+        "proven",
+        "inferred",
+        "experimental",
+        "blocked"
+      ],
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.1052dbe167ee3ce4d7f9243d"
+    },
+    "readiness": {
+      "enum": [
+        "passed",
+        "poc_pending",
+        "experimental",
+        "blocked"
+      ],
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.b1a4056da6ea32bdeb957511"
+    },
+    "string_id_array": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 64,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/domain_id",
+        "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+        "x-rule-id": "capability.schema.1_0_0.ebd07ab36ff9cf83dbd2c4f4"
+      },
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.f4e1f72c5ab19b8d641790fc"
+    },
+    "upstream": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "upstream_id",
+        "origin_uri",
+        "locked_revision",
+        "evidence_source_ids"
+      ],
+      "properties": {
+        "upstream_id": {
+          "$ref": "#/$defs/domain_id",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.e3e08dfef54e289bc92821fc"
+        },
+        "origin_uri": {
+          "type": "string",
+          "minLength": 8,
+          "maxLength": 512,
+          "pattern": "^https://[^?#]+$",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "artifact"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.3dd12e1008fa24308017efd0"
+        },
+        "locked_revision": {
+          "$ref": "#/$defs/git_revision",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.329f66379c1be08eb9cb75bf"
+        },
+        "first_introduced_revision": {
+          "$ref": "#/$defs/git_revision",
+          "description": "Omitted means that the accepted evidence did not establish a first-introduced revision.",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.2d6f6ed9eb96e159fa12c337"
+        },
+        "evidence_source_ids": {
+          "$ref": "#/$defs/string_id_array",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.c7606d879baecc32dd4b8c94"
+        }
+      },
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.88734cdaed07c631d588109f"
+    },
+    "evidence_source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "source_kind",
+        "evidence_status",
+        "locator",
+        "revision",
+        "content_sha256"
+      ],
+      "properties": {
+        "source_id": {
+          "$ref": "#/$defs/domain_id",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.0cf2c736c50b675dd0c41e0e"
+        },
+        "source_kind": {
+          "enum": [
+            "locked_upstream_snapshot",
+            "accepted_poc",
+            "accepted_adr"
+          ],
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.58da1591cec26ac327a32e4c"
+        },
+        "evidence_status": {
+          "$ref": "#/$defs/evidence_status",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.626a3ce5f6d3778f2ead1f5b"
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "^(repo:[a-zA-Z0-9._/-]+|https://[^?#]+)$",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.58937bd731095c7d537ba2be"
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 128,
+          "pattern": "^(P[0-9]+-[A-Z]+-[0-9]{3}|[0-9a-f]{40}|[0-9]+\\.[0-9]+\\.[0-9]+)$",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.c51a7f429cd4d0c7247ff2aa"
+        },
+        "content_sha256": {
+          "$ref": "#/$defs/sha256",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.e36d0bf6e6f26a2a76862d43"
+        }
+      },
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.5da70442d4c1468f031bae51"
+    },
+    "document_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contract_id",
+        "schema_version",
+        "schema_content_sha256",
+        "source_document_id",
+        "source_document_revision",
+        "source_content_sha256"
+      ],
+      "properties": {
+        "contract_id": {
+          "const": "minimax-h3-tool.node-allowlist",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.fc91aa45205bfc1c043dd30d"
+        },
+        "schema_version": {
+          "const": "1.0.0",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.789442a1269bb057c26944c1"
+        },
+        "schema_content_sha256": {
+          "$ref": "#/$defs/sha256",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.443e57eacb42347e66ba478a"
+        },
+        "source_document_id": {
+          "$ref": "#/$defs/uuid_v4",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.28c363606cb0ef80c502e357"
+        },
+        "source_document_revision": {
+          "const": 1,
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.40054298da43ad3be9e17bd2"
+        },
+        "source_content_sha256": {
+          "$ref": "#/$defs/sha256",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.e61b42dc72b892409b2a5d7b"
+        }
+      },
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.acd76798396564579d84ac0e"
+    },
+    "catalog_document_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contract_id",
+        "schema_version",
+        "schema_content_sha256",
+        "source_document_id",
+        "source_document_revision",
+        "source_content_sha256"
+      ],
+      "properties": {
+        "contract_id": {
+          "const": "minimax-h3-tool.capability-catalog",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.b6dc78cd4b1584a412d7d089"
+        },
+        "schema_version": {
+          "const": "1.0.0",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.24c82a99ed83638790bff2dd"
+        },
+        "schema_content_sha256": {
+          "$ref": "#/$defs/sha256",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.dab5d1923afe56268791ba0e"
+        },
+        "source_document_id": {
+          "$ref": "#/$defs/uuid_v4",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.252252a854270c40c234706b"
+        },
+        "source_document_revision": {
+          "const": 1,
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.f83a78b0503f460b84839a6e"
+        },
+        "source_content_sha256": {
+          "$ref": "#/$defs/sha256",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.c38712149d518a88e11969bf"
+        }
+      },
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.df1235b0f9e96a27dfee65f2"
+    },
+    "route_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "route",
+        "evidence_status",
+        "readiness",
+        "reason_code",
+        "evidence_source_ids"
+      ],
+      "properties": {
+        "kind": {
+          "const": "route",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.089cad4546d24523dfa978e1"
+        },
+        "route": {
+          "enum": [
+            "t2va",
+            "i2va",
+            "l2va",
+            "fl2va",
+            "ref2va"
+          ],
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.dafb52546f0e6e95f9435250"
+        },
+        "evidence_status": {
+          "$ref": "#/$defs/evidence_status",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.e4a579d91cc99715fb4dcb0b"
+        },
+        "readiness": {
+          "$ref": "#/$defs/readiness",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.4bd423150b8d2c8ca962c757"
+        },
+        "reason_code": {
+          "$ref": "#/$defs/reason_code",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "display",
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.561c95a9577e63f172631f12"
+        },
+        "evidence_source_ids": {
+          "$ref": "#/$defs/string_id_array",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.c8ab23e3a191e867f560f272"
+        }
+      },
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.9630905e1e1621c6d93030ed"
+    },
+    "duration_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "requested_seconds",
+        "frame_rate",
+        "evidence_status",
+        "readiness",
+        "reason_code",
+        "evidence_source_ids"
+      ],
+      "properties": {
+        "kind": {
+          "const": "duration",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.70e90f74f310e60c9ae124c1"
+        },
+        "requested_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3600,
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.c8c0e48816475404b1b3913f"
+        },
+        "frame_rate": {
+          "$ref": "#/$defs/rational",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.ee320816b6a03fcbe3ee738e"
+        },
+        "evidence_status": {
+          "$ref": "#/$defs/evidence_status",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.3d2b059e836dedcdf0d7ec46"
+        },
+        "readiness": {
+          "$ref": "#/$defs/readiness",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.bcda479e569b8cfaf0cebfbc"
+        },
+        "reason_code": {
+          "$ref": "#/$defs/reason_code",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "display",
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.15fc6252e1f509611bad791f"
+        },
+        "evidence_source_ids": {
+          "$ref": "#/$defs/string_id_array",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.ced98e1c36d03f2316b4fa7b"
+        }
+      },
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.73e096d30cedd56309c79b5f"
+    },
+    "prompt_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "empty_prompt_allowed",
+        "evidence_status",
+        "readiness",
+        "reason_code",
+        "evidence_source_ids"
+      ],
+      "properties": {
+        "kind": {
+          "const": "prompt",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.d6eaa3d2613c8c976c5292dd"
+        },
+        "empty_prompt_allowed": {
+          "type": "boolean",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.4829e4d38b5ca94eb3a7edde"
+        },
+        "evidence_status": {
+          "$ref": "#/$defs/evidence_status",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.84444780c647ba0c0a542104"
+        },
+        "readiness": {
+          "$ref": "#/$defs/readiness",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.c4d52068c2247dcf96ad1942"
+        },
+        "reason_code": {
+          "$ref": "#/$defs/reason_code",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "display",
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.85acc9c0057025380bc9a719"
+        },
+        "evidence_source_ids": {
+          "$ref": "#/$defs/string_id_array",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.9e6c4ecef7d304be9026bdd9"
+        }
+      },
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.319f76496c3fcb1471664247"
+    },
+    "endpoint_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "endpoint_mode",
+        "evidence_status",
+        "readiness",
+        "reason_code",
+        "evidence_source_ids"
+      ],
+      "properties": {
+        "kind": {
+          "const": "endpoint",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.cb0a674709ea8907ab4368f3"
+        },
+        "endpoint_mode": {
+          "enum": [
+            "none",
+            "first",
+            "last",
+            "first_last"
+          ],
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.734998eae7b62a6ecf66dd0b"
+        },
+        "evidence_status": {
+          "$ref": "#/$defs/evidence_status",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.2b67f14f0ceb62daf4f64803"
+        },
+        "readiness": {
+          "$ref": "#/$defs/readiness",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.93f3574b0e1138158cafadbf"
+        },
+        "reason_code": {
+          "$ref": "#/$defs/reason_code",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "display",
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.94e2a473cc8671d6e1ab9a76"
+        },
+        "evidence_source_ids": {
+          "$ref": "#/$defs/string_id_array",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.98f0a549179fee0c26450ee2"
+        }
+      },
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.8a60ab78df8b0a60bb54dd77"
+    },
+    "audio_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "native_audio_required",
+        "sample_rate_hz",
+        "channels",
+        "evidence_status",
+        "readiness",
+        "reason_code",
+        "evidence_source_ids"
+      ],
+      "properties": {
+        "kind": {
+          "const": "audio",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.144a0634a3bf7fe82e9db597"
+        },
+        "native_audio_required": {
+          "type": "boolean",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.16c64e88b7aeb685d0d22dd4"
+        },
+        "sample_rate_hz": {
+          "type": "integer",
+          "minimum": 8000,
+          "maximum": 192000,
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.73c9684ef86300316b5d14a1"
+        },
+        "channels": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8,
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.78f04f625bf23c42938e6b88"
+        },
+        "evidence_status": {
+          "$ref": "#/$defs/evidence_status",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.0bb2455e54f6ecd2fb14aa30"
+        },
+        "readiness": {
+          "$ref": "#/$defs/readiness",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.650f165e906c71d3c038274a"
+        },
+        "reason_code": {
+          "$ref": "#/$defs/reason_code",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "display",
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.a0da6712d4988236613058a9"
+        },
+        "evidence_source_ids": {
+          "$ref": "#/$defs/string_id_array",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.3d7f50dc042a05101b14bfed"
+        }
+      },
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.35418b93f97011558d1aa649"
+    },
+    "rational": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "numerator",
+        "denominator"
+      ],
+      "properties": {
+        "numerator": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991,
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.7a80e50fc1979ce3e7655f51"
+        },
+        "denominator": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991,
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.6be172e06b6e248dfc3b3470"
+        }
+      },
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.eb4c4529386e1f2cbdae77f8"
+    },
+    "prerequisite_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "requirement_ids",
+        "evidence_status",
+        "readiness",
+        "reason_code",
+        "evidence_source_ids"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "hardware",
+            "runtime",
+            "license"
+          ],
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.b5683ed6b44b623e0623c5a0"
+        },
+        "requirement_ids": {
+          "$ref": "#/$defs/string_id_array",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.c271248a31bc6d61f7e5597f"
+        },
+        "evidence_status": {
+          "$ref": "#/$defs/evidence_status",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.4269a67c314941f3ff4ace7d"
+        },
+        "readiness": {
+          "$ref": "#/$defs/readiness",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.6a941164f5299e5c1764319b"
+        },
+        "reason_code": {
+          "$ref": "#/$defs/reason_code",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "display",
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.e4605194b40a0b3fee20e220"
+        },
+        "evidence_source_ids": {
+          "$ref": "#/$defs/string_id_array",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.1f5fcefa6f3188350d7846e8"
+        }
+      },
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.1ebe357d0c7364d1e609990a"
+    },
+    "capability_disposition": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind"
+          ],
+          "properties": {
+            "kind": {
+              "const": "active",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+              "x-rule-id": "capability.schema.1_0_0.c35e6653b07614ad9e9f8e60"
+            }
+          },
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.5ad5e824f469a220b292744c"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "replacement_capability_id",
+            "reason_code"
+          ],
+          "properties": {
+            "kind": {
+              "const": "superseded",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+              "x-rule-id": "capability.schema.1_0_0.0d8f75287eeb5fa0c38a7ac6"
+            },
+            "replacement_capability_id": {
+              "$ref": "#/$defs/domain_id",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+              "x-rule-id": "capability.schema.1_0_0.796b6c07ceecbe96c86aa145"
+            },
+            "reason_code": {
+              "$ref": "#/$defs/reason_code",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "display",
+                "execution",
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+              "x-rule-id": "capability.schema.1_0_0.9ca64386cff0bd2ac5dd39bc"
+            }
+          },
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.5bd5e9b71c3e8d4da75492b0"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "reason_code",
+            "evidence_source_ids"
+          ],
+          "properties": {
+            "kind": {
+              "const": "revoked",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+              "x-rule-id": "capability.schema.1_0_0.a9c59251a2964a4747ee7600"
+            },
+            "reason_code": {
+              "$ref": "#/$defs/reason_code",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "display",
+                "execution",
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+              "x-rule-id": "capability.schema.1_0_0.b13bc055b714ea793bd44297"
+            },
+            "evidence_source_ids": {
+              "$ref": "#/$defs/string_id_array",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "observation",
+                "execution",
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+              "x-rule-id": "capability.schema.1_0_0.4075a97782834d4f0963c2cf"
+            }
+          },
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.5cd5eb4a4413787af3e33fe4"
+        }
+      ],
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.ec5ab369cba5e1ef05e276dd"
+    },
+    "capability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capability_id",
+        "publication_status",
+        "evidence_status",
+        "evidence_source_ids",
+        "required_class_types",
+        "gates",
+        "prerequisites",
+        "disposition"
+      ],
+      "properties": {
+        "capability_id": {
+          "$ref": "#/$defs/domain_id",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.d706e4964e4322ebf96e30ec"
+        },
+        "publication_status": {
+          "enum": [
+            "stable",
+            "poc_pending",
+            "experimental",
+            "blocked"
+          ],
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "display",
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.3191e7b1f8d1fa7894943f46"
+        },
+        "evidence_status": {
+          "$ref": "#/$defs/evidence_status",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.aaa29fd8287b75487386fd2e"
+        },
+        "evidence_source_ids": {
+          "$ref": "#/$defs/string_id_array",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.f34216b6fcf15ada1fa1cf03"
+        },
+        "required_class_types": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 64,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+            "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+            "x-rule-id": "capability.schema.1_0_0.77215b73a128319e7e837f30"
+          },
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.bfe72b6c140fdb14bd864138"
+        },
+        "gates": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "route",
+            "duration",
+            "prompt",
+            "endpoint",
+            "audio"
+          ],
+          "properties": {
+            "route": {
+              "$ref": "#/$defs/route_gate",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "observation",
+                "execution",
+                "graph"
+              ],
+              "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+              "x-rule-id": "capability.schema.1_0_0.6c9f646e797b09412be74891"
+            },
+            "duration": {
+              "$ref": "#/$defs/duration_gate",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "observation",
+                "execution",
+                "graph"
+              ],
+              "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+              "x-rule-id": "capability.schema.1_0_0.22ca613db9f7e0c0c24f58b4"
+            },
+            "prompt": {
+              "$ref": "#/$defs/prompt_gate",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "observation",
+                "execution",
+                "graph"
+              ],
+              "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+              "x-rule-id": "capability.schema.1_0_0.9252084bc606ad13dbf2b232"
+            },
+            "endpoint": {
+              "$ref": "#/$defs/endpoint_gate",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "observation",
+                "execution",
+                "graph"
+              ],
+              "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+              "x-rule-id": "capability.schema.1_0_0.dd927c0cba08ebf9da4b950b"
+            },
+            "audio": {
+              "$ref": "#/$defs/audio_gate",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "observation",
+                "execution",
+                "graph"
+              ],
+              "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+              "x-rule-id": "capability.schema.1_0_0.57d86aa9cf9385dcbc56f0ac"
+            }
+          },
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "execution",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.f968e724c6ae4c2d32823952"
+        },
+        "prerequisites": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "hardware",
+            "runtime",
+            "license"
+          ],
+          "properties": {
+            "hardware": {
+              "$ref": "#/$defs/prerequisite_gate",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "observation",
+                "execution",
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+              "x-rule-id": "capability.schema.1_0_0.74d573d25c73738f6faa9470"
+            },
+            "runtime": {
+              "$ref": "#/$defs/prerequisite_gate",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "observation",
+                "execution",
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+              "x-rule-id": "capability.schema.1_0_0.10d3c40e50d2c2fa9fcfbb99"
+            },
+            "license": {
+              "$ref": "#/$defs/prerequisite_gate",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "observation",
+                "execution",
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+              "x-rule-id": "capability.schema.1_0_0.4a387f19d9348b4fb5698482"
+            }
+          },
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.7c88def7403862a696264010"
+        },
+        "disposition": {
+          "$ref": "#/$defs/capability_disposition",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.0dd38b8f3b780983eab5981f"
+        }
+      },
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.805089c1801ab677f020e915"
+    },
+    "catalog_disposition": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind"
+          ],
+          "properties": {
+            "kind": {
+              "const": "active",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+              "x-rule-id": "capability.schema.1_0_0.089b47fc6cdf0c953356358b"
+            }
+          },
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.e29b330bb19d65669dec7ab5"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "replacement"
+          ],
+          "properties": {
+            "kind": {
+              "const": "superseded",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+              "x-rule-id": "capability.schema.1_0_0.4af26d47be55687222a05de3"
+            },
+            "replacement": {
+              "$ref": "#/$defs/catalog_document_ref",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+              "x-rule-id": "capability.schema.1_0_0.27f23f7ba0d265c5b63f92a8"
+            }
+          },
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.e19b317889c87a39b902ffa7"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "reason_code",
+            "evidence_source_ids"
+          ],
+          "properties": {
+            "kind": {
+              "const": "revoked",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+              "x-rule-id": "capability.schema.1_0_0.157b42aab7283acf59981277"
+            },
+            "reason_code": {
+              "$ref": "#/$defs/reason_code",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "display",
+                "execution",
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+              "x-rule-id": "capability.schema.1_0_0.987da1f8e6312880e540679b"
+            },
+            "evidence_source_ids": {
+              "$ref": "#/$defs/string_id_array",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "observation",
+                "execution",
+                "artifact",
+                "graph"
+              ],
+              "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+              "x-rule-id": "capability.schema.1_0_0.38ee526691652c66f46f5f2b"
+            }
+          },
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.e49b363161f38f0cf672bc0d"
+        }
+      ],
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.406e01e60b665e03ae00ddae"
+    },
+    "extension": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "extension_version",
+        "effect",
+        "data"
+      ],
+      "properties": {
+        "extension_version": {
+          "$ref": "#/$defs/semver",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "display"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.0c380e5d5a9c40137144b0e1"
+        },
+        "effect": {
+          "const": "display_metadata",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "display"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.b9399cd8dfd0d1dd9c81036d"
+        },
+        "data": {
+          "type": "object",
+          "maxProperties": 128,
+          "x-sensitive": "internal",
+          "x-trust-impact": [
+            "display"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.2fdab7d1645776bde45e9a1d"
+        }
+      },
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.8ac03380e252a464ea463c66"
+    },
+    "extensions": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 32,
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9]*(?:\\.[a-z][a-z0-9_]*){2,}$",
+        "maxLength": 128,
+        "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+        "x-rule-id": "capability.schema.1_0_0.d39d63f54fd411e0dec96d0c"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/extension",
+        "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+        "x-rule-id": "capability.schema.1_0_0.ec0aa6de6fa73af720cc0ae7"
+      },
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.5f91c7896633099b624beb7a"
+    },
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "algorithm",
+        "canonicalization",
+        "content_sha256"
+      ],
+      "properties": {
+        "algorithm": {
+          "const": "sha256",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.85ba5a34eebd24e0db9f7fbe"
+        },
+        "canonicalization": {
+          "const": "rfc8785_jcs_root_integrity_omitted",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.6bbc29ed97cfef11af74723a"
+        },
+        "content_sha256": {
+          "$ref": "#/$defs/sha256",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact",
+            "graph"
+          ],
+          "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+          "x-rule-id": "capability.schema.1_0_0.47b23c72f2cec8a3b4f1dcd2"
+        }
+      },
+      "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+      "x-rule-id": "capability.schema.1_0_0.63d2ca26c04b7286fee23508"
+    }
+  },
+  "x-error-code": "CAPABILITY.SCHEMA_CONSTRAINT",
+  "x-rule-id": "capability.schema.1_0_0.811c9dc59e3779b985ebca6b"
+}

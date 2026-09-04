@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"43-component-human-decision-omitted","base":"../index.valid.json","mutations":[{"op":"remove","path":"/components/9/human_owner/decision_ids/1","value":null}],"expected":{"code":"COMPONENT.DECISION_SET","instance_path":"/components/9/human_owner/decision_ids","rule_id":"DIST-COMP-006"}}

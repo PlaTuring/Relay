@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"hardware-status-promotion","base":"valid/alpha0-poc-pending-recipe.json","mutations":[{"op":"replace","path":"/profile/hardware/readiness","value":"passed"}],"expected":{"code":"RECIPE.HARDWARE_STATUS_PROMOTION","instance_path":"/profile/hardware/readiness","rule_id":"recipe.hardware.pending_cannot_select"}}

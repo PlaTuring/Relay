@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"28-missing-license-proof-not-blocked-external","base":"../index.valid.json","mutations":[{"op":"replace","path":"/license_records/0/evidence_status","value":"proven"}],"expected":{"code":"LICENSE_RECORD.MISSING_PROOF_NOT_BLOCKED","instance_path":"/license_records/0/evidence_status","rule_id":"DIST-LICREC-007"}}

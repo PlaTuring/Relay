@@ -1,0 +1,9 @@
+{
+  "fixture_id": "media-watermark-authority-enabled",
+  "mutation": {
+    "kind": "set_software_brand_boundary_field",
+    "field": "media_watermark_authority",
+    "value": true
+  },
+  "expected_code": "BRAND.MEDIA_WATERMARK_FORBIDDEN"
+}

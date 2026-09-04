@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"provenance-evidence-status-required","base":"valid/component-role-examples.json","mutations":[{"op":"remove","path":"/components/0/provenance/evidence"}],"expected":{"code":"COMPONENT.PROVENANCE_EVIDENCE_REQUIRED","instance_path":"/components/0/provenance/evidence","rule_id":"component.provenance.evidence_required"}}

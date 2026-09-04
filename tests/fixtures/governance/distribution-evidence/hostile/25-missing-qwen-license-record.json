@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"25-missing-qwen-license-record","base":"../index.valid.json","mutations":[{"op":"remove","path":"/license_records/3","value":null}],"expected":{"code":"COVERAGE.LICENSE_RECORD_SET","instance_path":"/license_records","rule_id":"DIST-LICREC-001"}}

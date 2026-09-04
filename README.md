@@ -1,100 +1,128 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./header-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./header-light.svg">
-  <img alt="Relay 1.0.1 — Windows 本地 MiniMax H3 工作流控制工具" src="./header-light.svg" width="100%">
+  <img alt="Relay — Windows 本地 MiniMax H3 工作流控制工具" src="./header-light.svg" width="100%">
 </picture>
 
 <p align="center">
-  <img alt="Relay 1.0.1" src="https://img.shields.io/badge/Relay-1.0.1-2563EB?style=flat-square">
+  <img alt="Relay 1.0.2" src="https://img.shields.io/badge/Relay-1.0.2-2563EB?style=flat-square">
   <img alt="Windows 10 / 11 x64" src="https://img.shields.io/badge/Windows-10%20%7C%2011%20x64-0078D4?style=flat-square&logo=windows11&logoColor=white">
   <img alt="Local first" src="https://img.shields.io/badge/data-local--first-0F766E?style=flat-square">
-  <img alt="Setup only" src="https://img.shields.io/badge/package-Setup%20only-475569?style=flat-square">
+  <img alt="Apache 2.0" src="https://img.shields.io/badge/license-Apache--2.0-0F766E?style=flat-square">
 </p>
 
 <p align="center"><strong>准备本机环境，管理项目与素材，编译可编辑工作流，再清楚地交接给 ComfyUI。</strong></p>
-<p align="center">面向 Windows 10 / 11 x64 的本地环境准备、项目与素材管理、确定性工作流编译与 ComfyUI 可编辑交接工具。</p>
 
-<p align="center">
-  <a href="https://github.com/PlaTuring/Relay/releases/download/v1.0.1/Relay-1.0.1-x64-Setup.exe"><img alt="下载 Relay 1.0.1 Setup" src="https://img.shields.io/badge/下载-Relay%201.0.1%20Setup-2563EB?style=for-the-badge&logo=windows11&logoColor=white"></a>
-</p>
+## 功能概览
 
-<p align="center">
-  <a href="https://github.com/PlaTuring/Relay/releases/tag/v1.0.1">发布说明</a>
-  · <a href="#开始使用">开始使用</a>
-  · <a href="#核心工作区">核心工作区</a>
-  · <a href="#本地数据与生成结果">本地数据与生成结果</a>
-</p>
-
-> [!IMPORTANT]
-> **当前正式版本是 Relay 1.0.1。** 产品界面沿用“Relay 1.0”主版本标识，内部更新版本为 `1.0.1`，GitHub Release 标签为 [`v1.0.1`](https://github.com/PlaTuring/Relay/releases/tag/v1.0.1)。支持 Windows 10 / 11 x64。
-
-> **1.0.1 热修复提示：** 2026-09-04 之前下载过 1.0.1 的用户，请从同一 Release 重新下载安装。此次修复保持版本号不变，已安装的旧 1.0.1 无法仅靠版本比较识别新的构建。
-
-## Relay 是什么
-
-Relay 把复杂的本地准备工作收拢到一个可检查的流程中：检测或安装 ComfyUI 与 MiniMax H3 组件，管理项目和素材，确定性编译 T2V、FL2VA、Ref2VA 及分段工作流，并在 ComfyUI 中打开本次可编辑工作流。
+Relay 是面向 Windows 10 / 11 x64 的本地安装配置器、项目与素材管理器，
+也是 MiniMax H3 的确定性 ComfyUI 工作流编译器。它把环境检测、受管组件
+安装、项目准备、工作流校验和 ComfyUI 交接组织在一个可检查的流程中。
 
 ```text
 项目与素材  →  Relay 确定性编译  →  ComfyUI 可编辑工作流
 ```
 
-交接后的工作流在 ComfyUI 中保持可编辑，可继续检查节点、提示词、素材、模型、种子与输出设置。
-
-## 核心工作区
-
-| 工作区 | 用途 |
+| 工作区 | 功能 |
 | --- | --- |
-| **项目** | 新建、打开、复制、安全删除和恢复本地项目。 |
-| **快速创建** | 以最少参数编译 T2V、FL2VA 或 Ref2VA 工作流。 |
-| **专业导播** | 管理场景、镜头、素材关系、连续性、种子与分段工作流。 |
-| **素材库** | 显式导入本地图片、视频和音频；默认复制到项目，不上传云端或修改源文件。 |
-| **ComfyUI 结果发现（已生成视频）** | 发现当前项目已完成写盘的 ComfyUI 输出，也可由用户手动补录旧输出。 |
-| **安装与组件** | 检测并复用现有 ComfyUI / 模型，或在用户选定的数据目录中安装缺失组件。 |
-| **画质超分** | 功能规划中；当前不提供未实现按钮或伪功能。 |
+| 项目 | 新建、打开、复制、安全删除和恢复本地项目。 |
+| 快速创建 | 用精简参数编译 T2V、FL2VA 或 Ref2VA 工作流。 |
+| 专业导播 | 管理场景、镜头、素材关系、连续性、种子和分段工作流。 |
+| 素材库 | 显式导入本地图片、视频和音频；默认复制到项目，不上传或修改源文件。 |
+| 视频成品 | 发现当前项目已稳定写盘的有界 ComfyUI 输出，并可手动补录旧输出。 |
+| 安装与组件 | 检测并复用兼容的 ComfyUI / 模型，或向选定数据目录安装缺失组件。 |
+| 画质超分 | 规划中的独立页面；当前不提供按钮或伪功能。 |
 
-## 开始使用
+## 产品边界
 
-1. 下载 [`Relay-1.0.1-x64-Setup.exe`](https://github.com/PlaTuring/Relay/releases/download/v1.0.1/Relay-1.0.1-x64-Setup.exe)。
-2. 检查下载来源和文件名，然后由你亲自运行安装程序。
-3. 首次设置时确认 Relay 数据目录。默认建议使用受支持的本机固定 NTFS 数据盘，例如 `D:\MiniMaxH3`。
-4. 复用已有 ComfyUI / 模型，或在“安装与组件”中安装缺失的必需项。
-5. 在快速创建或专业导播中编译，并在 ComfyUI 中检查本次工作流。
+Relay 只负责安装、检测、配置、项目与素材管理、确定性工作流编译及交接。
+它的交付止于可检查、可继续编辑的 ComfyUI 工作流；模型推理与媒体产出始终
+由 ComfyUI 中的 MiniMax H3 在用户明确发起后完成。
 
-本版本只提供 Setup 安装包，不提供 Portable。安装版默认创建桌面和开始菜单快捷方式。GitHub 自动生成的 Source code 压缩包不是 Relay 安装包。
+编译得到的工作流保持可编辑，可以在 ComfyUI 中检查节点、提示词、素材、
+模型、种子和输出设置。Relay 不提供云端推理后端，也不会把项目、素材或
+提示词隐藏上传到云端。
 
-### 安装包完整性
+## 安装与本地数据
+
+正式安装包位于 [GitHub Releases](https://github.com/PlaTuring/Relay/releases)。
+GitHub 自动生成的 Source code 压缩包是源码快照，不是 Windows 安装程序。
+
+Relay 将项目、素材、模型、工作流、恢复数据、下载和日志保存在选定的
+`dataRoot` 中。首次配置默认建议使用受支持的本机固定 NTFS 数据盘，例如
+`D:\MiniMaxH3`；没有合格数据盘时不会静默把大型数据写回 C 盘。Electron
+用户目录只保存小型数据目录指针和无法避免的运行缓存。
+
+ComfyUI 完成 `SaveVideo` 写盘后，Relay 只扫描当前项目已交接工作流的安全
+输出前缀。文件通过稳定性、类型、摘要和媒体检查后才出现在“视频成品”中。
+只有显式选择“加入素材库”才会复制并校验项目副本，原始输出保持不变。
+
+## 从源码构建
+
+运行 JavaScript/TypeScript 测试需要 Windows 10 / 11 x64、Node.js 24 或更高
+版本，以及 npm。完整 `build:product` 还会从源码构建本机 helper，因此必须安装
+Visual Studio Build Tools 2022，并提供仓库当前锁定的 MSVC toolset
+`14.44.35207`（编译器 `19.44.35228`）及 Windows SDK `10.0.26100.0`；构建脚本
+会校验这些固定版本，不会静默改用其他工具链。
 
 ```powershell
-Get-FileHash .\Relay-1.0.1-x64-Setup.exe -Algorithm SHA256
+npm --prefix apps/control-plane ci
+node apps/control-plane/node_modules/electron/install.js
+npm --prefix apps/control-plane run typecheck
+npm test
+npm run verify:oss
 ```
 
-预期 SHA-256：
+`electron/install.js` 只下载 `package-lock.json` 已锁定版本的 Electron 开发运行时；
+必须在进入断网测试前执行，否则全新检出尚不存在 `electron.exe`，UI 冒烟会按
+“运行时缺失”失败。它不会下载或安装 ComfyUI、模型或媒体生成组件。
 
-```text
-0b7d39cfb7edec8804e6cca25c712500748a0654a8b33458e9480a15af09db30
+具备上述锁定 C++ 工具链后，再执行完整产品构建：
+
+```powershell
+npm run build:product
 ```
 
-## 本地数据与生成结果
+专项供应链检查：
 
-项目、素材、模型、工作流、恢复数据、下载与日志保存在用户选择的 `dataRoot` 下。Electron 用户目录只保留很小的数据目录指针及不可避免的运行缓存。
+```powershell
+npm --prefix apps/control-plane run licenses:source
+npm --prefix apps/control-plane run sbom:source
+npm --prefix apps/control-plane run verify:offline -- --source-only
+```
 
-Relay 1.0.1 会为当前项目和工作流写入不含项目名、提示词或本机路径的安全输出前缀，并扫描已稳定写盘的 `SaveVideo` 输出。通过本地检查的视频会显示在“已生成视频”中。
+打包流程还会校验冻结的输入清单和额外资源。版本化发布目录必须预先不存在；
+冻结完成后只允许本次请求的 Setup/Portable 文件与 `SHA256SUMS.txt`。本地
+`release-v*/`、`.build-cache/`、原生二进制、`.relayproj`、模型和媒体文件均
+不得进入源码提交。去掉 `--source-only` 的完整离线发布门禁还要求同一候选的
+安装、快捷方式、启动与卸载验证证据，因此不属于普通源码检出后的开发检查。
 
-旧版通用前缀、自定义 ComfyUI 输出目录或用户改名的视频需要手动补录。只有用户明确点击“加入素材库”后，Relay 才会复制并校验项目副本；ComfyUI 原始输出保持不变。
+## 贡献与安全
 
-## 更新机制
+- [贡献指南](CONTRIBUTING.md)
+- [安全报告](SECURITY.md)
+- [行为准则](CODE_OF_CONDUCT.md)
+- [第三方组件与分发边界](THIRD_PARTY_NOTICES.md)
 
-“关于”页面只在用户主动点击后匿名读取 `PlaTuring/Relay` 的公开 Stable Release。Relay 只接受严格稳定 SemVer、唯一匹配的 Setup 资产、有效长度和 GitHub SHA-256 摘要；候选不合格时会准确失败，不回退到较旧版本。
+漏洞请通过仓库的私有安全报告渠道提交，不要在公开 issue 中附带凭据、完整
+提示词、项目文件、用户名或私有绝对路径。
 
-发现更高稳定版本时会显示“下载并安装”。只有用户明确点击后，Relay 才会下载并再次验证受管 Setup，然后启动可见的 Windows 安装界面；不后台检查、不静默安装，也不把下载权限扩展到其他文件或组件。
+## 许可证
 
-## 兼容性说明
+有权由 Relay 贡献者许可的原创源码、文档、测试和资产采用
+[Apache License 2.0](LICENSE)。各 `package.json` 继续保留 `private: true`，
+这是阻止误发 npm 包的发布保护，不会把仓库改成闭源，也不改变 Apache-2.0
+授予的源码权利。
 
-MiniMax H3、ComfyUI 和 Comfy-Org 名称仅用于说明兼容对象；相关模型、许可与使用限制以各自官方内容为准。
+第三方依赖、模型、上游模板、名称和商标继续受各自条款约束，不会因 Relay
+采用 Apache-2.0 而被重新许可。About 使用的发布者标识已在
+[第三方说明](THIRD_PARTY_NOTICES.md) 中按精确文件与 SHA-256 单独记录，只获准
+随未修改 Relay 分发，不属于 Apache-2.0。未获确认的外部组件或资产不会进入
+公开源码或安装包；发布前仍须检查 [外部门禁](docs/EXTERNAL_GATES.md) 和
+[风险登记](docs/RISK_REGISTER.md)。
 
-Relay Logo 与品牌用于软件界面和项目介绍。
+## 非官方关系
 
----
-
-<p align="center">本仓库用于 Relay 的产品介绍与官方二进制 Release。</p>
-
+MiniMax H3、ComfyUI、Comfy-Org、Windows 及其他名称仅用于描述兼容对象。
+Relay 是独立的第三方工具，不是 MiniMax、ComfyUI、Comfy-Org、Microsoft
+或相关上游项目的官方产品，也不因技术兼容而获得其赞助或认可。

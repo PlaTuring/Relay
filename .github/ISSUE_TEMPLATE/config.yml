@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 私密安全问题
+    url: https://github.com/PlaTuring/Relay/security/advisories/new
+    about: 请通过 GitHub 私密安全报告渠道提交，不要创建公开 issue。

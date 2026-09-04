@@ -1,0 +1,1 @@
+{"fixture_version":"1.0.0","fixture_id":"ui-found-direct-reuse","target":"ui_copy","entry":{"copy_id":"hostile-found-reuse","surface":"model_reuse_summary","locale":"zh-CN","text":"已发现模型，可直接复用。","context":{"model_state":"found"}},"expected":{"code":"TERM.UI.MODEL_STATE_PROMOTION","rule_id":"terminology.ui.model_found_not_approved"}}

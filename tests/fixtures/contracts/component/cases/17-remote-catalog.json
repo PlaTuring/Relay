@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"remote-catalog-policy","base":"valid/component-role-examples.json","mutations":[{"op":"replace","path":"/catalog_binding/remote_catalog_policy","value":"allowed"}],"expected":{"code":"COMPONENT.REMOTE_CATALOG_FORBIDDEN","instance_path":"/catalog_binding/remote_catalog_policy","rule_id":"component.catalog.embedded_only"}}

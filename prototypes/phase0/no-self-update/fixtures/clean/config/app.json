@@ -1,0 +1,6 @@
+{
+  "catalogMode": "embedded",
+  "catalogResource": "resources/component-catalog.json",
+  "newVersionInstallMode": "manual-signed-installer",
+  "telemetry": false
+}

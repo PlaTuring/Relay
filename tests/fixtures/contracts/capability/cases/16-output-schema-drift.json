@@ -1,0 +1,7 @@
+{
+  "fixture_case_version": "1.0.0",
+  "case_id": "same-class-output-schema-drift",
+  "base": "valid/alpha0-local-node-allowlist.json",
+  "mutations": [{"op": "replace", "path": "/entries/0/schema_fingerprints/output_schema_sha256", "value": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"}],
+  "expected": {"code": "NODE.OUTPUT_SCHEMA_DRIFT", "instance_path": "/entries/0/schema_fingerprints/output_schema_sha256", "rule_id": "node.identity.output_schema_exact"}
+}

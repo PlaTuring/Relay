@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"poc-pending-cannot-be-public","mutations":[{"op":"replace","path":"/records/2/eligibility/public_claim_eligible","value":true}],"expected":{"code":"CLAIM.PUBLIC_REQUIRES_PROVEN_OR_EXPERIMENTAL","instance_path":"/records/2/evidence/level","rule_id":"claim.eligibility.public.level"}}

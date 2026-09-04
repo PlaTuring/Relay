@@ -1,0 +1,419 @@
+[
+  {
+    "fixture_case_version": 1,
+    "case_id": "hardware-integrity-precedes-shape",
+    "kind": "mutation",
+    "base": "hardware-report-resolved.json",
+    "mutations": [
+      {
+        "op": "add",
+        "path": "/unexpected_root",
+        "value": true
+      }
+    ],
+    "refresh_integrity": false,
+    "expected": {
+      "code": "CONTRACT.INTEGRITY_MISMATCH",
+      "instance_path": "/integrity/content_sha256",
+      "rule_id": "contract.integrity.root_content_sha256"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "hardware-closed-root",
+    "kind": "mutation",
+    "base": "hardware-report-resolved.json",
+    "mutations": [
+      {
+        "op": "add",
+        "path": "/unexpected_root",
+        "value": true
+      }
+    ],
+    "expected": {
+      "code": "CONTRACT.UNKNOWN_FIELD",
+      "instance_path": "/unexpected_root",
+      "rule_id": "hardware.root.closed"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "hardware-no-official-vram-claim",
+    "kind": "mutation",
+    "base": "hardware-report-resolved.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/authority/official_minimum_vram_claim",
+        "value": "official_supported_16gb"
+      }
+    ],
+    "expected": {
+      "code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "instance_path": "/authority/official_minimum_vram_claim",
+      "rule_id": "hardware.authority.official_minimum_vram_claim"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "hardware-no-official-support-status",
+    "kind": "mutation",
+    "base": "hardware-report-resolved.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/resolutions/gpus/0/support_status",
+        "value": "official_supported"
+      }
+    ],
+    "expected": {
+      "code": "CONTRACT.UNKNOWN_ENUM",
+      "instance_path": "/resolutions/gpus/0/support_status",
+      "rule_id": "hardware.gpu_resolution.resolved.support_status"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "hardware-unknown-source-kind",
+    "kind": "mutation",
+    "base": "hardware-report-resolved.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/sources/1/source_kind",
+        "value": "dxgi"
+      }
+    ],
+    "expected": {
+      "code": "CONTRACT.UNKNOWN_ENUM",
+      "instance_path": "/sources/1/source_kind",
+      "rule_id": "hardware.source.source_kind"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "hardware-source-tier-mismatch",
+    "kind": "mutation",
+    "base": "hardware-report-resolved.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/sources/1/source_tier",
+        "value": "fallback_wmi"
+      }
+    ],
+    "expected": {
+      "code": "HARDWARE.SOURCE_TIER_MISMATCH",
+      "instance_path": "/sources/1/source_tier",
+      "rule_id": "hardware.source.kind_tier_exact"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "hardware-source-confidence-insufficient",
+    "kind": "mutation",
+    "base": "hardware-report-resolved.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/sources/1/confidence_basis_points",
+        "value": 5000
+      },
+      {
+        "op": "replace",
+        "path": "/resolutions/gpus/0/confidence_basis_points",
+        "value": 5000
+      }
+    ],
+    "expected": {
+      "code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "instance_path": "/resolutions/gpus/0/confidence_basis_points",
+      "rule_id": "hardware.gpu_resolution.resolved.confidence"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "hardware-stale-selected-source",
+    "kind": "mutation",
+    "base": "hardware-report-resolved.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/sources/1/observed_at_utc",
+        "value": "2025-12-31T23:58:00Z"
+      },
+      {
+        "op": "replace",
+        "path": "/sources/1/freshness_status",
+        "value": "stale"
+      },
+      {
+        "op": "replace",
+        "path": "/freshness/status",
+        "value": "mixed"
+      },
+      {
+        "op": "add",
+        "path": "/freshness/stale_source_ids/-",
+        "value": "source-nvml"
+      }
+    ],
+    "expected": {
+      "code": "HARDWARE.SOURCE_STALE",
+      "instance_path": "/resolutions/gpus/0/source_ids",
+      "rule_id": "hardware.resolution.fresh_sources_required"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "hardware-aggregate-freshness-mismatch",
+    "kind": "mutation",
+    "base": "hardware-report-resolved.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/freshness/status",
+        "value": "stale"
+      }
+    ],
+    "expected": {
+      "code": "HARDWARE.FRESHNESS_MISMATCH",
+      "instance_path": "/freshness/status",
+      "rule_id": "hardware.freshness.aggregate_exact"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "hardware-resolution-value-mismatch",
+    "kind": "mutation",
+    "base": "hardware-report-resolved.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/resolutions/gpus/0/vram_bytes",
+        "value": 8589934592
+      }
+    ],
+    "expected": {
+      "code": "HARDWARE.RESOLUTION_VALUE_MISMATCH",
+      "instance_path": "/resolutions/gpus/0/vram_bytes",
+      "rule_id": "hardware.gpu_resolution.values_exact"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "hardware-wmi-only-cannot-resolve",
+    "kind": "mutation",
+    "base": "hardware-report-wmi-only.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/resolutions/gpus/0",
+        "value": {
+          "kind": "resolved",
+          "subject_id": "gpu-b",
+          "source_ids": [
+            "source-wmi"
+          ],
+          "confidence_basis_points": 2500,
+          "vendor": "nvidia",
+          "product_name": "Synthetic GPU B",
+          "architecture": "unknown",
+          "compute_capability": {
+            "major": 0,
+            "minor": 0
+          },
+          "driver_version": "600.00",
+          "vram_bytes": 4294967296,
+          "support_status": "observation_only",
+          "recipe_gate": "eligible_for_separate_exact_recipe_resolution",
+          "selection_authority": "none_observation_only"
+        }
+      }
+    ],
+    "expected": {
+      "code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "instance_path": "/resolutions/gpus/0/confidence_basis_points",
+      "rule_id": "hardware.gpu_resolution.resolved.confidence"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "hardware-vram-conflict-falsely-resolved",
+    "kind": "mutation",
+    "base": "hardware-report-vram-conflict.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/resolutions/gpus/0",
+        "value": {
+          "kind": "resolved",
+          "subject_id": "gpu-c",
+          "source_ids": [
+            "source-nvml"
+          ],
+          "confidence_basis_points": 10000,
+          "vendor": "nvidia",
+          "product_name": "Synthetic GPU C",
+          "architecture": "synthetic_arch",
+          "compute_capability": {
+            "major": 1,
+            "minor": 0
+          },
+          "driver_version": "600.00",
+          "vram_bytes": 17179869184,
+          "support_status": "observation_only",
+          "recipe_gate": "eligible_for_separate_exact_recipe_resolution",
+          "selection_authority": "none_observation_only"
+        }
+      }
+    ],
+    "expected": {
+      "code": "HARDWARE.VRAM_CONFLICT",
+      "instance_path": "/resolutions/gpus/0",
+      "rule_id": "hardware.vram_conflict.fail_closed"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "hardware-vram-conflict-record-required",
+    "kind": "mutation",
+    "base": "hardware-report-vram-conflict.json",
+    "mutations": [
+      {
+        "op": "remove",
+        "path": "/conflicts/0"
+      }
+    ],
+    "expected": [
+      {
+        "code": "HARDWARE.CONFLICT_REQUIRED",
+        "instance_path": "/resolutions/gpus/0",
+        "rule_id": "hardware.vram_conflict.record_required"
+      },
+      {
+        "code": "HARDWARE.CONFLICT_REFERENCE_UNKNOWN",
+        "instance_path": "/resolutions/gpus/0/conflict_ids",
+        "rule_id": "hardware.conflict.reference_exists"
+      }
+    ]
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "hardware-fat32-volume-not-eligible",
+    "kind": "mutation",
+    "base": "hardware-report-resolved.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/sources/0/observations/1/filesystem",
+        "value": "fat32"
+      },
+      {
+        "op": "replace",
+        "path": "/resolutions/volumes/0/filesystem",
+        "value": "fat32"
+      }
+    ],
+    "expected": {
+      "code": "HARDWARE.VOLUME_GATE_INVALID",
+      "instance_path": "/resolutions/volumes/0/managed_root_gate",
+      "rule_id": "hardware.volume.eligibility_exact"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "hardware-volume-free-above-capacity",
+    "kind": "mutation",
+    "base": "hardware-report-resolved.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/sources/0/observations/1/free_bytes",
+        "value": 2199023255552
+      },
+      {
+        "op": "replace",
+        "path": "/resolutions/volumes/0/free_bytes",
+        "value": 2199023255552
+      }
+    ],
+    "expected": {
+      "code": "HARDWARE.VOLUME_CAPACITY_INVALID",
+      "instance_path": "/resolutions/volumes/0/free_bytes",
+      "rule_id": "hardware.volume.free_not_above_capacity"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "hardware-invalid-calendar-timestamp",
+    "kind": "mutation",
+    "base": "hardware-report-resolved.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/observed_at_utc",
+        "value": "2026-02-30T00:00:00.000Z"
+      }
+    ],
+    "expected": {
+      "code": "HARDWARE.SCHEMA_CONSTRAINT",
+      "instance_path": "/observed_at_utc",
+      "rule_id": "hardware.type.utc_date_time_ms"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "hardware-closed-observation",
+    "kind": "mutation",
+    "base": "hardware-report-resolved.json",
+    "mutations": [
+      {
+        "op": "add",
+        "path": "/sources/1/observations/0/hardware_id",
+        "value": "synthetic-private-id"
+      }
+    ],
+    "expected": {
+      "code": "CONTRACT.UNKNOWN_FIELD",
+      "instance_path": "/sources/1/observations/0/hardware_id",
+      "rule_id": "hardware.gpu_observation.closed"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "hardware-duplicate-source-id",
+    "kind": "mutation",
+    "base": "hardware-report-resolved.json",
+    "mutations": [
+      {
+        "op": "copy",
+        "from": "/sources/1",
+        "path": "/sources/-"
+      }
+    ],
+    "expected": {
+      "code": "HARDWARE.DUPLICATE_SOURCE_ID",
+      "instance_path": "/sources/4/source_id",
+      "rule_id": "hardware.source.id_unique"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "hardware-host-resolution-mismatch",
+    "kind": "mutation",
+    "base": "hardware-report-resolved.json",
+    "mutations": [
+      {
+        "op": "replace",
+        "path": "/resolutions/host/system_ram_bytes",
+        "value": 17179869184
+      }
+    ],
+    "expected": {
+      "code": "HARDWARE.RESOLUTION_VALUE_MISMATCH",
+      "instance_path": "/resolutions/host/system_ram_bytes",
+      "rule_id": "hardware.host_resolution.values_exact"
+    }
+  }
+]

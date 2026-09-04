@@ -1,0 +1,8 @@
+{
+  "fixture_id": "brand-absence-removes-h3-preserve",
+  "mutation": {
+    "kind": "remove_brand_preserve",
+    "layer_id": "minimax_h3_attribution"
+  },
+  "expected_code": "BRAND_ABSENCE.PRESERVE_SET"
+}

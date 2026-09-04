@@ -1,0 +1,9 @@
+{
+  "fixture_id": "attribution-substitutes-file-identifier",
+  "mutation": {
+    "kind": "append_obligation_substitution",
+    "obligation_id": "file_ai_generation_identifier",
+    "layer_id": "minimax_h3_attribution"
+  },
+  "expected_code": "LICENSE_POLICY.OBLIGATION_SUBSTITUTION_FORBIDDEN"
+}

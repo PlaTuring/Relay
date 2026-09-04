@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"auto-handoff-queue","base":"valid/alpha0-poc-pending-recipe.json","mutations":[{"op":"replace","path":"/profile/control_plane/workflow_handoff","value":"auto_submit_prompt"}],"expected":{"code":"RECIPE.AUTO_PROMPT_FORBIDDEN","instance_path":"/profile/control_plane/workflow_handoff","rule_id":"recipe.control.user_run_required"}}

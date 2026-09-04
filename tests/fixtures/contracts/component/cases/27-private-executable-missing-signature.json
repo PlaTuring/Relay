@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"private-executable-requires-signature","base":"valid/component-role-examples.json","mutations":[{"op":"remove","path":"/components/4/signature"}],"expected":{"code":"COMPONENT.PRIVATE_EXECUTABLE_SIGNATURE_REQUIRED","instance_path":"/components/4/signature","rule_id":"component.role.private_executable_signature"}}

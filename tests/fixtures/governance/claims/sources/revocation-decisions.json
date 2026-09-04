@@ -1,0 +1,18 @@
+{
+  "source_document_version": "1.0.0",
+  "source_id": "SRC-SYNTH-REVOCATION-DECISIONS",
+  "source_kind": "revocation_decision_pack",
+  "publisher": "synthetic-governance-fixture",
+  "immutable_revision": "fixture:revocation-decisions-r1",
+  "revocations": [
+    {
+      "decision_id": "DEC-SYNTH-CLAIM-REVOKED",
+      "claim_id": "CLAIM-SYNTH-PROVEN-REVOKED",
+      "action": "revoke",
+      "owner_type": "human_owner",
+      "effective_at_utc": "2026-08-27T10:00:00.000Z",
+      "downgrade_to": "poc_pending",
+      "reason_code": "synthetic_source_withdrawn"
+    }
+  ]
+}

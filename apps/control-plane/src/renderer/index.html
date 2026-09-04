@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; worker-src 'none'">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Relay</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/relay-logo.svg">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div id="app-shell" class="app-shell" data-ready="false" data-setup-complete="false">
+      <header class="app-header">
+        <div class="app-header__inner">
+          <div class="brand-lockup" aria-label="Relay">
+            <img class="brand-logo" src="./assets/relay-logo.svg" alt="" aria-hidden="true" draggable="false">
+            <span class="brand-copy"><strong id="brand-name">正在载入…</strong><small id="header-version">正在载入…</small></span>
+          </div>
+          <div class="header-context" aria-hidden="true"><span>本地工作区</span><strong>MiniMax H3 / ComfyUI</strong></div>
+          <details class="header-utilities">
+            <summary aria-label="打开应用菜单" title="应用菜单"><span aria-hidden="true">•••</span><span>菜单</span></summary>
+            <div class="header-utilities__panel">
+              <div class="adapter-pill" id="adapter-pill" aria-label="本机服务状态" title="表示安装服务与工作流编译服务可用；不代表模型或 ComfyUI 已安装完成。"><span class="adapter-dot" aria-hidden="true"></span><span id="adapter-label">正在检查本机服务…</span></div>
+              <div id="theme-switcher" class="theme-switcher" role="group" aria-label="界面主题"><button class="theme-choice" type="button" data-theme-choice="light" aria-pressed="false" title="切换到浅色主题"><span aria-hidden="true">☼</span>浅色</button><button class="theme-choice" type="button" data-theme-choice="dark" aria-pressed="true" title="切换到深色主题"><span aria-hidden="true">◐</span>深色</button></div>
+              <button id="component-settings-button" class="header-settings" type="button" data-view-target="install" hidden aria-label="打开安装与组件管理" title="安装与组件"><span aria-hidden="true">⚙</span>安装与组件</button>
+            </div>
+          </details>
+        </div>
+      </header>
+
+      <aside class="tool-sidebar" aria-label="工作区工具栏">
+        <nav id="main-navigation" class="main-navigation" aria-label="应用页面" hidden>
+          <button class="header-tab is-active" type="button" data-view-target="home" aria-label="项目中心" aria-current="page" title="项目中心"><span class="tool-icon" aria-hidden="true">⌂</span><span class="tool-label">项目</span></button>
+          <button class="header-tab" type="button" data-view-target="project" aria-label="快速创建工作流" title="快速创建工作流"><span class="tool-icon" aria-hidden="true">◇</span><span class="tool-label">快速创建</span></button>
+          <button class="header-tab" type="button" data-view-target="director" aria-label="专业导播" title="专业导播"><span class="tool-icon" aria-hidden="true">▦</span><span class="tool-label">专业导播</span></button>
+          <button class="header-tab" type="button" data-view-target="assets" aria-label="项目素材库" title="项目素材库"><span class="tool-icon" aria-hidden="true">▧</span><span class="tool-label">素材库</span></button>
+          <button class="header-tab" type="button" data-view-target="generated" aria-label="当前项目已生成视频" title="视频成品"><span class="tool-icon" aria-hidden="true">▶</span><span class="tool-label">视频成品</span></button>
+          <button class="header-tab" type="button" data-view-target="upscale" aria-label="画质超分" title="画质超分"><span class="tool-icon" aria-hidden="true">⌁</span><span class="tool-label">画质超分</span></button>
+        </nav>
+        <nav class="main-navigation main-navigation--secondary" aria-label="软件信息">
+          <button class="header-tab" type="button" data-view-target="about" aria-label="关于 Relay" title="关于 Relay"><span class="tool-icon tool-icon--info" aria-hidden="true">i</span><span class="tool-label">关于</span></button>
+        </nav>
+        <div class="tool-sidebar__footer" aria-hidden="true"><span></span><small>LOCAL</small></div>
+      </aside>
+
+      <div id="global-status" class="sr-only" role="status" aria-live="polite"></div>
+      <main class="workspace" id="main-content" tabindex="-1">
+        <section class="view is-active" id="view-install" data-view="install" aria-labelledby="install-title">
+          <div class="page-container page-container--setup">
+            <header class="page-heading">
+              <div><p class="eyebrow">本机准备</p><h1 id="install-title">检查并准备本机环境</h1><p>首次配置或保存路径失效时才重新检测；已复核的配置会直接恢复。</p></div>
+              <ol class="setup-steps" aria-label="设置进度">
+                <li id="setup-marker-location" class="is-current"><span>1</span>位置确认</li>
+                <li id="setup-marker-components"><span>2</span>确认与安装</li>
+                <li id="setup-marker-complete"><span>3</span>完成</li>
+              </ol>
+            </header>
+
+            <form id="install-form" novalidate>
+              <section id="setup-location-step" class="surface setup-panel setup-state empty-state-shell" aria-labelledby="location-title">
+                <div class="section-heading setup-state__intro empty-state-shell__intro">
+                  <span class="setup-state__mark empty-state-shell__mark" aria-hidden="true">⌕</span>
+                  <div><h2 id="location-title">检测本机 ComfyUI 与 H3 环境</h2><p>Relay 会先复核保存配置；仅在缺失或路径变化时需要你重新选择。</p></div>
+                  <span id="scan-state-badge" class="status-badge">准备检测</span>
+                </div>
+                <div id="scan-activity" class="scan-activity" role="status" aria-live="polite" hidden><span class="spinner" aria-hidden="true"></span><div><strong id="scan-activity-title">正在读取硬件信息</strong><small id="scan-elapsed">已用 0 秒</small></div></div>
+
+                <section id="managed-root-section" class="managed-root" aria-labelledby="managed-root-title" hidden>
+                  <div class="managed-root__heading"><div><h3 id="managed-root-title">将安装到</h3><p>未检测到可复用环境时，Relay 会在这个受管目录准备 ComfyUI、H3 模型和下载缓存。</p></div><span class="status-badge">默认 D 盘</span></div>
+                  <div class="field"><label class="field-label" for="install-root">受管安装与数据目录</label><div class="path-control"><input id="install-root" name="installRoot" type="text" value="D:\MiniMaxH3" spellcheck="false" autocomplete="off" aria-describedby="install-root-hint"><button id="browse-install-root" class="button button--secondary" type="button" aria-label="更改 Relay 统一受管根目录">更改…</button></div><small id="install-root-hint">不操作时就使用上方目录；也可以改为其他本机固定 NTFS 数据盘。不会静默回退到 C 盘。</small></div>
+                  <details class="managed-tree-details"><summary>将创建哪些目录</summary><div class="managed-tree" aria-label="受管根目录结构"><code><b>统一受管根</b><span>runtime\ComfyUI_windows_portable\ <em>ComfyUI 本地运行环境</em></span><span>runtime\ComfyUI_windows_portable\ComfyUI\models\ <em>H3 模型</em></span><span>downloads\ <em>下载缓存</em></span><span>.minimax-h3\ <em>安装状态、清单与暂存</em></span></code><p>安装器只管理这里新建并登记的文件；不会移动、覆盖或删除外部模型。</p></div></details>
+                </section>
+
+                <details id="existing-environment-reuse" class="existing-environment-reuse">
+                  <summary><span><strong>已有 ComfyUI 或 H3？</strong><small id="existing-environment-reuse-summary">未发现可复用环境；无需选择，Relay 将使用上方受管目录。</small></span><span class="existing-environment-reuse__action">复用现有环境</span></summary>
+                  <div id="location-results" class="location-grid" hidden>
+                    <article class="location-card" id="comfy-location-card">
+                      <header><div><span class="location-icon" aria-hidden="true">C</span><span><strong>现有 ComfyUI</strong><small id="comfy-location-source">检测来源：—</small></span></div><span id="comfy-location-state" class="location-state">未检测</span></header>
+                      <input id="existing-comfy-root" name="comfyUiRoot" type="hidden" value="">
+                      <div class="location-selection"><span id="comfy-location-selection">未选择外部 ComfyUI；将使用受管环境。</span><button id="browse-existing-comfy-root" class="button button--secondary" type="button" aria-label="选择要只读复用的现有 ComfyUI 根目录">选择已有 ComfyUI…</button></div>
+                      <p>可选、只读复用：不会移动、覆盖或执行该实例中的未知自定义节点。</p>
+                    </article>
+                    <article class="location-card" id="model-location-card">
+                      <header><div><span class="location-icon" aria-hidden="true">H3</span><span><strong>现有 H3 模型</strong><small id="model-location-source">检测来源：—</small></span></div><span id="model-location-state" class="location-state">未检测</span></header>
+                      <input id="existing-model-root" name="modelRoot" type="hidden" value="">
+                      <div class="location-selection"><span id="model-location-selection">未选择外部模型目录；将安装到受管环境。</span><button id="browse-existing-model-root" class="button button--secondary" type="button" aria-label="选择要校验并复用的现有 H3 模型目录">选择已有模型…</button></div>
+                      <p>可选复用只建立候选关系；模型会在安装前执行完整长度与 SHA-256 校验。</p>
+                    </article>
+                  </div>
+                </details>
+
+                <output id="scan-error" class="inline-message inline-message--error" role="alert" hidden></output>
+                <div id="scan-actions" class="panel-actions panel-actions--end" hidden><span class="scan-action-note">路径更改后请重新检测。</span><button id="scan-button" class="button button--primary" type="submit"><span class="button-label">重新检测</span><span aria-hidden="true">↻</span></button></div>
+              </section>
+
+              <div id="scan-results" class="setup-results" hidden>
+                <section class="surface setup-panel" aria-labelledby="components-title">
+                  <div class="section-heading"><div><h2 id="components-title">环境处理计划</h2><p id="components-description">已有项目优先复用；只处理当前缺失或待校验的组件。</p></div></div>
+                  <div class="summary-strip" aria-label="扫描摘要"><div><span>已验证复用</span><strong id="reuse-size">0 GB</strong></div><div><span>已发现待校验</span><strong id="pending-size">0 GB</strong></div><div><span>需要下载</span><strong id="download-size">0 GB</strong></div><div><span>现有环境</span><strong>只读复用</strong></div></div>
+                  <details class="system-details"><summary>查看本机检测结果</summary><dl class="system-grid"><div><dt>Windows</dt><dd id="system-windows">—</dd></div><div><dt>显卡</dt><dd id="system-gpu">—</dd></div><div><dt>内存</dt><dd id="system-memory">—</dd></div><div><dt>目标卷</dt><dd id="system-volume">—</dd></div></dl></details>
+                  <div class="component-heading"><div><h3>组件清单</h3><p>必需组件已固定并排在前面；Turbo、Ref2VA 与 FFmpeg 可按需选择。</p></div><div class="legend" aria-label="组件状态图例"><span><i class="legend-dot legend-dot--reuse"></i>已验证复用</span><span><i class="legend-dot legend-dot--found"></i>已发现，安装前校验</span><span><i class="legend-dot legend-dot--download"></i>需下载</span></div></div>
+                  <div id="component-list" class="component-list" aria-live="polite"></div>
+                </section>
+
+                <section class="surface setup-panel" aria-labelledby="installation-title">
+                  <div class="section-heading"><div><h2 id="installation-title">应用本机配置</h2><p id="installation-description">Relay 将按上方清单完成所需处理，并持续显示真实状态。</p></div></div>
+                  <output id="prepare-status" class="inline-message" role="status" aria-live="polite" hidden></output>
+                  <section id="installation-progress" class="installation-progress" aria-labelledby="installation-progress-title" hidden>
+                    <div class="progress-heading"><div><h3 id="installation-progress-title">等待开始</h3><p id="installation-progress-message">尚未启动安装事务。</p><p id="installation-transfer-metrics" class="installation-transfer-metrics" aria-live="polite" hidden></p></div><strong id="installation-progress-percent">0%</strong></div>
+                    <div class="progress-track" role="progressbar" aria-label="安装进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="installation-progress-bar"></span></div>
+                    <ol id="installation-step-list" class="installation-step-list"><li data-install-step="reuse"><span></span>复用现有组件</li><li data-install-step="download"><span></span>下载缺失文件</li><li data-install-step="verify"><span></span>校验长度与 SHA-256</li><li data-install-step="extract"><span></span>安全解压与物化</li><li data-install-step="configure"><span></span>配置运行环境</li><li data-install-step="recover"><span></span>失败恢复</li></ol>
+                    <div class="installation-actions"><small id="installation-id-display"></small><button id="cancel-installation-button" class="button button--secondary button--small" type="button" disabled>取消安装</button></div>
+                  </section>
+                  <div class="panel-actions panel-actions--between"><p class="action-note"><strong id="installation-action-title">完成后进入项目界面</strong><span id="installation-action-note">组件配置完成前，工作流编译保持锁定。</span></p><button id="prepare-button" class="button button--primary" type="button"><span class="button-label">处理所选组件</span><span aria-hidden="true">→</span></button></div>
+                </section>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <section class="view" id="view-home" data-view="home" aria-labelledby="project-center-title" hidden>
+          <div class="page-container page-container--project-center">
+            <header class="page-heading page-heading--project-center">
+              <div><p class="eyebrow">Relay 项目</p><h1 id="project-center-title">项目中心</h1><p>从一个项目开始管理提示词、镜头、素材与已编译工作流。</p></div>
+              <button id="project-center-create" class="button button--primary" type="button"><span class="button-label">新建项目</span><span aria-hidden="true">＋</span></button>
+            </header>
+
+            <output id="project-center-status" class="project-center-status" role="status" aria-live="polite">正在读取项目与数据目录…</output>
+
+            <details class="surface data-root-panel" aria-labelledby="data-root-title">
+              <summary>
+                <div class="data-root-panel__copy">
+                  <span class="project-center-glyph" aria-hidden="true">D</span>
+                  <div><h2 id="data-root-title">Relay 数据目录</h2><p>业务数据位置，不是 Windows 的程序安装目录。</p></div>
+                </div>
+                <div class="data-root-panel__path"><small>当前目录</small><code id="project-center-data-root" tabindex="0" aria-label="Relay 数据目录尚未配置">尚未配置</code></div>
+              </summary>
+              <div class="data-root-panel__actions"><button id="project-center-open-data-root" class="button button--secondary button--small" type="button">打开目录</button><button id="project-center-change-data-root" class="button button--secondary button--small" type="button">更改…</button></div>
+            </details>
+
+            <div class="project-center-layout">
+              <section class="surface project-center-recent" aria-labelledby="recent-projects-title">
+                <header class="project-center-section-heading"><div><p class="eyebrow">继续工作</p><h2 id="recent-projects-title">项目</h2><p>选择项目后继续编辑，最近使用的项目排在前面。</p></div></header>
+                <div id="project-center-recent-list" class="project-center-list" role="list" aria-live="polite"></div>
+                <div id="project-center-recent-empty" class="project-center-empty empty-state-shell"><span class="empty-state-shell__mark" aria-hidden="true">R</span><strong>还没有 Relay 项目</strong><p>新建项目后，可选择快速创建或专业导播继续工作。</p></div>
+              </section>
+
+              <details class="surface project-center-maintenance" aria-labelledby="project-maintenance-title">
+                <summary><span><span class="eyebrow">次级操作</span><strong id="project-maintenance-title">项目管理与迁移</strong><small>导入、导出、复制、删除或恢复项目</small></span></summary>
+                <div class="project-center-maintenance__body">
+                  <p>项目包使用可校验的 <code>.relayproj</code> 格式，不包含模型、运行环境、缓存或日志。</p>
+                  <div class="project-center-maintenance__actions"><button id="project-center-import-bundle" class="button button--secondary" type="button">导入项目包…</button><button id="project-center-export-bundle" class="button button--secondary" type="button" disabled>导出项目包…</button><button id="project-center-clone" class="button button--secondary" type="button" disabled>创建项目副本</button><button id="project-center-archive" class="button button--danger" type="button" disabled>删除项目</button><button id="project-center-trash" class="button button--secondary" type="button">回收站</button></div>
+                </div>
+              </details>
+            </div>
+
+            <template id="project-center-project-template"><article class="project-center-project" role="listitem" data-project-id=""><button type="button" data-project-action="open"><span class="project-center-project__mark" aria-hidden="true">R</span><span class="project-center-project__copy"><strong data-project-name></strong><small data-project-meta></small></span><span class="project-center-project__mode" data-project-mode></span></button></article></template>
+          </div>
+        </section>
+
+        <section class="view" id="view-project" data-view="project" aria-labelledby="project-title" hidden>
+          <div class="page-container page-container--quick">
+            <header class="page-heading page-heading--project"><div><p class="eyebrow">快速创建</p><h1 id="project-title">快速创建 H3 工作流</h1><p>填写名称和提示词即可编译；逐镜头内容可继续在专业导播中编辑。</p></div><div class="project-heading-actions project-heading-actions--quick"><button id="compile-button" class="button button--primary" type="submit" form="project-form" disabled><span class="button-label">编译并在 ComfyUI 中打开</span><span aria-hidden="true">↗</span></button><span class="status-badge status-badge--success" id="plan-chip">尚未完成安装</span><p id="project-submit-status" class="project-heading-status" role="status" aria-live="polite" hidden></p><button id="project-convert-to-director" class="button button--quiet-link" type="button">切换到专业导播</button></div></header>
+            <div id="project-guard" class="notice-card" role="note"><div><strong>本机生成环境尚未准备</strong><p>你仍可编辑项目与提示词；点击编译交接时，Relay 会先引导你安装所需组件。</p></div><button class="button button--secondary" type="button" data-view-target="install">安装所需组件</button></div>
+
+            <form id="project-form" class="project-form" novalidate>
+              <section class="surface project-section project-section--brief" aria-labelledby="workflow-name-title">
+                <div class="workflow-name-block"><div class="section-heading section-heading--compact"><div><h2 id="workflow-name-title">工作流名称 <span class="required-tag">必填</span></h2></div></div><label class="sr-only" for="workflow-name">工作流名称</label><input id="workflow-name" name="workflowName" type="text" maxlength="80" placeholder="例如：雨夜中的发光纸鹤" autocomplete="off" required><p id="workflow-name-error" class="field-error" role="alert" hidden>请输入工作流名称。</p></div>
+                <div class="prompt-block"><div class="section-heading section-heading--compact"><div><h2 id="prompt-title">提示词</h2></div><span id="prompt-count" class="character-count">0 / 4000</span></div>
+                <label class="sr-only" for="project-prompt">提示词</label><textarea id="project-prompt" name="prompt" rows="5" maxlength="4000" placeholder="正在根据模式与分段方案准备中文示例…" spellcheck="true" autocomplete="off" aria-describedby="prompt-format-note prompt-timeline-advice" required></textarea><p id="prompt-error" class="field-error" role="alert" hidden>请输入提示词。</p>
+                <div id="prompt-timeline-advice" class="prompt-timeline-advice" role="status" hidden><span id="prompt-timeline-advice-text"></span><button id="apply-prompt-duration" class="button button--secondary button--small" type="button">同步总时长</button></div>
+                <p id="prompt-format-note" class="option-note">按所选模式填写官方字段；多段提示词需标明每个镜头时间点。</p></div>
+              </section>
+
+              <section class="surface project-section" aria-labelledby="mode-title">
+                <div class="section-heading section-heading--compact"><div><h2 id="mode-title">生成模式与参考帧</h2><p>选择提示词生视频，或使用首帧、尾帧作为约束。</p></div></div>
+                <fieldset class="choice-grid choice-grid--mode"><legend class="sr-only">工作流模式</legend><label class="choice-card"><input type="radio" name="mode" value="T2V" checked><span class="choice-card__check" aria-hidden="true"></span><span class="choice-card__icon" aria-hidden="true">T</span><span class="choice-card__copy"><strong>文字生成视频</strong><small>T2V · 无需参考帧</small></span></label><label class="choice-card"><input type="radio" name="mode" value="FL2VA"><span class="choice-card__check" aria-hidden="true"></span><span class="choice-card__icon" aria-hidden="true">F</span><span class="choice-card__copy"><strong>首尾帧生成视频</strong><small>FL2VA · 支持首帧、尾帧或首尾帧</small></span></label><label id="ref2va-mode-card" class="choice-card"><input type="radio" name="mode" value="REF2VA"><span class="choice-card__check" aria-hidden="true"></span><span class="choice-card__icon" aria-hidden="true">R</span><span class="choice-card__copy"><strong>参考素材生成视频</strong><small>Ref2VA · 当前工作流支持参考图片</small><em id="ref2va-mode-state" class="mode-availability">检查组件状态中</em></span></label></fieldset>
+                <div id="frame-controls" class="frame-grid"><div class="file-picker"><div class="file-picker__copy"><strong id="first-frame-label">首帧</strong><span id="first-frame-name">未选择文件</span></div><button id="choose-first-frame" class="button button--secondary button--small" type="button">选择图片</button></div><div id="last-frame-picker" class="file-picker"><div class="file-picker__copy"><strong id="last-frame-label">尾帧</strong><span id="last-frame-name">未选择文件</span></div><button id="choose-last-frame" class="button button--secondary button--small" type="button">选择图片</button></div></div><p id="frame-controls-note" class="option-note">当前为文字生成视频；切换到首尾帧或参考素材模式后可选择图片。</p>
+              </section>
+
+              <section class="surface project-section output-settings" id="output-settings" data-vram-gib="unknown" aria-labelledby="output-title">
+                <div class="section-heading section-heading--compact"><div><h2 id="output-title">时长与画布</h2><p>使用与节点参数一致的紧凑选项设置总时长、分段长度和统一输出尺寸。</p></div></div>
+                <div class="output-parameter-list">
+                  <label class="output-parameter" for="project-duration"><span class="output-parameter__label"><strong>总时长</strong><small>完整视频目标时长</small></span><select id="project-duration" name="duration" data-contract-hook="total-duration"><option value="5" selected>5 秒</option><option value="10">10 秒</option><option value="15">15 秒</option><option value="30">30 秒</option><option value="60">60 秒</option></select></label>
+                  <label class="output-parameter" for="segment-duration"><span class="output-parameter__label"><strong>单段时长</strong><small>默认 5 秒；只改变分段计划</small></span><select id="segment-duration" name="segmentDurationSeconds" data-contract-hook="segment-duration" aria-describedby="segment-recommendation segment-summary"><option value="5" selected>5 秒 / 段（默认）</option><option value="10">10 秒 / 段</option><option value="15">15 秒 / 段</option></select></label>
+                  <label class="output-parameter" for="project-canvas"><span class="output-parameter__label"><strong>画布比例</strong><small>只设置宽高比，不绑定分辨率</small></span><select id="project-canvas" name="canvas" data-contract-hook="canvas-aspect-ratios"><option value="21:9">21:9 超宽屏</option><option value="16:9">16:9 横屏</option><option value="3:2">3:2 横屏</option><option value="4:3">4:3 横屏</option><option value="1:1">1:1 方形</option><option value="3:4">3:4 竖屏</option><option value="2:3">2:3 竖屏</option><option value="9:16" selected>9:16 竖屏</option></select></label>
+                  <label class="output-parameter" for="project-resolution"><span class="output-parameter__label"><strong>分辨率 / 百万像素</strong><small id="canvas-size-summary">9:16 · 0.4 MP · 约 480 × 864 · 尺寸已对齐</small></span><select id="project-resolution" name="resolutionMegapixels" data-contract-hook="resolution-megapixels"><option value="0.2">0.2 MP</option><option value="0.3">0.3 MP</option><option value="0.4" selected>0.4 MP</option><option value="0.5">0.5 MP</option><option value="0.6">0.6 MP</option><option value="0.7">0.7 MP</option><option value="0.8">0.8 MP</option><option value="0.9">0.9 MP</option><option value="0.98">0.98 MP</option><option value="1.0">1.0 MP</option><option value="1.2">1.2 MP</option><option value="1.5">1.5 MP</option><option value="1.8">1.8 MP</option><option value="2.0">2.0 MP</option></select></label>
+                </div>
+                <div class="segment-plan" data-contract-hook="segment-plan-summary"><div><span class="segment-plan__label">分段计划</span><strong id="segment-summary" aria-live="polite">5 秒总时长 · 1 段 × 5 秒</strong></div><p id="segment-recommendation">尚未读取显存；默认 5 秒最稳妥，也可以手动选择 10 或 15 秒。</p></div>
+                <p class="option-note">总时长大于单段时长时，工作流会静态展开为多段实验链；因 ComfyUI 上游连续 H3 子图仍有已知兼容性问题，交接后请在 ComfyUI 中检查节点连接。</p>
+              </section>
+
+              <details id="advanced-options" class="surface advanced-options" data-contract-hook="h3-advanced-options">
+                <summary><span><strong>高级选项</strong><small>采样、模型与工作流技术参数</small></span><span class="summary-chevron" aria-hidden="true">⌄</span></summary>
+                <div class="advanced-options__body">
+                  <div id="advanced-contract-fields" class="advanced-fields" data-advanced-field-hook="official-h3-fields">
+                    <label class="field" for="project-seed"><span class="field-label">基础种子</span><input id="project-seed" name="seed" type="number" min="0" max="9007199254740991" step="1" value="1" inputmode="numeric" aria-describedby="seed-hint" disabled><small id="seed-hint">仅固定种子模式可编辑；随机种子会在你点击编译时由本机生成并写入历史。</small></label>
+                    <label class="field" for="seed-policy"><span class="field-label">种子策略</span><select id="seed-policy" name="seedPolicy"><option value="random_per_compile" selected>每次编译随机（推荐）</option><option value="fixed">固定种子</option></select><small>随机种子只在编译时生成；自动保存、切页和预览保持当前种子状态。</small></label>
+                    <label class="field" for="sampling-profile"><span class="field-label">采样配置</span><select id="sampling-profile" name="samplingProfile"><option value="quality_20" selected>20 步标准</option><option value="quality_25">25 步高质量</option><option value="turbo_8">8 步 Turbo</option></select><small>25 步使用相同官方基础链；Turbo 需要已安装并验证的官方 LoRA 权重。</small></label>
+                  </div>
+                  <dl class="official-capabilities" aria-label="官方固定能力"><div><dt>采样器</dt><dd id="official-sampler">—</dd></div><div><dt>调度器</dt><dd id="official-scheduler">—</dd></div><div><dt>帧率</dt><dd id="official-fps">—</dd></div><div><dt>原生音频</dt><dd id="official-native-audio">—</dd></div><div><dt>CFG / 负面提示词</dt><dd id="official-guidance-controls">—</dd></div></dl>
+                  <section class="export-section" aria-labelledby="export-title"><div><h3 id="export-title">工作流目录</h3><p>默认保存到程序 EXE 同目录下的“工作流文件”；也可以改到其他目录。</p></div><button id="choose-export-directory" class="directory-picker" type="button"><span class="directory-picker__copy"><strong>更改工作流目录</strong><small id="export-directory-name">程序同目录\工作流文件</small></span><span aria-hidden="true">›</span></button></section>
+                </div>
+              </details>
+
+            </form>
+          </div>
+        </section>
+
+        <section class="view" id="view-director" data-view="director" aria-labelledby="director-title" hidden>
+          <div class="page-container page-container--director">
+            <header class="page-heading page-heading--project director-heading">
+              <div><p class="eyebrow">本地镜头编排</p><h1 id="director-title">专业导播</h1><p>逐段管理你写好的镜头、声音和连续性要求，再确定性编译为 MiniMax H3 官方提示词结构。</p></div>
+              <div class="project-heading-actions director-heading-actions"><div class="director-heading-meta" aria-label="草稿保存状态"><span id="director-autosave-state" class="director-autosave-state" role="status" aria-live="polite">自动保存待机</span><span id="director-state-chip" class="status-badge" role="status" aria-live="polite">草稿未保存</span></div><div class="director-heading-tools"><div class="director-session-controls" role="group" aria-label="撤销与重做"><button id="director-undo-button" class="director-icon-button" type="button" disabled aria-label="撤销上一步" title="撤销"><span aria-hidden="true">↶</span></button><button id="director-redo-button" class="director-icon-button" type="button" disabled aria-label="重做下一步" title="重做"><span aria-hidden="true">↷</span></button></div><button id="director-check-button" class="director-check-button" type="button" aria-controls="director-workspace-drawer" aria-expanded="false"><span id="director-check-label">检查中</span></button><details class="director-more-menu"><summary aria-label="更多导播工具" title="更多导播工具">更多</summary><div class="director-more-menu__panel"><button id="director-history-button" class="button button--secondary button--small" type="button" aria-controls="director-p1-history-drawer">历史记录</button><button id="director-shot-settings-compact" class="button button--secondary button--small director-shot-settings-compact" type="button" aria-controls="director-workspace-drawer" aria-expanded="false">镜头设置</button></div></details></div><button id="director-compile-button" class="button button--primary" type="button" disabled><span class="button-label">编译并在 ComfyUI 中打开</span><span aria-hidden="true">↗</span></button></div>
+            </header>
+            <div id="director-guard" class="notice-card" role="note"><div><strong>本机生成环境尚未准备</strong><p>专业导播与自动保存仍可使用；点击编译交接时，Relay 会先引导你安装所需组件。</p></div><button class="button button--secondary" type="button" data-view-target="install">安装所需组件</button></div>
+
+            <div class="director-console" id="director-console">
+              <section class="surface director-setup" aria-labelledby="director-setup-title" data-director-region="project-toolbar">
+                <header class="director-toolbar-heading">
+                  <div><p class="director-step">项目设置</p><h2 id="director-setup-title">项目设置与高级参数</h2></div>
+                </header>
+                <div class="director-toolbar-body">
+                <div class="director-toolbar-grid">
+                  <label class="field director-toolbar-name" for="director-workflow-name"><span class="field-label">工作流名称</span><input id="director-workflow-name" type="text" maxlength="80" placeholder="例如：雨夜屋顶花园" autocomplete="off"></label>
+                  <div class="director-toolbar-cluster" data-director-toolbar-group="mode">
+                    <label class="field" for="director-language"><span class="field-label">提示词标记</span><select id="director-language"><option value="zh" selected>中文字段</option><option value="en">English fields</option></select></label>
+                    <label class="field" for="director-mode"><span class="field-label">工作流模式</span><select id="director-mode"><option value="T2V" selected>文字生成视频</option><option value="FL2VA">首尾帧生成视频</option><option value="REF2VA">参考图片生成视频 · Ref2VA</option></select></label>
+                  </div>
+                  <section id="director-p1-quick-plan" class="director-toolbar-cluster director-quick-plan" data-director-toolbar-group="timing" aria-labelledby="director-quick-plan-title">
+                    <header class="director-quick-plan__header"><span><b id="director-quick-plan-title">统一分段计划</b><small>按总时长批量建立镜头</small></span></header>
+                    <div class="director-quick-plan__body">
+                    <label class="field" for="director-total-duration"><span class="field-label">总时长</span><select id="director-total-duration"><option value="5">5 秒</option><option value="10">10 秒</option><option value="15">15 秒</option><option value="30" selected>30 秒</option><option value="60">60 秒</option></select></label>
+                    <label class="field" for="director-segment-duration"><span class="field-label">单段时长</span><select id="director-segment-duration"><option value="5" selected>5 秒 / 段</option><option value="10">10 秒 / 段</option><option value="15">15 秒 / 段</option></select></label>
+                    <div id="director-segment-summary" class="director-plan-summary">30 秒 · 6 段 × 5 秒</div>
+                    </div>
+                  </section>
+                  <div class="director-toolbar-cluster" data-director-toolbar-group="output">
+                    <label class="field" for="director-canvas"><span class="field-label">画布比例</span><select id="director-canvas"><option value="21:9">21:9</option><option value="16:9">16:9</option><option value="3:2">3:2</option><option value="4:3">4:3</option><option value="1:1">1:1</option><option value="3:4">3:4</option><option value="2:3">2:3</option><option value="9:16" selected>9:16</option></select></label>
+                    <label class="field" for="director-resolution"><span class="field-label">分辨率</span><select id="director-resolution"><option value="0.2">0.2 MP</option><option value="0.3">0.3 MP</option><option value="0.4" selected>0.4 MP</option><option value="0.5">0.5 MP</option><option value="0.6">0.6 MP</option><option value="0.7">0.7 MP</option><option value="0.8">0.8 MP</option><option value="0.9">0.9 MP</option><option value="0.98">0.98 MP</option><option value="1.0">1.0 MP</option><option value="1.2">1.2 MP</option><option value="1.5">1.5 MP</option><option value="1.8">1.8 MP</option><option value="2.0">2.0 MP</option></select></label>
+                    <label class="field" for="director-seed-policy"><span class="field-label">种子策略</span><select id="director-seed-policy"><option value="random_per_compile" selected>每次编译随机（推荐）</option><option value="fixed">固定种子</option></select></label>
+                    <label class="field" for="director-seed"><span class="field-label">基础种子</span><input id="director-seed" type="number" min="0" max="9007199254740991" step="1" value="1" disabled></label>
+                    <label class="field" for="director-sampling"><span class="field-label">采样配置</span><select id="director-sampling"><option value="quality_20" selected>20 步标准</option><option value="quality_25">25 步高质量</option><option value="turbo_8">8 步 Turbo</option></select></label>
+                  </div>
+                  <div id="director-frame-controls" class="director-reference-controls director-toolbar-reference" hidden>
+                    <div class="director-file-row"><button id="director-first-frame" class="director-file-button" type="button"><span><strong id="director-first-frame-label">首帧</strong><small id="director-first-frame-name">未选择文件</small></span><b>选择</b></button><button id="director-clear-first-frame" class="director-file-clear" type="button" title="取消第一张图片绑定" aria-label="取消第一张图片绑定">×</button></div>
+                    <div class="director-file-row"><button id="director-last-frame" class="director-file-button" type="button"><span><strong id="director-last-frame-label">尾帧</strong><small id="director-last-frame-name">未选择文件</small></span><b>选择</b></button><button id="director-clear-last-frame" class="director-file-clear" type="button" title="取消第二张图片绑定" aria-label="取消第二张图片绑定">×</button></div>
+                    <p class="director-reference-note">只绑定本地参考图片，不上传素材。</p>
+                    <button id="director-open-ref-install" class="button button--secondary" type="button" hidden>打开安装与组件</button>
+                  </div>
+                </div>
+                <div class="director-toolbar-footer">
+                  <div class="director-draft-actions"><button id="director-save-draft" class="button button--quiet-link" type="button">立即保存本机草稿</button></div>
+                </div>
+                </div>
+              </section>
+
+              <div class="director-production-grid director-studio-workspace" id="director-p1-workspace" data-director-p1-region="production-workspace" data-workspace-view="studio" data-director-layout="single-page-scroll">
+                <header id="director-p1-studio-header" class="director-studio-header" data-layout-area="header">
+                  <div><p class="director-step">单一工作区</p><h2>镜头编排、素材与连续性</h2><p>一次重点编辑一个镜头；制作数据和检查项保持在同一工作区。</p></div>
+                  <span>自动总时长 <output id="director-p1-total-duration" aria-live="polite">0 秒</output></span>
+                </header>
+                <details class="surface director-p1-data-rail" id="director-p1-data-layer" data-layout-area="data" aria-label="制作数据工作区">
+                  <summary class="director-data-summary"><span><b>制作数据</b><small>实体、场景、全局参考与声音</small></span><span class="director-p1-count">按需展开</span></summary>
+                  <section class="director-workspace-panel director-workspace-panel--data" id="director-workspace-panel-data" data-workspace-panel="data">
+                    <div class="section-heading section-heading--compact director-p1-data-heading"><div><p class="director-step">制作数据</p><h2 id="director-p1-data-title">项目资料</h2><p>把实体、场景、全局参考和声音分别记录；相关素材均为“项目资料关系 · 不进入当前 H3 工作流”。</p></div></div>
+                    <section id="director-project-data-relations" class="director-project-data-relations" aria-labelledby="director-project-data-title">
+                      <div class="director-shot-assets-heading"><div><h3 id="director-project-data-title">项目资料素材</h3><p>保存与整个项目有关、但不进入当前镜头工作流的资料关系。T2V 的连续性参考只会显示在这里。</p></div><button id="director-project-data-bind-asset" class="button button--secondary" type="button">关联项目资料</button></div>
+                      <div id="director-project-data-bindings" data-director-asset-binding-host="project" aria-live="polite"><p class="director-p1-empty">当前项目尚未关联资料素材。</p></div>
+                    </section>
+                    <div class="director-data-layout">
+                  <details class="director-p1-panel" id="director-p1-entities-panel" data-director-p1-panel="entities" data-layout-slot="entities" open>
+                    <summary><span><b>实体库</b><small>角色、地点、道具；素材：项目资料关系 · 不进入当前 H3 工作流</small></span><span id="director-p1-entity-count" class="director-p1-count">0</span></summary>
+                    <div class="director-p1-panel__body">
+                      <div id="director-p1-entity-list" class="director-p1-record-list" role="list" aria-live="polite"></div>
+                      <p id="director-p1-entity-empty" class="director-p1-empty">尚未登记实体。可以先保存镜头，再逐步补充可复用资料。</p>
+                      <div class="director-p1-list-actions"><button id="director-p1-entity-add" class="button button--secondary director-p1-add" type="button" data-director-p1-action="add-entity">新增实体</button><button class="button button--secondary" type="button" data-director-p1-action="toggle-deleted-entities">回收站</button></div>
+                      <div id="director-p1-deleted-entity-list" class="director-p1-recovery-list" role="list" hidden></div>
+                      <template id="director-p1-entity-template"><article data-director-p1-entity-id=""><button type="button" data-director-p1-action="select-entity"><span><strong data-director-p1-entity-name></strong><small data-director-p1-entity-meta></small></span></button><button class="button button--secondary" type="button" data-director-p1-action="edit-entity">编辑</button></article></template>
+                      <fieldset id="director-p1-entity-editor" class="director-p1-editor" data-director-p1-editor="entity" hidden>
+                        <legend>实体资料</legend>
+                        <input id="director-p1-entity-id" type="hidden">
+                        <label class="field" for="director-p1-entity-type"><span class="field-label">类型</span><select id="director-p1-entity-type"><option value="character">角色 / 服装</option><option value="location">地点 / 场景</option><option value="prop">道具</option></select></label>
+                        <label class="field" for="director-p1-entity-name"><span class="field-label">名称</span><input id="director-p1-entity-name" type="text" maxlength="80" autocomplete="off"></label>
+                        <label class="field" for="director-p1-entity-details"><span class="field-label">固定特征与备注</span><textarea id="director-p1-entity-details" rows="4"></textarea></label>
+                        <label class="field" for="director-p1-entity-asset"><span class="field-label">关联资料素材 <em>可选</em></span><select id="director-p1-entity-asset"><option value="">素材库中没有可用素材</option></select><small>项目资料关系 · 不进入当前 H3 工作流；生成输入请在“镜头素材”选择已认证用途。</small></label>
+                        <div class="director-p1-editor-actions"><button id="director-p1-entity-save" class="button button--secondary" type="button" data-director-p1-action="save-entity">保存实体</button><button id="director-p1-entity-archive" class="button button--danger" type="button" data-director-p1-action="archive-entity">删除实体</button></div>
+                      </fieldset>
+                    </div>
+                  </details>
+
+                  <details class="director-p1-panel" id="director-p1-scenes-panel" data-director-p1-panel="scenes" data-layout-slot="scenes">
+                    <summary><span><b>场景</b><small>列表与当前场景资料</small></span><span id="director-p1-scene-count" class="director-p1-count">0</span></summary>
+                    <div class="director-p1-panel__body">
+                      <div id="director-p1-scene-list" class="director-p1-record-list" role="list" aria-label="场景列表" aria-live="polite"></div>
+                      <p id="director-p1-scene-empty" class="director-p1-empty">尚未建立场景。镜头仍可独立编辑。</p>
+                      <div class="director-p1-list-actions"><button id="director-p1-scene-add" class="button button--secondary director-p1-add" type="button" data-director-p1-action="add-scene">新增场景</button><button class="button button--secondary" type="button" data-director-p1-action="toggle-deleted-scenes">回收站</button></div>
+                      <div id="director-p1-deleted-scene-list" class="director-p1-recovery-list" role="list" hidden></div>
+                      <template id="director-p1-scene-template"><article role="listitem" data-director-p1-scene-id=""><button type="button" aria-pressed="false" data-director-p1-action="select-scene"><span><strong data-director-p1-scene-name></strong><small data-director-p1-scene-meta></small></span></button><button class="button button--secondary" type="button" data-director-p1-action="edit-scene">编辑</button></article></template>
+                      <fieldset id="director-p1-scene-editor" class="director-p1-editor" data-director-p1-editor="scene" hidden>
+                        <legend>当前场景</legend>
+                        <input id="director-p1-scene-id" type="hidden">
+                        <label class="field" for="director-p1-scene-name"><span class="field-label">场景名称</span><input id="director-p1-scene-name" type="text" maxlength="80" autocomplete="off"></label>
+                        <label class="field" for="director-p1-scene-setting"><span class="field-label">空间、时间与天气</span><textarea id="director-p1-scene-setting" rows="4"></textarea></label>
+                        <label class="field" for="director-p1-scene-shot-range"><span class="field-label">关联镜头序号</span><input id="director-p1-scene-shot-range" type="text" maxlength="120" autocomplete="off" placeholder="例如：1, 3-5"><small>填写镜头序号或范围；留空表示当前场景暂不关联镜头。</small></label>
+                        <div class="director-p1-editor-actions"><button id="director-p1-scene-save" class="button button--secondary" type="button" data-director-p1-action="save-scene">保存场景</button><button id="director-p1-scene-archive" class="button button--danger" type="button" data-director-p1-action="archive-scene">删除场景</button></div>
+                      </fieldset>
+                    </div>
+                  </details>
+
+                  <details class="director-p1-panel" id="director-p1-bible-panel" data-director-p1-panel="bible" data-layout-slot="baseline" open>
+                    <summary><span><b>全局参考</b><small>全片角色、世界与视觉规格</small></span></summary>
+                    <div class="director-p1-panel__body">
+                      <section class="director-bible" aria-labelledby="director-bible-title">
+                        <div class="section-heading section-heading--compact"><div><p class="director-step">全片制作基线 · 可选</p><h2 id="director-bible-title">全局参考</h2><p>保留原文；留空不会自动补写。</p></div></div>
+                        <label class="field" for="director-character-bible"><span class="field-label">角色与服装</span><textarea id="director-character-bible" rows="3" placeholder="记录全片固定的角色外观和服装特征；可留空。"></textarea></label>
+                        <label class="field" for="director-world-bible"><span class="field-label">地点与世界</span><textarea id="director-world-bible" rows="3" placeholder="记录地点、时间、天气和空间关系；可留空。"></textarea></label>
+                        <label class="field" for="director-visual-style-bible"><span class="field-label">视觉规格</span><textarea id="director-visual-style-bible" rows="3" placeholder="记录媒介、光线、色彩和构图风格；可留空。"></textarea></label>
+                      </section>
+                    </div>
+                  </details>
+
+                  <details class="director-p1-panel" id="director-p1-audio-panel" data-director-p1-panel="audio" data-layout-slot="audio">
+                    <summary><span><b>全片声音</b><small>声景与画外配乐</small></span></summary>
+                    <div class="director-p1-panel__body">
+                      <section class="director-audio-grid" aria-labelledby="director-audio-title">
+                        <div class="section-heading section-heading--compact"><div><p class="director-step">全片声音</p><h2 id="director-audio-title">声景与配乐</h2></div></div>
+                        <label class="field" for="director-soundscape"><span class="field-label">整体声景 <em>可选</em></span><textarea id="director-soundscape" rows="4" placeholder="填写环境声、动作声或对白要求；可留空。"></textarea></label>
+                        <label class="field" for="director-music"><span class="field-label">画外配乐 <em>可选</em></span><textarea id="director-music" rows="4" placeholder="不想指定配乐时直接留空。"></textarea></label>
+                      </section>
+                    </div>
+                  </details>
+
+                  <section id="director-ref-fields" class="director-ref-fields" aria-labelledby="director-ref-title" data-layout-slot="ref2va" hidden>
+                    <div class="section-heading section-heading--compact"><div><p class="director-step">Ref2VA 官方字段</p><h2 id="director-ref-title">参考图片说明</h2></div></div>
+                    <p class="director-ref-capability" role="note"><strong>当前只支持参考图片。</strong>Relay 会把以下原文编译为 Ref2VA 官方六字段结构；目前不接收参考视频或参考音频，也不会安装第三方节点。</p>
+                    <label class="field director-style-opening-field" for="director-style-opening"><span class="field-label">详细描述开场 <em>必填</em></span><textarea id="director-style-opening" rows="3" placeholder="填写媒介、风格与参考保留要求。"></textarea><small>不要在这里写 [Shot 1] 或 [镜头 1]。</small></label>
+                    <label class="field" for="director-subjects"><span class="field-label">主体定义</span><textarea id="director-subjects" rows="3"></textarea></label>
+                    <label class="field" for="director-summary"><span class="field-label">摘要</span><textarea id="director-summary" rows="3"></textarea></label>
+                    <label class="field" for="director-retention"><span class="field-label">参考保留分析</span><textarea id="director-retention" rows="3"></textarea></label>
+                  </section>
+                    </div>
+                  </section>
+
+                </details>
+
+                <details id="director-p1-history-drawer" class="surface director-history-drawer" data-layout-area="history">
+                  <summary><span><b>历史记录与恢复</b><small id="director-p1-history-summary">尚无编译历史</small></span><span id="director-p1-revision-count" class="director-p1-count">0</span></summary>
+                  <section id="director-p1-revisions-panel" data-director-p1-panel="revisions" aria-label="不可变历史版本">
+                    <ol id="director-p1-revision-list" class="director-p1-record-list director-p1-revision-list" aria-live="polite"></ol>
+                    <p id="director-p1-revision-empty" class="director-p1-empty">完成首次成功交接后，这里会显示不可变本机快照。</p>
+                    <template id="director-p1-revision-template"><li data-director-p1-revision-id=""><div><strong data-director-p1-revision-name></strong><small data-director-p1-revision-meta></small></div><button class="button button--secondary" type="button" data-director-p1-action="restore-revision">恢复为新草稿</button></li></template>
+                  </section>
+                </details>
+
+                <section id="director-p1-shot-stage" class="director-shot-stage" data-layout-area="timeline-editor" aria-labelledby="director-board-title">
+                  <div class="director-workspace-panel director-workspace-panel--shots" id="director-workspace-panel-shots">
+                    <section class="surface director-board" aria-labelledby="director-board-title">
+                      <div class="section-heading director-board-heading"><div><p class="director-step">场景与镜头</p><h2 id="director-board-title">镜头工作区</h2><p>场景提供组织层，镜头卡保持实际分段。所有镜头内容仍由你填写。</p></div><span id="director-shot-count" class="status-badge">6 个镜头</span></div>
+                      <div id="director-p1-scene-context" class="director-scene-context" data-director-p1-region="current-scene">
+                        <span><small>当前场景</small><strong id="director-p1-current-scene-name">未分配场景</strong></span>
+                        <span id="director-p1-current-scene-meta">镜头可独立编辑</span>
+                      </div>
+                      <div class="director-timeline" aria-label="分段结构时间线"><div id="director-timeline-track" class="director-timeline__track"></div></div>
+                      <div id="director-shot-list" class="director-shot-list"></div>
+                    </section>
+
+                  </div>
+                </section>
+
+                <aside id="director-current-shot-summary" class="surface director-current-shot-summary" data-layout-area="shot-inspector" aria-labelledby="director-p1-current-shot-heading">
+                  <div class="director-current-shot-summary__heading"><span><span class="director-step">当前镜头</span><strong id="director-p1-current-shot-heading">尚未选择镜头</strong></span><button id="director-shot-settings-button" class="button button--secondary button--small" type="button" aria-controls="director-workspace-drawer" aria-expanded="false">编辑镜头详情</button></div>
+                  <dl class="director-current-shot-summary__facts"><div><dt>时间 / 时长</dt><dd id="director-current-shot-time">—</dd></div><div><dt>素材</dt><dd id="director-current-shot-assets">0 项</dd></div><div><dt>连续性</dt><dd id="director-current-shot-continuity">未检查</dd></div><div><dt>衔接</dt><dd id="director-current-shot-transition">未设置</dd></div></dl>
+                </aside>
+
+                <section id="director-p1-current-shot-tools" class="director-current-shot-tools director-drawer-shot-editor" aria-label="当前镜头辅助编辑" hidden>
+                  <div class="director-current-shot-tools__body">
+                    <label class="field" for="director-p1-current-shot-duration"><span class="field-label">本镜头时长</span><select id="director-p1-current-shot-duration" data-director-p1-action="set-shot-duration" aria-label="当前镜头时长"><option value="5">5 秒</option><option value="10">10 秒</option><option value="15">15 秒</option></select><small>每个镜头可独立选择 5、10 或 15 秒；总时长自动求和。</small></label>
+                    <details id="director-shot-state-panel" class="director-p1-panel director-shot-state-panel">
+                      <summary><span><b>开始 / 结束状态</b><small>机械继承、显式覆盖；留空不会自动补写</small></span><span id="director-shot-state-count" class="director-p1-count">0</span></summary>
+                      <div class="director-p1-panel__body director-shot-state-body">
+                        <fieldset id="director-shot-start-state" class="director-shot-state-group">
+                          <legend><span>镜头开始状态</span><small id="director-shot-start-source">首个镜头无继承来源</small></legend>
+                          <label class="field" for="director-shot-start-subject"><span class="field-label">角色 / 主体与服装</span><textarea id="director-shot-start-subject" rows="2" placeholder="可留空"></textarea></label>
+                          <label class="field" for="director-shot-start-action"><span class="field-label">姿态、动作与画面位置</span><textarea id="director-shot-start-action" rows="2" placeholder="可留空"></textarea></label>
+                          <label class="field" for="director-shot-start-props"><span class="field-label">持有道具</span><textarea id="director-shot-start-props" rows="2" placeholder="可留空"></textarea></label>
+                          <label class="field" for="director-shot-start-environment"><span class="field-label">场景、天气与时间</span><textarea id="director-shot-start-environment" rows="2" placeholder="可留空"></textarea></label>
+                          <label class="field" for="director-shot-start-camera"><span class="field-label">摄影机、光线与声音</span><textarea id="director-shot-start-camera" rows="2" placeholder="可留空"></textarea></label>
+                        </fieldset>
+                        <fieldset id="director-shot-end-state" class="director-shot-state-group">
+                          <legend><span>镜头结束状态</span><small>作为下一镜头的继承来源</small></legend>
+                          <label class="field" for="director-shot-end-subject"><span class="field-label">角色 / 主体与服装</span><textarea id="director-shot-end-subject" rows="2" placeholder="可留空"></textarea></label>
+                          <label class="field" for="director-shot-end-action"><span class="field-label">姿态、动作与画面位置</span><textarea id="director-shot-end-action" rows="2" placeholder="可留空"></textarea></label>
+                          <label class="field" for="director-shot-end-props"><span class="field-label">持有道具</span><textarea id="director-shot-end-props" rows="2" placeholder="可留空"></textarea></label>
+                          <label class="field" for="director-shot-end-environment"><span class="field-label">场景、天气与时间</span><textarea id="director-shot-end-environment" rows="2" placeholder="可留空"></textarea></label>
+                          <label class="field" for="director-shot-end-camera"><span class="field-label">摄影机、光线与声音</span><textarea id="director-shot-end-camera" rows="2" placeholder="可留空"></textarea></label>
+                        </fieldset>
+                        <div class="director-shot-state-actions"><button id="director-shot-restore-inheritance" class="button button--secondary" type="button">恢复上一镜头继承</button><button id="director-shot-lock-state" class="button button--secondary" type="button" aria-pressed="false">锁定当前状态</button></div>
+                      </div>
+                    </details>
+
+                    <details id="director-shot-transition-panel" class="director-p1-panel director-shot-transition-panel">
+                      <summary><span><b>与下一镜头的衔接</b><small>能力与创作意图分开记录</small></span><span id="director-shot-transition-state" class="director-p1-count">未设置</span></summary>
+                      <div class="director-p1-panel__body">
+                        <label class="field" for="director-shot-transition-kind"><span class="field-label">衔接方式</span><select id="director-shot-transition-kind"><option value="tail_continuation">尾帧延续 · 已认证</option><option value="hard_cut">硬切 · 已认证</option><option value="fade" disabled>淡入淡出 · 仅记录意图，当前编译器未实现</option><option value="dissolve" disabled>叠化 · 仅记录意图，当前编译器未实现</option><option value="match_cut" disabled>匹配剪辑 · 仅记录意图，当前编译器未实现</option></select></label>
+                        <label class="field" for="director-shot-transition-asset"><span class="field-label">旧版衔接素材记录</span><select id="director-shot-transition-asset" disabled><option value="">不使用额外衔接素材（认证工作流）</option></select><small>硬切和尾帧延续当前都不接入额外素材；若旧项目有记录，可在这里清除。</small></label>
+                        <fieldset class="director-transition-inheritance"><legend>继承到下一镜头</legend><label><input id="director-transition-inherit-subject" type="checkbox" checked>角色与外观</label><label><input id="director-transition-inherit-environment" type="checkbox" checked>场景与光线</label><label><input id="director-transition-inherit-audio" type="checkbox">声音状态</label></fieldset>
+                        <p class="director-p1-scope-note">尾帧延续会在工作流中真实连接上一段尾帧与下一段首帧；Relay 不会自动运行该工作流。</p>
+                      </div>
+                    </details>
+
+                    <section aria-labelledby="director-p1-shot-assets-title">
+                      <div class="director-shot-assets-heading"><div><h3 id="director-p1-shot-assets-title">镜头素材</h3><p id="director-p1-shot-assets-description">仅显示会真实进入当前 H3 工作流的图片输入。</p></div><button id="director-shot-bind-asset" class="button button--secondary" type="button">选择镜头素材</button></div>
+                      <div id="director-p1-shot-asset-bindings" data-director-asset-binding-host="shot" aria-live="polite"><p id="director-p1-shot-asset-empty">当前镜头未绑定素材。请从左侧“素材库”管理本地文件；Relay 不会上传或修改源文件。</p></div>
+                    </section>
+
+                    <details class="director-p1-panel" id="director-p1-continuity-panel" data-director-p1-panel="continuity">
+                      <summary><span><b>连续性检查</b><small>逐项继承、覆盖或恢复继承</small></span><span id="director-p1-continuity-count" class="director-p1-count">0</span></summary>
+                      <div class="director-p1-panel__body">
+                        <label class="field director-continuity" for="director-continuity"><span class="field-label">项目级固定设定 <em>可选</em></span><textarea id="director-continuity" rows="3" placeholder="记录需要跨镜头保持一致的原文；可留空。"></textarea><small>原文会机械附加，不会被 Relay 创作或改写。</small></label>
+                        <div id="director-p1-continuity-fields" class="director-p1-continuity-fields" aria-label="当前镜头连续性字段"></div>
+                        <div id="director-p1-continuity-matrix" hidden aria-hidden="true"></div>
+                        <p id="director-p1-continuity-empty" class="director-p1-empty">先选择镜头，再检查连续性。</p>
+                        <fieldset id="director-p1-continuity-editor" class="director-p1-editor" data-director-p1-editor="continuity" hidden>
+                          <legend>编辑本镜头覆盖原文</legend>
+                          <output id="director-p1-continuity-shot" class="director-p1-current-record">未选择镜头</output>
+                          <label class="field" for="director-p1-continuity-entity"><span class="field-label">关联实体 <em>可选</em></span><select id="director-p1-continuity-entity"></select></label>
+                          <div class="director-p1-editor-pair"><label class="field" for="director-p1-continuity-dimension"><span class="field-label">连续性维度</span><select id="director-p1-continuity-dimension"><option value="characterAppearance">人物外观</option><option value="wardrobe">服装</option><option value="props">道具</option><option value="movementDirection">运动方向</option><option value="scene">场景</option><option value="weather">天气</option><option value="timeOfDay">时间</option><option value="lighting">光线</option><option value="visualStyle">视觉风格</option><option value="sound">声音</option></select></label><label class="field" for="director-p1-continuity-mode"><span class="field-label">本镜头处理</span><select id="director-p1-continuity-mode"><option value="inherit">继承上一镜头</option><option value="override">本镜头覆盖</option><option value="unset">恢复继承</option></select></label></div>
+                          <label class="field" for="director-p1-continuity-locks"><span class="field-label">覆盖原文</span><textarea id="director-p1-continuity-locks" rows="3" placeholder="只写当前镜头需要覆盖的内容；Relay 不会自动补写。"></textarea></label>
+                          <output id="director-p1-continuity-source" class="director-p1-current-record">当前无继承来源</output>
+                          <button id="director-p1-continuity-save" class="button button--secondary" type="button" data-director-p1-action="save-continuity">保存本镜头连续性</button>
+                        </fieldset>
+                      </div>
+                    </details>
+
+                    <details class="director-p1-panel" id="director-p1-takes-panel" data-director-p1-panel="takes">
+                      <summary><span><b>关联本地成片 / 候选素材</b><small>仅当前镜头；没有记录时保持折叠</small></span><span id="director-p1-take-count" class="director-p1-count">0</span></summary>
+                      <div class="director-p1-panel__body">
+                        <p class="director-p1-scope-note">只绑定素材库中的稳定 ID；不读取、上传、删除或修改源媒体。</p>
+                        <div id="director-p1-take-list" class="director-p1-record-list" role="list" aria-live="polite"></div>
+                        <p id="director-p1-take-empty" class="director-p1-empty">当前镜头没有候选素材。</p>
+                        <button id="director-p1-take-add" class="button button--secondary director-p1-add" type="button" data-director-p1-action="add-take">关联素材库中的本地成片</button>
+                        <fieldset id="director-p1-take-editor" class="director-p1-editor" data-director-p1-editor="take" hidden>
+                          <legend>镜头候选素材</legend>
+                          <input id="director-p1-take-id" type="hidden">
+                          <select id="director-p1-take-shot" hidden aria-hidden="true"></select>
+                          <label class="field" for="director-p1-take-asset"><span class="field-label">素材库记录</span><select id="director-p1-take-asset" data-director-p1-action="select-take-asset"><option value="">素材库中没有可用素材</option></select></label>
+                          <label class="field" for="director-p1-take-name"><span class="field-label">显示名称</span><input id="director-p1-take-name" type="text" maxlength="100" autocomplete="off" placeholder="默认使用素材名称"></label>
+                          <div class="director-p1-editor-pair"><label class="field" for="director-p1-take-rating"><span class="field-label">评分</span><select id="director-p1-take-rating"><option value="">未评分</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></label><label class="field" for="director-p1-take-status"><span class="field-label">状态</span><select id="director-p1-take-status"><option value="candidate">备选</option><option value="selected">选用</option><option value="rejected">弃用</option></select></label></div>
+                          <label class="field" for="director-p1-take-note"><span class="field-label">审看备注</span><textarea id="director-p1-take-note" rows="3"></textarea></label>
+                          <div class="director-p1-editor-actions"><button id="director-p1-take-save" class="button button--secondary" type="button" data-director-p1-action="save-take">保存关联</button><button id="director-p1-take-archive" class="button button--secondary" type="button" data-director-p1-action="archive-take">移除关联</button></div>
+                        </fieldset>
+                        <template id="director-p1-take-template"><article data-director-p1-take-id=""><div><strong data-director-p1-take-name></strong><small data-director-p1-take-meta></small></div><button class="button button--secondary" type="button" data-director-p1-action="edit-take">编辑</button></article></template>
+                      </div>
+                    </details>
+                  </div>
+                </section>
+
+              </div>
+            </div>
+          </div>
+          <div id="director-workspace-drawer-layer" class="director-drawer-layer" hidden>
+            <button id="director-drawer-scrim" class="director-drawer-scrim" type="button" tabindex="-1" aria-label="关闭导播抽屉"></button>
+              <aside id="director-workspace-drawer" class="director-workspace-drawer" role="dialog" aria-modal="true" aria-labelledby="director-drawer-title" tabindex="-1">
+              <header class="director-drawer-header"><div><p class="eyebrow">导播工作区</p><h2 id="director-drawer-title">编译检查</h2></div><button id="director-drawer-close" class="button button--secondary button--small" type="button" aria-label="关闭导播抽屉">关闭</button></header>
+              <nav id="director-drawer-tabs" class="director-drawer-tabs" role="tablist" aria-label="导播抽屉页面">
+                <button id="director-drawer-tab-issues" type="button" role="tab" data-director-drawer-tab="issues" aria-controls="director-drawer-panel-issues" aria-selected="true">问题列表</button>
+                <button id="director-drawer-tab-prompt" type="button" role="tab" data-director-drawer-tab="prompt" aria-controls="director-drawer-panel-prompt" aria-selected="false">提示词预览</button>
+                <button id="director-drawer-tab-details" type="button" role="tab" data-director-drawer-tab="details" aria-controls="director-drawer-panel-details" aria-selected="false">状态与连续性</button>
+                <button id="director-drawer-tab-assets" type="button" role="tab" data-director-drawer-tab="assets" aria-controls="director-drawer-panel-assets" aria-selected="false">镜头素材</button>
+                <button id="director-drawer-tab-transition" type="button" role="tab" data-director-drawer-tab="transition" aria-controls="director-drawer-panel-transition" aria-selected="false">镜头衔接</button>
+                <button id="director-drawer-tab-takes" type="button" role="tab" data-director-drawer-tab="takes" aria-controls="director-drawer-panel-takes" aria-selected="false">候选成片</button>
+              </nav>
+              <div class="director-drawer__scroller">
+                <section id="director-drawer-panel-issues" class="director-drawer-panel" role="tabpanel" aria-labelledby="director-drawer-tab-issues" data-director-drawer-panel="issues">
+                  <div id="director-validation" class="director-validation" role="status" aria-live="polite"></div>
+                  <details class="director-handoff-note"><summary>交接说明</summary><p>Relay 将当前内容确定性序列化为官方字段，并在 ComfyUI 中打开可继续编辑的工作流。</p></details>
+                </section>
+                <section id="director-drawer-panel-prompt" class="director-drawer-panel" role="tabpanel" aria-labelledby="director-drawer-tab-prompt" data-director-drawer-panel="prompt" hidden><span id="director-prompt-count" class="character-count">0 / 4000</span><pre id="director-prompt-preview" class="director-prompt-preview" tabindex="0"></pre></section>
+                <div id="director-drawer-shot-host"></div>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="view" id="view-assets" data-view="assets" aria-labelledby="assets-title" hidden>
+          <div class="page-container page-container--assets">
+            <header class="page-heading page-heading--assets">
+              <div><p class="eyebrow">当前项目</p><h1 id="assets-title">项目素材库</h1><p>把图片、视频和音频登记到当前项目，再按用途绑定；项目、场景与实体绑定：项目资料关系 · 不进入当前 H3 工作流。</p></div>
+              <div class="asset-heading-actions"><span id="asset-current-project" class="status-badge asset-project-context">未选择项目</span><button id="asset-import-button" class="button button--primary" type="button"><span class="button-label">导入本地素材</span><span aria-hidden="true">＋</span></button></div>
+            </header>
+
+            <section id="asset-drop-zone" class="surface asset-drop-zone" aria-label="拖放图片、视频或音频到当前项目素材库">
+              <span class="asset-drop-zone__mark" aria-hidden="true">⇩</span>
+              <span><strong>拖放文件到这里</strong><small>支持批量导入并默认复制到项目；高级导入可引用外部原文件，Relay 不上传或修改源文件。</small></span>
+              <button id="asset-advanced-import-button" class="button button--secondary button--small" type="button" aria-haspopup="dialog">高级导入</button>
+            </section>
+
+            <section id="asset-library-toolbar" class="asset-toolbar asset-library-toolbar" aria-label="素材搜索和筛选" hidden>
+              <label class="asset-search" for="asset-search"><span class="sr-only">搜索素材</span><input id="asset-search" type="search" placeholder="搜索名称、文件名、标签或备注" autocomplete="off"></label>
+              <label for="asset-type-filter"><span class="sr-only">素材类型</span><select id="asset-type-filter"><option value="all">全部类型</option><option value="image">图片</option><option value="video">视频</option><option value="audio">音频</option></select></label>
+              <select id="asset-availability-filter" class="sr-only" tabindex="-1" aria-hidden="true"><option value="all" selected>全部状态</option></select>
+              <div id="asset-view-switcher" class="asset-view-switcher" role="group" aria-label="素材显示方式"><button id="asset-view-list" type="button" aria-pressed="false" aria-label="列表视图">☷</button><button id="asset-view-grid" type="button" aria-pressed="true" aria-label="网格视图">▦</button></div>
+              <details class="asset-library-menu"><summary aria-label="打开素材库管理菜单">库管理</summary><div class="asset-library-menu__panel"><label for="asset-sort"><span class="sr-only">素材排序</span><select id="asset-sort"><option value="recent">最近导入</option><option value="name">按名称</option><option value="type">按类型</option></select></label><button id="asset-refresh-button" class="button button--secondary" type="button">重新检查文件</button><button id="asset-trash-button" class="button button--secondary" type="button">回收站</button></div></details>
+            </section>
+
+            <output id="asset-library-status" class="asset-library-status" role="status" aria-live="polite">正在读取本地素材记录…</output>
+            <div class="asset-library-layout">
+              <section class="surface asset-list-pane asset-library-pane" aria-labelledby="asset-list-title">
+                <header class="asset-library-pane__heading"><div><h2 id="asset-list-title">项目素材</h2><p>选择素材可查看预览、标签、备注和引用关系。</p></div><span id="asset-list-count" class="status-badge">0 项</span></header>
+                <div id="asset-list" class="asset-list" role="list" aria-label="本地素材列表"></div>
+                <div id="asset-empty" class="asset-empty asset-library-empty empty-state-shell"><span class="empty-state-shell__mark" aria-hidden="true">▧</span><strong>素材库还是空的</strong><p>点击“导入本地素材”，通过 Windows 文件选择器添加图片、视频或音频。</p></div>
+              </section>
+            </div>
+            <div id="asset-detail-layer" class="workspace-drawer-layer" hidden>
+              <button id="asset-detail-backdrop" class="workspace-drawer-backdrop" type="button" tabindex="-1" aria-label="关闭素材详情"></button>
+              <aside id="asset-detail-drawer" class="workspace-drawer asset-detail-drawer" role="dialog" aria-modal="true" aria-labelledby="asset-detail-title" tabindex="-1">
+                <div id="asset-detail-empty" class="asset-empty asset-empty--detail asset-library-empty"><strong>选择一项素材查看详情</strong></div>
+                <form id="asset-detail" class="asset-detail" hidden novalidate>
+                  <header class="workspace-drawer__header"><div><p class="eyebrow">当前素材</p><h2 id="asset-detail-title">素材详情</h2></div><div class="workspace-drawer__header-actions"><span id="asset-detail-state" class="status-badge">可用</span><button id="asset-detail-close" class="button button--secondary button--small" type="button" aria-label="关闭素材详情">关闭</button></div></header>
+                  <figure id="asset-detail-preview" class="asset-detail-preview"><div class="asset-detail-preview__media"><img id="asset-detail-thumbnail" alt="" hidden><span id="asset-detail-preview-fallback" aria-hidden="true">媒体</span></div><figcaption><strong id="asset-detail-preview-name">正在准备预览…</strong><small id="asset-detail-preview-meta">本地素材不会上传</small></figcaption></figure>
+                  <label class="field" for="asset-display-name"><span class="field-label">显示名称</span><input id="asset-display-name" type="text" maxlength="120" autocomplete="off"><small>重命名只修改项目资料，不会改动源文件。</small></label>
+                  <label class="field" for="asset-tags"><span class="field-label">标签</span><input id="asset-tags" type="text" maxlength="300" placeholder="用逗号分隔，例如：角色, 雨夜, 候选" autocomplete="off"><small>方便在当前项目中搜索和筛选。</small></label>
+                  <label class="field" for="asset-note"><span class="field-label">备注</span><textarea id="asset-note" rows="4" maxlength="2000" placeholder="可留空。"></textarea><small>备注只保存在当前 Relay 项目中。</small></label>
+                  <section class="asset-bindings" aria-labelledby="asset-bindings-title"><header><div><h3 id="asset-bindings-title">引用关系</h3><p>查看哪些镜头、实体或场景正在使用此素材。</p></div><span id="asset-binding-count" class="status-badge">0 处</span></header><div id="asset-binding-list" class="asset-binding-list"><p id="asset-binding-empty">当前项目尚未引用此素材。</p></div></section>
+                  <details class="asset-diagnostics"><summary>高级 / 诊断信息</summary><div class="asset-diagnostics__body"><dl class="asset-facts asset-detail-summary"><div><dt>类型</dt><dd id="asset-detail-type">—</dd></div><div><dt>大小</dt><dd id="asset-detail-size">—</dd></div><div><dt>SHA-256</dt><dd id="asset-detail-hash">—</dd></div><div><dt>存储方式</dt><dd id="asset-detail-storage">—</dd></div><div><dt>技术信息</dt><dd id="asset-detail-technical">—</dd></div><div><dt>使用次数</dt><dd id="asset-detail-usage-count">0</dd></div></dl><p id="asset-detail-path" class="asset-relative-path asset-detail-path">正在读取项目相对引用…</p></div></details>
+                  <div class="asset-detail-actions">
+                    <button id="asset-relocate" class="button button--secondary" type="button">重新定位</button>
+                    <button id="asset-copy-project" class="button button--secondary" type="button">复制到项目</button>
+                    <button id="asset-reveal-file" class="button button--secondary" type="button">显示所在目录</button>
+                    <button id="asset-remove-record" class="button button--danger" type="button">删除素材</button>
+                    <button id="asset-save-metadata" class="button button--primary" type="submit">保存资料</button>
+                  </div>
+                </form>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="view-generated" data-view="generated" aria-labelledby="generated-title" hidden>
+          <div class="page-container page-container--generated">
+            <header class="page-heading page-heading--generated">
+              <div><p class="eyebrow">当前项目</p><h1 id="generated-title">已生成视频</h1><p>自动发现当前项目已交接工作流完成写盘且通过本机检查的视频。</p></div>
+              <div class="generated-heading-actions"><button id="generated-supplement" class="button button--primary" type="button"><span class="button-label">补录已有视频</span></button><button id="generated-refresh" class="button button--secondary" type="button"><span class="button-label">刷新</span></button></div>
+            </header>
+            <section class="generated-project-bar surface" aria-label="当前项目结果范围">
+              <div><span>项目范围</span><strong id="generated-project-name">尚未打开项目</strong></div>
+              <p id="generated-status" role="status" aria-live="polite">打开项目后即可查看已生成视频。</p>
+            </section>
+            <div id="generated-video-list" class="generated-video-list" role="list" aria-busy="false"></div>
+            <section id="generated-empty" class="surface generated-empty empty-state-shell" aria-labelledby="generated-empty-title">
+              <span aria-hidden="true">▶</span>
+              <div><h2 id="generated-empty-title">当前项目还没有可用视频</h2><p>Relay 只显示稳定写盘并通过格式检查的结果。早期版本的通用前缀、自定义输出目录或改名文件可由你主动补录。</p></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="view-upscale" data-view="upscale" aria-labelledby="upscale-title" hidden>
+          <div class="page-container page-container--upscale">
+            <header class="page-heading"><div><h1 id="upscale-title">画质超分</h1></div></header>
+            <section class="surface upscale-planned empty-state-shell" aria-labelledby="upscale-planned-title" aria-describedby="upscale-planned-description">
+              <span class="empty-state-shell__mark" aria-hidden="true">⌁</span>
+              <div><h2 id="upscale-planned-title">功能规划中</h2><p id="upscale-planned-description">此功能仍在规划中。当前版本不提供超分处理，也不会在此页面执行任何任务。</p></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="view-about" data-view="about" aria-labelledby="about-title" hidden>
+          <div class="page-container">
+            <header class="page-heading">
+              <div><p class="eyebrow">本地工作流</p><h1 id="about-title">从项目准备到可编辑工作流</h1><p>查看版本、项目信息与 Relay 的本地工作方式。</p></div>
+            </header>
+            <div class="about-layout">
+              <section class="surface about-product" aria-labelledby="about-product-title">
+                <div class="about-product__summary">
+                  <div class="about-product__mark" aria-label="Relay 项目标识"><img class="brand-logo brand-logo--about" src="./assets/relay-logo.svg" alt="" aria-hidden="true" draggable="false"></div>
+                  <div><p class="eyebrow">当前程序</p><h2 id="about-product-title"><span id="about-app-name">正在载入程序名称…</span></h2><p id="about-product-description">正在载入产品说明…</p><small id="about-app-version">正在读取版本…</small></div>
+                </div>
+                <section class="about-product__profile" aria-labelledby="about-brand-title">
+                  <div class="about-brand__preview" aria-label="柏拉图灵标识"><img class="about-author-avatar" src="./assets/platuring-avatar.png" alt="柏拉图灵标识" draggable="false"></div>
+                  <div class="about-brand__copy"><p class="eyebrow">独立开发者</p><h2 id="about-brand-title"><span id="about-author-state">柏拉图灵 | PlaTuring</span></h2><p id="about-author-tagline">抖音 / B站：柏拉图灵</p><dl class="about-profile"><div><dt>项目仓库</dt><dd><button id="about-author-profile" class="about-profile-link" type="button">https://github.com/PlaTuring/Relay</button></dd></div></dl></div>
+                </section>
+              </section>
+              <section class="surface about-boundary" aria-labelledby="about-boundary-title">
+                <div><p class="eyebrow">工作方式</p><h2 id="about-boundary-title">从本机准备到 ComfyUI 交接</h2></div>
+                <div class="about-boundary__copy">
+                  <p>检测、安装和配置本机 ComfyUI 与 MiniMax H3 环境。</p>
+                  <p>管理项目、素材、场景、镜头与连续性数据。</p>
+                  <p>确定性编译并在 ComfyUI 中打开可编辑工作流。</p>
+                </div>
+              </section>
+              <section class="surface about-update" aria-labelledby="about-update-title">
+                <header class="about-update__heading"><div><p class="eyebrow">软件更新</p><h2 id="about-update-title">Relay 更新</h2></div></header>
+                <p id="about-update-status" role="status" aria-live="polite">尚未检查更新。</p>
+                <small id="about-update-meta">点击后匿名读取 GitHub Releases 的最新稳定版本信息。</small>
+                <dl id="about-update-facts" class="about-update-facts">
+                  <div><dt>当前版本</dt><dd id="about-current-version">正在读取…</dd></div>
+                  <div><dt>最新版本</dt><dd id="about-latest-version">尚未检查</dd></div>
+                  <div><dt>发布日期</dt><dd id="about-release-date">—</dd></div>
+                </dl>
+                <section id="about-download-progress" class="about-download-progress" aria-labelledby="about-download-progress-title" hidden>
+                  <div class="about-download-progress__heading"><div><h3 id="about-download-progress-title">正在准备下载</h3><p id="about-download-progress-message">等待主进程返回真实下载进度。</p></div><strong id="about-download-progress-percent">0%</strong></div>
+                  <div class="progress-track" role="progressbar" aria-label="更新下载进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="about-download-progress-bar"></span></div>
+                  <p id="about-download-progress-bytes" class="about-download-progress__bytes">0 B / 0 B</p>
+                  <div class="about-download-progress__actions"><button id="about-cancel-download" class="button button--secondary button--small" type="button">取消下载</button><button id="about-open-download-folder" class="button button--secondary button--small" type="button" hidden>打开安装包所在目录</button></div>
+                </section>
+                <div class="about-update__actions"><button id="about-check-update" class="button button--primary" type="button"><span class="button-label">检查更新</span></button><button id="about-download-update" class="button button--primary" type="button" hidden><span class="button-label">下载并安装</span></button></div>
+              </section>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <aside id="app-toast" class="app-toast" role="status" aria-live="polite" aria-atomic="true" hidden>
+      <span class="app-toast__icon" aria-hidden="true">✓</span>
+      <span class="app-toast__copy"><strong id="app-toast-title"></strong><small id="app-toast-message"></small></span>
+      <button id="app-toast-close" class="app-toast__close" type="button" aria-label="关闭通知">×</button>
+    </aside>
+    <dialog id="project-create-dialog" class="feedback-dialog project-create-dialog" aria-labelledby="project-create-title" aria-describedby="project-create-description">
+      <form id="project-create-form" class="project-create-form" method="dialog">
+        <div class="feedback-dialog__heading"><span class="feedback-dialog__icon" aria-hidden="true">＋</span><div><p>新建 Relay 项目</p><h2 id="project-create-title">项目从本机数据目录开始</h2></div></div>
+        <p id="project-create-description" class="feedback-dialog__message">项目将拥有独立的素材、已编译工作流、恢复与历史目录。名称可以使用中文、空格、数字或 Emoji。</p>
+        <label class="field" for="project-create-name"><span class="field-label">项目名称</span><input id="project-create-name" name="projectName" type="text" maxlength="120" placeholder="例如：雨夜屋顶花园" autocomplete="off" required></label>
+        <p id="project-create-error" class="field-error" role="alert" hidden>请输入项目名称。</p>
+        <div class="feedback-dialog__actions"><button id="project-create-cancel" class="button button--secondary" type="button">取消</button><button id="project-create-confirm" class="button button--primary" type="submit">创建项目</button></div>
+      </form>
+    </dialog>
+    <dialog id="project-trash-dialog" class="feedback-dialog recovery-dialog" aria-labelledby="project-trash-title">
+      <div class="feedback-dialog__heading"><span class="feedback-dialog__icon" aria-hidden="true">↺</span><div><p>项目管理</p><h2 id="project-trash-title">已删除的项目</h2></div></div>
+      <p class="feedback-dialog__message">删除采用可恢复方式；项目文件和外部素材不会被永久移除。</p>
+      <div id="project-trash-list" class="recovery-list" role="list"></div>
+      <p id="project-trash-empty" class="empty-state">回收站中没有项目。</p>
+      <div class="feedback-dialog__actions"><button id="project-trash-close" class="button button--secondary" type="button">关闭</button></div>
+    </dialog>
+    <dialog id="asset-trash-dialog" class="feedback-dialog recovery-dialog" aria-labelledby="asset-trash-title">
+      <div class="feedback-dialog__heading"><span class="feedback-dialog__icon" aria-hidden="true">↺</span><div><p>项目素材库</p><h2 id="asset-trash-title">已删除的素材</h2></div></div>
+      <p class="feedback-dialog__message">恢复只还原项目记录和引用能力；源文件与项目副本从未被删除。</p>
+      <div id="asset-trash-list" class="recovery-list" role="list"></div>
+      <p id="asset-trash-empty" class="empty-state">回收站中没有素材。</p>
+      <div class="feedback-dialog__actions"><button id="asset-trash-close" class="button button--secondary" type="button">关闭</button></div>
+    </dialog>
+    <dialog id="data-root-dialog" class="feedback-dialog data-root-dialog" aria-labelledby="data-root-dialog-title" aria-describedby="data-root-dialog-description">
+      <div class="feedback-dialog__heading"><span class="feedback-dialog__icon feedback-dialog__icon--warning" aria-hidden="true">D</span><div><p>Relay 数据目录</p><h2 id="data-root-dialog-title">选择如何使用新目录</h2></div></div>
+      <p id="data-root-dialog-description" class="feedback-dialog__message">变更的是项目与业务数据目录，不是 Windows 程序安装位置。Relay 不会移动外部 ComfyUI 或外部模型。</p>
+      <div class="data-root-dialog__choices">
+        <button id="data-root-migrate-button" class="data-root-choice" type="button" value="migrate"><span aria-hidden="true">⇢</span><span><strong>迁移现有数据</strong><small>复制并校验当前配置、项目、素材和工作流；确认完整后再切换目录。</small></span></button>
+        <button id="data-root-new-library-button" class="data-root-choice" type="button" value="new_library"><span aria-hidden="true">＋</span><span><strong>使用新的空项目库</strong><small>保留现有目录不变，在选定位置创建新的 Relay 数据结构。</small></span></button>
+      </div>
+      <div class="feedback-dialog__actions"><button id="data-root-cancel" class="button button--secondary" type="button">取消</button></div>
+    </dialog>
+    <dialog id="feedback-dialog" class="feedback-dialog" aria-labelledby="feedback-title" aria-describedby="feedback-message feedback-detail">
+      <div class="feedback-dialog__heading"><span id="feedback-icon" class="feedback-dialog__icon" aria-hidden="true">✓</span><div><p id="feedback-kicker">操作结果</p><h2 id="feedback-title">工作流已准备</h2></div></div>
+      <p id="feedback-message" class="feedback-dialog__message"></p>
+      <p id="feedback-detail" class="feedback-dialog__detail" hidden></p>
+      <section id="feedback-seed-evidence" class="feedback-seed-evidence" aria-labelledby="feedback-seed-title" hidden>
+        <div class="feedback-seed-evidence__heading"><strong id="feedback-seed-title">本次实际种子</strong><span id="feedback-seed-policy"></span></div>
+        <div class="feedback-seed-evidence__base"><span>基础种子</span><code id="feedback-base-seed"></code></div>
+        <ol id="feedback-shot-seeds" class="feedback-shot-seeds" aria-label="各镜头实际种子"></ol>
+        <p>以上数值已写入本次工作流 JSON 和项目历史；ComfyUI 节点使用已解析的固定种子。</p>
+      </section>
+      <div class="feedback-dialog__actions"><button id="feedback-close" class="button button--primary" type="button">知道了</button></div>
+    </dialog>
+    <dialog id="environment-required-dialog" class="feedback-dialog" aria-labelledby="environment-required-title" aria-describedby="environment-required-message">
+      <div class="feedback-dialog__heading"><span class="feedback-dialog__icon feedback-dialog__icon--warning" aria-hidden="true">!</span><div><p>编译前需要准备</p><h2 id="environment-required-title">必需环境尚未准备</h2></div></div>
+      <p id="environment-required-message" class="feedback-dialog__message">当前项目和草稿已经保留。安装页会列出本机仍缺少或尚未验证的组件。</p>
+      <p class="feedback-dialog__detail">可继续编辑当前项目，或前往“安装与组件”完成所需环境。</p>
+      <div class="feedback-dialog__actions"><button id="environment-required-cancel" class="button button--secondary" type="button">继续编辑</button><button id="environment-required-install" class="button button--primary" type="button">打开安装与组件</button></div>
+    </dialog>
+    <dialog id="action-confirm-dialog" class="feedback-dialog" aria-labelledby="action-confirm-title" aria-describedby="action-confirm-message">
+      <div class="feedback-dialog__heading"><span class="feedback-dialog__icon feedback-dialog__icon--warning" aria-hidden="true">!</span><div><p>请确认</p><h2 id="action-confirm-title">确认操作</h2></div></div>
+      <p id="action-confirm-message" class="feedback-dialog__message"></p>
+      <div class="feedback-dialog__actions"><button id="action-confirm-cancel" class="button button--secondary" type="button">取消</button><button id="action-confirm-submit" class="button button--danger" type="button">确认</button></div>
+    </dialog>
+    <dialog id="asset-import-options-dialog" class="feedback-dialog" aria-labelledby="asset-import-options-title" aria-describedby="asset-import-options-message">
+      <div class="feedback-dialog__heading"><span class="feedback-dialog__icon feedback-dialog__icon--warning" aria-hidden="true">!</span><div><p>高级导入</p><h2 id="asset-import-options-title">引用外部原文件</h2></div></div>
+      <p id="asset-import-options-message" class="feedback-dialog__message">引用模式不会复制文件。原文件移动、改名或磁盘离线后，项目会显示素材丢失；导出项目包前也需要先复制进项目。</p>
+      <div class="feedback-dialog__actions"><button id="asset-import-options-cancel" class="button button--secondary" type="button">取消</button><button id="asset-import-reference-confirm" class="button button--primary" type="button">选择文件并引用</button></div>
+    </dialog>
+    <script src="./renderer.js"></script>
+  </body>
+</html>

@@ -1,0 +1,1 @@
+{"fixture_version":"1.0.0","fixture_id":"t2va-gains-first-frame","target":"glossary","mutation":{"kind":"set_route_field","route_id":"t2va","field":"first_frame","value":"required"},"expected":{"code":"TERM.ROUTE.SEMANTIC_DRIFT","rule_id":"terminology.route.input_matrix_exact"}}

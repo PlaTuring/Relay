@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"missing-artifact-length","base":"valid/component-role-examples.json","mutations":[{"op":"remove","path":"/components/0/artifact/byte_length"}],"expected":{"code":"COMPONENT.ARTIFACT_LENGTH_REQUIRED","instance_path":"/components/0/artifact/byte_length","rule_id":"component.artifact.length.required"}}

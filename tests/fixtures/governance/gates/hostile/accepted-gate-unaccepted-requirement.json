@@ -1,0 +1,1 @@
+{"fixture_id":"accepted-gate-unaccepted-requirement","mutation":{"kind":"accept_gate","gate_id":"G3"},"expected_code":"GATE.ACCEPTED_WITH_UNACCEPTED_TASK"}

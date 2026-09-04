@@ -1,0 +1,9 @@
+{
+  "fixture_id": "software-brand-only-disabled",
+  "mutation": {
+    "kind": "set_software_brand_boundary_field",
+    "field": "software_brand_only",
+    "value": false
+  },
+  "expected_code": "BRAND.SOFTWARE_ONLY_REQUIRED"
+}

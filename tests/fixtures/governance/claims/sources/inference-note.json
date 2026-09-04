@@ -1,0 +1,10 @@
+{
+  "source_document_version": "1.0.0",
+  "source_id": "SRC-SYNTH-INFERENCE-NOTE",
+  "source_kind": "reasoned_analysis",
+  "publisher": "synthetic-governance-fixture",
+  "immutable_revision": "fixture:inference-note-r1",
+  "component_ids": ["synthetic-governance-validator"],
+  "scope_ids": ["scope-synth-inferred"],
+  "basis_codes": ["immutable_inputs_without_direct_repeatability"]
+}

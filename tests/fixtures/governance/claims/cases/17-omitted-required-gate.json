@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"required-gate-cannot-be-omitted","mutations":[{"op":"remove","path":"/records/0/gate_requirements/gates/1"}],"expected":{"code":"CLAIM.GATE_SET_MISMATCH","instance_path":"/records/0/gate_requirements/gates","rule_id":"claim.gates.catalog_exact"}}

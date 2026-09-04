@@ -1,0 +1,31 @@
+:root { color-scheme: light dark; font-family: "Segoe UI", "Microsoft YaHei UI", sans-serif; }
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #f5f5f3; color: #202327; }
+.recovery { width: min(580px, calc(100vw - 40px)); padding: 36px; border: 1px solid #d6d9dd; border-radius: 12px; background: #fff; box-shadow: 0 12px 36px rgb(25 33 42 / 10%); }
+.mark { width: 44px; height: 44px; display: grid; place-items: center; margin-bottom: 24px; border-radius: 10px; background: #2869d8; color: #fff; font-size: 24px; font-weight: 700; }
+.eyebrow { margin: 0 0 8px; color: #2869d8; font-size: 14px; font-weight: 650; }
+h1 { margin: 0 0 14px; font-size: 25px; line-height: 1.3; }
+.message, .boundary { margin: 0 0 14px; line-height: 1.65; color: #4f5761; }
+.boundary { padding: 12px 14px; border: 1px solid #dfe3e8; border-radius: 8px; background: #f7f8fa; font-size: 14px; }
+.diagnostic-code { margin: 20px 0; color: #606974; font-size: 13px; }
+code { color: #202327; font-family: Consolas, monospace; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+button { min-height: 40px; padding: 0 15px; border: 1px solid #b9c0c9; border-radius: 7px; background: #fff; color: #202327; font: inherit; font-weight: 600; cursor: pointer; }
+button:hover:not(:disabled) { border-color: #2869d8; }
+button:focus-visible { outline: 3px solid rgb(40 105 216 / 28%); outline-offset: 2px; }
+button:disabled { opacity: .55; cursor: wait; }
+button.primary { border-color: #2869d8; background: #2869d8; color: #fff; }
+@media (prefers-color-scheme: dark) {
+  body { background: #181a1d; color: #eef0f2; }
+  .recovery { border-color: #3b4149; background: #22262b; box-shadow: none; }
+  .message, .boundary, .diagnostic-code { color: #bac1c9; }
+  .boundary { border-color: #3b4149; background: #1c2024; }
+  code { color: #eef0f2; }
+  button { border-color: #515963; background: #252a30; color: #eef0f2; }
+}
+@media (max-width: 520px) {
+  .recovery { width: 100%; min-height: 100vh; padding: 28px 22px; border: 0; border-radius: 0; }
+  .actions { flex-direction: column; }
+  button { width: 100%; }
+}
+

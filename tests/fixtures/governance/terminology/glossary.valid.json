@@ -1,0 +1,586 @@
+{
+  "glossary_version": "1.0.0",
+  "glossary_id": "minimax-h3-tool.terminology",
+  "source_task": "P0-GOV-006",
+  "locale_policy": {
+    "canonical_locale": "zh-CN",
+    "machine_identifiers": "lower_snake_case",
+    "normative_route_tokens": ["T2VA", "I2VA", "L2VA", "FL2VA", "Ref2VA"],
+    "generation_word_policy": "qualify_as_runtime_generation_or_media_generation",
+    "stable_word_policy": "ui_label_only_for_certified"
+  },
+  "product_boundary": {
+    "control_plane_actor": "tool_control_plane",
+    "media_generator_actor": "minimax_h3",
+    "execution_host": "comfyui",
+    "formal_start_actor": "user",
+    "formal_start_action": "comfyui_run",
+    "pre_run_formal_queue_submissions": 0,
+    "prompt_endpoint_policy": "forbidden_during_compile_open_handoff",
+    "partner_api_policy": "fail_closed_never_local",
+    "creative_behavior_policy": "forbidden"
+  },
+  "routes": [
+    {
+      "route_id": "t2va",
+      "term": "T2VA",
+      "expansion": "Text-to-Video-and-Audio",
+      "model_family": "fl2va",
+      "first_frame": "absent",
+      "last_frame": "absent",
+      "reference_media": "absent",
+      "prompt_policy": "non_empty_user_text_required_for_alpha_baseline",
+      "endpoint_policy": "no_declared_endpoint_anchor",
+      "native_audio_policy": "h3_is_only_producer_capability_gated"
+    },
+    {
+      "route_id": "i2va",
+      "term": "I2VA",
+      "expansion": "Image-to-Video-and-Audio",
+      "model_family": "fl2va",
+      "first_frame": "required",
+      "last_frame": "absent",
+      "reference_media": "absent",
+      "prompt_policy": "empty_text_requires_separate_capability",
+      "endpoint_policy": "preserve_first_anchor",
+      "native_audio_policy": "h3_is_only_producer_capability_gated"
+    },
+    {
+      "route_id": "l2va",
+      "term": "L2VA",
+      "expansion": "Last-frame-to-Video-and-Audio",
+      "model_family": "fl2va",
+      "first_frame": "absent",
+      "last_frame": "required",
+      "reference_media": "absent",
+      "prompt_policy": "empty_text_requires_separate_capability",
+      "endpoint_policy": "preserve_last_anchor_no_universal_tail_trim",
+      "native_audio_policy": "h3_is_only_producer_capability_gated"
+    },
+    {
+      "route_id": "fl2va",
+      "term": "FL2VA",
+      "expansion": "First-and-Last-frames-to-Video-and-Audio",
+      "model_family": "fl2va",
+      "first_frame": "required",
+      "last_frame": "required",
+      "reference_media": "absent",
+      "prompt_policy": "empty_text_requires_separate_capability",
+      "endpoint_policy": "preserve_both_anchors_no_universal_tail_trim",
+      "native_audio_policy": "h3_is_only_producer_capability_gated"
+    }
+  ],
+  "model_roles": [
+    {
+      "slot_id": "fl2va_diffusion",
+      "component_role": "model_diffusion",
+      "model_family": "fl2va",
+      "base_package": "required_one_hardware_appropriate_artifact",
+      "runtime_included": false,
+      "purpose": "h3_joint_video_audio_diffusion_for_t2va_i2va_l2va_fl2va"
+    },
+    {
+      "slot_id": "text_encoder",
+      "component_role": "model_text_encoder",
+      "model_family": "h3_shared_text_encoder",
+      "base_package": "required",
+      "runtime_included": false,
+      "purpose": "encode_user_supplied_text_without_semantic_rewrite"
+    },
+    {
+      "slot_id": "video_vae",
+      "component_role": "model_video_vae",
+      "model_family": "h3_video_vae",
+      "base_package": "required",
+      "runtime_included": false,
+      "purpose": "h3_video_latent_encode_decode"
+    },
+    {
+      "slot_id": "audio_vae",
+      "component_role": "model_audio_vae",
+      "model_family": "h3_audio_vae",
+      "base_package": "required",
+      "runtime_included": false,
+      "purpose": "h3_audio_latent_encode_decode"
+    }
+  ],
+  "runtime_topologies": [
+    {
+      "topology_id": "managed_core",
+      "term": "Managed Core",
+      "ownership": "tool_owned",
+      "default_mode": "managed_execution",
+      "mutability": "immutable_runtime_generation",
+      "discovery_policy": "tool_inventory",
+      "execution_adapter_policy": "alpha_default",
+      "private_state_policy": "tool_managed_only"
+    },
+    {
+      "topology_id": "desktop",
+      "term": "Desktop",
+      "ownership": "external_owned",
+      "default_mode": "attach_only",
+      "mutability": "external_state_untouched",
+      "discovery_policy": "static_read_only",
+      "execution_adapter_policy": "separately_capability_gated",
+      "private_state_policy": "never_edit"
+    },
+    {
+      "topology_id": "portable",
+      "term": "Portable",
+      "ownership": "external_owned",
+      "default_mode": "attach_only",
+      "mutability": "external_state_untouched",
+      "discovery_policy": "static_read_only",
+      "execution_adapter_policy": "separately_capability_gated",
+      "private_state_policy": "never_edit"
+    }
+  ],
+  "desktop_handoff_levels": [
+    {
+      "level": "OPEN_AND_FOCUS",
+      "meaning": "open_exact_installation_and_focus_exact_workflow_without_run",
+      "automatic_handoff_claim_allowed": true,
+      "formal_queue_submission": false
+    },
+    {
+      "level": "PERSIST_ONLY",
+      "meaning": "persist_workflow_without_verified_canvas_focus",
+      "automatic_handoff_claim_allowed": false,
+      "formal_queue_submission": false
+    },
+    {
+      "level": "EXPORT_ONLY",
+      "meaning": "export_file_and_require_manual_open",
+      "automatic_handoff_claim_allowed": false,
+      "formal_queue_submission": false
+    },
+    {
+      "level": "UNSUPPORTED",
+      "meaning": "unknown_or_unverified_instance_fails_closed",
+      "automatic_handoff_claim_allowed": false,
+      "formal_queue_submission": false
+    }
+  ],
+  "operations": [
+    {
+      "operation_id": "compile",
+      "actor": "tool_control_plane",
+      "surface": "tool",
+      "queue_submission_count": 0,
+      "prompt_endpoint_access": "forbidden",
+      "invokes_h3": false,
+      "produces_media": false,
+      "result": "canonical_visual_workflow_and_derived_non_authoritative_audit_graph"
+    },
+    {
+      "operation_id": "handoff",
+      "actor": "tool_control_plane",
+      "surface": "tool_to_comfyui",
+      "queue_submission_count": 0,
+      "prompt_endpoint_access": "forbidden",
+      "invokes_h3": false,
+      "produces_media": false,
+      "result": "exact_workflow_presented_in_verified_comfyui_or_manual_export_fallback"
+    },
+    {
+      "operation_id": "run",
+      "actor": "user",
+      "surface": "visible_comfyui_frontend",
+      "queue_submission_count": 1,
+      "prompt_endpoint_access": "comfyui_frontend_after_explicit_user_action",
+      "invokes_h3": true,
+      "produces_media": false,
+      "result": "first_formal_job_accepted_for_comfyui_execution"
+    },
+    {
+      "operation_id": "media_generation",
+      "actor": "minimax_h3",
+      "surface": "comfyui_execution",
+      "queue_submission_count": 0,
+      "prompt_endpoint_access": "never",
+      "invokes_h3": true,
+      "produces_media": true,
+      "result": "actual_video_and_native_audio"
+    }
+  ],
+  "native_audio": {
+    "producer": "minimax_h3",
+    "execution_host": "comfyui",
+    "start_condition": "after_explicit_user_run",
+    "same_execution_as_video": true,
+    "excluded_meanings": [
+      "background_music",
+      "voiceover",
+      "post_mix",
+      "silent_or_synthetic_container_track",
+      "tool_notification_sound"
+    ],
+    "claim_gate": "exact_route_profile_and_audio_output_must_be_certified"
+  },
+  "capability_statuses": [
+    {
+      "status": "hidden",
+      "normal_ui": "hidden",
+      "advanced_ui": "hidden",
+      "stable_ui_allowed": false,
+      "runnable_by_status_alone": false
+    },
+    {
+      "status": "poc_pending",
+      "normal_ui": "hidden",
+      "advanced_ui": "developer_diagnostics_only",
+      "stable_ui_allowed": false,
+      "runnable_by_status_alone": false
+    },
+    {
+      "status": "internal",
+      "normal_ui": "internal_build_only",
+      "advanced_ui": "internal_build_only",
+      "stable_ui_allowed": false,
+      "runnable_by_status_alone": false
+    },
+    {
+      "status": "certified",
+      "normal_ui": "allowed_with_exact_profile_scope",
+      "advanced_ui": "allowed_with_exact_profile_scope",
+      "stable_ui_allowed": true,
+      "runnable_by_status_alone": false
+    },
+    {
+      "status": "experimental",
+      "normal_ui": "hidden",
+      "advanced_ui": "visible_default_off_with_risk_and_fallback",
+      "stable_ui_allowed": false,
+      "runnable_by_status_alone": false
+    }
+  ],
+  "evidence_terms": [
+    {
+      "status": "proven",
+      "meaning": "immutable_upstream_or_accepted_repeatable_poc_supports_the_exact_fact",
+      "implies_certified": false,
+      "stable_ui_allowed": false
+    },
+    {
+      "status": "inferred",
+      "meaning": "reasoned_but_not_repeatably_proven",
+      "implies_certified": false,
+      "stable_ui_allowed": false
+    },
+    {
+      "status": "experimental",
+      "meaning": "measured_evidence_exists_but_stable_gates_are_open",
+      "implies_certified": false,
+      "stable_ui_allowed": false
+    }
+  ],
+  "model_lifecycle": [
+    {
+      "state": "found",
+      "meaning": "candidate_path_observed",
+      "reuse_authorized": false,
+      "recipe_bound": false
+    },
+    {
+      "state": "identified",
+      "meaning": "bounded_metadata_and_role_identity_established",
+      "reuse_authorized": false,
+      "recipe_bound": false
+    },
+    {
+      "state": "verified",
+      "meaning": "exact_integrity_and_provenance_identity_verified",
+      "reuse_authorized": false,
+      "recipe_bound": false
+    },
+    {
+      "state": "compatible",
+      "meaning": "exact_recipe_runtime_hardware_compatibility_established",
+      "reuse_authorized": false,
+      "recipe_bound": false
+    },
+    {
+      "state": "approved",
+      "meaning": "reuse_policy_and_applicable_authority_checks_accepted",
+      "reuse_authorized": true,
+      "recipe_bound": false
+    },
+    {
+      "state": "selected",
+      "meaning": "approved_artifact_bound_to_the_current_recipe_slot",
+      "reuse_authorized": true,
+      "recipe_bound": true
+    }
+  ],
+  "ui_copy_policy": {
+    "project_primary_action_zh": "生成工作流并打开 ComfyUI",
+    "managed_core_normal_label_zh": "独立 H3 环境（推荐）",
+    "native_audio_label_zh": "H3 原生声音",
+    "poc_pending_label_zh": "正在验证",
+    "certified_label_zh": "Stable",
+    "found_model_required_caveat_zh": "完成身份、哈希、兼容性和批准检查后才能复用",
+    "desktop_attach_only_caveat_zh": "已检测到 ComfyUI Desktop；不会修改现有环境",
+    "runtime_generation_normal_label_zh": "运行环境版本"
+  },
+  "terms": [
+    {
+      "term_id": "route.t2va",
+      "token": "T2VA",
+      "domain": "workflow_route",
+      "definition_zh": "`T2VA` 是无首帧、无尾帧、无参考素材的文字到视频与原生音频路由；Alpha 基线要求非空用户文本，使用 FL2VA 模型家族。"
+    },
+    {
+      "term_id": "route.i2va",
+      "token": "I2VA",
+      "domain": "workflow_route",
+      "definition_zh": "`I2VA` 是仅有首帧锚点、没有尾帧锚点的图像到视频与原生音频路由；空文本是否可用由独立 capability 决定。"
+    },
+    {
+      "term_id": "route.l2va",
+      "token": "L2VA",
+      "domain": "workflow_route",
+      "definition_zh": "`L2VA` 是仅有尾帧锚点、没有首帧锚点的尾帧到视频与原生音频路由；任何交付策略都必须保留尾锚。"
+    },
+    {
+      "term_id": "route.fl2va",
+      "token": "FL2VA",
+      "domain": "workflow_route",
+      "definition_zh": "`FL2VA` 路由是同时具有首帧和尾帧锚点的视频与原生音频路由；两端都必须按已认证的 FrameAudioPlan 保留。"
+    },
+    {
+      "term_id": "model.fl2va_family",
+      "token": "FL2VA 模型家族",
+      "domain": "model_family",
+      "definition_zh": "`FL2VA 模型家族` 是为 T2VA、I2VA、L2VA 和 FL2VA 四种端点路由提供 H3 扩散权重的模型家族；它不是工作流路由名称的同义替代。"
+    },
+    {
+      "term_id": "model.ref2va_family",
+      "token": "Ref2VA 模型家族",
+      "domain": "model_family",
+      "definition_zh": "`Ref2VA 模型家族` 是独立的参考图片、视频或音频条件模型家族；它不是 FL2VA，也不能作为端点路由的静默回退。"
+    },
+    {
+      "term_id": "runtime.runtime",
+      "token": "runtime",
+      "domain": "runtime",
+      "definition_zh": "`runtime` 是执行锁定 ComfyUI、Python/Torch/CUDA、批准的本地节点和媒体库的软件环境；它不包含模型权重，也不表示正在生成媒体。"
+    },
+    {
+      "term_id": "runtime.generation",
+      "token": "runtime generation",
+      "domain": "runtime",
+      "definition_zh": "`runtime generation` 是最终路径中的一个不可变运行环境安装版本及其 generation ID；它是部署版本，不是视频生成动作。"
+    },
+    {
+      "term_id": "execution.media_generation",
+      "token": "media generation",
+      "domain": "execution",
+      "definition_zh": "`media generation` 是用户在 ComfyUI 中点击 Run 后，由 MiniMax H3 节点执行并产生实际视频与原生音频的过程。"
+    },
+    {
+      "term_id": "model.model",
+      "token": "model",
+      "domain": "model",
+      "definition_zh": "`model` 是单独验证、按角色绑定的权重或模型组件，不是 runtime，也不会因被发现而自动获准复用。"
+    },
+    {
+      "term_id": "model.role.diffusion",
+      "token": "model_diffusion",
+      "domain": "model_role",
+      "definition_zh": "`model_diffusion` 是 H3 联合视频与音频扩散权重角色；Alpha 基础包只选择一个与硬件配方匹配的 FL2VA artifact。"
+    },
+    {
+      "term_id": "model.role.text_encoder",
+      "token": "model_text_encoder",
+      "domain": "model_role",
+      "definition_zh": "`model_text_encoder` 是共享 H3 文本编码器角色；它编码用户提供的文本，不授权工具扩写、翻译或创作文本。"
+    },
+    {
+      "term_id": "model.role.video_vae",
+      "token": "model_video_vae",
+      "domain": "model_role",
+      "definition_zh": "`model_video_vae` 是 H3 视频 latent 编解码组件角色，必须与锁定配方和扩散权重兼容。"
+    },
+    {
+      "term_id": "model.role.audio_vae",
+      "token": "model_audio_vae",
+      "domain": "model_role",
+      "definition_zh": "`model_audio_vae` 是 H3 音频 latent 编解码组件角色，不能被 BGM、旁白或后期混音组件替代。"
+    },
+    {
+      "term_id": "runtime.managed_core",
+      "token": "Managed Core",
+      "domain": "runtime_topology",
+      "definition_zh": "`Managed Core` 是工具拥有、锁定、不可变、仅绑定 loopback 的本地 ComfyUI Core 运行环境，也是 Alpha 默认执行路径。"
+    },
+    {
+      "term_id": "runtime.desktop",
+      "token": "Desktop",
+      "domain": "runtime_topology",
+      "definition_zh": "`Desktop` 是已存在或另行安装的 ComfyUI Desktop 环境；默认仅静态只读发现，除非精确版本的 adapter capability 已获证据支持。"
+    },
+    {
+      "term_id": "runtime.portable",
+      "token": "Portable",
+      "domain": "runtime_topology",
+      "definition_zh": "`Portable` 是外部拥有的便携式 ComfyUI 布局；默认仅静态只读发现，不能因目录被发现就视为可执行或已认证。"
+    },
+    {
+      "term_id": "runtime.attach_only",
+      "token": "attach-only",
+      "domain": "runtime_topology",
+      "definition_zh": "`attach-only` 表示只读发现外部环境，禁止启动未知 Python、导入 custom node、安装依赖或修改其私有状态。"
+    },
+    {
+      "term_id": "workflow.compile",
+      "token": "compile",
+      "domain": "workflow_lifecycle",
+      "definition_zh": "`compile` 把 ProjectSpec 与锁定配方确定性转换为 canonical visual workflow 和派生审计图；它不执行 H3、不生成媒体、不提交队列。"
+    },
+    {
+      "term_id": "workflow.handoff",
+      "token": "handoff",
+      "domain": "workflow_lifecycle",
+      "definition_zh": "`handoff` 启动或聚焦正确的受管 ComfyUI 并呈现精确 workflow；它不点击 Run，也不调用 `/prompt`。"
+    },
+    {
+      "term_id": "workflow.run",
+      "token": "Run",
+      "domain": "workflow_lifecycle",
+      "definition_zh": "`Run` 仅指用户在可见的 ComfyUI 前端执行的明确运行动作；它触发用户第一笔正式队列提交，工具不能代理。"
+    },
+    {
+      "term_id": "workflow.prompt_endpoint",
+      "token": "/prompt",
+      "domain": "workflow_lifecycle",
+      "definition_zh": "`/prompt` 是 ComfyUI 正式队列提交端点；工具的 compile、open 和 handoff 阶段调用数必须为零。"
+    },
+    {
+      "term_id": "audio.native",
+      "token": "native audio",
+      "domain": "audio",
+      "definition_zh": "`native audio` 是 MiniMax H3 在同一次 ComfyUI 执行中生成并随视频输出的原生声音，不是 BGM、旁白、后期混音、静音轨或工具提示音。"
+    },
+    {
+      "term_id": "status.stable",
+      "token": "Stable",
+      "domain": "ui_status",
+      "definition_zh": "`Stable` 是仅可用于已达到 certified 且所有适用技术、隐私、安全、许可与发布 gate 均关闭之精确能力/profile 的用户界面标签；它不是机器状态值。"
+    },
+    {
+      "term_id": "status.hidden",
+      "token": "hidden",
+      "domain": "capability_status",
+      "definition_zh": "`hidden` 表示当前阶段不提供该能力，普通与高级界面都不得把它宣传为可用。"
+    },
+    {
+      "term_id": "status.poc_pending",
+      "token": "poc_pending",
+      "domain": "capability_status",
+      "definition_zh": "`poc_pending` 表示锁定版本的可重复 PoC 尚未完成，只能出现在开发诊断中，不能标为 Stable、可运行或已认证。"
+    },
+    {
+      "term_id": "status.internal",
+      "token": "internal",
+      "domain": "capability_status",
+      "definition_zh": "`internal` 表示能力仅在明确内部 profile 上重复通过，仍未完成所有外测、许可或发布 gate。"
+    },
+    {
+      "term_id": "status.certified",
+      "token": "certified",
+      "domain": "capability_status",
+      "definition_zh": "`certified` 表示精确版本、profile、地域和适用 gate 的技术、隐私、安全、许可与发布验收全部关闭；只有它可映射到 Stable UI。"
+    },
+    {
+      "term_id": "status.experimental",
+      "token": "experimental",
+      "domain": "capability_status",
+      "definition_zh": "`experimental` 表示存在实测证据但未达到 Stable 门槛，只能在高级入口默认关闭并清楚显示范围、风险和回退。"
+    },
+    {
+      "term_id": "evidence.proven",
+      "token": "proven",
+      "domain": "evidence_status",
+      "definition_zh": "`proven` 只表示某项事实由不可变上游证据或已接受的可重复 PoC 支持，不会自动把产品 capability 升为 certified。"
+    },
+    {
+      "term_id": "evidence.inferred",
+      "token": "inferred",
+      "domain": "evidence_status",
+      "definition_zh": "`inferred` 表示结论来自推断而非可重复证明，不能进入 Stable 默认路径。"
+    },
+    {
+      "term_id": "node.local",
+      "token": "local node",
+      "domain": "node_origin",
+      "definition_zh": "`local node` 是以锁定 class_type、schema fingerprint、来源 revision 和 local-only 状态批准的 ComfyUI 节点。"
+    },
+    {
+      "term_id": "node.partner_api",
+      "token": "API/Partner node",
+      "domain": "node_origin",
+      "definition_zh": "`API/Partner node` 是远程、鉴权、Partner/API 类或不能证明本地执行的节点；即使显示名相似也不是 local node，必须 fail closed。"
+    },
+    {
+      "term_id": "model.state.found",
+      "token": "found",
+      "domain": "model_lifecycle",
+      "definition_zh": "`found` 只表示候选路径被观察到，不证明文件身份、完整性、兼容性、许可或复用批准。"
+    },
+    {
+      "term_id": "model.state.identified",
+      "token": "identified",
+      "domain": "model_lifecycle",
+      "definition_zh": "`identified` 表示受限元数据、header 与角色指纹足以建立候选身份，仍未证明完整哈希或 recipe 兼容。"
+    },
+    {
+      "term_id": "model.state.verified",
+      "token": "verified",
+      "domain": "model_lifecycle",
+      "definition_zh": "`verified` 表示精确完整性与来源身份已核验，仍不等于与当前 recipe 兼容或获准复用。"
+    },
+    {
+      "term_id": "model.state.compatible",
+      "token": "compatible",
+      "domain": "model_lifecycle",
+      "definition_zh": "`compatible` 表示候选与精确 runtime、hardware 和 recipe 要求匹配，仍需适用批准后才能复用。"
+    },
+    {
+      "term_id": "model.state.approved",
+      "token": "approved",
+      "domain": "model_lifecycle",
+      "definition_zh": "`approved` 表示来源、许可、所有权和复用策略检查已接受，候选可以被选择但尚未绑定当前 recipe。"
+    },
+    {
+      "term_id": "model.state.selected",
+      "token": "selected",
+      "domain": "model_lifecycle",
+      "definition_zh": "`selected` 表示已批准 artifact 被绑定到当前 recipe 的精确模型角色；只有此状态可以进入 workflow build。"
+    },
+    {
+      "term_id": "desktop.open_and_focus",
+      "token": "OPEN_AND_FOCUS",
+      "domain": "desktop_handoff",
+      "definition_zh": "`OPEN_AND_FOCUS` 表示精确 Desktop installation 和精确 workflow 已打开并在画布聚焦；它仍不点击 Run 或提交队列。"
+    },
+    {
+      "term_id": "desktop.persist_only",
+      "token": "PERSIST_ONLY",
+      "domain": "desktop_handoff",
+      "definition_zh": "`PERSIST_ONLY` 表示 workflow 可通过受支持接口保存，但没有证据证明它已在正确画布聚焦。"
+    },
+    {
+      "term_id": "desktop.export_only",
+      "token": "EXPORT_ONLY",
+      "domain": "desktop_handoff",
+      "definition_zh": "`EXPORT_ONLY` 表示只导出 workflow 文件并要求用户手动打开，不能称为自动 Desktop handoff。"
+    },
+    {
+      "term_id": "desktop.unsupported",
+      "token": "UNSUPPORTED",
+      "domain": "desktop_handoff",
+      "definition_zh": "`UNSUPPORTED` 表示版本、schema 或实例身份未知，必须 fail closed 并使用安全的手动导出或 Managed Core 路径。"
+    }
+  ]
+}

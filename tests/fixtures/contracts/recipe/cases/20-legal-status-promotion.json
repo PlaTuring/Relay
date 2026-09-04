@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"legal-status-promotion","base":"valid/alpha0-poc-pending-recipe.json","mutations":[{"op":"replace","path":"/profile/legal/review_state","value":"approved"}],"expected":{"code":"RECIPE.LEGAL_STATUS_PROMOTION","instance_path":"/profile/legal/review_state","rule_id":"recipe.legal.human_pending_cannot_promote"}}

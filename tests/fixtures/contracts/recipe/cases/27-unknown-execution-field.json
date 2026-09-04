@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"unknown-execution-field","base":"valid/alpha0-poc-pending-recipe.json","mutations":[{"op":"add","path":"/profile/control_plane/auto_install","value":true}],"expected":{"code":"CONTRACT.UNKNOWN_FIELD","instance_path":"/profile/control_plane/auto_install","rule_id":"recipe.core.closed"}}

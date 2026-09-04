@@ -1,0 +1,10 @@
+{
+  "fixture_id": "substitution-matrix-incomplete",
+  "mutation": {
+    "kind": "remove_independence_pair",
+    "matrix": "substitution_forbidden",
+    "from": "ai_generated_disclosure",
+    "to": "user_brand"
+  },
+  "expected_code": "INDEPENDENCE.SUBSTITUTION_MATRIX"
+}

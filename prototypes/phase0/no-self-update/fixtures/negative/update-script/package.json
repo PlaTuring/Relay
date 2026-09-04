@@ -1,0 +1,7 @@
+{
+  "name": "negative-update-script",
+  "private": true,
+  "scripts": {
+    "check-updates": "node verify-release.mjs"
+  }
+}

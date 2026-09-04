@@ -1,0 +1,10 @@
+{
+  "fixture_id": "official-source-record-unknown-approval",
+  "mutation": {
+    "kind": "set_official_source_field",
+    "source_id": "h3_license",
+    "field": "approved_by_agent",
+    "value": true
+  },
+  "expected_code": "STRUCTURE.OFFICIAL_SOURCE.UNKNOWN_KEY"
+}

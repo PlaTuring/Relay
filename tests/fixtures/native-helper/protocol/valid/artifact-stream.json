@@ -1,0 +1,10 @@
+{
+  "fixture_version": "1.0.0",
+  "stream_ref": "43000000-0000-4000-8000-000000000001",
+  "authorized_total_bytes": 6,
+  "expected_sha256": "sha256:bef57ec7f53a6d40beb640a780a639c83bc29ac8a9816f1fc6c5c6dcd93c4721",
+  "chunks": [
+    { "case_id": "artifact-chunk-0", "sequence": 0, "final": false, "data_hex": "616263" },
+    { "case_id": "artifact-chunk-1-final", "sequence": 1, "final": true, "data_hex": "646566" }
+  ]
+}

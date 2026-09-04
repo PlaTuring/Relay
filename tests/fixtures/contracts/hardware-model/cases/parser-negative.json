@@ -1,0 +1,120 @@
+[
+  {
+    "fixture_case_version": 1,
+    "case_id": "parser-rejects-duplicate-key",
+    "kind": "raw_parse",
+    "generator": "duplicate_key",
+    "expected": {
+      "byte_offset": 19,
+      "code": "CONTRACT.DUPLICATE_KEY",
+      "instance_path": "",
+      "rule_id": "contract.parse.duplicate_key"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "parser-rejects-bom",
+    "kind": "raw_parse",
+    "generator": "bom",
+    "expected": {
+      "byte_offset": 0,
+      "code": "CONTRACT.INVALID_UTF8",
+      "instance_path": "",
+      "rule_id": "contract.parse.utf8_no_bom"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "parser-rejects-invalid-utf8",
+    "kind": "raw_parse",
+    "generator": "invalid_utf8",
+    "expected": {
+      "code": "CONTRACT.INVALID_UTF8",
+      "instance_path": "",
+      "rule_id": "contract.parse.valid_utf8"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "parser-rejects-fraction",
+    "kind": "raw_parse",
+    "generator": "fraction",
+    "expected": {
+      "byte_offset": 10,
+      "code": "CONTRACT.INVALID_JSON",
+      "instance_path": "",
+      "rule_id": "contract.parse.integer_lexical"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "parser-rejects-exponent",
+    "kind": "raw_parse",
+    "generator": "exponent",
+    "expected": {
+      "byte_offset": 10,
+      "code": "CONTRACT.INVALID_JSON",
+      "instance_path": "",
+      "rule_id": "contract.parse.integer_lexical"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "parser-rejects-negative-zero",
+    "kind": "raw_parse",
+    "generator": "negative_zero",
+    "expected": {
+      "byte_offset": 10,
+      "code": "CONTRACT.INVALID_JSON",
+      "instance_path": "",
+      "rule_id": "contract.parse.integer_lexical"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "parser-rejects-unsafe-integer",
+    "kind": "raw_parse",
+    "generator": "unsafe_integer",
+    "expected": {
+      "byte_offset": 10,
+      "code": "CONTRACT.INVALID_JSON",
+      "instance_path": "",
+      "rule_id": "contract.parse.safe_integer"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "parser-rejects-depth-overflow",
+    "kind": "raw_parse",
+    "generator": "depth",
+    "expected": {
+      "byte_offset": 65,
+      "code": "CONTRACT.LIMIT_EXCEEDED",
+      "instance_path": "",
+      "rule_id": "contract.limit.depth"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "parser-rejects-oversize-input",
+    "kind": "raw_parse",
+    "generator": "oversize",
+    "expected": {
+      "code": "CONTRACT.INPUT_TOO_LARGE",
+      "instance_path": "",
+      "rule_id": "contract.limit.document_bytes"
+    }
+  },
+  {
+    "fixture_case_version": 1,
+    "case_id": "parser-rejects-total-string-budget",
+    "kind": "raw_parse",
+    "generator": "total_strings",
+    "expected": {
+      "byte_offset": 12582949,
+      "code": "CONTRACT.LIMIT_EXCEEDED",
+      "instance_path": "",
+      "rule_id": "contract.limit.total_string_bytes"
+    }
+  }
+]

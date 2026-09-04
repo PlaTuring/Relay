@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"api-policy-enabled","base":"valid/alpha0-poc-pending-recipe.json","mutations":[{"op":"replace","path":"/profile/control_plane/api_nodes","value":"enabled"}],"expected":{"code":"RECIPE.CLOUD_PARTNER_FORBIDDEN","instance_path":"/profile/control_plane/api_nodes","rule_id":"recipe.control.local_nodes_only"}}

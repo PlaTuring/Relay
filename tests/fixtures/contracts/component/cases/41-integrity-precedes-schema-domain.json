@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"integrity-precedes-unknown-field","base":"valid/component-role-examples.json","mutations":[{"op":"add","path":"/components/0/auto_install","value":true}],"refresh_integrity":false,"expected":{"code":"CONTRACT.INTEGRITY_MISMATCH","instance_path":"/integrity/content_sha256","rule_id":"contract.integrity.jcs_sha256"}}

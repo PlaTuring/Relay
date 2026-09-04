@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"27-h3-public-disclosure-modality-drift","base":"../index.valid.json","mutations":[{"op":"replace","path":"/license_records/2/obligations/1/modality","value":"encouraged"}],"expected":{"code":"LICENSE_RECORD.MODALITY_DRIFT","instance_path":"/license_records/2/obligations/1/modality","rule_id":"DIST-LICREC-006"}}

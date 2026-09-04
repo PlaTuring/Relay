@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"claim-id-must-be-unique","mutations":[{"op":"replace","path":"/records/1/claim_id","value":"CLAIM-SYNTH-PROVEN-STABLE"}],"expected":{"code":"CLAIM.DUPLICATE_CLAIM_ID","instance_path":"/records/1/claim_id","rule_id":"claim_registry.claim_id.unique"}}

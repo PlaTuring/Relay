@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"missing-backend-prerequisite","base":"valid/alpha0-poc-pending-recipe.json","mutations":[{"op":"remove","path":"/profile/components/comfy_backend"}],"expected":{"code":"RECIPE.PREREQUISITE_MISSING","instance_path":"/profile/components/comfy_backend","rule_id":"recipe.components.all_roles_required"}}

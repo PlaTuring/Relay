@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'"
+    >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MiniMax H3 控制平面技术栈探针</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="eyebrow">Phase 0 · Electron/TypeScript bounded spike</p>
+        <h1>本地安装与工作流控制平面</h1>
+        <p>
+          此原型只验证桌面隔离、路径选择和 owned child 生命周期；不下载或启动 ComfyUI，
+          不调用 H3、GPU、云 API，也没有“生成视频”功能。
+        </p>
+      </header>
+
+      <section aria-labelledby="security-title">
+        <h2 id="security-title">进程隔离</h2>
+        <p>渲染进程只能通过冻结的四项 IPC allowlist 请求主进程能力。</p>
+        <output id="security-summary" aria-live="polite">正在读取安全摘要…</output>
+      </section>
+
+      <section aria-labelledby="storage-title">
+        <h2 id="storage-title">受管数据位置</h2>
+        <p id="storage-help">
+          runtime、模型、缓存、临时媒体和输出必须位于用户明确选择的可见受管根。
+          C 盘只预算少量应用程序、设置与日志，绝不静默放置大文件。
+        </p>
+        <dl>
+          <div>
+            <dt>建议位置</dt>
+            <dd><output id="suggested-root">正在检查…</output></dd>
+          </div>
+          <div>
+            <dt>当前选择</dt>
+            <dd><output id="selected-root">尚未选择</output></dd>
+          </div>
+        </dl>
+        <button id="choose-root" type="button" aria-describedby="storage-help">
+          选择受管数据位置
+        </button>
+        <output id="root-warnings" class="detail" aria-live="polite"></output>
+      </section>
+
+      <section aria-labelledby="child-title">
+        <h2 id="child-title">Owned child 生命周期</h2>
+        <p id="child-help">
+          固定脚本以参数数组启动，验证带空格和 Unicode 的参数，并在返回前可靠终止。
+          渲染进程不能指定 executable 或任意参数。
+        </p>
+        <button id="run-child-probe" type="button" aria-describedby="child-help">
+          运行无害子进程检查
+        </button>
+        <output id="child-result" class="detail" aria-live="polite"></output>
+      </section>
+
+      <section class="status-card" aria-labelledby="status-title">
+        <h2 id="status-title">当前状态</h2>
+        <output id="status" data-kind="idle" role="status" aria-live="polite">
+          原型已就绪；未进行系统修改。
+        </output>
+      </section>
+    </main>
+    <script src="./renderer.js"></script>
+  </body>
+</html>

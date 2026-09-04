@@ -1,0 +1,20 @@
+{
+  "name": "minimax-h3-tool",
+  "version": "1.0.2",
+  "private": true,
+  "license": "Apache-2.0",
+  "type": "module",
+  "scripts": {
+    "test": "node scripts/test/run-tests.mjs --lane fast",
+    "test:fast": "node scripts/test/run-tests.mjs --lane fast",
+    "smoke:product": "node scripts/product-smoke.mjs",
+    "build:product": "node apps/control-plane/scripts/build.mjs",
+    "package:win:dir": "node apps/control-plane/scripts/package.mjs --dir",
+    "package:win": "node apps/control-plane/scripts/package.mjs --target nsis",
+    "package:win:portable": "node apps/control-plane/scripts/package.mjs --target portable",
+    "verify:oss": "node apps/control-plane/scripts/verify-open-source-hygiene.mjs"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  }
+}

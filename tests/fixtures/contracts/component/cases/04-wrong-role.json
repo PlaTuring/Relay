@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"role-artifact-destination-mismatch","base":"valid/component-role-examples.json","mutations":[{"op":"replace","path":"/components/3/component_role","value":"comfy_frontend"}],"expected":{"code":"COMPONENT.ROLE_ARTIFACT_MISMATCH","instance_path":"/components/3/component_role","rule_id":"component.role.artifact_destination_exact"}}

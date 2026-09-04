@@ -1,0 +1,9 @@
+{
+  "fixture_case_version": "1.0.0",
+  "case_id": "unknown-execution-field-fails-closed",
+  "base": "valid/alpha0-t2va-capability.json",
+  "mutations": [
+    {"op": "add", "path": "/capabilities/0/auto_submit_prompt", "value": true}
+  ],
+  "expected": {"code": "CONTRACT.UNKNOWN_FIELD", "instance_path": "/capabilities/0/auto_submit_prompt", "rule_id": "capability.object.closed"}
+}

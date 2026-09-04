@@ -1,0 +1,1 @@
+{"fixture_id":"duplicate-id","mutation":{"kind":"duplicate_gate_id","source":"G0","target":"G1"},"expected_code":"GATE.DUPLICATE_ID"}

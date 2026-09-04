@@ -1,0 +1,10 @@
+{
+  "fixture_id": "notice-made-optional",
+  "mutation": {
+    "kind": "set_obligation_field",
+    "obligation_id": "notice_for_covered_non_hosted_third_party_distribution",
+    "field": "normative_strength",
+    "value": "optional"
+  },
+  "expected_code": "LICENSE_POLICY.OBLIGATION_STRENGTH"
+}

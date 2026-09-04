@@ -1,0 +1,21 @@
+{
+  "name": "@minimax-h3/static-graph-lint",
+  "version": "0.1.0",
+  "private": true,
+  "license": "Apache-2.0",
+  "description": "Pure static fail-closed Comfy graph and subgraph linting",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "exports": {
+    ".": "./src/index.mjs",
+    "./strict-json": "./src/strict-json.mjs"
+  },
+  "bin": {
+    "minimax-h3-static-graph-lint": "./bin/static-graph-lint.mjs"
+  },
+  "scripts": {
+    "test": "node --test --test-reporter=dot"
+  }
+}

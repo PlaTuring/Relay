@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": [
+      "ES2022",
+      "DOM"
+    ],
+    "noEmit": true,
+    "types": []
+  },
+  "include": [
+    "src/renderer/**/*.ts",
+    "src/shared/**/*.ts"
+  ]
+}
+

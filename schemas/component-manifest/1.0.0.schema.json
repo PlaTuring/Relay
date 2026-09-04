@@ -1,0 +1,3340 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:minimax-h3-tool:schema:component-manifest:1.0.0",
+  "title": "MiniMax H3 Tool component manifest",
+  "description": "Immutable embedded-app authority for expected component artifacts. The manifest grants neither download/materialization nor deletion authority.",
+  "type": "object",
+  "x-primary-trust-class": "immutable_authority",
+  "additionalProperties": false,
+  "required": [
+    "contract_id",
+    "schema_version",
+    "document_id",
+    "document_revision",
+    "manifest_id",
+    "catalog_binding",
+    "authority",
+    "license_records",
+    "components",
+    "disposition",
+    "integrity"
+  ],
+  "properties": {
+    "contract_id": {
+      "const": "minimax-h3-tool.component-manifest",
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "execution",
+        "ownership",
+        "artifact"
+      ],
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.485990a492b70ceb1c56645e"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "execution",
+        "ownership",
+        "artifact"
+      ],
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.bc03895c330e37087faa0907"
+    },
+    "document_id": {
+      "$ref": "#/$defs/uuid_v4",
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "artifact"
+      ],
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.f64dc13048c286f8240ef229"
+    },
+    "document_revision": {
+      "const": 1,
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "artifact"
+      ],
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.604036e1ba8d278df86de95b"
+    },
+    "manifest_id": {
+      "$ref": "#/$defs/domain_id",
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "execution",
+        "ownership",
+        "artifact"
+      ],
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.32a24efdb4ca5ce8d46e090e"
+    },
+    "catalog_binding": {
+      "$ref": "#/$defs/catalog_binding",
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "execution",
+        "ownership",
+        "artifact"
+      ],
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.ea736729f05845c3680196e3"
+    },
+    "authority": {
+      "$ref": "#/$defs/authority",
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "execution",
+        "ownership",
+        "artifact"
+      ],
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.09327fa3e2ef623baa796cc3"
+    },
+    "license_records": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 256,
+      "items": {
+        "$ref": "#/$defs/license_record",
+        "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+        "x-rule-id": "component.schema.1_0_0.728c643795401e051a59e2a4"
+      },
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "execution",
+        "ownership",
+        "artifact"
+      ],
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.dea1003629f942b69d48ee90"
+    },
+    "components": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 2048,
+      "items": {
+        "$ref": "#/$defs/component",
+        "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+        "x-rule-id": "component.schema.1_0_0.c798ac02bd1ea8a70bdb8b79"
+      },
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "execution",
+        "ownership",
+        "path",
+        "artifact"
+      ],
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.6ea0b0f150e243166a64cfcd"
+    },
+    "disposition": {
+      "$ref": "#/$defs/manifest_disposition",
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "execution",
+        "ownership",
+        "artifact"
+      ],
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.e225b9fd6ada3ad532e5f403"
+    },
+    "extensions": {
+      "$ref": "#/$defs/extensions",
+      "description": "Omitted means that no display-only extension metadata is present.",
+      "x-sensitive": "internal",
+      "x-trust-impact": [
+        "display"
+      ],
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.c19200c95580e730cd33d3d3"
+    },
+    "integrity": {
+      "$ref": "#/$defs/integrity",
+      "x-sensitive": "public",
+      "x-trust-impact": [
+        "execution",
+        "ownership",
+        "artifact"
+      ],
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.dc2db8150435a80d3a36a837"
+    }
+  },
+  "$defs": {
+    "uuid_v4": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.7a21d505eba56774a78c7e9e"
+    },
+    "semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.a6464c2ffd6b853f8feef1a7"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.0af22e3a64408a8239d0f0c7"
+    },
+    "git_revision": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$",
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.b8e289a8708f376b5d25c586"
+    },
+    "domain_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[a-z][a-z0-9]*(?:[-_][a-z0-9]+)*$",
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.24b40f9a21a34cc8638a758c"
+    },
+    "component_version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._+-]*$",
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.572af374acbaadee3991b7a1"
+    },
+    "immutable_producer_version": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 128,
+      "pattern": "^(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)(?:-(?:0|[1-9][0-9]*|[0-9A-Za-z-]*[A-Za-z-][0-9A-Za-z-]*)(?:\\.(?:0|[1-9][0-9]*|[0-9A-Za-z-]*[A-Za-z-][0-9A-Za-z-]*))*)?(?:\\+[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)?$",
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.71b1b33e8259e689b175d8e0"
+    },
+    "reason_code": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 96,
+      "pattern": "^[A-Z][A-Z0-9_]*(?:\\.[A-Z][A-Z0-9_]*)+$",
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.d8181550778c83c96010655f"
+    },
+    "contract_relative_path": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.ea5c3d2c8b5f47f530b28ab2"
+    },
+    "catalog_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "app_id",
+        "app_version",
+        "app_build_id",
+        "catalog_resource",
+        "delivery",
+        "catalog_cardinality",
+        "external_binding_requirement",
+        "remote_catalog_policy",
+        "runtime_override_policy"
+      ],
+      "properties": {
+        "kind": {
+          "const": "embedded_app_catalog",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.d9206662033b794acd42cfb3"
+        },
+        "app_id": {
+          "const": "minimax-h3-tool",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.03074b0b616be3f183d119ad"
+        },
+        "app_version": {
+          "$ref": "#/$defs/semver",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.1129b527b7c282de5b3eaeb3"
+        },
+        "app_build_id": {
+          "$ref": "#/$defs/domain_id",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.4e08c420930585dda3a274ba"
+        },
+        "catalog_resource": {
+          "$ref": "#/$defs/contract_relative_path",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "path",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.6fc0a4d5d0125c7d85e6130a"
+        },
+        "delivery": {
+          "const": "embedded_in_current_app",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.5ba8e6d77e0fb169285517c2"
+        },
+        "catalog_cardinality": {
+          "const": "exactly_one",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.ed75cf141adb846bef273ca8"
+        },
+        "external_binding_requirement": {
+          "const": "signed_build_inventory_binds_exact_catalog_tuple",
+          "description": "A separately signed build inventory must bind app_id, app_version, app_build_id, catalog_resource and this document's integrity.content_sha256. This literal is a requirement declaration, not self-attestation proof.",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.363bba0137d8a493e0611df5"
+        },
+        "remote_catalog_policy": {
+          "const": "forbidden",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.494db2bd51bd7f622c0bf6a4"
+        },
+        "runtime_override_policy": {
+          "const": "forbidden",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.7dee145fa1800d2f42173a1f"
+        }
+      },
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.db6c4c093c3b1b9a8e6ea465"
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "immutability",
+        "materialization_authority",
+        "ownership_authority",
+        "deletion_authority",
+        "execution_authority"
+      ],
+      "properties": {
+        "immutability": {
+          "const": "replace_with_new_document",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "ownership",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.7218df0298d86a8866d90962"
+        },
+        "materialization_authority": {
+          "const": "none_requires_explicit_install_transaction",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "ownership",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.28b55bf32266fac65a1c9db3"
+        },
+        "ownership_authority": {
+          "const": "none_requires_verified_ownership_ledger_commit",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "ownership",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.965f328c1676dfc3e487a44a"
+        },
+        "deletion_authority": {
+          "const": "none_requires_separate_ledger_containment_lease_gate",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "ownership",
+            "path",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.c317e816d07cf3975705f9bf"
+        },
+        "execution_authority": {
+          "const": "none_manifest_is_data_only",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.b576689ff97af0a2020a3b3b"
+        }
+      },
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.cfba60fab1aa122cfe10c044"
+    },
+    "embedded_text_artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "locator",
+        "byte_length",
+        "artifact_sha256",
+        "content_type"
+      ],
+      "properties": {
+        "locator": {
+          "type": "string",
+          "minLength": 14,
+          "maxLength": 512,
+          "pattern": "^app-resource:[^?#]+$",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "path",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.aa10835ffb7e4a48e23b1bb0"
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991,
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.df23a9ad8d67400789e933e7"
+        },
+        "artifact_sha256": {
+          "$ref": "#/$defs/sha256",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.8fea92433a2e0c21a3437af7"
+        },
+        "content_type": {
+          "const": "text/plain",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.45d98746c3b0607a242be4c8"
+        }
+      },
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.4a979f6722976c8cc3545d94"
+    },
+    "license_obligations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "redistribution",
+        "include_license_text",
+        "include_notice",
+        "source_code",
+        "attribution"
+      ],
+      "properties": {
+        "redistribution": {
+          "enum": [
+            "review_pending",
+            "approved_with_conditions",
+            "prohibited"
+          ],
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "ownership",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.a2c534ad73025f3ed102bf2e"
+        },
+        "include_license_text": {
+          "type": "boolean",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.2d5498e95d1e89fd3799689e"
+        },
+        "include_notice": {
+          "type": "boolean",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.e63ec5e4e1b78264b3c5f385"
+        },
+        "source_code": {
+          "enum": [
+            "review_pending",
+            "not_required",
+            "offer_required",
+            "distribution_required"
+          ],
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.eba8f7be6ca8041ad739a4b6"
+        },
+        "attribution": {
+          "enum": [
+            "review_pending",
+            "not_required",
+            "required"
+          ],
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.519d8744a096a7da6bec1651"
+        }
+      },
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.70d48b23588b102f259a4d0c"
+    },
+    "license_review": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "state",
+            "authority",
+            "gate_id"
+          ],
+          "properties": {
+            "state": {
+              "const": "pending_external",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "ownership",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.a549979ea0c66ac93a33d453"
+            },
+            "authority": {
+              "const": "human_legal_owner",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "ownership",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.6f4f7b3351f270426ac7ea9f"
+            },
+            "gate_id": {
+              "$ref": "#/$defs/domain_id",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.b87fa843a34446573eb7ccb5"
+            }
+          },
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.a7750c7aa855046d57354f81"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "state",
+            "authority",
+            "decision_id",
+            "approved_scope_id",
+            "target_regions",
+            "delivery_modes",
+            "reviewed_artifact_set_sha256",
+            "reviewed_provenance_set_sha256"
+          ],
+          "properties": {
+            "state": {
+              "const": "approved",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "ownership",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.385fe584c1bb099f0455160d"
+            },
+            "authority": {
+              "const": "human_legal_owner",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "ownership",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.4f018b078a9d0a067b94b078"
+            },
+            "decision_id": {
+              "$ref": "#/$defs/domain_id",
+              "x-sensitive": "internal",
+              "x-trust-impact": [
+                "execution",
+                "ownership",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.b2478842f601ee1903d99031"
+            },
+            "approved_scope_id": {
+              "$ref": "#/$defs/domain_id",
+              "x-sensitive": "internal",
+              "x-trust-impact": [
+                "execution",
+                "ownership",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.7a876257b8aed16dae8fa998"
+            },
+            "target_regions": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 64,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Z]{2}$",
+                "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+                "x-rule-id": "component.schema.1_0_0.0ff2cd73e5a27f974e063aaf"
+              },
+              "x-sensitive": "internal",
+              "x-trust-impact": [
+                "execution",
+                "ownership",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.181c2dbfa2502c81cb8d2113"
+            },
+            "delivery_modes": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 3,
+              "uniqueItems": true,
+              "items": {
+                "enum": [
+                  "bundled_redistribution",
+                  "explicit_user_download",
+                  "external_read_only_reuse"
+                ],
+                "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+                "x-rule-id": "component.schema.1_0_0.bebc553026b97d647dfa32df"
+              },
+              "x-sensitive": "internal",
+              "x-trust-impact": [
+                "execution",
+                "ownership",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.b99335823dee82b842b09d78"
+            },
+            "reviewed_artifact_set_sha256": {
+              "$ref": "#/$defs/sha256",
+              "x-sensitive": "internal",
+              "x-trust-impact": [
+                "execution",
+                "ownership",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.78348473477ba219e4db2994"
+            },
+            "reviewed_provenance_set_sha256": {
+              "$ref": "#/$defs/sha256",
+              "x-sensitive": "internal",
+              "x-trust-impact": [
+                "execution",
+                "ownership",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.bb917fb7280d692250ded405"
+            }
+          },
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.53a7bc7fbfecaa46ad2b9cca"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "state",
+            "authority",
+            "decision_id",
+            "reason_code"
+          ],
+          "properties": {
+            "state": {
+              "const": "rejected",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "ownership",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.8cb968a23154ec7c55df2345"
+            },
+            "authority": {
+              "const": "human_legal_owner",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "ownership",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.d7c4ad48f8cf958b57ef0f3f"
+            },
+            "decision_id": {
+              "$ref": "#/$defs/domain_id",
+              "x-sensitive": "internal",
+              "x-trust-impact": [
+                "execution",
+                "ownership",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.4c0aedd9189d8f9eafd88dba"
+            },
+            "reason_code": {
+              "$ref": "#/$defs/reason_code",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "display",
+                "execution",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.4c503e7d7bdbcef5f51dfe34"
+            }
+          },
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.598ad3073ad9914836eb27da"
+        }
+      ],
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.319e71546cc800ca8f38dddb"
+    },
+    "license_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "license_record_id",
+        "license_id",
+        "license_name",
+        "license_text",
+        "notice",
+        "obligations",
+        "review",
+        "disposition"
+      ],
+      "properties": {
+        "license_record_id": {
+          "$ref": "#/$defs/domain_id",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "ownership",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.6ac106e7c3a78680cff2cb8b"
+        },
+        "license_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9.+-]*$",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.9bb6fd4769b70ac4fc832e01"
+        },
+        "license_name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "display",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.327d718d0c55d76d0584115d"
+        },
+        "license_text": {
+          "$ref": "#/$defs/embedded_text_artifact",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "path",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.f4ab542170a42c6403c97958"
+        },
+        "notice": {
+          "$ref": "#/$defs/embedded_text_artifact",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "path",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.033c716525225d1a8ca8b105"
+        },
+        "obligations": {
+          "$ref": "#/$defs/license_obligations",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "ownership",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.4e104d7fd6a43bb7e4b7264b"
+        },
+        "review": {
+          "$ref": "#/$defs/license_review",
+          "x-sensitive": "internal",
+          "x-trust-impact": [
+            "execution",
+            "ownership",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.2fd5f61ab38bf48f4efbbef3"
+        },
+        "disposition": {
+          "$ref": "#/$defs/record_disposition",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "ownership",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.7613bf0c8a0f7fc115cdf53a"
+        }
+      },
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.f19122f088aa85af8ccd1659"
+    },
+    "party": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "party_id",
+        "display_name",
+        "role"
+      ],
+      "properties": {
+        "party_id": {
+          "$ref": "#/$defs/domain_id",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.887b648614df2fcdce6a871e"
+        },
+        "display_name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "display",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.bbd5641898b61a91a45574a3"
+        },
+        "role": {
+          "enum": [
+            "creator",
+            "publisher",
+            "packager"
+          ],
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.b5179129e9a95dd4a821d70b"
+        }
+      },
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.251b7a7d77ad426fa9941761"
+    },
+    "artifact_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "byte_length",
+        "artifact_sha256"
+      ],
+      "properties": {
+        "byte_length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991,
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.8bcd7d129ebeb7ac0a74df02"
+        },
+        "artifact_sha256": {
+          "$ref": "#/$defs/sha256",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.74da65d0709086a7cbf90134"
+        }
+      },
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.2f003caaaa31791a82ad2c1a"
+    },
+    "input_identity": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind"
+          ],
+          "properties": {
+            "kind": {
+              "const": "none",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "observation",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.66c153a224139d5afd5e8859"
+            }
+          },
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.3615e7fdd4b6bb63477c74a2"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "identity"
+          ],
+          "properties": {
+            "kind": {
+              "const": "artifact",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "observation",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.4ec50e752b4d035626e94783"
+            },
+            "identity": {
+              "$ref": "#/$defs/artifact_identity",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "observation",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.cd8d2f9c2e3cdfec8178de95"
+            }
+          },
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.5959d18c93d8a07398f4b747"
+        }
+      ],
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.ecc421bec4848402b313d7ba"
+    },
+    "provenance_step": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sequence",
+        "event",
+        "actor_party_id",
+        "source_locator",
+        "source_revision",
+        "input",
+        "output"
+      ],
+      "properties": {
+        "sequence": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 63,
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.cfb657d3634a62b9fef3a4c9"
+        },
+        "event": {
+          "enum": [
+            "created",
+            "packaged",
+            "mirrored",
+            "quantized",
+            "compiled",
+            "bundled"
+          ],
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.940ec9af0b07a46182b8b6c8"
+        },
+        "actor_party_id": {
+          "$ref": "#/$defs/domain_id",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.52d110d80712c6e1bffbedc2"
+        },
+        "source_locator": {
+          "type": "string",
+          "minLength": 8,
+          "maxLength": 1024,
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.e47c58c67d5944451881bae0"
+        },
+        "source_revision": {
+          "$ref": "#/$defs/git_revision",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.a9ce93fddd5943f725d3e002"
+        },
+        "input": {
+          "$ref": "#/$defs/input_identity",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.8c9253138a644d5ebd48f715"
+        },
+        "output": {
+          "$ref": "#/$defs/artifact_identity",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.68d2e8bc9c9a99db8d878daf"
+        }
+      },
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.c9102c964ffeedcc103db0b5"
+    },
+    "producer_build_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "producer_id",
+        "producer_version",
+        "producer_build_id",
+        "producer_source_locator",
+        "producer_source_revision",
+        "build_recipe_sha256"
+      ],
+      "properties": {
+        "producer_id": {
+          "$ref": "#/$defs/domain_id",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.50ad18928ecf6722959fe212"
+        },
+        "producer_version": {
+          "$ref": "#/$defs/immutable_producer_version",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.b84e79c43982c34e305f51fa"
+        },
+        "producer_build_id": {
+          "$ref": "#/$defs/sha256",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.2ea4091ccbae89bca1ed074f"
+        },
+        "producer_source_revision": {
+          "$ref": "#/$defs/git_revision",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.b60bc5eabf82bb3f0c1599ae"
+        },
+        "build_recipe_sha256": {
+          "$ref": "#/$defs/sha256",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.7b90ff50abeb3a1b1536b94d"
+        },
+        "producer_source_locator": {
+          "type": "string",
+          "minLength": 8,
+          "maxLength": 1024,
+          "pattern": "^(?:https://[A-Za-z0-9.-]+/(?:revisions|commits)/[0-9a-f]{40}/source|app-resource:producer-builds/[0-9a-f]{40}/source)$",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.23d06d10a04612c425a92f95"
+        }
+      },
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.1bf8e729080250f801475f98"
+    },
+    "provenance_evidence_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_id",
+        "kind",
+        "locator",
+        "byte_length",
+        "artifact_sha256",
+        "review_state"
+      ],
+      "properties": {
+        "evidence_id": {
+          "$ref": "#/$defs/domain_id",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.a4a9648e1e8e5484514d1d3c"
+        },
+        "kind": {
+          "enum": [
+            "source_attestation",
+            "package_attestation",
+            "reproducibility_report"
+          ],
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.2c6616adc636521cab374bb0"
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 14,
+          "maxLength": 512,
+          "pattern": "^app-resource:[^?#]+$",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "path",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.f9fe30091dca757310ed7a31"
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991,
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.48ca12b7678ec989bbe7c46d"
+        },
+        "artifact_sha256": {
+          "$ref": "#/$defs/sha256",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.f813c0a196e80cafef6729ce"
+        },
+        "review_state": {
+          "enum": [
+            "pending_external",
+            "verified_by_release_owner"
+          ],
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.b843b6d9ccd7e659c5424d64"
+        }
+      },
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.e2d55e9bff7cb4c8b50ab5ca"
+    },
+    "provenance_evidence": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "items"
+          ],
+          "properties": {
+            "status": {
+              "const": "declared_unverified",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "observation",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.494d9967199396dde5c94c5d"
+            },
+            "items": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 16,
+              "items": {
+                "$ref": "#/$defs/provenance_evidence_item",
+                "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+                "x-rule-id": "component.schema.1_0_0.ad8aab27c836342429677d6b"
+              },
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "observation",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.17e6dd5373a142f88d542679"
+            }
+          },
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.8b67f4ae23df4b4dc8691ea0"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "items"
+          ],
+          "properties": {
+            "status": {
+              "const": "verified_release_attestation",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "observation",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.ed3c9b0d44cfff1dc17df9e8"
+            },
+            "items": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 16,
+              "items": {
+                "$ref": "#/$defs/provenance_evidence_item",
+                "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+                "x-rule-id": "component.schema.1_0_0.27e79a9bf3db6f38479b73b9"
+              },
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "observation",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.67bdab7e63902362fd69cf75"
+            }
+          },
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.19a88a3f89216a3e53446687"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "items"
+          ],
+          "properties": {
+            "status": {
+              "const": "verified_reproducible_build",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "observation",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.a621e0a851f8b6e14837176f"
+            },
+            "items": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 16,
+              "items": {
+                "$ref": "#/$defs/provenance_evidence_item",
+                "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+                "x-rule-id": "component.schema.1_0_0.e02efe7ab09d186852266896"
+              },
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "observation",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.5d452164ff89f44d798ac333"
+            }
+          },
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.de7db1b3c0cf7e1abe7927a9"
+        }
+      ],
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.f8b10bd40479769a984d2e20"
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "creator",
+        "publisher",
+        "packager",
+        "relationship",
+        "publisher_packager_relationship",
+        "transformation",
+        "chain",
+        "producer_build_identity",
+        "evidence"
+      ],
+      "properties": {
+        "creator": {
+          "$ref": "#/$defs/party",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.82f338c74f6c304c2a6a49d6"
+        },
+        "publisher": {
+          "$ref": "#/$defs/party",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.e2592187e8469b26736e9abb"
+        },
+        "packager": {
+          "$ref": "#/$defs/party",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.a8078c3118b871328fb4675e"
+        },
+        "relationship": {
+          "enum": [
+            "same_party",
+            "different_party"
+          ],
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.41ef249d8bb1e6a3c2655e70"
+        },
+        "publisher_packager_relationship": {
+          "enum": [
+            "same_party",
+            "different_party"
+          ],
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.0d11dc97a035b58b7feedef1"
+        },
+        "transformation": {
+          "enum": [
+            "original_bytes_republished",
+            "repackaged",
+            "quantized",
+            "compiled",
+            "bundled"
+          ],
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.080e241c74d6ebd8342ba499"
+        },
+        "chain": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 64,
+          "items": {
+            "$ref": "#/$defs/provenance_step",
+            "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+            "x-rule-id": "component.schema.1_0_0.79a3ff0517108cb040b24302"
+          },
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.8ffd31806f6fbe0229a66096"
+        },
+        "producer_build_identity": {
+          "$ref": "#/$defs/producer_build_identity",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.e09a04bbd38bb2e638c3aa29"
+        },
+        "evidence": {
+          "$ref": "#/$defs/provenance_evidence",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.cacc78c6d8dd5c40ca90d334"
+        }
+      },
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.fea23abd809a781ce7ad56ca"
+    },
+    "archive_shape": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "format"
+          ],
+          "properties": {
+            "kind": {
+              "const": "single_file",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "path",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.cf6dc80ef0ac37e2ebd9e858"
+            },
+            "format": {
+              "const": "raw",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "path",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.fbc0456556a7e66563d7c031"
+            }
+          },
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.320339baf4b2bc886cec2e65"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "format",
+            "entry_count",
+            "expanded_byte_length",
+            "max_entry_byte_length",
+            "entry_manifest_sha256",
+            "expanded_tree_sha256",
+            "expanded_tree_profile",
+            "path_policy",
+            "link_policy"
+          ],
+          "properties": {
+            "kind": {
+              "const": "fixed_archive",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "path",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.e1f9676b8017554f76b3e5e2"
+            },
+            "format": {
+              "enum": [
+                "zip",
+                "tar_zst",
+                "wheelhouse_zip"
+              ],
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "path",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.fbb33476da5ae453eabf24ca"
+            },
+            "entry_count": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000000,
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "path",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.c6550f240b8e0228d78790fe"
+            },
+            "expanded_byte_length": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991,
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "path",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.c39cd666cd9942000465fc9e"
+            },
+            "max_entry_byte_length": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991,
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "path",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.183e66cdface9f780f0adc26"
+            },
+            "entry_manifest_sha256": {
+              "$ref": "#/$defs/sha256",
+              "description": "SHA-256 of the JCS array of regular-file entry records sorted by unsigned UTF-8 path bytes; each record is exactly {artifact_sha256,byte_length,path,type}, with type regular_file.",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "path",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.342e9a140182bdcced94e9a6"
+            },
+            "expanded_tree_sha256": {
+              "$ref": "#/$defs/sha256",
+              "description": "SHA-256 of the canonical_regular_files_v1 binary frame over the verified extracted regular-file tree; the exact frame is defined by this schema family's README.",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "path",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.1c3aa190a97b05b91aa1e409"
+            },
+            "expanded_tree_profile": {
+              "const": "canonical_regular_files_v1",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "path",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.75b6fe2e71d9cce6273a18e3"
+            },
+            "path_policy": {
+              "const": "canonical_relative_no_traversal_ads_device",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "path",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.6534780a968a96c96d6be5ab"
+            },
+            "link_policy": {
+              "const": "forbid_links_and_reparse",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "path",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.473040b8c94dc650cc38025c"
+            }
+          },
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.c11a34da70473ce8a42a3c28"
+        }
+      ],
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.5a13a6c6a1bb80d0ec594b25"
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "filename",
+        "content_type",
+        "byte_length",
+        "artifact_sha256",
+        "archive_shape"
+      ],
+      "properties": {
+        "filename": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255,
+          "x-sensitive": "asset_name",
+          "x-trust-impact": [
+            "path",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.e5f5cb35157469df089d0b70"
+        },
+        "content_type": {
+          "enum": [
+            "application/zip",
+            "application/x-tar+zstd",
+            "application/vnd.safetensors",
+            "application/vnd.microsoft.portable-executable",
+            "application/vnd.python.wheelhouse",
+            "application/octet-stream"
+          ],
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.b093657807bbeabccb6ca760"
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991,
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.effe06115e5f7406b5799117"
+        },
+        "artifact_sha256": {
+          "$ref": "#/$defs/sha256",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "ownership",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.c66aee844ad3f5320eec26f9"
+        },
+        "archive_shape": {
+          "$ref": "#/$defs/archive_shape",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "path",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.0b8b8fac8cf3cc4df361cc04"
+        }
+      },
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.6c3205f1a67c39e5c1a6ee0c"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "origin_id",
+        "locator",
+        "source_revision",
+        "expected_byte_length",
+        "expected_artifact_sha256",
+        "retrieval_policy"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "immutable_https",
+            "embedded_app_resource",
+            "external_match_only"
+          ],
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "ownership",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.488d017ad70a3cfd2e2440a1"
+        },
+        "origin_id": {
+          "$ref": "#/$defs/domain_id",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.2cafe53b9fbd7846323e4459"
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 8,
+          "maxLength": 1024,
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.a78d09c64cc952b130972596"
+        },
+        "source_revision": {
+          "$ref": "#/$defs/git_revision",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.be3805f3315bce7d12192cef"
+        },
+        "expected_byte_length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991,
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.652229b5b8063a75b708adcd"
+        },
+        "expected_artifact_sha256": {
+          "$ref": "#/$defs/sha256",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "ownership",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.2819b23f0653e7c38cc956b0"
+        },
+        "retrieval_policy": {
+          "enum": [
+            "explicit_install_only",
+            "not_retrievable_embedded",
+            "match_only_no_retrieval"
+          ],
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "ownership",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.de762ad17e4bfc8921a804ed"
+        }
+      },
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.0e1fb13609b494549137e499"
+    },
+    "license_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "license_record_id",
+        "license_record_content_sha256"
+      ],
+      "properties": {
+        "license_record_id": {
+          "$ref": "#/$defs/domain_id",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "ownership",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.dd6dff7e6f385847dfb30b59"
+        },
+        "license_record_content_sha256": {
+          "$ref": "#/$defs/sha256",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "ownership",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.2059272955798a9bbb89fa30"
+        }
+      },
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.609d97e3d7169038f7174ff4"
+    },
+    "destination": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "destination_class",
+            "relative_path",
+            "path_semantics",
+            "reparse_policy",
+            "collision_policy"
+          ],
+          "properties": {
+            "kind": {
+              "const": "managed_relative",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "ownership",
+                "path",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.f6a99ba7475ff55168ba887b"
+            },
+            "destination_class": {
+              "enum": [
+                "runtime_generation",
+                "frontend_bundle",
+                "workflow_templates",
+                "local_nodes",
+                "model_diffusion",
+                "model_text_encoder",
+                "model_video_vae",
+                "model_audio_vae",
+                "private_tools"
+              ],
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "ownership",
+                "path",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.460330122cf90f2051bf0976"
+            },
+            "relative_path": {
+              "$ref": "#/$defs/contract_relative_path",
+              "x-sensitive": "local_path",
+              "x-trust-impact": [
+                "ownership",
+                "path",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.2d1ea132c7f9cc33ebbbf049"
+            },
+            "path_semantics": {
+              "const": "relative_to_selected_managed_root_never_absolute",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "ownership",
+                "path",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.23a905fbbb4dbff3642246cc"
+            },
+            "reparse_policy": {
+              "const": "reject_any_reparse_or_link_intent",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "ownership",
+                "path",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.ba2917e6b2ac0635db80eb6a"
+            },
+            "collision_policy": {
+              "const": "exact_hash_reuse_or_fail",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "ownership",
+                "path",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.711a14762e5f4a058e88375b"
+            }
+          },
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.2bef851986d441802322aaee"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "destination_class",
+            "selection_binding",
+            "path_semantics",
+            "reparse_policy",
+            "collision_policy"
+          ],
+          "properties": {
+            "kind": {
+              "const": "external_match_requirement",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "ownership",
+                "path",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.59c2a90cd7ce277f6e606f87"
+            },
+            "destination_class": {
+              "const": "external_read_only_reference",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "ownership",
+                "path",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.20a2748ace6bd9b14cd096ae"
+            },
+            "selection_binding": {
+              "const": "later_exact_model_observation_reference_required",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "observation",
+                "ownership",
+                "path",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.9b6126ac6abb634e5187517f"
+            },
+            "path_semantics": {
+              "const": "no_path_in_manifest_external_candidate_selected_later",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "ownership",
+                "path",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.c4397470afc2bda27812b0a5"
+            },
+            "reparse_policy": {
+              "const": "later_candidate_handle_revalidation_required",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "ownership",
+                "path",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.4b106907e6e51143ac2cd09e"
+            },
+            "collision_policy": {
+              "const": "exact_candidate_identity_and_artifact_hash_or_fail",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "ownership",
+                "path",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.ba5f5d7a7eeefb0b15edf615"
+            }
+          },
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.eae657c3f35ec1848ee70bc4"
+        }
+      ],
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.7f937c1713a645efdd5faf20"
+    },
+    "managed_ownership": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "classification",
+        "manifest_grants_ownership",
+        "manifest_grants_delete",
+        "delete_authority",
+        "external_mutation_policy",
+        "required_proofs"
+      ],
+      "properties": {
+        "kind": {
+          "const": "managed_target",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "ownership",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.d56a8dba75b7aad0a1629d1d"
+        },
+        "classification": {
+          "const": "tool_owned_only_after_verified_ledger_commit",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "ownership",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.97b907ecbeb6ac6446d6b886"
+        },
+        "manifest_grants_ownership": {
+          "const": false,
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "ownership",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.41b524ad1ea65a8612d63cd6"
+        },
+        "manifest_grants_delete": {
+          "const": false,
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "ownership",
+            "path",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.b4b5ff70c89eef747a571e69"
+        },
+        "delete_authority": {
+          "const": "separate_ledger_containment_lease_gate",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "ownership",
+            "path",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.11c5dcbe6db0d749b0d5a102"
+        },
+        "external_mutation_policy": {
+          "const": "forbidden",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "ownership",
+            "path",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.d5176e0c0151ca1573a6edec"
+        },
+        "required_proofs": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 5,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "verified_download_length_hash",
+              "owned_transaction_commit",
+              "ownership_ledger_entry",
+              "handle_containment_no_reparse",
+              "no_active_lease"
+            ],
+            "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+            "x-rule-id": "component.schema.1_0_0.d0c0531d11411ed824882c9d"
+          },
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "ownership",
+            "path",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.3476402a16bc930f5177c586"
+        }
+      },
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.c482756493339d4730083030"
+    },
+    "external_ownership": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "classification",
+        "manifest_grants_ownership",
+        "manifest_grants_delete",
+        "delete_authority",
+        "external_mutation_policy",
+        "required_proofs"
+      ],
+      "properties": {
+        "kind": {
+          "const": "external_match_only",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "ownership",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.0a92872fe001d4c019cb1788"
+        },
+        "classification": {
+          "const": "external_read_only",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "ownership",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.575fa6470198abcfaeb30f5e"
+        },
+        "manifest_grants_ownership": {
+          "const": false,
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "ownership",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.e9be1574218e238bcb9f0b50"
+        },
+        "manifest_grants_delete": {
+          "const": false,
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "ownership",
+            "path",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.92fbe5ece33a717fa2da1233"
+        },
+        "delete_authority": {
+          "const": "never",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "ownership",
+            "path",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.2b41a9a742aceb96117b0b38"
+        },
+        "external_mutation_policy": {
+          "const": "forbidden",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "ownership",
+            "path",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.1d9e5e6251fab65205f11177"
+        },
+        "required_proofs": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "items": {
+            "const": "external_deletion_forbidden",
+            "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+            "x-rule-id": "component.schema.1_0_0.5e8dce79de2e9160f2d6c557"
+          },
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "ownership",
+            "path",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.690c08892d1b050b81a8cf4b"
+        }
+      },
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.553bf667d7f24611f9bf9852"
+    },
+    "ownership_policy": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/managed_ownership",
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.5ec6e1397c7efdf226b65e15"
+        },
+        {
+          "$ref": "#/$defs/external_ownership",
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.9395dafcd1c9174df054ba34"
+        }
+      ],
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.fed1a4b9eac64d4696f25c35"
+    },
+    "offline_availability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "post_install_offline_required",
+        "runtime_network_install"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "bundled_in_app",
+            "requires_explicit_install_network",
+            "external_presence_required"
+          ],
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.9e99984fca49d5e6095633da"
+        },
+        "post_install_offline_required": {
+          "const": true,
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.8d3e93e0de5720b29ac16f3e"
+        },
+        "runtime_network_install": {
+          "const": "forbidden",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.4374311aff8a5d158b64a60f"
+        }
+      },
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.10ca2f3d51b604135df81cb5"
+    },
+    "dependency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "component_id",
+        "component_version",
+        "artifact_sha256",
+        "kind"
+      ],
+      "properties": {
+        "component_id": {
+          "$ref": "#/$defs/domain_id",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.60d20c5e3539ed6c51549b71"
+        },
+        "component_version": {
+          "$ref": "#/$defs/component_version",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.d684f4ad7c5a03d80a0de152"
+        },
+        "artifact_sha256": {
+          "$ref": "#/$defs/sha256",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.ab89b60b94ee6af62e874486"
+        },
+        "kind": {
+          "enum": [
+            "required_runtime",
+            "required_materialization",
+            "build_only"
+          ],
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.f922a8d9c95fce8cc108b6d6"
+        }
+      },
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.3c372213f8f912535baf754a"
+    },
+    "signature": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "scheme",
+            "signer_id",
+            "signed_artifact_sha256",
+            "verification_policy"
+          ],
+          "properties": {
+            "kind": {
+              "const": "embedded_authenticode",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.b288b65298414e3c4aebeb47"
+            },
+            "scheme": {
+              "const": "authenticode",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.3c62dc060bc28156e0c55f72"
+            },
+            "signer_id": {
+              "$ref": "#/$defs/domain_id",
+              "x-sensitive": "internal",
+              "x-trust-impact": [
+                "execution",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.0e2991c7d8e2f244802c36e0"
+            },
+            "signed_artifact_sha256": {
+              "$ref": "#/$defs/sha256",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.e74d2076721c6de6a3e813fc"
+            },
+            "verification_policy": {
+              "const": "verify_against_release_trust_store_before_materialization",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.51229bd49a0c97b7bc3eebd7"
+            }
+          },
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.f7d10c3e1f3925c2182abc33"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "scheme",
+            "signer_id",
+            "signed_artifact_sha256",
+            "signature_resource",
+            "verification_policy"
+          ],
+          "properties": {
+            "kind": {
+              "const": "detached_signature",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.51cb0d6cf47a82c5ace5e94d"
+            },
+            "scheme": {
+              "enum": [
+                "minisign",
+                "openpgp"
+              ],
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.bd8fa69bddffed5c65cedab0"
+            },
+            "signer_id": {
+              "$ref": "#/$defs/domain_id",
+              "x-sensitive": "internal",
+              "x-trust-impact": [
+                "execution",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.ded31819a3b4b3f9b8ea924c"
+            },
+            "signed_artifact_sha256": {
+              "$ref": "#/$defs/sha256",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.1ed1d83e534e17ffa0c24767"
+            },
+            "signature_resource": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "locator",
+                "byte_length",
+                "artifact_sha256",
+                "content_type"
+              ],
+              "properties": {
+                "locator": {
+                  "type": "string",
+                  "minLength": 14,
+                  "maxLength": 512,
+                  "pattern": "^app-resource:[^?#]+$",
+                  "x-sensitive": "public",
+                  "x-trust-impact": [
+                    "path",
+                    "artifact"
+                  ],
+                  "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+                  "x-rule-id": "component.schema.1_0_0.fa4e22914351ad6d79b67396"
+                },
+                "byte_length": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 9007199254740991,
+                  "x-sensitive": "public",
+                  "x-trust-impact": [
+                    "artifact"
+                  ],
+                  "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+                  "x-rule-id": "component.schema.1_0_0.ab73fe96cc3ecdeec5348c2a"
+                },
+                "artifact_sha256": {
+                  "$ref": "#/$defs/sha256",
+                  "x-sensitive": "public",
+                  "x-trust-impact": [
+                    "artifact"
+                  ],
+                  "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+                  "x-rule-id": "component.schema.1_0_0.29d5c4f6faa3d025fd984266"
+                },
+                "content_type": {
+                  "const": "application/octet-stream",
+                  "x-sensitive": "public",
+                  "x-trust-impact": [
+                    "artifact"
+                  ],
+                  "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+                  "x-rule-id": "component.schema.1_0_0.60a9aa152fd5889c509ddffd"
+                }
+              },
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "path",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.7427306fede3aadc8b2a6017"
+            },
+            "verification_policy": {
+              "const": "verify_against_release_trust_store_before_materialization",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.d4defa7a8361eaad47489dc1"
+            }
+          },
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.550cabeb9d9c3e2a648332be"
+        }
+      ],
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.9cb654e1bb825054995d6676"
+    },
+    "component": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "component_id",
+        "component_version",
+        "component_role",
+        "platform",
+        "architecture",
+        "release_state",
+        "artifact",
+        "source",
+        "provenance",
+        "license_ref",
+        "destination",
+        "ownership_policy",
+        "offline_availability",
+        "dependencies",
+        "disposition"
+      ],
+      "properties": {
+        "component_id": {
+          "$ref": "#/$defs/domain_id",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "ownership",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.517c022f41ee30cf6f2fa03c"
+        },
+        "component_version": {
+          "$ref": "#/$defs/component_version",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.1e14246857db8f3487cdca41"
+        },
+        "component_role": {
+          "enum": [
+            "python_runtime",
+            "comfy_backend",
+            "comfy_frontend",
+            "workflow_templates",
+            "local_node",
+            "python_wheelhouse",
+            "model_diffusion",
+            "model_text_encoder",
+            "model_video_vae",
+            "model_audio_vae",
+            "native_helper",
+            "private_media_tool"
+          ],
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "ownership",
+            "path",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.e31ea39ed254fd06aebbcef1"
+        },
+        "platform": {
+          "const": "windows",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.d904e5f3b64ca2efaccebb7f"
+        },
+        "architecture": {
+          "enum": [
+            "x86_64",
+            "noarch"
+          ],
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.ff19ebeca21923e2eaa495a8"
+        },
+        "release_state": {
+          "enum": [
+            "blocked",
+            "eligible"
+          ],
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "display",
+            "execution",
+            "ownership",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.f1a456b649387b0c4adfb4f6"
+        },
+        "artifact": {
+          "$ref": "#/$defs/artifact",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "ownership",
+            "path",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.7136f5b86c40a4d7ef2dadc4"
+        },
+        "source": {
+          "$ref": "#/$defs/source",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "ownership",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.fbbdec010c33f5faa5ae2d5b"
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "observation",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.8b557a924f5a51b914e4fb3b"
+        },
+        "license_ref": {
+          "$ref": "#/$defs/license_ref",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "ownership",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.7b63402143cd06a47229c8d4"
+        },
+        "destination": {
+          "$ref": "#/$defs/destination",
+          "x-sensitive": "local_path",
+          "x-trust-impact": [
+            "ownership",
+            "path",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.ba99c9aa5b5e887ade51d489"
+        },
+        "ownership_policy": {
+          "$ref": "#/$defs/ownership_policy",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "ownership",
+            "path",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.2071c6656272a8a875f30c20"
+        },
+        "offline_availability": {
+          "$ref": "#/$defs/offline_availability",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.e89d48e90dcaa6473515955d"
+        },
+        "dependencies": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 128,
+          "items": {
+            "$ref": "#/$defs/dependency",
+            "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+            "x-rule-id": "component.schema.1_0_0.12360c076f00bc2e902b047d"
+          },
+          "description": "An empty array means that this component has no component-manifest dependency edge.",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.b577ab59e4b2144e7e453745"
+        },
+        "signature": {
+          "$ref": "#/$defs/signature",
+          "description": "Omitted means that no signature metadata is declared; omission never implies trust.",
+          "x-sensitive": "internal",
+          "x-trust-impact": [
+            "execution",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.00ec9dcf78e9473031ec82fc"
+        },
+        "disposition": {
+          "$ref": "#/$defs/component_disposition",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "ownership",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.badf6f7cbe538636b75d5ab9"
+        }
+      },
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.6b531f41803ddb7bbbb57d02"
+    },
+    "record_disposition": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind"
+          ],
+          "properties": {
+            "kind": {
+              "const": "active",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.03ee5afdefaa5f0bc89fefe4"
+            }
+          },
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.fb85fdccca1c65a033ad637c"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "replacement_record_id",
+            "reason_code"
+          ],
+          "properties": {
+            "kind": {
+              "const": "superseded",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.97fe39b012457c5ebcbf1b6d"
+            },
+            "replacement_record_id": {
+              "$ref": "#/$defs/domain_id",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.ec8687a5b012718905b5a878"
+            },
+            "reason_code": {
+              "$ref": "#/$defs/reason_code",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "display",
+                "execution",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.afe96f9d4a694e76ca85ed63"
+            }
+          },
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.b1e626b4cea663165acb7be3"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "reason_code"
+          ],
+          "properties": {
+            "kind": {
+              "const": "revoked",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.b853aa0b779d4f2ad6dc8595"
+            },
+            "reason_code": {
+              "$ref": "#/$defs/reason_code",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "display",
+                "execution",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.0865c8affcd3ad138912f92d"
+            }
+          },
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.6306f7cce8551a144b22e3cd"
+        }
+      ],
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.3f5b7d6770dc89bb5bfcf0a3"
+    },
+    "component_disposition": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind"
+          ],
+          "properties": {
+            "kind": {
+              "const": "active",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "ownership",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.23439fc6125e4eba8af4d726"
+            }
+          },
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.110c1222d372a1806efdb8b0"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "replacement_component_id",
+            "replacement_component_version",
+            "replacement_artifact_sha256",
+            "reason_code"
+          ],
+          "properties": {
+            "kind": {
+              "const": "superseded",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "ownership",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.2337553f2698d8bbcfd9055d"
+            },
+            "replacement_component_id": {
+              "$ref": "#/$defs/domain_id",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "ownership",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.4e85fed9578b05128e408f86"
+            },
+            "replacement_component_version": {
+              "$ref": "#/$defs/component_version",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.4957cfef91ca9e1ba4808a32"
+            },
+            "replacement_artifact_sha256": {
+              "$ref": "#/$defs/sha256",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "ownership",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.28f7d1c949e8abf1b7c65201"
+            },
+            "reason_code": {
+              "$ref": "#/$defs/reason_code",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "display",
+                "execution",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.82ef5bd598c4373486fb69f3"
+            }
+          },
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.6dacd9d30ec32ef3fa908759"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "reason_code"
+          ],
+          "properties": {
+            "kind": {
+              "const": "revoked",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "ownership",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.85b699d3846f310189d12183"
+            },
+            "reason_code": {
+              "$ref": "#/$defs/reason_code",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "display",
+                "execution",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.8ea7febddfba613037b3987f"
+            }
+          },
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.5a1385a71821936a4384ac82"
+        }
+      ],
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.8057743e087f831289b05b71"
+    },
+    "manifest_disposition": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind"
+          ],
+          "properties": {
+            "kind": {
+              "const": "active",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "ownership",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.06795f83e5a47dae86389e74"
+            }
+          },
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.c7114128cbe1204fabb2616d"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "replacement_document_id",
+            "replacement_document_revision",
+            "replacement_content_sha256",
+            "reason_code"
+          ],
+          "properties": {
+            "kind": {
+              "const": "superseded",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "ownership",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.374c62ec2a03ae799358808f"
+            },
+            "replacement_document_id": {
+              "$ref": "#/$defs/uuid_v4",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "ownership",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.4592879a42978a0c87169db9"
+            },
+            "replacement_document_revision": {
+              "const": 1,
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "ownership",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.a3acd45ddd5414a8c3878eb0"
+            },
+            "replacement_content_sha256": {
+              "$ref": "#/$defs/sha256",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "ownership",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.0887833ef064c59419553c0e"
+            },
+            "reason_code": {
+              "$ref": "#/$defs/reason_code",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "display",
+                "execution",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.00b045a6dcf729a23c5d21af"
+            }
+          },
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.f36a9609cb2984ae103ea676"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "reason_code"
+          ],
+          "properties": {
+            "kind": {
+              "const": "revoked",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "execution",
+                "ownership",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.83ac268cbcb0fde128fb2a37"
+            },
+            "reason_code": {
+              "$ref": "#/$defs/reason_code",
+              "x-sensitive": "public",
+              "x-trust-impact": [
+                "display",
+                "execution",
+                "artifact"
+              ],
+              "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+              "x-rule-id": "component.schema.1_0_0.84ac2418c9ae67e7d756ab80"
+            }
+          },
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.12c4ac047a614952b92a830d"
+        }
+      ],
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.82361b6f71b825e52c95565c"
+    },
+    "extension": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "extension_version",
+        "effect",
+        "data"
+      ],
+      "properties": {
+        "extension_version": {
+          "$ref": "#/$defs/semver",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "display"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.8f2c3aa846d4907d7e8d474d"
+        },
+        "effect": {
+          "const": "display_metadata",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "display"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.397569b8046cad56d5bcf847"
+        },
+        "data": {
+          "type": "object",
+          "maxProperties": 128,
+          "x-sensitive": "internal",
+          "x-trust-impact": [
+            "display"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.065028f20c5b6fb28f0d17e7"
+        }
+      },
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.5198d4d71a807eb7884a61e3"
+    },
+    "extensions": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 32,
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9]*(?:\\.[a-z][a-z0-9_]*){2,}$",
+        "maxLength": 128,
+        "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+        "x-rule-id": "component.schema.1_0_0.e91a163f562dee57d8a5564d"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/extension",
+        "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+        "x-rule-id": "component.schema.1_0_0.b60bcb28c192fd5cea729a10"
+      },
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.57f6a6c403ba0ba2df9b9a77"
+    },
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "algorithm",
+        "canonicalization",
+        "content_sha256"
+      ],
+      "properties": {
+        "algorithm": {
+          "const": "sha256",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "ownership",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.b9180b7d8cca773bb1ae2990"
+        },
+        "canonicalization": {
+          "const": "rfc8785_jcs_root_integrity_omitted",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "ownership",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.d5190499ee11dd92141eb130"
+        },
+        "content_sha256": {
+          "$ref": "#/$defs/sha256",
+          "x-sensitive": "public",
+          "x-trust-impact": [
+            "execution",
+            "ownership",
+            "artifact"
+          ],
+          "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+          "x-rule-id": "component.schema.1_0_0.542c3604f3d60eaf4524a97b"
+        }
+      },
+      "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+      "x-rule-id": "component.schema.1_0_0.5553af47a7dc8b4b6dae8545"
+    }
+  },
+  "x-error-code": "COMPONENT.SCHEMA_CONSTRAINT",
+  "x-rule-id": "component.schema.1_0_0.8a5edab282632443219e051e"
+}

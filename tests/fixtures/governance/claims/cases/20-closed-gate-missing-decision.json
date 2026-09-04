@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"closed-gate-requires-decision-source","mutations":[{"op":"remove","path":"/records/0/gate_requirements/gates/0/decision_ref"}],"expected":{"code":"CONTRACT.MISSING_FIELD","instance_path":"/records/0/gate_requirements/gates/0/decision_ref","rule_id":"claim.gate.closed.decision_ref.required"}}

@@ -1,0 +1,32 @@
+{
+  "productName": "MiniMax H3 Control Plane Tauri Spike",
+  "version": "0.0.1",
+  "identifier": "local.minimaxh3.controlplane.tauri-spike",
+  "build": {
+    "frontendDist": "../ui"
+  },
+  "app": {
+    "withGlobalTauri": false,
+    "windows": [
+      {
+        "label": "main",
+        "title": "MiniMax H3 控制平面技术验证",
+        "url": "index.html",
+        "width": 960,
+        "height": 720,
+        "resizable": true
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; connect-src 'none'; img-src 'self' data:; style-src 'self'; script-src 'self'; object-src 'none'; base-uri 'none'; frame-src 'none'"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": [
+      "nsis"
+    ]
+  },
+  "fixtureStatus": "not-consumed-by-tauri-cli"
+}
+

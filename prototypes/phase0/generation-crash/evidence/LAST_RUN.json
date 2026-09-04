@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "task": "P0-ARC-011",
+  "status": "pass",
+  "deterministic_time": "2000-01-01T00:00:00.000Z",
+  "scope": "fake-bytes-process-kill-only",
+  "volume": {
+    "drive_type": "Fixed",
+    "format": "NTFS",
+    "same_volume": true,
+    "unicode_and_space_path": true
+  },
+  "stable_hashes": {
+    "fake_artifact_sha256": "c094f75a988b470c822f157431f2b920bd750803225be7d89374eced4a070147",
+    "active_pointer_sha256": "e920265dbe6ffdc1431946b05848b716971d6c233f0c2e31f870846ce7010b4d"
+  },
+  "boundaries": {
+    "process_kill_simulated": true,
+    "parent_tree_kill_simulated": true,
+    "real_power_loss_simulated": false,
+    "ntfs_power_loss_durability_proven": false,
+    "real_python_started": false,
+    "real_comfy_started": false,
+    "model_used": false,
+    "gpu_used": false,
+    "network_used": false,
+    "media_generated": false
+  },
+  "result_count": 19,
+  "results": [
+    {
+      "id": "GC-001-owned-unicode-space-fixed-ntfs-volume",
+      "status": "pass",
+      "evidence": "All scenario, generation, control, temp and active paths remained under one owned Fixed/NTFS volume root containing Unicode and spaces."
+    },
+    {
+      "id": "GC-002-old-active-small-versioned-checksummed",
+      "status": "pass",
+      "evidence": "The old active pointer was relative, schema-versioned, checksummed, below 4 KiB and resolved only through full generation validation."
+    },
+    {
+      "id": "GC-003-crash-before-generation-create",
+      "status": "pass",
+      "evidence": "before-generation-create: post-kill state was valid and deterministic retry was idempotent."
+    },
+    {
+      "id": "GC-004-crash-after-directory-create",
+      "status": "pass",
+      "evidence": "after-directory-create: post-kill state was valid and deterministic retry was idempotent."
+    },
+    {
+      "id": "GC-005-crash-mid-file",
+      "status": "pass",
+      "evidence": "mid-file: post-kill state was valid and deterministic retry was idempotent."
+    },
+    {
+      "id": "GC-006-crash-after-bytes-before-fsync-verification",
+      "status": "pass",
+      "evidence": "after-bytes-before-fsync-verification: post-kill state was valid and deterministic retry was idempotent."
+    },
+    {
+      "id": "GC-007-crash-before-completion-marker",
+      "status": "pass",
+      "evidence": "before-completion-marker: post-kill state was valid and deterministic retry was idempotent."
+    },
+    {
+      "id": "GC-008-crash-after-completion-marker",
+      "status": "pass",
+      "evidence": "after-completion-marker: post-kill state was valid and deterministic retry was idempotent."
+    },
+    {
+      "id": "GC-009-crash-before-pointer-temp-write",
+      "status": "pass",
+      "evidence": "before-pointer-temp-write: post-kill state was valid and deterministic retry was idempotent."
+    },
+    {
+      "id": "GC-010-crash-after-pointer-temp-write",
+      "status": "pass",
+      "evidence": "after-pointer-temp-write: post-kill state was valid and deterministic retry was idempotent."
+    },
+    {
+      "id": "GC-011-crash-before-atomic-replace",
+      "status": "pass",
+      "evidence": "before-atomic-replace: post-kill state was valid and deterministic retry was idempotent."
+    },
+    {
+      "id": "GC-012-crash-immediately-after-replace",
+      "status": "pass",
+      "evidence": "immediately-after-replace: post-kill state was valid and deterministic retry was idempotent."
+    },
+    {
+      "id": "GC-013-crash-during-retry-cleanup",
+      "status": "pass",
+      "evidence": "Cleanup retained its owner marker until last; retry completed without touching the active, neighbor, unowned, or external sentinel."
+    },
+    {
+      "id": "GC-014-parent-tree-termination-with-child-active",
+      "status": "pass",
+      "evidence": "An owned fake writer child was active; terminating the exact parent tree left an incomplete non-active generation and retry recovered safely."
+    },
+    {
+      "id": "GC-015-negative-pointer-checksum",
+      "status": "pass",
+      "evidence": "Corrupt pointer failed exactly as GC.POINTER_CHECKSUM."
+    },
+    {
+      "id": "GC-016-negative-incomplete-and-traversal",
+      "status": "pass",
+      "evidence": "Incomplete and traversal pointers failed exactly as GC.MANIFEST_INCOMPLETE and GC.GENERATION_ID_INVALID."
+    },
+    {
+      "id": "GC-017-corrupt-active-refuses-newest-guess",
+      "status": "pass",
+      "evidence": "A corrupt active pointer caused refusal; the newer verified directory was not guessed or auto-selected."
+    },
+    {
+      "id": "GC-018-stable-hashes-and-idempotent-retry",
+      "status": "pass",
+      "evidence": "All crash scenarios converged on identical fake artifact and active-pointer hashes; a second retry made no byte change."
+    },
+    {
+      "id": "GC-019-public-evidence-sanitized",
+      "status": "pass",
+      "evidence": "Public evidence contains no username, private absolute path, token, environment dump, PID or raw child log."
+    }
+  ]
+}

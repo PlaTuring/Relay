@@ -1,0 +1,9 @@
+{
+  "fixture_id": "brand-absence-not-no-op",
+  "mutation": {
+    "kind": "set_brand_absence_field",
+    "field": "valid",
+    "value": false
+  },
+  "expected_code": "BRAND_ABSENCE.MUST_BE_VALID_NO_OP"
+}

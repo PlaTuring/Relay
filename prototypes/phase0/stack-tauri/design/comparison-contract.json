@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "1.0.0",
+  "candidate": "tauri-rust",
+  "evidenceKind": "uncompiled-design-fixture",
+  "productBoundary": {
+    "controlPlaneOnly": true,
+    "toolSubmitsFormalQueue": false,
+    "toolGeneratesMedia": false,
+    "h3GeneratesAfterVisibleUserRunInComfy": true
+  },
+  "commandSurface": [
+    {
+      "command": "security_get_summary",
+      "rendererMethod": "getSecuritySummary",
+      "status": "static-contract-only"
+    },
+    {
+      "command": "choose_managed_root",
+      "rendererMethod": "chooseManagedRoot",
+      "status": "blocked-native-picker-not-linked"
+    },
+    {
+      "command": "inspect_managed_root",
+      "rendererMethod": "inspectManagedRoot",
+      "status": "static-contract-only"
+    },
+    {
+      "command": "run_owned_child_probe",
+      "rendererMethod": "runOwnedChildProbe",
+      "status": "static-contract-only"
+    }
+  ],
+  "comparisonCategories": [
+    {
+      "id": "product-boundary",
+      "status": "static-proven"
+    },
+    {
+      "id": "typed-command-allowlist",
+      "status": "static-proven-runtime-blocked"
+    },
+    {
+      "id": "renderer-webview-isolation",
+      "status": "configuration-only-runtime-blocked"
+    },
+    {
+      "id": "native-path-picker",
+      "status": "blocked"
+    },
+    {
+      "id": "unicode-space-path-policy",
+      "status": "comparison-fixture-proven-rust-blocked"
+    },
+    {
+      "id": "owned-direct-child",
+      "status": "static-source-only-runtime-blocked"
+    },
+    {
+      "id": "job-object-process-tree",
+      "status": "blocked"
+    },
+    {
+      "id": "installer-package",
+      "status": "blocked"
+    },
+    {
+      "id": "signing",
+      "status": "blocked"
+    },
+    {
+      "id": "package-size-startup-memory",
+      "status": "blocked"
+    },
+    {
+      "id": "accessibility",
+      "status": "static-foundation-only"
+    },
+    {
+      "id": "dependency-sbom-security",
+      "status": "blocked"
+    },
+    {
+      "id": "alpha-no-self-update",
+      "status": "static-policy-proven"
+    },
+    {
+      "id": "public-evidence-hygiene",
+      "status": "proven"
+    }
+  ],
+  "blockedPrerequisites": [
+    "rustc",
+    "cargo",
+    "tauri-cli",
+    "msvc-linker",
+    "windows-sdk",
+    "signtool"
+  ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "fixture_id": "layer-unknown-replacement-authority",
+  "mutation": {
+    "kind": "set_layer_field",
+    "layer_id": "user_brand",
+    "field": "replacement_authority",
+    "value": "minimax_h3_attribution"
+  },
+  "expected_code": "STRUCTURE.LAYER.UNKNOWN_KEY"
+}

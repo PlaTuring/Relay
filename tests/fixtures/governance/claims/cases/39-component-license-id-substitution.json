@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"minimax-license-id-cannot-substitute-for-qwen-license","mutations":[{"op":"replace","path":"/records/12/subject/component_id","value":"qwen3-vl-32b-instruct"}],"expected":{"code":"CLAIM.OBLIGATION_WORDING_MISMATCH","instance_path":"/records/12/source_assertion/source_text_sha256","rule_id":"claim.obligation.wording.exact"}}

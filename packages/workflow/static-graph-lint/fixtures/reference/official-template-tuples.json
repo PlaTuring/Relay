@@ -1,0 +1,25 @@
+{
+  "$comment": "Non-authoritative reference metadata only. A matching tuple never authorizes a node, graph, or subgraph.",
+  "repository": "https://github.com/Comfy-Org/workflow_templates",
+  "locked_revision": "71f43419e53dfcb16330748f3b933ac0efcc4778",
+  "templates": [
+    {
+      "route": "T2V",
+      "bytes": 67891,
+      "sha256": "2400b01a7c8acae3fed038c0372f08bacb90d2cdf915febadbe7e3f9802506ea",
+      "contains_definitions_subgraphs": true
+    },
+    {
+      "route": "I2V",
+      "bytes": 71242,
+      "sha256": "4dc94e9ea308c1d60409e7f55dba5e2788dab4659c2dbb90f1e9481498767540",
+      "contains_definitions_subgraphs": true
+    },
+    {
+      "route": "R2V",
+      "bytes": 45121,
+      "sha256": "14b30659a057547e02bdd4bbbdda3f8670aa6d7d81d1d8d99c4f9ad1e2eabc44",
+      "contains_definitions_subgraphs": false
+    }
+  ]
+}

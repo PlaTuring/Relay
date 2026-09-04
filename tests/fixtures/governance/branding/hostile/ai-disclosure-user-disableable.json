@@ -1,0 +1,10 @@
+{
+  "fixture_id": "ai-disclosure-user-disableable",
+  "mutation": {
+    "kind": "set_layer_field",
+    "layer_id": "ai_generated_disclosure",
+    "field": "runtime_user_toggle_allowed",
+    "value": true
+  },
+  "expected_code": "LAYER.RUNTIME_TOGGLE_FORBIDDEN"
+}

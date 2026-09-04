@@ -1,0 +1,1 @@
+{"fixture_version":"1.0.0","fixture_id":"tool-owns-run","target":"glossary","mutation":{"kind":"set_operation_field","operation_id":"run","field":"actor","value":"tool_control_plane"},"expected":{"code":"TERM.OPERATION.BOUNDARY_DRIFT","rule_id":"terminology.operation.compile_handoff_run_exact"}}

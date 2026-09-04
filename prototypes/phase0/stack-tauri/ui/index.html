@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; connect-src 'none'; img-src 'self' data:; style-src 'self'; script-src 'self'; object-src 'none'; base-uri 'none'; frame-src 'none'"
+    />
+    <title>MiniMax H3 控制平面技术验证</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="eyebrow">Phase 0 · Tauri 设计夹具</p>
+        <h1>安装与工作流交接</h1>
+        <p>
+          本工具只负责检测、配置、编译和交接工作流。视频与原生音频由 MiniMax H3
+          在 ComfyUI 中、用户明确点击 Run 后生成。
+        </p>
+      </header>
+
+      <section aria-labelledby="managed-root-heading">
+        <h2 id="managed-root-heading">托管大文件位置</h2>
+        <p id="root-help">默认建议合格的 D 盘；没有合格 D 盘时必须由用户选择，不静默回退 C 盘。</p>
+        <button type="button" aria-describedby="root-help" disabled>选择文件夹（当前构建前提缺失）</button>
+        <dl>
+          <div><dt>建议位置</dt><dd>D:\MiniMaxH3</dd></div>
+          <div><dt>当前状态</dt><dd>仅静态设计，未调用原生选择器</dd></div>
+        </dl>
+      </section>
+
+      <section aria-labelledby="boundary-heading">
+        <h2 id="boundary-heading">安全边界</h2>
+        <ul>
+          <li>仅四个具名 command；不向页面暴露通用 invoke。</li>
+          <li>本地页面与严格 CSP；远程连接在配置中禁用。</li>
+          <li>无应用内更新器、遥测或工具侧媒体执行入口。</li>
+        </ul>
+        <output aria-live="polite">Rust/Tauri/MSVC 工具链缺失，运行验证已阻断。</output>
+      </section>
+    </main>
+  </body>
+</html>

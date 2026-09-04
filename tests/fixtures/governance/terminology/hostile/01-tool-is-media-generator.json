@@ -1,0 +1,1 @@
+{"fixture_version":"1.0.0","fixture_id":"tool-is-media-generator","target":"glossary","mutation":{"kind":"set_product_boundary_field","field":"media_generator_actor","value":"tool_control_plane"},"expected":{"code":"TERM.PRODUCT_BOUNDARY.SEMANTIC_DRIFT","rule_id":"terminology.boundary.tool_h3_comfy_exact"}}

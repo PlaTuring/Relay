@@ -1,0 +1,10 @@
+{
+  "fixture_id": "h3-decision-self-closed",
+  "mutation": {
+    "kind": "set_decision_field",
+    "decision_id": "DEC-H3-ATTRIBUTION",
+    "field": "status",
+    "value": "closed"
+  },
+  "expected_code": "DECISION.EXTERNAL_BLOCKED"
+}

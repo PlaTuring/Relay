@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"forward-safe-display-extension","base":"valid/component-role-examples.json","mutations":[{"op":"add","path":"/extensions","value":{"org.example.component_badge":{"extension_version":"1.0.0","effect":"display_metadata","data":{"label":"Schema fixture"}}}}],"expected":"valid"}

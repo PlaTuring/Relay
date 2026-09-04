@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"wrong-app-catalog-binding","base":"valid/component-role-examples.json","mutations":[{"op":"replace","path":"/catalog_binding/app_id","value":"other-tool"}],"expected":{"code":"COMPONENT.APP_BINDING_MISMATCH","instance_path":"/catalog_binding/app_id","rule_id":"component.catalog.app_exact"}}

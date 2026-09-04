@@ -1,0 +1,10 @@
+{
+  "fixture_case_version": "1.0.0",
+  "case_id": "revoked-capability-cannot-remain-stable",
+  "base": "valid/alpha0-t2va-capability.json",
+  "mutations": [
+    {"op": "replace", "path": "/capabilities/0/publication_status", "value": "stable"},
+    {"op": "replace", "path": "/capabilities/0/disposition", "value": {"kind": "revoked", "reason_code": "CAPABILITY.REVOKED_BY_AUTHORITY", "evidence_source_ids": ["p0-wf-001-snapshot"]}}
+  ],
+  "expected": {"code": "CAPABILITY.NONACTIVE_MUST_BE_BLOCKED", "instance_path": "/capabilities/0/publication_status", "rule_id": "capability.disposition.nonactive_blocked"}
+}

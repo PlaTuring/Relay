@@ -1,0 +1,42 @@
+{
+  "fixture_version": "1.0.0",
+  "evidence_class": "delegated_user_provided_unverified_identity_data",
+  "actionable": false,
+  "license_approved": false,
+  "provenance_verified": false,
+  "signature_verified": false,
+  "release_state": "blocked",
+  "disposition": "future_catalog_input_only",
+  "upstream": {
+    "organization": "Comfy-Org",
+    "repository": "MiniMax-H3",
+    "revision": "4cc1d817b6184899b41293954329f576cb5ae86b"
+  },
+  "artifacts": [
+    {
+      "role": "fl2va_main",
+      "byte_length": 20970379616,
+      "artifact_sha256": "sha256:e889202c41dafb67b10d67b97f0d8541508036a6090af23425a5c2615d03c47a"
+    },
+    {
+      "role": "text_encoder",
+      "byte_length": 15687142551,
+      "artifact_sha256": "sha256:35a88d51044231fe332301d7a62aa81e3f2cba62febeb446e2c1e3e0ef76f2c6"
+    },
+    {
+      "role": "video_vae",
+      "byte_length": 5207808496,
+      "artifact_sha256": "sha256:7c1f131492e7eddacaac9069a61b81bdd39de5cc96561e677c5eab1cdce5e522"
+    },
+    {
+      "role": "audio_vae",
+      "byte_length": 605254808,
+      "artifact_sha256": "sha256:8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48"
+    },
+    {
+      "role": "ref2va",
+      "byte_length": 20970379616,
+      "artifact_sha256": "sha256:9255f52b6677845ad238f20dfaafa94727053694127ab7f255c048f0f9365779"
+    }
+  ]
+}

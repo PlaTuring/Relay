@@ -1,0 +1,754 @@
+{
+  "$comment": "P0-WF-001 evidence snapshot only. This file is not a shared product schema or registry.",
+  "snapshot_version": "0.1.0",
+  "task_id": "P0-WF-001",
+  "created_at_utc": "2026-08-27T10:24:26Z",
+  "product_boundary": {
+    "tool_roles": [
+      "installation",
+      "detection",
+      "configuration",
+      "workflow_compilation",
+      "deterministic_orchestration",
+      "technical_verification"
+    ],
+    "generation_owner": "MiniMax H3 inside ComfyUI after the user clicks Run",
+    "forbidden": [
+      "tool-side formal queue submission",
+      "cloud or partner inference API nodes",
+      "hidden uploads",
+      "replacement inference backend",
+      "prompt expansion or creative direction"
+    ]
+  },
+  "status_vocabulary": {
+    "proven": "An immutable first-party upstream revision directly supports the stated fact. It does not imply that this product path has passed local runtime or GPU acceptance.",
+    "poc_pending": "The source path exists or is plausible, but an accepted repeatable PoC is still required before the capability can be exposed as Stable.",
+    "experimental": "The path depends on an unstable, third-party, unpublished, or product-owned compatibility contract and cannot be a Stable default."
+  },
+  "fingerprint_spec": {
+    "algorithm": "sha256-c14n-json-sort-keys-v1",
+    "normalization": "UTF-8 JSON; object keys sorted recursively; array order preserved; no insignificant whitespace",
+    "basis": "The normalized logical input/output descriptor captured below from the locked source revision, not a live /api/object_info response.",
+    "runtime_rule": "Before use, normalize the selected Comfy instance /api/object_info into the same descriptor and require an exact fingerprint match. Missing, unknown, Partner/API, or mismatched nodes fail closed."
+  },
+  "locked_upstreams": [
+    {
+      "id": "minimax-h3-github",
+      "authority": "model_creator",
+      "repository": "https://github.com/MiniMax-AI/MiniMax-H3",
+      "revision": "d21241f0a4b3acbb34c97dae47fa417b7065e438",
+      "verified_by": "git ls-remote HEAD",
+      "status": "proven"
+    },
+    {
+      "id": "minimax-h3-huggingface",
+      "authority": "model_creator",
+      "repository": "https://huggingface.co/MiniMaxAI/MiniMax-H3",
+      "revision": "42ed227ee7df40d41602854ae760620d6eb651fe",
+      "first_introduced_revision": "5d9b308a59ab12e67147f191e184baf704185bd1",
+      "verified_by": "Hugging Face model metadata API",
+      "status": "proven"
+    },
+    {
+      "id": "comfyui-core",
+      "authority": "comfy_official",
+      "repository": "https://github.com/Comfy-Org/ComfyUI",
+      "revision": "d8e7bbc9d586d95f758d6b0ed23d519088be578a",
+      "verified_by": "git ls-remote HEAD",
+      "status": "proven"
+    },
+    {
+      "id": "comfyui-frontend",
+      "authority": "comfy_official",
+      "repository": "https://github.com/Comfy-Org/ComfyUI_frontend",
+      "revision": "7ba60a03bb8655b4fae9e6181265217010a98e8a",
+      "verified_by": "git ls-remote HEAD",
+      "status": "proven"
+    },
+    {
+      "id": "comfyui-workflow-templates",
+      "authority": "comfy_official",
+      "repository": "https://github.com/Comfy-Org/workflow_templates",
+      "revision": "71f43419e53dfcb16330748f3b933ac0efcc4778",
+      "verified_by": "git ls-remote HEAD",
+      "status": "proven"
+    },
+    {
+      "id": "comfy-desktop",
+      "authority": "comfy_official",
+      "repository": "https://github.com/Comfy-Org/Comfy-Desktop",
+      "revision": "29087358520593cc2d08224e89d6bc8c9d455254",
+      "verified_by": "git ls-remote HEAD",
+      "status": "proven"
+    },
+    {
+      "id": "comfy-org-minimax-h3-huggingface",
+      "authority": "comfy_official_packaging_not_model_origin",
+      "repository": "https://huggingface.co/Comfy-Org/MiniMax-H3",
+      "revision": "4cc1d817b6184899b41293954329f576cb5ae86b",
+      "first_introduced_revision": "3f57e8291d2ef846f9a074b1b76d2767db434abe",
+      "verified_by": "Hugging Face model metadata API",
+      "status": "proven"
+    }
+  ],
+  "gates": [
+    {
+      "id": "GATE-RUNTIME-OBJECT-INFO",
+      "status": "poc_pending",
+      "acceptance": "Live /api/object_info from the selected locked instance matches every used class_type and source-derived schema fingerprint."
+    },
+    {
+      "id": "GATE-OFFLINE-NODE-LINT",
+      "status": "poc_pending",
+      "acceptance": "Visual graph, API graph, subgraph definitions, and expanded execution graph contain only recipe allowlisted local nodes; is_api_node, Partner/API, authentication inputs, and unknown output nodes fail closed."
+    },
+    {
+      "id": "GATE-DUAL-GRAPH-EQUIVALENCE",
+      "status": "poc_pending",
+      "acceptance": "workflow.json converted by the locked frontend graphToPrompt() is semantically equivalent to prompt.json; the tool submits neither graph to the first formal queue."
+    },
+    {
+      "id": "GATE-MODEL-FILE-VERIFY",
+      "status": "poc_pending",
+      "acceptance": "Selected model files are downloaded or reused later, then size, LFS SHA-256, safetensors header role, compatibility, and license approval are verified before selection."
+    },
+    {
+      "id": "GATE-H3-LICENSE",
+      "status": "poc_pending",
+      "acceptance": "Human/legal owner approves the locked MiniMax H3 license revision, target region, redistribution path, UI attribution, downstream restrictions, and AI disclosure policy."
+    },
+    {
+      "id": "GATE-COMFY-LICENSE",
+      "status": "poc_pending",
+      "acceptance": "Human/legal owner approves the exact Core, frontend, templates, Desktop, and custom-node distribution/interaction topology."
+    },
+    {
+      "id": "GATE-CODEC-LICENSE",
+      "status": "poc_pending",
+      "acceptance": "The selected PyAV/FFmpeg library build and enabled output codecs have an approved distribution and patent route."
+    },
+    {
+      "id": "GATE-FL2VA-GPU-MATRIX",
+      "status": "poc_pending",
+      "acceptance": "On the first certified profile, 5/10/15-second T2VA, I2VA, L2VA, and FL2VA workflows execute locally with video plus 32 kHz stereo audio and no network access."
+    },
+    {
+      "id": "GATE-EMPTY-PROMPT",
+      "status": "poc_pending",
+      "acceptance": "First-only, last-only, and first-plus-last empty strings are tested on the locked runtime; any neutral fallback text is visible, versioned, replaceable, and recorded."
+    },
+    {
+      "id": "GATE-ENDPOINT-FRAMEPLAN",
+      "status": "poc_pending",
+      "acceptance": "Route-specific 5/10/15-second frame/audio plans preserve declared endpoints while meeting the selected duration and A/V synchronization tolerance."
+    },
+    {
+      "id": "GATE-LOCAL-4S",
+      "status": "poc_pending",
+      "acceptance": "A locked local Comfy/H3 path produces an accepted 4-second result; source minimum values alone do not pass this gate."
+    },
+    {
+      "id": "GATE-REF2VA",
+      "status": "poc_pending",
+      "acceptance": "Reference image/video/audio tags, official count/duration limits, native audio, model role, and empty-text policy pass locked fixtures and GPU tests."
+    },
+    {
+      "id": "GATE-ADDGUIDE",
+      "status": "poc_pending",
+      "acceptance": "A two-window local GraphBuilder expansion uses MiniMaxH3AddGuide with explicit video/audio guide timing and no queue re-entry."
+    },
+    {
+      "id": "GATE-SAVEVIDEO",
+      "status": "poc_pending",
+      "acceptance": "CreateVideo plus SaveVideo writes a playable local MP4 with expected frame rate/audio; public-output metadata is disabled or sanitized and codec availability is recorded."
+    },
+    {
+      "id": "GATE-GRAPHBUILDER-RUNNER",
+      "status": "poc_pending",
+      "acceptance": "Finite local H3 dependencies expand through GraphBuilder after one user Run, without /prompt re-entry; checkpoint, failure injection, and resume are separate later gates."
+    },
+    {
+      "id": "GATE-ACCELERATION-RECIPE",
+      "status": "poc_pending",
+      "acceptance": "Each acceleration model/node combination is pinned and compared with the conservative baseline for success rate, runtime, peak resources, video frames, native audio, and quality-risk disclosure before it can be selected automatically."
+    },
+    {
+      "id": "GATE-DESKTOP-WORKFLOW-OPEN",
+      "status": "poc_pending",
+      "acceptance": "Cold/hot start, multiple instances, non-default paths, and Chinese/space filenames either auto-load the target visual workflow or enter an explicit safe manual-import fallback."
+    }
+  ],
+  "local_node_allowlist_seed": [
+    {
+      "class_type": "EmptyMiniMaxH3LatentAV",
+      "status": "proven",
+      "runtime_acceptance": "poc_pending",
+      "source": {
+        "upstream_id": "comfyui-core",
+        "path": "comfy_extras/nodes_minimax_h3.py",
+        "git_blob_sha": "0a08f185fd1155f18f16757c02553ff48cf365eb",
+        "first_introduced_revision": "57500fc5bc92566a63f2046824f522cd55c335ca"
+      },
+      "schema_contract": {
+        "class_type": "EmptyMiniMaxH3LatentAV",
+        "required_inputs": [
+          {"name": "width", "type": "INT", "default": 1344, "min": 32, "max": "MAX_RESOLUTION", "step": 32},
+          {"name": "height", "type": "INT", "default": 768, "min": 32, "max": "MAX_RESOLUTION", "step": 32},
+          {"name": "length", "type": "INT", "default": 124, "min": 5, "max": 3600, "step": 17}
+        ],
+        "optional_inputs": [],
+        "hidden_inputs": [],
+        "outputs": [{"index": 0, "type": "LATENT"}],
+        "flags": {"is_api_node": false, "is_output_node": false}
+      },
+      "schema_fingerprint": "sha256:f23c9fb5c02ef0187d004a74f114735e26953c8d282147a45223de781a4860a2"
+    },
+    {
+      "class_type": "MiniMaxH3ImageToVideo",
+      "status": "proven",
+      "runtime_acceptance": "poc_pending",
+      "source": {
+        "upstream_id": "comfyui-core",
+        "path": "comfy_extras/nodes_minimax_h3.py",
+        "git_blob_sha": "0a08f185fd1155f18f16757c02553ff48cf365eb",
+        "first_introduced_revision": "57500fc5bc92566a63f2046824f522cd55c335ca"
+      },
+      "schema_contract": {
+        "class_type": "MiniMaxH3ImageToVideo",
+        "required_inputs": [
+          {"name": "clip", "type": "CLIP"},
+          {"name": "vae", "type": "VAE"},
+          {"name": "prompt", "type": "STRING", "multiline": true, "dynamic_prompts": true},
+          {"name": "width", "type": "INT", "default": 1344, "min": 32, "max": "MAX_RESOLUTION", "step": 32},
+          {"name": "height", "type": "INT", "default": 768, "min": 32, "max": "MAX_RESOLUTION", "step": 32},
+          {"name": "length", "type": "INT", "default": 124, "min": 5, "max": 3600, "step": 17}
+        ],
+        "optional_inputs": [
+          {"name": "first_frame", "type": "IMAGE"},
+          {"name": "last_frame", "type": "IMAGE"}
+        ],
+        "hidden_inputs": [],
+        "outputs": [
+          {"index": 0, "name": "positive", "type": "CONDITIONING"},
+          {"index": 1, "type": "LATENT"}
+        ],
+        "flags": {"is_api_node": false, "is_output_node": false}
+      },
+      "schema_fingerprint": "sha256:701870ddeb11c2ac58c1dd2d3ce39ac2df5fd2ec3bb601804f49ff60e22c9818"
+    },
+    {
+      "class_type": "MiniMaxH3AddGuide",
+      "status": "proven",
+      "runtime_acceptance": "poc_pending",
+      "source": {
+        "upstream_id": "comfyui-core",
+        "path": "comfy_extras/nodes_minimax_h3.py",
+        "git_blob_sha": "0a08f185fd1155f18f16757c02553ff48cf365eb",
+        "first_introduced_revision": "e01fb4c56b7a88149d469b99cbbfe3223d715054"
+      },
+      "schema_contract": {
+        "class_type": "MiniMaxH3AddGuide",
+        "required_inputs": [
+          {"name": "positive", "type": "CONDITIONING"},
+          {"name": "latent", "type": "LATENT"},
+          {"name": "frame_idx", "type": "INT", "default": 0, "min": -9999, "max": 9999}
+        ],
+        "optional_inputs": [
+          {"name": "vae", "type": "VAE"},
+          {"name": "audio_vae", "type": "VAE"},
+          {"name": "image", "type": "IMAGE"},
+          {"name": "audio", "type": "AUDIO"}
+        ],
+        "hidden_inputs": [],
+        "outputs": [{"index": 0, "name": "positive", "type": "CONDITIONING"}],
+        "flags": {"is_api_node": false, "is_output_node": false}
+      },
+      "schema_fingerprint": "sha256:bf7bfd2013db0bd45777568d6d67494f7bb99e803dd4cda3fbf3a40e857d2d62"
+    },
+    {
+      "class_type": "MiniMaxH3ReferenceToVideo",
+      "status": "proven",
+      "runtime_acceptance": "poc_pending",
+      "source": {
+        "upstream_id": "comfyui-core",
+        "path": "comfy_extras/nodes_minimax_h3.py",
+        "git_blob_sha": "0a08f185fd1155f18f16757c02553ff48cf365eb",
+        "first_introduced_revision": "57500fc5bc92566a63f2046824f522cd55c335ca"
+      },
+      "schema_contract": {
+        "class_type": "MiniMaxH3ReferenceToVideo",
+        "required_inputs": [
+          {"name": "clip", "type": "CLIP"},
+          {"name": "vae", "type": "VAE"},
+          {"name": "audio_vae", "type": "VAE"},
+          {"name": "prompt", "type": "STRING", "multiline": true, "dynamic_prompts": true},
+          {"name": "width", "type": "INT", "default": 1344, "min": 32, "max": "MAX_RESOLUTION", "step": 32},
+          {"name": "height", "type": "INT", "default": 768, "min": 32, "max": "MAX_RESOLUTION", "step": 32},
+          {"name": "length", "type": "INT", "default": 124, "min": 5, "max": 3600, "step": 17},
+          {"name": "ref_image_size", "type": "COMBO", "options": ["match", "max"], "default": "match"}
+        ],
+        "optional_inputs": [
+          {"name": "ref_images", "type": "AUTOGROW<IMAGE>", "min_items": 0, "max_items": 9, "prefix": "ref_image_"},
+          {"name": "ref_videos", "type": "AUTOGROW<IMAGE>", "min_items": 0, "max_items": 3, "prefix": "ref_video_"},
+          {"name": "ref_video_audios", "type": "AUTOGROW<AUDIO>", "min_items": 0, "max_items": 3, "prefix": "ref_video_audio_"},
+          {"name": "ref_audios", "type": "AUTOGROW<AUDIO>", "min_items": 0, "max_items": 3, "prefix": "ref_audio_"}
+        ],
+        "hidden_inputs": [],
+        "outputs": [
+          {"index": 0, "name": "positive", "type": "CONDITIONING"},
+          {"index": 1, "type": "LATENT"}
+        ],
+        "flags": {"is_api_node": false, "is_output_node": false}
+      },
+      "schema_fingerprint": "sha256:65c8d527ba6024c0282d0763e90b648683ea100cff2d55f7582be6930e85059c"
+    },
+    {
+      "class_type": "MiniMaxH3SigmaShift",
+      "status": "proven",
+      "runtime_acceptance": "poc_pending",
+      "source": {
+        "upstream_id": "comfyui-core",
+        "path": "comfy_extras/nodes_minimax_h3.py",
+        "git_blob_sha": "0a08f185fd1155f18f16757c02553ff48cf365eb",
+        "first_introduced_revision": "57500fc5bc92566a63f2046824f522cd55c335ca"
+      },
+      "schema_contract": {
+        "class_type": "MiniMaxH3SigmaShift",
+        "required_inputs": [
+          {"name": "model", "type": "MODEL"},
+          {"name": "shift_video", "type": "FLOAT", "default": 12, "min": 0.01, "max": 100, "step": 0.01},
+          {"name": "shift_audio", "type": "FLOAT", "default": 3, "min": 0.01, "max": 100, "step": 0.01}
+        ],
+        "optional_inputs": [],
+        "hidden_inputs": [],
+        "outputs": [{"index": 0, "type": "MODEL"}],
+        "flags": {"is_api_node": false, "is_output_node": false}
+      },
+      "schema_fingerprint": "sha256:def7b38f215736b2bcfc09aa593097f240fde31c32266c8f1b032e11b5e561b8"
+    },
+    {
+      "class_type": "CreateVideo",
+      "status": "proven",
+      "runtime_acceptance": "poc_pending",
+      "source": {
+        "upstream_id": "comfyui-core",
+        "path": "comfy_extras/nodes_video.py",
+        "git_blob_sha": "58f58aaf4daecd08e3b7488c5f313377e6f527e2",
+        "first_introduced_revision": "68f0d3529667a2b34b27cc0ac5051bc0e8c45b49"
+      },
+      "schema_contract": {
+        "class_type": "CreateVideo",
+        "required_inputs": [
+          {"name": "images", "type": "IMAGE"},
+          {"name": "fps", "type": "FLOAT", "default": 30, "min": 1, "max": 120, "step": 1}
+        ],
+        "optional_inputs": [
+          {"name": "audio", "type": "AUDIO"},
+          {"name": "bit_depth", "type": "COMBO", "options": ["auto", 8, 10], "default": "auto"},
+          {"name": "color_space", "type": "COMBO", "options": ["sRGB", "HDR", "HDR PQ"], "default": "sRGB"}
+        ],
+        "hidden_inputs": [],
+        "outputs": [{"index": 0, "type": "VIDEO"}],
+        "flags": {"is_api_node": false, "is_output_node": false}
+      },
+      "schema_fingerprint": "sha256:cb95bed0f73f12f7c4b215c32bc3e70d13472d28f9fe621312df9ff45eda823d"
+    },
+    {
+      "class_type": "SaveVideo",
+      "status": "proven",
+      "runtime_acceptance": "poc_pending",
+      "source": {
+        "upstream_id": "comfyui-core",
+        "path": "comfy_extras/nodes_video.py",
+        "git_blob_sha": "58f58aaf4daecd08e3b7488c5f313377e6f527e2",
+        "first_introduced_revision": "68f0d3529667a2b34b27cc0ac5051bc0e8c45b49"
+      },
+      "schema_contract": {
+        "class_type": "SaveVideo",
+        "required_inputs": [
+          {"name": "video", "type": "VIDEO"},
+          {"name": "filename_prefix", "type": "STRING", "default": "video/ComfyUI"},
+          {"name": "format", "type": "DYNAMIC_COMBO", "options": ["auto", "mp4", "mkv", "webm"]}
+        ],
+        "optional_inputs": [
+          {"name": "codec", "type": "DYNAMIC_COMBO", "options": ["auto", "h264", "av1"], "hidden": true}
+        ],
+        "hidden_inputs": [
+          {"name": "prompt", "type": "PROMPT"},
+          {"name": "extra_pnginfo", "type": "EXTRA_PNGINFO"}
+        ],
+        "outputs": [{"index": 0, "name": "video", "type": "VIDEO"}],
+        "flags": {"is_api_node": false, "is_output_node": true}
+      },
+      "schema_fingerprint": "sha256:1ec11f525cacbf909a4527a3ec54df0d8d065b1ecc07229178a1d9a101f93996"
+    }
+  ],
+  "non_node_runtime_surfaces": [
+    {
+      "id": "GraphBuilder",
+      "status": "proven",
+      "product_readiness": "poc_pending",
+      "source": {
+        "upstream_id": "comfyui-core",
+        "path": "comfy_execution/graph_utils.py",
+        "git_blob_sha": "496d2c634982aa5afc8d58b9db758f97b3b5c2d8",
+        "first_introduced_revision": "5cfe38f41c7091b0fd954877d9d7427a8b438b1a",
+        "moved_to_current_path_revision": "5960f946a9353f4a8ff97e92f82e0541caa32bf7"
+      },
+      "surface_contract": {
+        "symbol": "GraphBuilder",
+        "module": "comfy_execution.graph_utils",
+        "methods": ["set_default_prefix", "alloc_prefix", "node", "lookup_node", "finalize", "replace_node_output", "remove_node"],
+        "node_methods": ["out", "set_input", "get_input", "set_override_display_id", "serialize"],
+        "serialized_node": {"required_keys": ["class_type", "inputs"], "optional_keys": ["override_display_id"]},
+        "graph_shape": "map<string,SerializedNode>"
+      },
+      "surface_fingerprint": "sha256:70c3a1f05f72a95fc4ec25c762b35d879ab6d4e251d7df1d6cf81b88558d9a71"
+    },
+    {
+      "id": "GraphToPromptDualOutput",
+      "status": "proven",
+      "product_readiness": "poc_pending",
+      "source": {
+        "upstream_id": "comfyui-frontend",
+        "path": "src/platform/workflow/core/services/workflowService.ts",
+        "git_blob_sha": "94ae3dfb4b5028bfda20c7484c2aad58adc2f681"
+      },
+      "surface_contract": {
+        "symbol": "app.graphToPrompt",
+        "consumer": "src/platform/workflow/core/services/workflowService.ts",
+        "returned_properties_used": ["workflow", "output"],
+        "workflow_role": "visual_saved_graph",
+        "output_role": "api_execution_graph"
+      },
+      "surface_fingerprint": "sha256:17272281428c7c51f11c0615853798fcb04052fa76b66d43ed8f36c59cb6217b"
+    }
+  ],
+  "forbidden_partner_api_nodes": {
+    "policy": "Deny every class with is_api_node=true and every unknown class. This explicit list is a locked-revision regression seed, not the complete future deny rule.",
+    "source": {
+      "upstream_id": "comfyui-core",
+      "path": "comfy_api_nodes/nodes_minimax.py",
+      "git_blob_sha": "de3895221eb8261ee2650b020727d670079f0f23"
+    },
+    "status": "proven",
+    "classes": [
+      {"class_type": "MinimaxTextToVideoNode", "first_introduced_revision": "1271c4ef9df2b4eb037688da514f63e1bd8bd727", "registered_at_locked_revision": true},
+      {"class_type": "MinimaxImageToVideoNode", "first_introduced_revision": "1271c4ef9df2b4eb037688da514f63e1bd8bd727", "registered_at_locked_revision": true},
+      {"class_type": "MinimaxSubjectToVideoNode", "first_introduced_revision": "1271c4ef9df2b4eb037688da514f63e1bd8bd727", "registered_at_locked_revision": false},
+      {"class_type": "MinimaxHailuoVideoNode", "first_introduced_revision": "f16a70ba670e11de549af188663a87c77c5bc0c2", "registered_at_locked_revision": true},
+      {"class_type": "MinimaxHailuo03TextToVideoNode", "first_introduced_revision": "7dd46274601239644fff19b1b069cff199fcf738", "registered_at_locked_revision": true},
+      {"class_type": "MinimaxHailuo03FirstLastFrameNode", "first_introduced_revision": "7dd46274601239644fff19b1b069cff199fcf738", "registered_at_locked_revision": true},
+      {"class_type": "MinimaxHailuo03ReferenceNode", "first_introduced_revision": "7dd46274601239644fff19b1b069cff199fcf738", "registered_at_locked_revision": true},
+      {"class_type": "MinimaxHailuo03ContextIRNode", "first_introduced_revision": "12666983cba9b43254ed993c2894dc727ca8ecfd", "registered_at_locked_revision": true},
+      {"class_type": "MinimaxHailuo03RegenerateNode", "first_introduced_revision": "12666983cba9b43254ed993c2894dc727ca8ecfd", "registered_at_locked_revision": true}
+    ],
+    "evidence": [
+      "Each class schema sets is_api_node=true.",
+      "The module declares Comfy authentication inputs and remote /proxy/minimax endpoints or upload/download helpers.",
+      "Display names overlap local MiniMax terminology, so display-name matching is prohibited."
+    ]
+  },
+  "capabilities": [
+    {
+      "id": "LOCAL-H3-BASE-FL2VA",
+      "status": "proven",
+      "product_readiness": "poc_pending",
+      "claim": "The locked local Comfy source exposes MiniMaxH3ImageToVideo and a joint AV latent. MiniMax's locked model specification defines zero-image T2VA, one-image first- or last-frame generation, and two-image first-and-last-frame generation.",
+      "limitations": [
+        "The source fact does not prove this product's dual-graph compiler or selected model files.",
+        "Empty prompt stability is not an upstream quality guarantee.",
+        "The node aligns to the 17k+5 frame grid and describes the trained range as approximately 124-362 frames; 4-second local output remains a separate PoC.",
+        "The first frame is stretched to the target canvas while the last frame uses center cover-crop."
+      ],
+      "required_runtime": ["comfyui-core", "comfyui-frontend"],
+      "required_class_types": ["MiniMaxH3ImageToVideo", "MiniMaxH3SigmaShift", "CreateVideo", "SaveVideo"],
+      "required_model_roles": ["fl2va_diffusion", "h3_text_encoder", "h3_video_vae", "h3_audio_vae"],
+      "required_license_gates": ["GATE-H3-LICENSE", "GATE-COMFY-LICENSE", "GATE-CODEC-LICENSE"],
+      "required_test_gates": ["GATE-RUNTIME-OBJECT-INFO", "GATE-OFFLINE-NODE-LINT", "GATE-DUAL-GRAPH-EQUIVALENCE", "GATE-MODEL-FILE-VERIFY", "GATE-FL2VA-GPU-MATRIX", "GATE-ENDPOINT-FRAMEPLAN", "GATE-SAVEVIDEO"],
+      "optional_test_gates": ["GATE-EMPTY-PROMPT", "GATE-LOCAL-4S"]
+    },
+    {
+      "id": "LOCAL-H3-REF2VA",
+      "status": "proven",
+      "product_readiness": "poc_pending",
+      "claim": "The locked local Comfy source exposes MiniMaxH3ReferenceToVideo with Picture/Video/Audio reference ordering, and MiniMax's locked model specification defines a separate Ref2VA checkpoint.",
+      "official_input_limits": {
+        "images_max": 9,
+        "videos_max": 3,
+        "video_seconds_each": {"min": 2, "max": 15},
+        "video_seconds_total_max": 15,
+        "audios_max": 3,
+        "audio_seconds_each": {"min": 2, "max": 15},
+        "audio_seconds_total_max": 15,
+        "mixed_files_total_max": 12
+      },
+      "limitations": [
+        "The source accepts dynamic reference slots but does not choose semantic roles for the user.",
+        "Reference-only empty prompt behavior is not proven.",
+        "Ref2VA plus exact first/last endpoint behavior is not proven."
+      ],
+      "required_runtime": ["comfyui-core", "comfyui-frontend"],
+      "required_class_types": ["MiniMaxH3ReferenceToVideo", "MiniMaxH3SigmaShift", "CreateVideo", "SaveVideo"],
+      "required_model_roles": ["ref2va_diffusion", "h3_text_encoder", "h3_video_vae", "h3_audio_vae"],
+      "required_license_gates": ["GATE-H3-LICENSE", "GATE-COMFY-LICENSE", "GATE-CODEC-LICENSE"],
+      "required_test_gates": ["GATE-RUNTIME-OBJECT-INFO", "GATE-OFFLINE-NODE-LINT", "GATE-DUAL-GRAPH-EQUIVALENCE", "GATE-MODEL-FILE-VERIFY", "GATE-REF2VA", "GATE-SAVEVIDEO"]
+    },
+    {
+      "id": "LOCAL-H3-ADDGUIDE",
+      "status": "proven",
+      "product_readiness": "poc_pending",
+      "claim": "The locked local node can anchor an image, valid multi-frame clip, audio, or clip plus soundtrack at an explicit frame index in an H3 AV latent.",
+      "source_constraints": [
+        "At least one image or audio input is required.",
+        "Multi-frame image batches are cropped to 5, 22, 39, ... frames.",
+        "Negative frame indexes resolve from the target end.",
+        "Guide audio is encoded and cropped to remaining H3 audio-latent duration."
+      ],
+      "limitations": [
+        "The node re-encodes decoded image/audio guides; it is not a public serializer for the prior sampler's paired AV latent.",
+        "It does not prove 30/60-second continuity, checkpoint recovery, or quality stability."
+      ],
+      "required_runtime": ["comfyui-core"],
+      "required_class_types": ["MiniMaxH3AddGuide"],
+      "required_model_roles": ["fl2va_or_ref2va_diffusion", "h3_video_vae", "h3_audio_vae"],
+      "required_license_gates": ["GATE-H3-LICENSE", "GATE-COMFY-LICENSE"],
+      "required_test_gates": ["GATE-RUNTIME-OBJECT-INFO", "GATE-OFFLINE-NODE-LINT", "GATE-ADDGUIDE", "GATE-GRAPHBUILDER-RUNNER"]
+    },
+    {
+      "id": "CORE-CREATE-SAVE-VIDEO",
+      "status": "proven",
+      "product_readiness": "poc_pending",
+      "claim": "The locked Comfy core exposes CreateVideo and SaveVideo. CreateVideo accepts optional audio; SaveVideo exposes MP4, MKV, and WebM containers and auto/H.264/AV1 codec choices through the core Video/PyAV path.",
+      "limitations": [
+        "Actual codecs depend on the packaged PyAV/FFmpeg libraries and must be probed on the selected runtime.",
+        "SaveVideo can embed prompt and extra_pnginfo unless metadata is disabled; public output needs a tested sanitizer policy.",
+        "This capability does not require a separate user-installed ffmpeg.exe, but its underlying libraries still require license and codec review."
+      ],
+      "required_runtime": ["comfyui-core"],
+      "required_class_types": ["CreateVideo", "SaveVideo"],
+      "required_license_gates": ["GATE-COMFY-LICENSE", "GATE-CODEC-LICENSE"],
+      "required_test_gates": ["GATE-RUNTIME-OBJECT-INFO", "GATE-OFFLINE-NODE-LINT", "GATE-SAVEVIDEO"]
+    },
+    {
+      "id": "CORE-GRAPHBUILDER-EXPANSION",
+      "status": "proven",
+      "product_readiness": "poc_pending",
+      "claim": "The locked Comfy core exposes GraphBuilder for constructing backend execution graphs with class_type and inputs, and its introduction commit includes expansion/loop execution tests.",
+      "limitations": [
+        "GraphBuilder proves graph construction, not a stable paired-H3-latent checkpoint ABI.",
+        "A product Runner must not re-enter /prompt from node execution.",
+        "Crash recovery, atomic segment commit, cache invalidation, and long-video quality are separate product contracts."
+      ],
+      "required_runtime": ["comfyui-core"],
+      "required_license_gates": ["GATE-COMFY-LICENSE"],
+      "required_test_gates": ["GATE-OFFLINE-NODE-LINT", "GATE-GRAPHBUILDER-RUNNER"]
+    },
+    {
+      "id": "FRONTEND-DUAL-GRAPH-EXPORT",
+      "status": "proven",
+      "product_readiness": "poc_pending",
+      "claim": "The locked frontend workflow service consumes app.graphToPrompt() as separate workflow and output properties for visual and API exports.",
+      "limitations": [
+        "This does not prove a product compiler that independently emits semantically equivalent graphs.",
+        "prompt.json is an audit/validation artifact and must not be used by this tool to submit the first formal queue."
+      ],
+      "required_runtime": ["comfyui-frontend"],
+      "required_license_gates": ["GATE-COMFY-LICENSE"],
+      "required_test_gates": ["GATE-DUAL-GRAPH-EQUIVALENCE"]
+    },
+    {
+      "id": "PURE-IMAGE-EMPTY-PROMPT",
+      "status": "poc_pending",
+      "claim": "The locked source has no explicit non-empty validation in the local image-to-video node, but upstream documentation still models prompt as a required string and gives no stability or quality guarantee for empty text.",
+      "required_test_gates": ["GATE-EMPTY-PROMPT"]
+    },
+    {
+      "id": "EXACT-DURATION-WITH-ENDPOINTS",
+      "status": "poc_pending",
+      "claim": "The last-frame anchor is placed at generated frame_count-1, while common 5/10/15-second requests require generated-to-delivered trimming. A route-specific frame/audio plan is required before claiming both exact duration and final endpoint preservation.",
+      "required_test_gates": ["GATE-ENDPOINT-FRAMEPLAN"]
+    },
+    {
+      "id": "LOCAL-4-SECOND",
+      "status": "poc_pending",
+      "claim": "MiniMax specifies 4-15 seconds, but the locked local node describes approximately 124-362 frames as the trained range. A local 4-second result is not proven by source bounds.",
+      "required_test_gates": ["GATE-LOCAL-4S"]
+    },
+    {
+      "id": "LONG-RUNNER-PAIRED-LATENT-RESUME",
+      "status": "experimental",
+      "claim": "No locked first-party source provides a stable cross-run serialization ABI for H3's paired video/audio latent or product-level atomic resume contract.",
+      "required_test_gates": ["GATE-GRAPHBUILDER-RUNNER"],
+      "required_future_evidence": ["decoded-guide two-window PoC", "paired-latent serializer PoC", "continuation-profile ADR", "fault-injection and resume tests"]
+    },
+    {
+      "id": "DESKTOP-AUTO-LOAD-WORKFLOW",
+      "status": "poc_pending",
+      "claim": "The locked Desktop can be launched, but its second-instance callback ignores argv and the locked official README does not establish a stable command-line file-open contract.",
+      "required_test_gates": ["GATE-DESKTOP-WORKFLOW-OPEN"]
+    }
+  ],
+  "official_workflow_templates": [
+    {
+      "path": "templates/video_minimax_h3_t2v.json",
+      "kind": "local_reference_fixture",
+      "status": "proven",
+      "product_readiness": "poc_pending",
+      "locked_revision": "71f43419e53dfcb16330748f3b933ac0efcc4778",
+      "first_introduced_revision": "f9f1d1014d98d8cad87e5c3aaaf388f7f9240d27",
+      "git_blob_sha": "7605d73b5af23cf312bff59d9f94a28308145edb",
+      "workflow_version": 0.4,
+      "h3_class_types": ["MiniMaxH3ImageToVideo"],
+      "uses_definitions_subgraphs": true,
+      "notes": ["Reference fixture only", "Contains mutable /resolve/main model URLs", "Contains optional Turbo/LoRA branches that require separate recipe and license approval"]
+    },
+    {
+      "path": "templates/video_minimax_h3_i2v.json",
+      "kind": "local_reference_fixture",
+      "status": "proven",
+      "product_readiness": "poc_pending",
+      "locked_revision": "71f43419e53dfcb16330748f3b933ac0efcc4778",
+      "first_introduced_revision": "f9f1d1014d98d8cad87e5c3aaaf388f7f9240d27",
+      "git_blob_sha": "70ac2b28e968a1b42c1be6e53b7c450d1969f498",
+      "workflow_version": 0.4,
+      "h3_class_types": ["MiniMaxH3ImageToVideo"],
+      "uses_definitions_subgraphs": true,
+      "notes": ["Reference fixture only", "Contains mutable /resolve/main model URLs", "Does not prove empty prompt or endpoint-safe final trimming"]
+    },
+    {
+      "path": "templates/video_minimax_h3_i2v_continuation.json",
+      "kind": "local_reference_fixture",
+      "status": "proven",
+      "product_readiness": "poc_pending",
+      "locked_revision": "71f43419e53dfcb16330748f3b933ac0efcc4778",
+      "first_introduced_revision": "8e4d02b5c6408b3acab7ce5d320f431a7e9c7ef8",
+      "git_blob_sha": "1455ed413568de9a7f94c1a9456c800bc303fb74",
+      "workflow_version": 0.4,
+      "h3_class_types": ["MiniMaxH3ImageToVideo"],
+      "uses_definitions_subgraphs": true,
+      "notes": ["At the locked revision this template does not contain MiniMaxH3AddGuide", "It cannot be used as evidence for AddGuide-based long-video resume"]
+    },
+    {
+      "path": "templates/video_minimax_h3_r2v.json",
+      "kind": "local_reference_fixture",
+      "status": "proven",
+      "product_readiness": "poc_pending",
+      "locked_revision": "71f43419e53dfcb16330748f3b933ac0efcc4778",
+      "first_introduced_revision": "f9f1d1014d98d8cad87e5c3aaaf388f7f9240d27",
+      "git_blob_sha": "e8929c69aeaedfe52f6a927b17747f8c2e32995b",
+      "workflow_version": 0.4,
+      "h3_class_types": ["MiniMaxH3ReferenceToVideo"],
+      "uses_definitions_subgraphs": false,
+      "notes": ["Reference fixture only", "Contains mutable /resolve/main model URLs", "Official product limits remain stricter than permissive source paths"]
+    },
+    {
+      "path": "templates/api_minimax_h3_t2v.json",
+      "kind": "forbidden_partner_api_fixture",
+      "status": "proven",
+      "locked_revision": "71f43419e53dfcb16330748f3b933ac0efcc4778",
+      "first_introduced_revision": "04f33569dad7a1d277429bda9f35209dfa4d91cf",
+      "git_blob_sha": "f4feea2850055e32d126f82af0f5ac9a0be06d73",
+      "forbidden_class_types": ["MinimaxHailuo03TextToVideoNode"]
+    },
+    {
+      "path": "templates/api_minimax_h3_flf2v.json",
+      "kind": "forbidden_partner_api_fixture",
+      "status": "proven",
+      "locked_revision": "71f43419e53dfcb16330748f3b933ac0efcc4778",
+      "first_introduced_revision": "04f33569dad7a1d277429bda9f35209dfa4d91cf",
+      "git_blob_sha": "956ff55edda9516f1d72727b43e72549ddd88b59",
+      "forbidden_class_types": ["MinimaxHailuo03FirstLastFrameNode"]
+    },
+    {
+      "path": "templates/api_minimax_h3_r2v.json",
+      "kind": "forbidden_partner_api_fixture",
+      "status": "proven",
+      "locked_revision": "71f43419e53dfcb16330748f3b933ac0efcc4778",
+      "first_introduced_revision": "04f33569dad7a1d277429bda9f35209dfa4d91cf",
+      "git_blob_sha": "beacd91b4414f8f6c2d9b9e25d11cb80d289fe35",
+      "forbidden_class_types": ["MinimaxHailuo03ReferenceNode"]
+    }
+  ],
+  "model_sources": [
+    {
+      "id": "minimax-original-checkpoints",
+      "publisher_role": "model_creator_original",
+      "status": "proven",
+      "product_readiness": "poc_pending",
+      "repository": "https://huggingface.co/MiniMaxAI/MiniMax-H3",
+      "locked_revision": "42ed227ee7df40d41602854ae760620d6eb651fe",
+      "first_introduced_revision": "5d9b308a59ab12e67147f191e184baf704185bd1",
+      "roles": [
+        {"role": "fl2va_original_bf16_family", "path_prefix": "FL2VA/"},
+        {"role": "ref2va_original_bf16_family", "path_prefix": "Ref2VA/"}
+      ],
+      "notes": ["Original creator checkpoint layout", "Not the single-file Comfy format used by the locked official Comfy templates", "No model was downloaded during this task"],
+      "required_gates": ["GATE-H3-LICENSE", "GATE-MODEL-FILE-VERIFY"]
+    },
+    {
+      "id": "comfy-packaged-h3-files",
+      "publisher_role": "comfy_official_packaging_not_model_origin",
+      "status": "proven",
+      "product_readiness": "poc_pending",
+      "repository": "https://huggingface.co/Comfy-Org/MiniMax-H3",
+      "locked_revision": "4cc1d817b6184899b41293954329f576cb5ae86b",
+      "first_introduced_revision": "3f57e8291d2ef846f9a074b1b76d2767db434abe",
+      "metadata_only": true,
+      "files": [
+        {"role": "fl2va_diffusion_bf16", "path": "diffusion_models/minimax_h3_fl2va_bf16.safetensors", "size_bytes": 66280487368, "lfs_sha256": "907d4add438438ec1544f5240c3b38532ed934fe6be75677a6bbda2a6fdd6182"},
+        {"role": "fl2va_diffusion_pruned_int8_convrot", "path": "diffusion_models/minimax_h3_fl2va_pruned_int8_convrot.safetensors", "size_bytes": 20970379616, "lfs_sha256": "e889202c41dafb67b10d67b97f0d8541508036a6090af23425a5c2615d03c47a"},
+        {"role": "ref2va_diffusion_bf16", "path": "diffusion_models/minimax_h3_ref2va_bf16.safetensors", "size_bytes": 66280487368, "lfs_sha256": "e32c54c1a7b4f5f397f195cea267ccb18806303bb665678c4bee60953bdf3026"},
+        {"role": "ref2va_diffusion_pruned_int8_convrot", "path": "diffusion_models/minimax_h3_ref2va_pruned_int8_convrot.safetensors", "size_bytes": 20970379616, "lfs_sha256": "9255f52b6677845ad238f20dfaafa94727053694127ab7f255c048f0f9365779"},
+        {"role": "h3_text_encoder_bf16", "path": "text_encoders/qwen3vl_32b_minimax_h3_bf16.safetensors", "size_bytes": 51506295256, "lfs_sha256": "600d567f6a9629c8574e8e7041b199bdd9c59a986afa7906910a81919610607d"},
+        {"role": "h3_text_encoder_nvfp4_awq", "path": "text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors", "size_bytes": 15687142551, "lfs_sha256": "35a88d51044231fe332301d7a62aa81e3f2cba62febeb446e2c1e3e0ef76f2c6"},
+        {"role": "h3_audio_vae_fp32", "path": "vae/minimax_h3_audio_vae_fp32.safetensors", "size_bytes": 605254808, "lfs_sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48"},
+        {"role": "h3_video_vae_fp16", "path": "vae/minimax_h3_video_vae_fp16.safetensors", "size_bytes": 5207808496, "lfs_sha256": "7c1f131492e7eddacaac9069a61b81bdd39de5cc96561e677c5eab1cdce5e522"},
+        {"role": "fl2va_turbo_4step_lora", "path": "loras/minimax_h3_fl2v_turbo_4step_v1.0_768p_comfyui_bf16.safetensors", "size_bytes": 1956192992, "lfs_sha256": "c396a9a06f58399e9df9754b18299818d84a2ddd371724ba48fe4a41221437dc", "status": "experimental"},
+        {"role": "fl2va_turbo_8step_lora", "path": "loras/minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors", "size_bytes": 1956193000, "lfs_sha256": "2339acdf19bfe123f46b971ea35d367a84adb85de43627e1eceafa5a5b2b111e", "status": "experimental"},
+        {"role": "ref2va_turbo_4step_lora", "path": "loras/minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors", "size_bytes": 1956193000, "lfs_sha256": "5b9ab5ade15d0775676d01a907268a69a1468dc6033b3b0d3ded5502f3ebb84c", "status": "experimental"}
+      ],
+      "notes": ["The LFS SHA-256 and sizes were read from Hugging Face metadata only", "Runtime reuse still requires local full-file verification", "Publisher and model origin must be recorded separately"],
+      "required_gates": ["GATE-H3-LICENSE", "GATE-COMFY-LICENSE", "GATE-MODEL-FILE-VERIFY"]
+    },
+    {
+      "id": "lightx2v-turbo-template-reference",
+      "publisher_role": "third_party",
+      "status": "experimental",
+      "product_readiness": "experimental",
+      "repository": "https://huggingface.co/lightx2v/Minimax-h3-Turbo",
+      "observed_revision": "05ef678438e84933c406131b59abbf86919b3aac",
+      "file": {
+        "path": "minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors",
+        "size_bytes": 1956193000,
+        "lfs_sha256": "2339acdf19bfe123f46b971ea35d367a84adb85de43627e1eceafa5a5b2b111e"
+      },
+      "notes": ["Referenced by locked official Comfy templates through a mutable /resolve/main URL", "Content hash matches the Comfy-Org mirror at the captured revisions", "This does not make the third-party source or acceleration recipe Stable or license-approved"],
+      "required_gates": ["GATE-H3-LICENSE", "GATE-COMFY-LICENSE", "GATE-MODEL-FILE-VERIFY", "GATE-ACCELERATION-RECIPE"]
+    }
+  ],
+  "unverified_items": [
+    {"id": "LIVE-OBJECT-INFO", "status": "poc_pending", "reason": "No Comfy instance or COMFY-DESKTOP resource lock was used in this task."},
+    {"id": "MODEL-LOCAL-FILES", "status": "poc_pending", "reason": "No model was downloaded, opened, hashed locally, or executed."},
+    {"id": "GPU-H3-OUTPUT", "status": "poc_pending", "reason": "No GPU-H3 lock was used and no generation was run."},
+    {"id": "EMPTY-PROMPT", "status": "poc_pending", "reason": "Source reachability is not an accepted quality/compatibility PoC."},
+    {"id": "FOUR-SECOND-LOCAL", "status": "poc_pending", "reason": "Official duration specification and local trained-range tooltip do not by themselves prove the product path."},
+    {"id": "ENDPOINT-SAFE-TRIM", "status": "poc_pending", "reason": "Tail trimming would delete the generated last-frame anchor; no route-specific frame/audio PoC was run."},
+    {"id": "REF2VA-ENDPOINT-COMBINATION", "status": "poc_pending", "reason": "No first-party template or accepted PoC establishes this combined product route."},
+    {"id": "ADDGUIDE-LONG-CONTINUITY", "status": "poc_pending", "reason": "The node exists, but no two-window product PoC was run."},
+    {"id": "PAIRED-LATENT-RESUME", "status": "experimental", "reason": "No first-party stable serialization ABI exists."},
+    {"id": "SAVEVIDEO-CODEC-METADATA", "status": "poc_pending", "reason": "Actual packaged codec support and public-output metadata behavior were not executed."},
+    {"id": "DUAL-GRAPH-COMPILER", "status": "poc_pending", "reason": "The upstream separation is proven, but this product's compiler and semantic-equivalence harness do not exist yet."},
+    {"id": "DESKTOP-AUTO-LOAD", "status": "poc_pending", "reason": "No Desktop UI/launch test was allowed in this task and the locked source lacks a stable argv contract."}
+  ],
+  "task_constraints_observed": {
+    "models_downloaded": false,
+    "gpu_used": false,
+    "cloud_inference_api_called": false,
+    "comfy_desktop_used": false,
+    "shared_schema_modified": false,
+    "registry_modified": false,
+    "main_plan_modified": false
+  }
+}

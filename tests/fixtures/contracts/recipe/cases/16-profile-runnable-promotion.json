@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"profile-runnable-promotion","base":"valid/alpha0-poc-pending-recipe.json","mutations":[{"op":"replace","path":"/profile/runnable","value":true}],"expected":{"code":"RECIPE.STATUS_PROMOTION_FORBIDDEN","instance_path":"/profile/runnable","rule_id":"recipe.profile.pending_never_runnable"}}

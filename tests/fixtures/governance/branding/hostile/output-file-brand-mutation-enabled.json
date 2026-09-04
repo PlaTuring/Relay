@@ -1,0 +1,9 @@
+{
+  "fixture_id": "output-file-brand-mutation-enabled",
+  "mutation": {
+    "kind": "set_software_brand_boundary_field",
+    "field": "output_file_brand_mutation_authority",
+    "value": true
+  },
+  "expected_code": "BRAND.OUTPUT_FILE_MUTATION_FORBIDDEN"
+}

@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"experimental-public-tier-is-derived","mutations":[{"op":"replace","path":"/records/3/eligibility/public_tier","value":"stable"}],"expected":{"code":"CLAIM.PUBLIC_TIER_MISMATCH","instance_path":"/records/3/eligibility/public_tier","rule_id":"claim.eligibility.public_tier.derived"}}

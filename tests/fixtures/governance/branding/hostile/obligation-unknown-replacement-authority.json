@@ -1,0 +1,10 @@
+{
+  "fixture_id": "obligation-unknown-replacement-authority",
+  "mutation": {
+    "kind": "set_obligation_field",
+    "obligation_id": "file_ai_generation_identifier",
+    "field": "replacement_authority",
+    "value": "minimax_h3_attribution"
+  },
+  "expected_code": "STRUCTURE.LICENSE_OBLIGATION.UNKNOWN_KEY"
+}

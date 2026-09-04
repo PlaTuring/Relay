@@ -1,0 +1,11 @@
+{
+  "fixture_case_version": "1.0.0",
+  "case_id": "unknown-node-denied",
+  "base": "valid/alpha0-local-node-allowlist.json",
+  "mutations": [
+    {"op": "copy", "from": "/entries/0", "path": "/entries/-"},
+    {"op": "replace", "path": "/entries/4/class_type", "value": "UnknownLocalVideoNode"},
+    {"op": "replace", "path": "/entries/4/display_name", "value": "Unknown local candidate"}
+  ],
+  "expected": {"code": "NODE.UNKNOWN_CLASS_TYPE", "instance_path": "/entries/4/class_type", "rule_id": "node.identity.class_type_known"}
+}

@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"public-experiment-must-be-default-off","mutations":[{"op":"replace","path":"/records/3/experimental_controls/default_enabled","value":true}],"expected":{"code":"CLAIM.EXPERIMENTAL_CONTROLS_UNSAFE","instance_path":"/records/3/experimental_controls","rule_id":"claim.experimental.public_controls_exact"}}

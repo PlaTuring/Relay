@@ -1,0 +1,10 @@
+{
+  "fixture_id": "qwen-license-conflates-h3",
+  "mutation": {
+    "kind": "set_official_source_field",
+    "source_id": "qwen_encoder_model_card",
+    "field": "determines_h3_license",
+    "value": true
+  },
+  "expected_code": "PROVENANCE.LICENSE_CONFLATION"
+}

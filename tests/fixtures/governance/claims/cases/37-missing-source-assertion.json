@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"license-obligation-requires-source-assertion","mutations":[{"op":"remove","path":"/records/9/source_assertion"}],"expected":{"code":"CONTRACT.MISSING_FIELD","instance_path":"/records/9/source_assertion","rule_id":"claim.obligation.source_assertion.required"}}

@@ -1,0 +1,1 @@
+{"fixture_id":"unknown-external","mutation":{"kind":"add_task_external","task_id":"P1-APP-001","external_id":"EXT-UNKNOWN"},"expected_code":"EXTERNAL.UNKNOWN_ID"}

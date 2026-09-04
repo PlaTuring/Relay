@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"22-blocked-public-claim-supports-release","base":"../index.valid.json","mutations":[{"op":"replace","path":"/public_claims/0/supports_external_distribution","value":true}],"expected":{"code":"PUBLIC_CLAIM.NON_SUPPORTING_STATUS","instance_path":"/public_claims/0/supports_external_distribution","rule_id":"DIST-CLAIM-012"}}

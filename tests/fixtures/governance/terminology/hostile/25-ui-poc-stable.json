@@ -1,0 +1,1 @@
+{"fixture_version":"1.0.0","fixture_id":"ui-poc-stable","target":"ui_copy","entry":{"copy_id":"hostile-poc-stable","surface":"capability_badge","locale":"zh-CN","text":"Stable","context":{"capability_status":"poc_pending"}},"expected":{"code":"TERM.UI.STATUS_PROMOTION","rule_id":"terminology.ui.poc_pending.never_stable"}}

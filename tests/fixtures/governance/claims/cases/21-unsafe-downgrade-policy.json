@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"expiry-cannot-retain-proven","mutations":[{"op":"replace","path":"/records/0/downgrade_policy/on_expiry","value":"proven"}],"expected":{"code":"CLAIM.UNSAFE_DOWNGRADE_POLICY","instance_path":"/records/0/downgrade_policy","rule_id":"claim.downgrade_policy.fail_closed_exact"}}

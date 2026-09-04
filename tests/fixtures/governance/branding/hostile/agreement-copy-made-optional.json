@@ -1,0 +1,10 @@
+{
+  "fixture_id": "agreement-copy-made-optional",
+  "mutation": {
+    "kind": "set_obligation_field",
+    "obligation_id": "agreement_copy_to_covered_third_parties",
+    "field": "normative_strength",
+    "value": "optional"
+  },
+  "expected_code": "LICENSE_POLICY.OBLIGATION_STRENGTH"
+}

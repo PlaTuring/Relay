@@ -1,0 +1,91 @@
+{
+  "source_document_version": "1.0.0",
+  "source_id": "SRC-SYNTH-GATE-CATALOG",
+  "source_kind": "gate_catalog",
+  "publisher": "synthetic-governance-fixture",
+  "immutable_revision": "fixture:gate-catalog-r1",
+  "requirements": [
+    {
+      "requirement_key": "req-synth-proven-stable",
+      "scope_id": "scope-synth-proven-stable",
+      "required_gates": [
+        {"gate_id": "EXT-SYNTH-DISTRIBUTION", "gate_type": "external"},
+        {"gate_id": "HUM-SYNTH-REVIEW", "gate_type": "human"}
+      ]
+    },
+    {
+      "requirement_key": "req-synth-inferred",
+      "scope_id": "scope-synth-inferred",
+      "required_gates": []
+    },
+    {
+      "requirement_key": "req-synth-poc-pending",
+      "scope_id": "scope-synth-poc-pending",
+      "required_gates": []
+    },
+    {
+      "requirement_key": "req-synth-experimental",
+      "scope_id": "scope-synth-experimental",
+      "required_gates": [
+        {"gate_id": "EXT-SYNTH-DISTRIBUTION", "gate_type": "external"},
+        {"gate_id": "HUM-SYNTH-REVIEW", "gate_type": "human"}
+      ]
+    },
+    {
+      "requirement_key": "req-synth-proven-open-gate",
+      "scope_id": "scope-synth-proven-open-gate",
+      "required_gates": [
+        {"gate_id": "HUM-SYNTH-REVIEW", "gate_type": "human"}
+      ]
+    },
+    {
+      "requirement_key": "req-synth-proven-expired",
+      "scope_id": "scope-synth-proven-expired",
+      "required_gates": [
+        {"gate_id": "EXT-SYNTH-DISTRIBUTION", "gate_type": "external"}
+      ]
+    },
+    {
+      "requirement_key": "req-synth-proven-revoked",
+      "scope_id": "scope-synth-proven-revoked",
+      "required_gates": [
+        {"gate_id": "EXT-SYNTH-DISTRIBUTION", "gate_type": "external"}
+      ]
+    },
+    {
+      "requirement_key": "req-synth-h3-agreement-copy",
+      "scope_id": "scope-synth-h3-agreement-copy",
+      "required_gates": [
+        {"gate_id": "EXT-SYNTH-LEGAL-REVIEW", "gate_type": "external"}
+      ]
+    },
+    {
+      "requirement_key": "req-synth-h3-notice",
+      "scope_id": "scope-synth-h3-notice",
+      "required_gates": [
+        {"gate_id": "EXT-SYNTH-LEGAL-REVIEW", "gate_type": "external"}
+      ]
+    },
+    {
+      "requirement_key": "req-synth-h3-file-identifier",
+      "scope_id": "scope-synth-h3-file-identifier",
+      "required_gates": [
+        {"gate_id": "EXT-SYNTH-LEGAL-REVIEW", "gate_type": "external"}
+      ]
+    },
+    {
+      "requirement_key": "req-synth-h3-public-disclosure",
+      "scope_id": "scope-synth-h3-public-disclosure",
+      "required_gates": [
+        {"gate_id": "EXT-SYNTH-LEGAL-REVIEW", "gate_type": "external"}
+      ]
+    },
+    {
+      "requirement_key": "req-synth-qwen-license",
+      "scope_id": "scope-synth-qwen-license",
+      "required_gates": [
+        {"gate_id": "EXT-SYNTH-LEGAL-REVIEW", "gate_type": "external"}
+      ]
+    }
+  ]
+}

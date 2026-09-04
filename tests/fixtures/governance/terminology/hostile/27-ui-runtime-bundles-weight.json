@@ -1,0 +1,1 @@
+{"fixture_version":"1.0.0","fixture_id":"ui-runtime-bundles-weight","target":"ui_copy","entry":{"copy_id":"hostile-runtime-model","surface":"runtime_component_summary","locale":"zh-CN","text":"运行环境内含 FL2VA 模型权重。","context":{"runtime_includes_models":false}},"expected":{"code":"TERM.UI.RUNTIME_MODEL_CONFLATION","rule_id":"terminology.ui.runtime.models_separate"}}

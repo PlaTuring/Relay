@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"31-vm-evidence-test-omitted","base":"../index.valid.json","mutations":[{"op":"remove","path":"/components/10/tests/required_test_ids/3","value":null}],"expected":{"code":"TEST.REQUIRED_SET","instance_path":"/components/10/tests/required_test_ids","rule_id":"DIST-TEST-005"}}

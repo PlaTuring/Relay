@@ -1,0 +1,241 @@
+{
+  "schema_version": "1.0.0",
+  "catalog_id": "minimax-h3-tool.gate-catalog",
+  "source_task": "P0-GOV-010",
+  "task_catalog": "tasks/TASK_BREAKDOWN.md",
+  "task_count": 152,
+  "status_semantics": {
+    "accepted": "Root has accepted every task, predecessor gate, and required external decision named by the gate.",
+    "not_started": "The gate is closed. Protected tasks cannot be ready or active.",
+    "blocked_external": "The gate is closed because at least one Human/external prerequisite is not accepted."
+  },
+  "gates": [
+    {
+      "id": "G0",
+      "name": "scope",
+      "status": "accepted",
+      "requires_gates": [],
+      "requires_tasks": ["P0-GOV-003", "P0-GOV-004"],
+      "requires_external": [],
+      "conditional_external": [],
+      "protects_tasks": ["P0-ARC-002", "P0-ARC-003", "P0-ARC-004"],
+      "unlocks_gates": ["G1", "G2"],
+      "failure_fallback": "Keep Phase 0 implementation stopped at evidence gathering; do not widen the tool/H3/Comfy boundary."
+    },
+    {
+      "id": "G1",
+      "name": "runtime_topology",
+      "status": "accepted",
+      "requires_gates": ["G0"],
+      "requires_tasks": ["P0-ARC-001", "P0-ARC-006", "P0-ARC-009"],
+      "requires_external": [],
+      "conditional_external": [],
+      "protects_tasks": ["P0-CON-001", "P2-INS-010", "P2-INS-013"],
+      "unlocks_gates": ["G3", "G5"],
+      "failure_fallback": "Keep Managed Core evidence-only; Desktop and comfy-cli remain optional adapters and cannot bypass the gate."
+    },
+    {
+      "id": "G2",
+      "name": "control_plane_stack",
+      "status": "accepted",
+      "requires_gates": ["G0"],
+      "requires_tasks": ["P0-ARC-002", "P0-ARC-003", "P0-ARC-004", "P0-ARC-005"],
+      "requires_external": [],
+      "conditional_external": [],
+      "protects_tasks": ["P1-APP-001", "P1-NAT-001", "P1-DET-001", "QA-001"],
+      "unlocks_gates": ["G7"],
+      "failure_fallback": "Do not start a second production stack; keep production UI/control-plane code blocked."
+    },
+    {
+      "id": "G3",
+      "name": "contracts",
+      "status": "not_started",
+      "requires_gates": ["G1"],
+      "requires_tasks": ["P0-CON-001", "P0-CON-002", "P0-CON-003", "P0-CON-004", "P0-CON-005", "P0-CON-006", "P0-CON-007", "P0-CON-008", "P0-CON-009", "P0-CON-010", "P0-CON-012"],
+      "requires_external": [],
+      "conditional_external": [],
+      "protects_tasks": ["P1-APP-002"],
+      "unlocks_gates": ["G4", "G6"],
+      "failure_fallback": "Consumers may work only against their exact accepted schema dependencies; cross-contract integration remains blocked."
+    },
+    {
+      "id": "G4",
+      "name": "provenance",
+      "status": "not_started",
+      "requires_gates": ["G3"],
+      "requires_tasks": ["P0-GOV-008", "P0-CON-003", "P2-INS-002", "P2-INS-003", "P1-DET-008", "P1-DET-009", "P1-DET-010"],
+      "requires_external": ["EXT-H3-LICENSE"],
+      "conditional_external": [],
+      "protects_tasks": ["P1-WF-013"],
+      "unlocks_gates": ["G5", "G7"],
+      "failure_fallback": "Allow data-only fixtures and no-model contract tests only; do not download, select, load, or reuse H3 artifacts."
+    },
+    {
+      "id": "G5",
+      "name": "managed_probe",
+      "status": "not_started",
+      "requires_gates": ["G1", "G3"],
+      "requires_tasks": ["P2-INS-010", "P2-INS-011", "P2-INS-012", "P2-INS-013", "P2-INS-014"],
+      "requires_external": [],
+      "conditional_external": [],
+      "protects_tasks": ["P1-WF-012", "P1-WF-013"],
+      "unlocks_gates": ["G6", "G7"],
+      "failure_fallback": "Keep the exact generation disabled and retain static workflow evidence only."
+    },
+    {
+      "id": "G6",
+      "name": "workflow",
+      "status": "not_started",
+      "requires_gates": ["G3", "G5"],
+      "requires_tasks": ["P1-WF-002", "P1-WF-003", "P1-WF-004", "P1-WF-005", "P1-WF-006", "P1-WF-007", "P1-WF-008", "P1-WF-009", "P1-WF-010", "P1-WF-011", "P1-WF-012"],
+      "requires_external": [],
+      "conditional_external": [],
+      "protects_tasks": ["P1-WF-013"],
+      "unlocks_gates": ["G7"],
+      "failure_fallback": "Do not hand off or execute an uncertified workflow; preserve only canonical visual and lint evidence."
+    },
+    {
+      "id": "G7",
+      "name": "vertical_slice",
+      "status": "not_started",
+      "requires_gates": ["G2", "G3", "G4", "G5", "G6"],
+      "requires_tasks": ["P2-INS-015", "P1-APP-004", "P2-PKG-002", "P1-WF-013", "QA-008", "QA-010", "QA-011", "QA-012", "QA-013", "QA-014", "QA-016"],
+      "requires_external": ["EXT-H3-LICENSE", "EXT-HARDWARE"],
+      "conditional_external": [],
+      "protects_tasks": ["P1-WF-018", "REF-001", "ACC-001", "LONG-001"],
+      "unlocks_gates": ["G8", "G9", "G10"],
+      "failure_fallback": "Keep breadth, add-ons, and long-run work hidden; repair the shortest managed 5-second path first."
+    },
+    {
+      "id": "G8",
+      "name": "alpha_1",
+      "status": "not_started",
+      "requires_gates": ["G7"],
+      "requires_tasks": ["P1-WF-018", "P2-UX-008", "QA-016", "QA-018", "QA-019", "QA-020", "P0-GOV-008"],
+      "requires_external": ["EXT-H3-LICENSE", "EXT-COMFY-CORE", "EXT-COMFY-FRONTEND", "EXT-SIGNING", "EXT-HARDWARE"],
+      "conditional_external": [
+        {"id": "EXT-FFMPEG", "condition": "The Alpha-1 release downloads or distributes an FFmpeg binary."},
+        {"id": "EXT-COMFY-CLI", "condition": "The Alpha-1 release adopts or bundles comfy-cli."}
+      ],
+      "protects_tasks": [],
+      "unlocks_gates": ["G11"],
+      "failure_fallback": "Remain an internal Alpha-0 build; do not distribute an external installer or make certified claims."
+    },
+    {
+      "id": "G9",
+      "name": "ref2va",
+      "status": "not_started",
+      "requires_gates": ["G7"],
+      "requires_tasks": ["REF-001", "REF-002", "REF-003", "REF-004", "REF-005", "REF-006", "REF-007"],
+      "requires_external": ["EXT-H3-LICENSE", "EXT-HARDWARE"],
+      "conditional_external": [],
+      "protects_tasks": ["REL-004"],
+      "unlocks_gates": ["G11"],
+      "failure_fallback": "Keep Ref2VA hidden and do not download or package Ref artifacts."
+    },
+    {
+      "id": "G10",
+      "name": "runner",
+      "status": "not_started",
+      "requires_gates": ["G7"],
+      "requires_tasks": ["P0-CON-011", "LONG-001", "LONG-002", "LONG-003", "LONG-004", "LONG-005", "LONG-006", "LONG-007", "LONG-008", "LONG-009", "LONG-010", "LONG-011"],
+      "requires_external": ["EXT-H3-LICENSE", "EXT-HARDWARE"],
+      "conditional_external": [],
+      "protects_tasks": ["LONG-012"],
+      "unlocks_gates": ["G11"],
+      "failure_fallback": "Keep Runner and 30/60-second capabilities hidden; preserve the short native H3 path."
+    },
+    {
+      "id": "G11",
+      "name": "release",
+      "status": "not_started",
+      "requires_gates": ["G8", "G9", "G10"],
+      "requires_tasks": ["QA-019", "QA-020", "LONG-012", "REF-007", "ACC-008", "REL-002", "REL-003", "REL-005"],
+      "requires_external": ["EXT-H3-LICENSE", "EXT-COMFY-CORE", "EXT-COMFY-FRONTEND", "EXT-RUNNER-DIST", "EXT-FFMPEG", "EXT-SIGNING", "EXT-HARDWARE", "EXT-BRAND-ASSET", "EXT-REMOTE-UPDATE-DECISION"],
+      "conditional_external": [
+        {"id": "EXT-COMFY-CLI", "condition": "The 1.0 release adopts or bundles comfy-cli."},
+        {"id": "EXT-DESKTOP-DIST", "condition": "The 1.0 release bundles, auto-installs, or publicly claims a Desktop adapter."}
+      ],
+      "protects_tasks": ["REL-006"],
+      "unlocks_gates": [],
+      "failure_fallback": "Do not publish. Preserve the last accepted signed rollback pointer and record the exact unresolved requirement."
+    }
+  ],
+  "external_gates": [
+    {"id": "EXT-H3-LICENSE", "status": "blocked_external", "owner": "legal-owner+product-owner", "authority_class": "accepted_external_catalog", "source": "docs/EXTERNAL_GATES.md"},
+    {"id": "EXT-COMFY-CORE", "status": "blocked_external", "owner": "open-source-compliance-owner", "authority_class": "accepted_external_catalog", "source": "docs/EXTERNAL_GATES.md"},
+    {"id": "EXT-COMFY-FRONTEND", "status": "blocked_external", "owner": "open-source-compliance-owner", "authority_class": "accepted_external_catalog", "source": "docs/EXTERNAL_GATES.md"},
+    {"id": "EXT-RUNNER-DIST", "status": "blocked_external", "owner": "legal-owner+architecture-owner", "authority_class": "accepted_external_catalog", "source": "docs/EXTERNAL_GATES.md"},
+    {"id": "EXT-FFMPEG", "status": "blocked_external", "owner": "open-source-compliance-owner+release-owner", "authority_class": "accepted_external_catalog", "source": "docs/EXTERNAL_GATES.md"},
+    {"id": "EXT-COMFY-CLI", "status": "blocked_external", "owner": "architecture-owner+open-source-compliance-owner", "authority_class": "accepted_external_catalog", "source": "docs/EXTERNAL_GATES.md"},
+    {"id": "EXT-DESKTOP-DIST", "status": "blocked_external", "owner": "legal-owner+product-owner", "authority_class": "accepted_external_catalog", "source": "docs/EXTERNAL_GATES.md"},
+    {"id": "EXT-SIGNING", "status": "blocked_external", "owner": "organization-admin+release-owner", "authority_class": "accepted_external_catalog", "source": "docs/EXTERNAL_GATES.md"},
+    {"id": "EXT-HARDWARE", "status": "blocked_external", "owner": "hardware-qa-owner", "authority_class": "accepted_external_catalog", "source": "docs/EXTERNAL_GATES.md"},
+    {"id": "EXT-BRAND-ASSET", "status": "blocked_external", "owner": "brand-product-owner", "authority_class": "accepted_external_catalog", "source": "docs/EXTERNAL_GATES.md"},
+    {"id": "EXT-REMOTE-UPDATE-DECISION", "status": "blocked_external", "owner": "release-owner", "authority_class": "registry_release_prerequisite", "source": "tasks/registry.json"}
+  ],
+  "task_assignment_semantics": "Every WBS task appears exactly once below. Assignment identifies the milestone the task contributes to; it is not an extra dependency. Only protects_tasks and exact WBS depends_on edges can block scheduling.",
+  "task_assignments": {
+    "G0": ["P0-GOV-001", "P0-GOV-002", "P0-GOV-003", "P0-GOV-004", "P0-GOV-005", "P0-GOV-006", "P0-GOV-007", "P0-GOV-008", "P0-GOV-009", "P0-GOV-010"],
+    "G1": ["P0-ARC-001", "P0-ARC-006", "P0-ARC-007", "P0-ARC-008", "P0-ARC-009", "P0-ARC-010", "P0-ARC-011", "P0-ARC-012"],
+    "G2": ["P0-ARC-002", "P0-ARC-003", "P0-ARC-004", "P0-ARC-005"],
+    "G3": ["P0-CON-001", "P0-CON-002", "P0-CON-003", "P0-CON-004", "P0-CON-005", "P0-CON-006", "P0-CON-007", "P0-CON-008", "P0-CON-009", "P0-CON-010", "P0-CON-012"],
+    "G4": ["P1-DET-001", "P1-DET-002", "P1-DET-003", "P1-DET-004", "P1-DET-005", "P1-DET-006", "P1-DET-007", "P1-DET-008", "P1-DET-009", "P1-DET-010", "P1-DET-011", "P1-DET-012", "P2-INS-002", "P2-INS-003", "P2-INS-004", "P2-INS-005", "P2-INS-006", "P2-INS-007", "P2-INS-008"],
+    "G5": ["P2-INS-001", "P2-INS-009", "P2-INS-010", "P2-INS-011", "P2-INS-012", "P2-INS-013", "P2-INS-014"],
+    "G6": ["P0-WF-001", "P1-WF-002", "P1-WF-003", "P1-WF-004", "P1-WF-005", "P1-WF-006", "P1-WF-007", "P1-WF-008", "P1-WF-009", "P1-WF-010", "P1-WF-011", "P1-WF-012"],
+    "G7": ["P1-APP-001", "P1-APP-002", "P1-APP-003", "P1-APP-004", "P1-NAT-001", "P1-NAT-002", "P1-NAT-003", "P1-NAT-004", "P2-PKG-001", "P2-PKG-002", "P2-INS-015", "P1-WF-013", "P1-WF-014", "P2-UX-001", "P2-UX-002", "P2-UX-003", "P2-UX-004", "P2-UX-005", "P2-UX-006", "P2-UX-007", "QA-001", "QA-002", "QA-003", "QA-004", "QA-005", "QA-006", "QA-007", "QA-008", "QA-009", "QA-010", "QA-011", "QA-012", "QA-013", "QA-014", "QA-015", "QA-016", "QA-017", "QA-018"],
+    "G8": ["P1-WF-015", "P1-WF-016", "P1-WF-017", "P1-WF-018", "P1-WF-019", "P1-WF-020", "P2-UX-008", "QA-019", "QA-020"],
+    "G9": ["REF-001", "REF-002", "REF-003", "REF-004", "REF-005", "REF-006", "REF-007"],
+    "G10": ["P0-CON-011", "LONG-001", "LONG-002", "LONG-003", "LONG-004", "LONG-005", "LONG-006", "LONG-007", "LONG-008", "LONG-009", "LONG-010", "LONG-011", "LONG-012"],
+    "G11": ["ACC-001", "ACC-002", "ACC-003", "ACC-004", "ACC-005", "ACC-006", "ACC-007", "ACC-008", "REL-001", "REL-002", "REL-003", "REL-004", "REL-005", "REL-006"]
+  },
+  "external_prerequisite_semantics": "A task omitted from task_external_prerequisites has no direct external prerequisite; transitive WBS dependencies and gate requirements still apply. Conditional entries are not schedulability blockers until Root records that their condition is selected.",
+  "task_external_prerequisites": [
+    {"task_id": "P0-ARC-008", "required": [], "conditional": [{"id": "EXT-COMFY-CLI", "condition": "Acceptance selects adoption or bundling rather than the accepted no-adoption fallback."}]},
+    {"task_id": "P1-WF-013", "required": ["EXT-H3-LICENSE", "EXT-HARDWARE"], "conditional": []},
+    {"task_id": "P1-WF-018", "required": ["EXT-H3-LICENSE", "EXT-HARDWARE"], "conditional": []},
+    {"task_id": "P1-WF-019", "required": ["EXT-H3-LICENSE", "EXT-HARDWARE"], "conditional": []},
+    {"task_id": "P1-WF-020", "required": ["EXT-H3-LICENSE", "EXT-HARDWARE"], "conditional": []},
+    {"task_id": "QA-010", "required": ["EXT-H3-LICENSE", "EXT-HARDWARE"], "conditional": []},
+    {"task_id": "QA-011", "required": ["EXT-H3-LICENSE", "EXT-HARDWARE"], "conditional": []},
+    {"task_id": "QA-016", "required": ["EXT-H3-LICENSE", "EXT-HARDWARE"], "conditional": []},
+    {"task_id": "QA-017", "required": ["EXT-H3-LICENSE", "EXT-HARDWARE"], "conditional": []},
+    {"task_id": "QA-019", "required": ["EXT-SIGNING"], "conditional": []},
+    {"task_id": "QA-020", "required": ["EXT-H3-LICENSE", "EXT-COMFY-CORE", "EXT-COMFY-FRONTEND", "EXT-SIGNING", "EXT-HARDWARE"], "conditional": [{"id": "EXT-FFMPEG", "condition": "The Alpha-1 release downloads or distributes FFmpeg."}, {"id": "EXT-COMFY-CLI", "condition": "The Alpha-1 release adopts or bundles comfy-cli."}]},
+    {"task_id": "REF-001", "required": ["EXT-H3-LICENSE"], "conditional": []},
+    {"task_id": "REF-003", "required": ["EXT-H3-LICENSE", "EXT-HARDWARE"], "conditional": []},
+    {"task_id": "REF-005", "required": ["EXT-H3-LICENSE", "EXT-HARDWARE"], "conditional": []},
+    {"task_id": "REF-007", "required": ["EXT-H3-LICENSE", "EXT-HARDWARE"], "conditional": []},
+    {"task_id": "LONG-004", "required": ["EXT-H3-LICENSE", "EXT-HARDWARE"], "conditional": []},
+    {"task_id": "LONG-005", "required": ["EXT-H3-LICENSE", "EXT-HARDWARE"], "conditional": []},
+    {"task_id": "LONG-011", "required": ["EXT-H3-LICENSE", "EXT-HARDWARE"], "conditional": []},
+    {"task_id": "LONG-012", "required": ["EXT-H3-LICENSE", "EXT-HARDWARE"], "conditional": []},
+    {"task_id": "ACC-002", "required": ["EXT-H3-LICENSE", "EXT-HARDWARE"], "conditional": []},
+    {"task_id": "ACC-003", "required": ["EXT-H3-LICENSE", "EXT-HARDWARE"], "conditional": []},
+    {"task_id": "ACC-004", "required": ["EXT-H3-LICENSE", "EXT-HARDWARE"], "conditional": []},
+    {"task_id": "ACC-005", "required": ["EXT-H3-LICENSE", "EXT-HARDWARE"], "conditional": []},
+    {"task_id": "ACC-008", "required": ["EXT-H3-LICENSE", "EXT-HARDWARE"], "conditional": []},
+    {"task_id": "REL-002", "required": ["EXT-BRAND-ASSET"], "conditional": []},
+    {"task_id": "REL-003", "required": ["EXT-H3-LICENSE"], "conditional": []},
+    {"task_id": "REL-004", "required": ["EXT-H3-LICENSE", "EXT-COMFY-CORE", "EXT-COMFY-FRONTEND", "EXT-RUNNER-DIST", "EXT-FFMPEG", "EXT-SIGNING", "EXT-HARDWARE", "EXT-BRAND-ASSET", "EXT-REMOTE-UPDATE-DECISION"], "conditional": [{"id": "EXT-COMFY-CLI", "condition": "The 1.0 release adopts or bundles comfy-cli."}, {"id": "EXT-DESKTOP-DIST", "condition": "The 1.0 release bundles, auto-installs, or claims a Desktop adapter."}]},
+    {"task_id": "REL-005", "required": ["EXT-H3-LICENSE", "EXT-COMFY-CORE", "EXT-COMFY-FRONTEND", "EXT-RUNNER-DIST", "EXT-FFMPEG", "EXT-SIGNING", "EXT-HARDWARE", "EXT-BRAND-ASSET", "EXT-REMOTE-UPDATE-DECISION"], "conditional": [{"id": "EXT-COMFY-CLI", "condition": "The 1.0 release adopts or bundles comfy-cli."}, {"id": "EXT-DESKTOP-DIST", "condition": "The 1.0 release bundles, auto-installs, or claims a Desktop adapter."}]},
+    {"task_id": "REL-006", "required": ["EXT-H3-LICENSE", "EXT-COMFY-CORE", "EXT-COMFY-FRONTEND", "EXT-RUNNER-DIST", "EXT-FFMPEG", "EXT-SIGNING", "EXT-HARDWARE", "EXT-BRAND-ASSET", "EXT-REMOTE-UPDATE-DECISION"], "conditional": [{"id": "EXT-COMFY-CLI", "condition": "The 1.0 release adopts or bundles comfy-cli."}, {"id": "EXT-DESKTOP-DIST", "condition": "The 1.0 release bundles, auto-installs, or claims a Desktop adapter."}]}
+  ],
+  "critical_path_policy": "Longest path by the first integer Agent-hour estimate in each WBS Queue/h cell; external, GPU, VM, download and participant wall time are excluded; ties use ordinal task-ID path order.",
+  "critical_paths": [
+    {
+      "claim_id": "alpha0_internal_acceptance",
+      "kind": "longest_wbs_agent_hours",
+      "target_task": "QA-016",
+      "agent_hours": 133,
+      "tasks": ["P0-GOV-001", "P0-GOV-002", "P0-ARC-001", "P0-ARC-006", "P0-ARC-009", "P0-CON-001", "P1-NAT-001", "P1-NAT-003", "P1-DET-001", "P2-INS-001", "P2-INS-004", "P2-INS-009", "P2-INS-010", "P2-INS-011", "P2-INS-013", "P2-INS-014", "P2-INS-015", "P1-APP-004", "QA-018", "P2-PKG-001", "P2-PKG-002", "QA-016"]
+    },
+    {
+      "claim_id": "public_1_0_decision",
+      "kind": "longest_wbs_agent_hours",
+      "target_task": "REL-006",
+      "agent_hours": 211,
+      "tasks": ["P0-GOV-001", "P0-GOV-002", "P0-ARC-001", "P0-ARC-006", "P0-ARC-009", "P0-CON-001", "P1-NAT-001", "P1-NAT-003", "P1-DET-001", "P2-INS-001", "P2-INS-004", "P2-INS-009", "P2-INS-010", "P2-INS-011", "P2-INS-013", "P2-INS-014", "P2-INS-015", "P1-APP-004", "QA-018", "P2-PKG-001", "P2-PKG-002", "QA-016", "LONG-001", "LONG-003", "LONG-004", "LONG-006", "LONG-007", "LONG-008", "LONG-009", "LONG-011", "LONG-012", "REL-004", "REL-005", "REL-006"]
+    }
+  ]
+}

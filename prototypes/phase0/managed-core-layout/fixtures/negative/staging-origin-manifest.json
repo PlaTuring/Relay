@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "fixture_id": "P0-ARC-006-managed-core-layout-spike",
+  "recipe_id": "alpha-core-fixture",
+  "generation_id": "gen-negative-origin",
+  "state": "verified",
+  "build_root": "C:\\forbidden staging\\gen-negative-origin",
+  "construction_method": "moved-from-staging",
+  "environment_relocated": true,
+  "private_python_root": "C:\\forbidden staging\\gen-negative-origin\\private-python",
+  "private_python_executable": "C:\\forbidden staging\\gen-negative-origin\\private-python\\python.exe",
+  "runtime_root": "C:\\forbidden staging\\gen-negative-origin\\runtime",
+  "runtime_entry_relative": "runtime\\main.py",
+  "verification_receipt_relative": "verification.json",
+  "artifacts": []
+}

@@ -1,0 +1,73 @@
+{
+  "contract_id": "minimax-h3-tool.capability-catalog",
+  "schema_version": "1.0.0",
+  "document_id": "20000000-0000-4000-8000-000000000001",
+  "document_revision": 1,
+  "catalog_id": "alpha0-t2va-capabilities",
+  "authority": {
+    "publisher": "minimax_h3_tool_release",
+    "immutability": "replace_with_new_document",
+    "product_boundary": "compile_and_handoff_only_user_runs_h3_in_comfyui"
+  },
+  "upstreams": [
+    {
+      "upstream_id": "comfyui-core",
+      "origin_uri": "https://github.com/Comfy-Org/ComfyUI",
+      "locked_revision": "d8e7bbc9d586d95f758d6b0ed23d519088be578a",
+      "evidence_source_ids": ["p0-wf-001-snapshot"]
+    },
+    {
+      "upstream_id": "minimax-h3-huggingface",
+      "origin_uri": "https://huggingface.co/MiniMaxAI/MiniMax-H3",
+      "locked_revision": "42ed227ee7df40d41602854ae760620d6eb651fe",
+      "first_introduced_revision": "5d9b308a59ab12e67147f191e184baf704185bd1",
+      "evidence_source_ids": ["p0-wf-001-snapshot"]
+    }
+  ],
+  "evidence_sources": [
+    {
+      "source_id": "p0-wf-001-snapshot",
+      "source_kind": "locked_upstream_snapshot",
+      "evidence_status": "proven",
+      "locator": "repo:prototypes/phase0/capability-snapshot.json",
+      "revision": "P0-WF-001",
+      "content_sha256": "sha256:d123836a883573ad5bd957935af11ab5b8812bd2ad3f12bc21e0c50ae89b3bfd"
+    }
+  ],
+  "node_allowlist_ref": {
+    "contract_id": "minimax-h3-tool.node-allowlist",
+    "schema_version": "1.0.0",
+    "schema_content_sha256": "sha256:831cdae6677c2d735844245fade720f13e9b8717c41bda25f0626319d88a7b48",
+    "source_document_id": "10000000-0000-4000-8000-000000000001",
+    "source_document_revision": 1,
+    "source_content_sha256": "sha256:483262e8c31d1a47fa6c2bccd110bc64889b4c9ef2b0be032bd01c9367dbf300"
+  },
+  "capabilities": [
+    {
+      "capability_id": "alpha0-t2va-5s-nonempty",
+      "publication_status": "poc_pending",
+      "evidence_status": "proven",
+      "evidence_source_ids": ["p0-wf-001-snapshot"],
+      "required_class_types": ["MiniMaxH3ImageToVideo", "MiniMaxH3SigmaShift", "CreateVideo", "SaveVideo"],
+      "gates": {
+        "route": {"kind": "route", "route": "t2va", "evidence_status": "proven", "readiness": "poc_pending", "reason_code": "CAPABILITY.RUNTIME_POC_REQUIRED", "evidence_source_ids": ["p0-wf-001-snapshot"]},
+        "duration": {"kind": "duration", "requested_seconds": 5, "frame_rate": {"numerator": 24, "denominator": 1}, "evidence_status": "proven", "readiness": "poc_pending", "reason_code": "CAPABILITY.DURATION_POC_REQUIRED", "evidence_source_ids": ["p0-wf-001-snapshot"]},
+        "prompt": {"kind": "prompt", "empty_prompt_allowed": false, "evidence_status": "proven", "readiness": "poc_pending", "reason_code": "CAPABILITY.NONEMPTY_PROMPT_POC_REQUIRED", "evidence_source_ids": ["p0-wf-001-snapshot"]},
+        "endpoint": {"kind": "endpoint", "endpoint_mode": "none", "evidence_status": "proven", "readiness": "passed", "reason_code": "CAPABILITY.ENDPOINT_NOT_APPLICABLE", "evidence_source_ids": ["p0-wf-001-snapshot"]},
+        "audio": {"kind": "audio", "native_audio_required": true, "sample_rate_hz": 32000, "channels": 2, "evidence_status": "proven", "readiness": "poc_pending", "reason_code": "CAPABILITY.AUDIO_POC_REQUIRED", "evidence_source_ids": ["p0-wf-001-snapshot"]}
+      },
+      "prerequisites": {
+        "hardware": {"kind": "hardware", "requirement_ids": ["first-certified-profile"], "evidence_status": "proven", "readiness": "poc_pending", "reason_code": "CAPABILITY.HARDWARE_MATRIX_PENDING", "evidence_source_ids": ["p0-wf-001-snapshot"]},
+        "runtime": {"kind": "runtime", "requirement_ids": ["comfyui-core-locked", "comfyui-frontend-locked"], "evidence_status": "proven", "readiness": "poc_pending", "reason_code": "CAPABILITY.RUNTIME_OBJECT_INFO_PENDING", "evidence_source_ids": ["p0-wf-001-snapshot"]},
+        "license": {"kind": "license", "requirement_ids": ["h3-license", "comfy-license", "codec-license"], "evidence_status": "proven", "readiness": "poc_pending", "reason_code": "CAPABILITY.LICENSE_APPROVAL_PENDING", "evidence_source_ids": ["p0-wf-001-snapshot"]}
+      },
+      "disposition": {"kind": "active"}
+    }
+  ],
+  "disposition": {"kind": "active"},
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "rfc8785_jcs_root_integrity_omitted",
+    "content_sha256": "sha256:d67584f0f514ec8dc86668874d71ff4cd425fc390ba355a58fc58cc68c3fcb6d"
+  }
+}

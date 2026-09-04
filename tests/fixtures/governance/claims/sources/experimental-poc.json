@@ -1,0 +1,13 @@
+{
+  "source_document_version": "1.0.0",
+  "source_id": "SRC-SYNTH-EXPERIMENTAL-POC",
+  "source_kind": "accepted_poc",
+  "publisher": "synthetic-governance-fixture",
+  "immutable_revision": "fixture:experimental-poc-r1",
+  "component_ids": ["synthetic-governance-validator"],
+  "scope_ids": ["scope-synth-experimental"],
+  "repeatable": false,
+  "pass_count": 1,
+  "attempt_count": 2,
+  "test_case_ids": ["bounded-poc-pass", "bounded-poc-known-failure"]
+}

@@ -1,0 +1,47 @@
+name: Bug report
+description: 报告可以稳定复现的 Relay 问题
+title: "[Bug] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: 请勿提交凭据、完整提示词、项目文件、用户名或私有绝对路径。
+  - type: input
+    id: version
+    attributes:
+      label: Relay 版本
+      placeholder: 例如 1.0.2
+    validations:
+      required: true
+  - type: input
+    id: system
+    attributes:
+      label: Windows 与架构
+      placeholder: 例如 Windows 11 24H2 x64
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      description: 使用不含私密内容的最小步骤说明问题。
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期结果与实际结果
+    validations:
+      required: true
+  - type: input
+    id: diagnostic
+    attributes:
+      label: 稳定诊断代码（如有）
+      placeholder: 只填写代码，不粘贴私有路径或完整日志
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: 隐私确认
+      options:
+        - label: 我已移除凭据、完整提示词、项目文件、用户名和私有绝对路径。
+          required: true

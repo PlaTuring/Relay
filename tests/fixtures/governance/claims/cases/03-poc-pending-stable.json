@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"poc-pending-cannot-be-stable","mutations":[{"op":"replace","path":"/records/2/eligibility/stable_eligible","value":true}],"expected":{"code":"CLAIM.STABLE_REQUIRES_PROVEN","instance_path":"/records/2/evidence/level","rule_id":"claim.eligibility.stable.proven"}}

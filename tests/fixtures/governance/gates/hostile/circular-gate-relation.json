@@ -1,0 +1,1 @@
+{"fixture_id":"circular-gate-relation","mutation":{"kind":"create_gate_cycle","from":"G0","to":"G1"},"expected_code":"GATE.CYCLE"}

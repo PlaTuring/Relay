@@ -1,0 +1,375 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:minimax-h3-tool:schema:model-registry:1.0.0",
+  "title": "MiniMax H3 Tool model registry",
+  "description": "Mutable control-state registry for exact model progression and selection. It grants no download, inference, queue, ownership or deletion authority.",
+  "type": "object",
+  "x-primary-trust-class": "mutable_control_state",
+  "additionalProperties": false,
+  "required": ["contract_id", "schema_version", "document_id", "document_revision", "registry_id", "created_at_utc", "updated_at_utc", "sequence", "candidates", "authority", "integrity"],
+  "properties": {
+    "contract_id": {"const": "minimax-h3-tool.model-registry", "x-sensitive": "public", "x-trust-impact": ["execution", "ownership", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.root.contract_id"},
+    "schema_version": {"const": "1.0.0", "x-sensitive": "public", "x-trust-impact": ["execution", "ownership", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.root.schema_version"},
+    "document_id": {"$ref": "#/$defs/uuid_v4", "x-sensitive": "public", "x-trust-impact": ["artifact", "recovery"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.root.document_id"},
+    "document_revision": {"type": "integer", "minimum": 1, "maximum": 9007199254740991, "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "recovery"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.root.document_revision"},
+    "registry_id": {"$ref": "#/$defs/domain_id", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "recovery"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.root.registry_id"},
+    "created_at_utc": {"$ref": "#/$defs/utc_date_time_ms", "x-sensitive": "internal", "x-trust-impact": ["artifact", "recovery"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.root.created_at"},
+    "updated_at_utc": {"$ref": "#/$defs/utc_date_time_ms", "x-sensitive": "internal", "x-trust-impact": ["artifact", "recovery"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.root.updated_at"},
+    "sequence": {"type": "integer", "minimum": 1, "maximum": 9007199254740991, "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "recovery"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.root.sequence"},
+    "candidates": {"type": "array", "minItems": 1, "maxItems": 4096, "items": {"$ref": "#/$defs/candidate", "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.root.candidates.item"}, "x-sensitive": "local_path", "x-trust-impact": ["observation", "execution", "ownership", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.root.candidates"},
+    "authority": {"$ref": "#/$defs/authority", "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "ownership", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.root.authority"},
+    "extensions": {"$ref": "#/$defs/extensions", "description": "Omitted means that no display-only extension metadata is carried.", "x-sensitive": "internal", "x-trust-impact": ["display"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.root.extensions"},
+    "integrity": {"$ref": "#/$defs/integrity", "x-sensitive": "public", "x-trust-impact": ["execution", "ownership", "path", "artifact", "recovery"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.root.integrity"}
+  },
+  "$defs": {
+    "uuid_v4": {"type": "string", "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$", "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.type.uuid_v4"},
+    "semver": {"type": "string", "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$", "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.type.semver"},
+    "sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$", "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.type.sha256"},
+    "domain_id": {"type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-z][a-z0-9]*(?:[-_][a-z0-9]+)*$", "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.type.domain_id"},
+    "reason_code": {"type": "string", "minLength": 3, "maxLength": 96, "pattern": "^[A-Z][A-Z0-9_]*(?:\\.[A-Z][A-Z0-9_]*)+$", "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.type.reason_code"},
+    "utc_date_time_ms": {"type": "string", "format": "utc-date-time-ms", "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-([0-2][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]\\.[0-9]{3}Z$", "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.type.utc_date_time_ms"},
+    "windows_absolute_path": {"type": "string", "format": "windows-absolute-path", "minLength": 3, "maxLength": 32767, "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.type.windows_absolute_path"},
+    "contract_relative_path": {"type": "string", "format": "contract-relative-path", "minLength": 1, "maxLength": 4096, "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.type.contract_relative_path"},
+    "model_role": {"enum": ["model_diffusion", "model_text_encoder", "model_video_vae", "model_audio_vae"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.type.model_role"},
+    "document_ref_hardware": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contract_id", "schema_version", "schema_content_sha256", "source_document_id", "source_document_revision", "source_content_sha256", "report_id"],
+      "properties": {
+        "contract_id": {"const": "minimax-h3-tool.hardware-report", "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.hardware_ref.contract_id"},
+        "schema_version": {"const": "1.0.0", "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.hardware_ref.schema_version"},
+        "schema_content_sha256": {"$ref": "#/$defs/sha256", "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.hardware_ref.schema_hash"},
+        "source_document_id": {"$ref": "#/$defs/uuid_v4", "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.hardware_ref.document_id"},
+        "source_document_revision": {"const": 1, "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.hardware_ref.document_revision"},
+        "source_content_sha256": {"$ref": "#/$defs/sha256", "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.hardware_ref.content_hash"},
+        "report_id": {"$ref": "#/$defs/domain_id", "x-sensitive": "public", "x-trust-impact": ["observation", "execution"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.hardware_ref.report_id"}
+      },
+      "x-error-code": "MODEL.SCHEMA_CONSTRAINT",
+      "x-rule-id": "model.hardware_ref.closed"
+    },
+    "document_ref_component": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contract_id", "schema_version", "schema_content_sha256", "source_document_id", "source_document_revision", "source_content_sha256"],
+      "properties": {
+        "contract_id": {"const": "minimax-h3-tool.component-manifest", "x-sensitive": "public", "x-trust-impact": ["execution", "ownership", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.component_ref.contract_id"},
+        "schema_version": {"const": "1.0.0", "x-sensitive": "public", "x-trust-impact": ["execution", "ownership", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.component_ref.schema_version"},
+        "schema_content_sha256": {"$ref": "#/$defs/sha256", "x-sensitive": "public", "x-trust-impact": ["execution", "ownership", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.component_ref.schema_hash"},
+        "source_document_id": {"$ref": "#/$defs/uuid_v4", "x-sensitive": "public", "x-trust-impact": ["execution", "ownership", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.component_ref.document_id"},
+        "source_document_revision": {"const": 1, "x-sensitive": "public", "x-trust-impact": ["execution", "ownership", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.component_ref.document_revision"},
+        "source_content_sha256": {"$ref": "#/$defs/sha256", "x-sensitive": "public", "x-trust-impact": ["execution", "ownership", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.component_ref.content_hash"}
+      },
+      "x-error-code": "MODEL.SCHEMA_CONSTRAINT",
+      "x-rule-id": "model.component_ref.closed"
+    },
+    "document_ref_recipe": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contract_id", "schema_version", "schema_content_sha256", "source_document_id", "source_document_revision", "source_content_sha256"],
+      "properties": {
+        "contract_id": {"const": "minimax-h3-tool.alpha-recipe", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.recipe_ref.contract_id"},
+        "schema_version": {"const": "1.0.0", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.recipe_ref.schema_version"},
+        "schema_content_sha256": {"$ref": "#/$defs/sha256", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.recipe_ref.schema_hash"},
+        "source_document_id": {"$ref": "#/$defs/uuid_v4", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.recipe_ref.document_id"},
+        "source_document_revision": {"const": 1, "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.recipe_ref.document_revision"},
+        "source_content_sha256": {"$ref": "#/$defs/sha256", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.recipe_ref.content_hash"}
+      },
+      "x-error-code": "MODEL.SCHEMA_CONSTRAINT",
+      "x-rule-id": "model.recipe_ref.closed"
+    },
+    "document_ref_ledger": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contract_id", "schema_version", "schema_content_sha256", "source_document_id", "source_document_revision", "source_content_sha256"],
+      "properties": {
+        "contract_id": {"const": "minimax-h3-tool.ownership-ledger", "x-sensitive": "public", "x-trust-impact": ["execution", "ownership", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.ledger_ref.contract_id"},
+        "schema_version": {"const": "1.0.0", "x-sensitive": "public", "x-trust-impact": ["execution", "ownership", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.ledger_ref.schema_version"},
+        "schema_content_sha256": {"$ref": "#/$defs/sha256", "x-sensitive": "public", "x-trust-impact": ["execution", "ownership", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.ledger_ref.schema_hash"},
+        "source_document_id": {"$ref": "#/$defs/uuid_v4", "x-sensitive": "public", "x-trust-impact": ["execution", "ownership", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.ledger_ref.document_id"},
+        "source_document_revision": {"type": "integer", "minimum": 1, "maximum": 9007199254740991, "x-sensitive": "public", "x-trust-impact": ["execution", "ownership", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.ledger_ref.document_revision"},
+        "source_content_sha256": {"$ref": "#/$defs/sha256", "x-sensitive": "public", "x-trust-impact": ["execution", "ownership", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.ledger_ref.content_hash"}
+      },
+      "x-error-code": "MODEL.SCHEMA_CONSTRAINT",
+      "x-rule-id": "model.ledger_ref.closed"
+    },
+    "file_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "opaque_volume_id", "opaque_file_id", "byte_length", "modified_filetime_ticks"],
+      "properties": {
+        "kind": {"const": "windows_file_snapshot", "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.file_identity.kind"},
+        "opaque_volume_id": {"$ref": "#/$defs/uuid_v4", "x-sensitive": "personal_data", "x-trust-impact": ["observation", "execution", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.file_identity.volume_id"},
+        "opaque_file_id": {"$ref": "#/$defs/uuid_v4", "x-sensitive": "personal_data", "x-trust-impact": ["observation", "execution", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.file_identity.file_id"},
+        "byte_length": {"type": "integer", "minimum": 1, "maximum": 9007199254740991, "x-sensitive": "internal", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.file_identity.byte_length"},
+        "modified_filetime_ticks": {"type": "integer", "minimum": 0, "maximum": 9007199254740991, "x-sensitive": "personal_data", "x-trust-impact": ["observation", "execution", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.file_identity.modified_ticks"}
+      },
+      "x-error-code": "MODEL.SCHEMA_CONSTRAINT",
+      "x-rule-id": "model.file_identity.closed"
+    },
+    "external_location": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "absolute_path", "discovery_scope", "ownership_class", "tool_owned", "delete_authority", "mutation_policy", "read_revalidation_policy"],
+      "properties": {
+        "kind": {"const": "external_file", "x-sensitive": "public", "x-trust-impact": ["observation", "ownership", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.location.external.kind"},
+        "absolute_path": {"$ref": "#/$defs/windows_absolute_path", "x-sensitive": "local_path", "x-trust-impact": ["observation", "execution", "ownership", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.location.external.path"},
+        "discovery_scope": {"enum": ["known_configuration_path", "user_selected_folder"], "x-sensitive": "public", "x-trust-impact": ["observation", "path"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.location.external.discovery_scope"},
+        "ownership_class": {"const": "external_read_only", "x-sensitive": "public", "x-trust-impact": ["ownership", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.location.external.ownership_class"},
+        "tool_owned": {"const": false, "x-sensitive": "public", "x-trust-impact": ["ownership", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.location.external.tool_owned"},
+        "delete_authority": {"const": "never", "x-sensitive": "public", "x-trust-impact": ["ownership", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.location.external.delete_authority"},
+        "mutation_policy": {"const": "forbid_move_rename_overwrite_delete", "x-sensitive": "public", "x-trust-impact": ["ownership", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.location.external.mutation_policy"},
+        "read_revalidation_policy": {"const": "handle_identity_size_mtime_reparse_before_each_read", "x-sensitive": "public", "x-trust-impact": ["execution", "ownership", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.location.external.revalidation"}
+      },
+      "x-error-code": "MODEL.SCHEMA_CONSTRAINT",
+      "x-rule-id": "model.location.external.closed"
+    },
+    "managed_location": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "relative_path", "discovery_scope", "ownership_class", "tool_owned", "ownership_ledger_ref", "delete_authority", "mutation_policy", "read_revalidation_policy"],
+      "properties": {
+        "kind": {"const": "managed_artifact", "x-sensitive": "public", "x-trust-impact": ["observation", "ownership", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.location.managed.kind"},
+        "relative_path": {"$ref": "#/$defs/contract_relative_path", "x-sensitive": "local_path", "x-trust-impact": ["observation", "execution", "ownership", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.location.managed.path"},
+        "discovery_scope": {"const": "managed_install_ledger", "x-sensitive": "public", "x-trust-impact": ["observation", "ownership", "path"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.location.managed.discovery_scope"},
+        "ownership_class": {"const": "tool_managed_ledger_bound", "x-sensitive": "public", "x-trust-impact": ["ownership", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.location.managed.ownership_class"},
+        "tool_owned": {"const": true, "x-sensitive": "public", "x-trust-impact": ["ownership", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.location.managed.tool_owned"},
+        "ownership_ledger_ref": {"$ref": "#/$defs/document_ref_ledger", "x-sensitive": "internal", "x-trust-impact": ["execution", "ownership", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.location.managed.ledger_ref"},
+        "delete_authority": {"const": "separate_ledger_containment_lease_gate", "x-sensitive": "public", "x-trust-impact": ["ownership", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.location.managed.delete_authority"},
+        "mutation_policy": {"const": "owned_transaction_only", "x-sensitive": "public", "x-trust-impact": ["ownership", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.location.managed.mutation_policy"},
+        "read_revalidation_policy": {"const": "ledger_and_handle_identity_before_each_read", "x-sensitive": "public", "x-trust-impact": ["execution", "ownership", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.location.managed.revalidation"}
+      },
+      "x-error-code": "MODEL.SCHEMA_CONSTRAINT",
+      "x-rule-id": "model.location.managed.closed"
+    },
+    "location": {"oneOf": [{"$ref": "#/$defs/external_location", "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.location.union.external"}, {"$ref": "#/$defs/managed_location", "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.location.union.managed"}], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.location.union"},
+    "found_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "discovery_scope", "finding_class", "container_hint", "observed_filename", "observed_byte_length", "file_identity", "reuse_authority"],
+      "properties": {
+        "kind": {"const": "found_evidence", "x-sensitive": "public", "x-trust-impact": ["observation"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.found.kind"},
+        "discovery_scope": {"enum": ["known_configuration_path", "user_selected_folder", "managed_install_ledger"], "x-sensitive": "public", "x-trust-impact": ["observation", "path"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.found.discovery_scope"},
+        "finding_class": {"enum": ["candidate", "unsupported_format", "incomplete", "unverifiable"], "x-sensitive": "public", "x-trust-impact": ["display", "observation", "execution"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.found.finding_class"},
+        "container_hint": {"enum": ["safetensors", "diffusers_directory", "gguf", "pickle_weights", "unknown"], "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.found.container_hint"},
+        "observed_filename": {"type": "string", "minLength": 1, "maxLength": 255, "x-sensitive": "asset_name", "x-trust-impact": ["display", "observation", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.found.filename"},
+        "observed_byte_length": {"type": "integer", "minimum": 1, "maximum": 9007199254740991, "x-sensitive": "internal", "x-trust-impact": ["observation", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.found.byte_length"},
+        "file_identity": {"$ref": "#/$defs/file_identity", "x-sensitive": "personal_data", "x-trust-impact": ["observation", "execution", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.found.file_identity"},
+        "reuse_authority": {"const": false, "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.found.reuse_authority"}
+      },
+      "x-error-code": "MODEL.SCHEMA_CONSTRAINT",
+      "x-rule-id": "model.found.closed"
+    },
+    "identified_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "container_format", "extension", "byte_length", "bounded_header_length_bytes", "bounded_header_sha256", "tensor_fingerprint_sha256", "shape_fingerprint_sha256", "tensor_role", "dtype_set", "manifest_match", "identification_policy", "reuse_authority"],
+      "properties": {
+        "kind": {"const": "identified_evidence", "x-sensitive": "public", "x-trust-impact": ["observation", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.identified.kind"},
+        "container_format": {"const": "safetensors", "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.identified.format"},
+        "extension": {"const": ".safetensors", "x-sensitive": "public", "x-trust-impact": ["observation", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.identified.extension"},
+        "byte_length": {"type": "integer", "minimum": 1, "maximum": 9007199254740991, "x-sensitive": "internal", "x-trust-impact": ["observation", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.identified.byte_length"},
+        "bounded_header_length_bytes": {"type": "integer", "minimum": 1, "maximum": 16777216, "x-sensitive": "public", "x-trust-impact": ["observation", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.identified.header_length"},
+        "bounded_header_sha256": {"$ref": "#/$defs/sha256", "x-sensitive": "public", "x-trust-impact": ["observation", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.identified.header_hash"},
+        "tensor_fingerprint_sha256": {"$ref": "#/$defs/sha256", "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.identified.tensor_fingerprint"},
+        "shape_fingerprint_sha256": {"$ref": "#/$defs/sha256", "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.identified.shape_fingerprint"},
+        "tensor_role": {"$ref": "#/$defs/model_role", "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.identified.tensor_role"},
+        "dtype_set": {"type": "array", "minItems": 1, "maxItems": 16, "uniqueItems": true, "items": {"enum": ["bf16", "fp16", "fp32", "fp8_e4m3fn", "int8", "unknown"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.identified.dtype_set.item"}, "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.identified.dtype_set"},
+        "manifest_match": {"enum": ["exact_candidate", "no_match"], "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.identified.manifest_match"},
+        "identification_policy": {"const": "bounded_header_only_no_pickle_or_model_load", "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.identified.policy"},
+        "reuse_authority": {"const": false, "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.identified.reuse_authority"}
+      },
+      "x-error-code": "MODEL.SCHEMA_CONSTRAINT",
+      "x-rule-id": "model.identified.closed"
+    },
+    "verified_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "verification_trigger", "artifact_sha256", "byte_length", "file_identity", "cache_profile", "reuse_authority"],
+      "properties": {
+        "kind": {"const": "verified_evidence", "x-sensitive": "public", "x-trust-impact": ["observation", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.verified.kind"},
+        "verification_trigger": {"const": "explicit_user_reuse_verification", "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.verified.trigger"},
+        "artifact_sha256": {"$ref": "#/$defs/sha256", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.verified.artifact_hash"},
+        "byte_length": {"type": "integer", "minimum": 1, "maximum": 9007199254740991, "x-sensitive": "internal", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.verified.byte_length"},
+        "file_identity": {"$ref": "#/$defs/file_identity", "x-sensitive": "personal_data", "x-trust-impact": ["observation", "execution", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.verified.file_identity"},
+        "cache_profile": {"const": "file_identity_size_mtime_full_sha256_v1", "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.verified.cache_profile"},
+        "reuse_authority": {"const": false, "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.verified.reuse_authority"}
+      },
+      "x-error-code": "MODEL.SCHEMA_CONSTRAINT",
+      "x-rule-id": "model.verified.closed"
+    },
+    "compatible_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "artifact_sha256", "component_manifest_ref", "component_id", "component_version", "component_role", "recipe_ref", "profile_id", "slot_id", "hardware_report_ref", "gpu_subject_id", "compatibility_status", "reuse_authority"],
+      "properties": {
+        "kind": {"const": "compatible_evidence", "x-sensitive": "public", "x-trust-impact": ["observation", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.compatible.kind"},
+        "artifact_sha256": {"$ref": "#/$defs/sha256", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.compatible.artifact_hash"},
+        "component_manifest_ref": {"$ref": "#/$defs/document_ref_component", "x-sensitive": "public", "x-trust-impact": ["execution", "ownership", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.compatible.component_ref"},
+        "component_id": {"$ref": "#/$defs/domain_id", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.compatible.component_id"},
+        "component_version": {"type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[A-Za-z0-9][A-Za-z0-9._+-]*$", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.compatible.component_version"},
+        "component_role": {"$ref": "#/$defs/model_role", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.compatible.component_role"},
+        "recipe_ref": {"$ref": "#/$defs/document_ref_recipe", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.compatible.recipe_ref"},
+        "profile_id": {"$ref": "#/$defs/domain_id", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.compatible.profile_id"},
+        "slot_id": {"$ref": "#/$defs/domain_id", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.compatible.slot_id"},
+        "hardware_report_ref": {"$ref": "#/$defs/document_ref_hardware", "x-sensitive": "internal", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.compatible.hardware_ref"},
+        "gpu_subject_id": {"$ref": "#/$defs/domain_id", "x-sensitive": "internal", "x-trust-impact": ["observation", "execution"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.compatible.gpu_subject_id"},
+        "compatibility_status": {"const": "exact_match", "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.compatible.status"},
+        "reuse_authority": {"const": false, "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.compatible.reuse_authority"}
+      },
+      "x-error-code": "MODEL.SCHEMA_CONSTRAINT",
+      "x-rule-id": "model.compatible.closed"
+    },
+    "party": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["party_id", "display_name", "role"],
+      "properties": {
+        "party_id": {"$ref": "#/$defs/domain_id", "x-sensitive": "public", "x-trust-impact": ["observation", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.party.party_id"},
+        "display_name": {"type": "string", "minLength": 1, "maxLength": 256, "x-sensitive": "public", "x-trust-impact": ["display", "observation", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.party.display_name"},
+        "role": {"enum": ["creator", "publisher", "packager", "converter_or_quantizer"], "x-sensitive": "public", "x-trust-impact": ["observation", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.party.role"}
+      },
+      "x-error-code": "MODEL.SCHEMA_CONSTRAINT",
+      "x-rule-id": "model.party.closed"
+    },
+    "converter": {
+      "oneOf": [
+        {"type": "object", "additionalProperties": false, "required": ["kind"], "properties": {"kind": {"const": "not_applicable", "x-sensitive": "public", "x-trust-impact": ["observation", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.converter.none.kind"}}, "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.converter.none.closed"},
+        {"type": "object", "additionalProperties": false, "required": ["kind", "party"], "properties": {"kind": {"const": "party", "x-sensitive": "public", "x-trust-impact": ["observation", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.converter.party.kind"}, "party": {"$ref": "#/$defs/party", "x-sensitive": "public", "x-trust-impact": ["observation", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.converter.party.value"}}, "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.converter.party.closed"}
+      ],
+      "x-error-code": "MODEL.SCHEMA_CONSTRAINT",
+      "x-rule-id": "model.converter.union"
+    },
+    "license_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["license_id", "license_record_content_sha256", "human_decision_id", "decision"],
+      "properties": {
+        "license_id": {"type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[A-Za-z0-9][A-Za-z0-9.+-]*$", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.license.license_id"},
+        "license_record_content_sha256": {"$ref": "#/$defs/sha256", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.license.record_hash"},
+        "human_decision_id": {"$ref": "#/$defs/domain_id", "x-sensitive": "internal", "x-trust-impact": ["execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.license.decision_id"},
+        "decision": {"const": "approved_for_scope", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.license.decision"}
+      },
+      "x-error-code": "MODEL.SCHEMA_CONSTRAINT",
+      "x-rule-id": "model.license.closed"
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["creator", "publisher", "packager", "converter", "transformation", "immutable_source_revision", "license_ref"],
+      "properties": {
+        "creator": {"$ref": "#/$defs/party", "x-sensitive": "public", "x-trust-impact": ["observation", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.provenance.creator"},
+        "publisher": {"$ref": "#/$defs/party", "x-sensitive": "public", "x-trust-impact": ["observation", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.provenance.publisher"},
+        "packager": {"$ref": "#/$defs/party", "x-sensitive": "public", "x-trust-impact": ["observation", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.provenance.packager"},
+        "converter": {"$ref": "#/$defs/converter", "x-sensitive": "public", "x-trust-impact": ["observation", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.provenance.converter"},
+        "transformation": {"enum": ["original_bytes", "repacked", "quantized", "converted"], "x-sensitive": "public", "x-trust-impact": ["observation", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.provenance.transformation"},
+        "immutable_source_revision": {"type": "string", "pattern": "^(?:[0-9a-f]{40}|sha256:[0-9a-f]{64})$", "x-sensitive": "public", "x-trust-impact": ["observation", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.provenance.source_revision"},
+        "license_ref": {"$ref": "#/$defs/license_ref", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.provenance.license_ref"}
+      },
+      "x-error-code": "MODEL.SCHEMA_CONSTRAINT",
+      "x-rule-id": "model.provenance.closed"
+    },
+    "approved_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "artifact_sha256", "approval_id", "approval_policy", "license_status", "support_status", "provenance", "user_consent", "reuse_authority"],
+      "properties": {
+        "kind": {"const": "approved_evidence", "x-sensitive": "public", "x-trust-impact": ["observation", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.approved.kind"},
+        "artifact_sha256": {"$ref": "#/$defs/sha256", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.approved.artifact_hash"},
+        "approval_id": {"$ref": "#/$defs/domain_id", "x-sensitive": "internal", "x-trust-impact": ["execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.approved.approval_id"},
+        "approval_policy": {"const": "exact_artifact_role_license_provenance_support_and_user_consent", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.approved.policy"},
+        "license_status": {"const": "approved_for_scope", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.approved.license_status"},
+        "support_status": {"enum": ["supported_by_exact_recipe", "experimental_self_poc"], "x-sensitive": "public", "x-trust-impact": ["display", "observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.approved.support_status"},
+        "provenance": {"$ref": "#/$defs/provenance", "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.approved.provenance"},
+        "user_consent": {"const": "explicit_reuse_approval", "x-sensitive": "internal", "x-trust-impact": ["execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.approved.user_consent"},
+        "reuse_authority": {"const": false, "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.approved.reuse_authority"}
+      },
+      "x-error-code": "MODEL.SCHEMA_CONSTRAINT",
+      "x-rule-id": "model.approved.closed"
+    },
+    "selected_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "artifact_sha256", "selection_id", "recipe_ref", "profile_id", "slot_id", "model_role", "hardware_report_ref", "gpu_subject_id", "support_status", "selection_policy", "read_revalidation_policy", "reuse_authority"],
+      "properties": {
+        "kind": {"const": "selected_evidence", "x-sensitive": "public", "x-trust-impact": ["observation", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.selected.kind"},
+        "artifact_sha256": {"$ref": "#/$defs/sha256", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.selected.artifact_hash"},
+        "selection_id": {"$ref": "#/$defs/domain_id", "x-sensitive": "internal", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.selected.selection_id"},
+        "recipe_ref": {"$ref": "#/$defs/document_ref_recipe", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.selected.recipe_ref"},
+        "profile_id": {"$ref": "#/$defs/domain_id", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.selected.profile_id"},
+        "slot_id": {"$ref": "#/$defs/domain_id", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.selected.slot_id"},
+        "model_role": {"$ref": "#/$defs/model_role", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.selected.model_role"},
+        "hardware_report_ref": {"$ref": "#/$defs/document_ref_hardware", "x-sensitive": "internal", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.selected.hardware_ref"},
+        "gpu_subject_id": {"$ref": "#/$defs/domain_id", "x-sensitive": "internal", "x-trust-impact": ["observation", "execution"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.selected.gpu_subject_id"},
+        "support_status": {"enum": ["supported_by_exact_recipe", "experimental_self_poc"], "x-sensitive": "public", "x-trust-impact": ["display", "observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.selected.support_status"},
+        "selection_policy": {"const": "exact_full_progression_one_recipe_slot", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.selected.policy"},
+        "read_revalidation_policy": {"const": "location_policy_before_each_read", "x-sensitive": "public", "x-trust-impact": ["execution", "ownership", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.selected.revalidation"},
+        "reuse_authority": {"const": true, "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.selected.reuse_authority"}
+      },
+      "x-error-code": "MODEL.SCHEMA_CONSTRAINT",
+      "x-rule-id": "model.selected.closed"
+    },
+    "stage_found": {"type": "object", "additionalProperties": false, "required": ["stage", "sequence", "recorded_at_utc", "evidence"], "properties": {"stage": {"const": "found", "x-sensitive": "public", "x-trust-impact": ["observation", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.found.name"}, "sequence": {"const": 1, "x-sensitive": "public", "x-trust-impact": ["artifact", "recovery"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.found.sequence"}, "recorded_at_utc": {"$ref": "#/$defs/utc_date_time_ms", "x-sensitive": "internal", "x-trust-impact": ["artifact", "recovery"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.found.time"}, "evidence": {"$ref": "#/$defs/found_evidence", "x-sensitive": "local_path", "x-trust-impact": ["observation", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.found.evidence"}}, "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.found.closed"},
+    "stage_identified": {"type": "object", "additionalProperties": false, "required": ["stage", "sequence", "recorded_at_utc", "evidence"], "properties": {"stage": {"const": "identified", "x-sensitive": "public", "x-trust-impact": ["observation", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.identified.name"}, "sequence": {"const": 2, "x-sensitive": "public", "x-trust-impact": ["artifact", "recovery"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.identified.sequence"}, "recorded_at_utc": {"$ref": "#/$defs/utc_date_time_ms", "x-sensitive": "internal", "x-trust-impact": ["artifact", "recovery"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.identified.time"}, "evidence": {"$ref": "#/$defs/identified_evidence", "x-sensitive": "internal", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.identified.evidence"}}, "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.identified.closed"},
+    "stage_verified": {"type": "object", "additionalProperties": false, "required": ["stage", "sequence", "recorded_at_utc", "evidence"], "properties": {"stage": {"const": "verified", "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.verified.name"}, "sequence": {"const": 3, "x-sensitive": "public", "x-trust-impact": ["artifact", "recovery"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.verified.sequence"}, "recorded_at_utc": {"$ref": "#/$defs/utc_date_time_ms", "x-sensitive": "internal", "x-trust-impact": ["artifact", "recovery"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.verified.time"}, "evidence": {"$ref": "#/$defs/verified_evidence", "x-sensitive": "personal_data", "x-trust-impact": ["observation", "execution", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.verified.evidence"}}, "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.verified.closed"},
+    "stage_compatible": {"type": "object", "additionalProperties": false, "required": ["stage", "sequence", "recorded_at_utc", "evidence"], "properties": {"stage": {"const": "compatible", "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.compatible.name"}, "sequence": {"const": 4, "x-sensitive": "public", "x-trust-impact": ["artifact", "recovery"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.compatible.sequence"}, "recorded_at_utc": {"$ref": "#/$defs/utc_date_time_ms", "x-sensitive": "internal", "x-trust-impact": ["artifact", "recovery"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.compatible.time"}, "evidence": {"$ref": "#/$defs/compatible_evidence", "x-sensitive": "internal", "x-trust-impact": ["observation", "execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.compatible.evidence"}}, "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.compatible.closed"},
+    "stage_approved": {"type": "object", "additionalProperties": false, "required": ["stage", "sequence", "recorded_at_utc", "evidence"], "properties": {"stage": {"const": "approved", "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.approved.name"}, "sequence": {"const": 5, "x-sensitive": "public", "x-trust-impact": ["artifact", "recovery"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.approved.sequence"}, "recorded_at_utc": {"$ref": "#/$defs/utc_date_time_ms", "x-sensitive": "internal", "x-trust-impact": ["artifact", "recovery"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.approved.time"}, "evidence": {"$ref": "#/$defs/approved_evidence", "x-sensitive": "internal", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.approved.evidence"}}, "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.approved.closed"},
+    "stage_selected": {"type": "object", "additionalProperties": false, "required": ["stage", "sequence", "recorded_at_utc", "evidence"], "properties": {"stage": {"const": "selected", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.selected.name"}, "sequence": {"const": 6, "x-sensitive": "public", "x-trust-impact": ["artifact", "recovery"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.selected.sequence"}, "recorded_at_utc": {"$ref": "#/$defs/utc_date_time_ms", "x-sensitive": "internal", "x-trust-impact": ["artifact", "recovery"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.selected.time"}, "evidence": {"$ref": "#/$defs/selected_evidence", "x-sensitive": "internal", "x-trust-impact": ["observation", "execution", "ownership", "path", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.selected.evidence"}}, "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.selected.closed"},
+    "stage_record": {"oneOf": [{"$ref": "#/$defs/stage_found", "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.union.found"}, {"$ref": "#/$defs/stage_identified", "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.union.identified"}, {"$ref": "#/$defs/stage_verified", "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.union.verified"}, {"$ref": "#/$defs/stage_compatible", "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.union.compatible"}, {"$ref": "#/$defs/stage_approved", "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.union.approved"}, {"$ref": "#/$defs/stage_selected", "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.union.selected"}], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.stage.union"},
+    "lifecycle_status": {
+      "oneOf": [
+        {"type": "object", "additionalProperties": false, "required": ["kind"], "properties": {"kind": {"const": "active", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "recovery"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.lifecycle.active.kind"}}, "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.lifecycle.active.closed"},
+        {"type": "object", "additionalProperties": false, "required": ["kind", "invalidated_at_utc", "reason"], "properties": {"kind": {"const": "invalidated", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "recovery"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.lifecycle.invalidated.kind"}, "invalidated_at_utc": {"$ref": "#/$defs/utc_date_time_ms", "x-sensitive": "internal", "x-trust-impact": ["execution", "artifact", "recovery"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.lifecycle.invalidated.time"}, "reason": {"enum": ["file_identity_changed", "size_changed", "mtime_changed", "hash_mismatch", "role_drift", "source_unavailable", "reparse_drift"], "x-sensitive": "public", "x-trust-impact": ["display", "execution", "path", "artifact", "recovery"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.lifecycle.invalidated.reason"}, "successor_candidate_id": {"$ref": "#/$defs/domain_id", "description": "Omitted means that no replacement candidate has been registered.", "x-sensitive": "internal", "x-trust-impact": ["execution", "artifact", "recovery"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.lifecycle.invalidated.successor"}}, "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.lifecycle.invalidated.closed"}
+      ],
+      "x-error-code": "MODEL.SCHEMA_CONSTRAINT",
+      "x-rule-id": "model.lifecycle.union"
+    },
+    "reuse_decision": {
+      "oneOf": [
+        {"type": "object", "additionalProperties": false, "required": ["kind", "reuse_permitted", "reason_code"], "properties": {"kind": {"const": "not_authorized", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.reuse.blocked.kind"}, "reuse_permitted": {"const": false, "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.reuse.blocked.permitted"}, "reason_code": {"$ref": "#/$defs/reason_code", "x-sensitive": "public", "x-trust-impact": ["display", "execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.reuse.blocked.reason"}}, "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.reuse.blocked.closed"},
+        {"type": "object", "additionalProperties": false, "required": ["kind", "reuse_permitted", "selection_id", "artifact_sha256", "recipe_ref", "profile_id", "slot_id"], "properties": {"kind": {"const": "selected_for_recipe", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.reuse.selected.kind"}, "reuse_permitted": {"const": true, "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.reuse.selected.permitted"}, "selection_id": {"$ref": "#/$defs/domain_id", "x-sensitive": "internal", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.reuse.selected.selection_id"}, "artifact_sha256": {"$ref": "#/$defs/sha256", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.reuse.selected.artifact_hash"}, "recipe_ref": {"$ref": "#/$defs/document_ref_recipe", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.reuse.selected.recipe_ref"}, "profile_id": {"$ref": "#/$defs/domain_id", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.reuse.selected.profile_id"}, "slot_id": {"$ref": "#/$defs/domain_id", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.reuse.selected.slot_id"}}, "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.reuse.selected.closed"}
+      ],
+      "x-error-code": "MODEL.SCHEMA_CONSTRAINT",
+      "x-rule-id": "model.reuse.union"
+    },
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["candidate_id", "model_role", "location", "created_at_utc", "current_stage", "stage_history", "lifecycle_status", "reuse_decision"],
+      "properties": {
+        "candidate_id": {"$ref": "#/$defs/domain_id", "x-sensitive": "internal", "x-trust-impact": ["observation", "execution", "artifact", "recovery"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.candidate.candidate_id"},
+        "model_role": {"$ref": "#/$defs/model_role", "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.candidate.model_role"},
+        "location": {"$ref": "#/$defs/location", "x-sensitive": "local_path", "x-trust-impact": ["observation", "execution", "ownership", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.candidate.location"},
+        "created_at_utc": {"$ref": "#/$defs/utc_date_time_ms", "x-sensitive": "internal", "x-trust-impact": ["artifact", "recovery"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.candidate.created_at"},
+        "current_stage": {"enum": ["found", "identified", "verified", "compatible", "approved", "selected"], "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "artifact", "graph", "recovery"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.candidate.current_stage"},
+        "stage_history": {"type": "array", "minItems": 1, "maxItems": 6, "items": {"$ref": "#/$defs/stage_record", "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.candidate.stage_history.item"}, "x-sensitive": "internal", "x-trust-impact": ["observation", "execution", "artifact", "graph", "recovery"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.candidate.stage_history"},
+        "lifecycle_status": {"$ref": "#/$defs/lifecycle_status", "x-sensitive": "internal", "x-trust-impact": ["execution", "path", "artifact", "recovery"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.candidate.lifecycle_status"},
+        "reuse_decision": {"$ref": "#/$defs/reuse_decision", "x-sensitive": "internal", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.candidate.reuse_decision"}
+      },
+      "x-error-code": "MODEL.SCHEMA_CONSTRAINT",
+      "x-rule-id": "model.candidate.closed"
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["discovery_scopes", "verification_policy", "selection_authority", "external_ownership_policy", "managed_ownership_policy", "download_authority", "inference_authority", "queue_authority", "product_boundary"],
+      "properties": {
+        "discovery_scopes": {"type": "array", "minItems": 2, "maxItems": 2, "uniqueItems": true, "items": {"enum": ["known_configuration_path", "user_selected_folder"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.authority.discovery_scopes.item"}, "x-sensitive": "public", "x-trust-impact": ["observation", "path"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.authority.discovery_scopes"},
+        "verification_policy": {"const": "full_hash_only_after_explicit_user_reuse_verification", "x-sensitive": "public", "x-trust-impact": ["observation", "execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.authority.verification_policy"},
+        "selection_authority": {"const": "registry_only_after_exact_full_progression", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.authority.selection_authority"},
+        "external_ownership_policy": {"const": "permanently_external_read_only_never_tool_owned_or_deleted", "x-sensitive": "public", "x-trust-impact": ["ownership", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.authority.external_ownership"},
+        "managed_ownership_policy": {"const": "separate_exact_ownership_ledger_required", "x-sensitive": "public", "x-trust-impact": ["ownership", "path", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.authority.managed_ownership"},
+        "download_authority": {"const": "none", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.authority.download"},
+        "inference_authority": {"const": "none", "x-sensitive": "public", "x-trust-impact": ["execution", "artifact", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.authority.inference"},
+        "queue_authority": {"const": "none_user_clicks_run_in_comfyui", "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.authority.queue"},
+        "product_boundary": {"const": "compile_and_handoff_only_user_runs_h3_in_comfyui", "x-sensitive": "public", "x-trust-impact": ["execution", "graph"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.authority.product_boundary"}
+      },
+      "x-error-code": "MODEL.SCHEMA_CONSTRAINT",
+      "x-rule-id": "model.authority.closed"
+    },
+    "extension": {"type": "object", "additionalProperties": false, "required": ["extension_version", "effect", "data"], "properties": {"extension_version": {"$ref": "#/$defs/semver", "x-sensitive": "public", "x-trust-impact": ["display"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.extension.version"}, "effect": {"const": "display_metadata", "x-sensitive": "public", "x-trust-impact": ["display"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.extension.effect"}, "data": {"type": "object", "maxProperties": 128, "x-sensitive": "internal", "x-trust-impact": ["display"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.extension.data"}}, "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.extension.closed"},
+    "extensions": {"type": "object", "minProperties": 1, "maxProperties": 32, "propertyNames": {"pattern": "^[a-z][a-z0-9]*(?:\\.[a-z][a-z0-9_]*){2,}$", "maxLength": 128, "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.extensions.namespace"}, "additionalProperties": {"$ref": "#/$defs/extension", "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.extensions.item"}, "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.extensions.closed"},
+    "integrity": {"type": "object", "additionalProperties": false, "required": ["profile", "content_sha256"], "properties": {"profile": {"const": "rfc8785-sha256-v1", "x-sensitive": "public", "x-trust-impact": ["execution", "ownership", "path", "artifact", "recovery"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.integrity.profile"}, "content_sha256": {"$ref": "#/$defs/sha256", "x-sensitive": "public", "x-trust-impact": ["execution", "ownership", "path", "artifact", "recovery"], "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.integrity.content_sha256"}}, "x-error-code": "MODEL.SCHEMA_CONSTRAINT", "x-rule-id": "model.integrity.closed"}
+  },
+  "x-error-code": "MODEL.SCHEMA_CONSTRAINT",
+  "x-rule-id": "model.root.closed"
+}

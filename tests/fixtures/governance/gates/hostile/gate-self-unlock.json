@@ -1,0 +1,1 @@
+{"fixture_id":"gate-self-unlock","mutation":{"kind":"self_unlock","gate_id":"G3"},"expected_code":"GATE.SELF_UNLOCK"}

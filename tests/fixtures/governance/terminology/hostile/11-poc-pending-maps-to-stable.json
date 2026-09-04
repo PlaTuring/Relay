@@ -1,0 +1,1 @@
+{"fixture_version":"1.0.0","fixture_id":"poc-pending-maps-to-stable","target":"glossary","mutation":{"kind":"set_capability_status_field","status":"poc_pending","field":"stable_ui_allowed","value":true},"expected":{"code":"TERM.STATUS.SEMANTIC_DRIFT","rule_id":"terminology.capability_status.stable_mapping_exact"}}

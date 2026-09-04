@@ -1,0 +1,200 @@
+{
+  "contract_id": "minimax-h3-tool.component-manifest",
+  "schema_version": "1.0.0",
+  "document_id": "30000000-0000-4000-8000-000000000001",
+  "document_revision": 1,
+  "manifest_id": "alpha0-component-schema-fixture",
+  "catalog_binding": {
+    "kind": "embedded_app_catalog",
+    "app_id": "minimax-h3-tool",
+    "app_version": "0.1.0",
+    "app_build_id": "alpha0-schema-fixture",
+    "catalog_resource": "catalog/component-manifest.json",
+    "delivery": "embedded_in_current_app",
+    "catalog_cardinality": "exactly_one",
+    "external_binding_requirement": "signed_build_inventory_binds_exact_catalog_tuple",
+    "remote_catalog_policy": "forbidden",
+    "runtime_override_policy": "forbidden"
+  },
+  "authority": {
+    "immutability": "replace_with_new_document",
+    "materialization_authority": "none_requires_explicit_install_transaction",
+    "ownership_authority": "none_requires_verified_ownership_ledger_commit",
+    "deletion_authority": "none_requires_separate_ledger_containment_lease_gate",
+    "execution_authority": "none_manifest_is_data_only"
+  },
+  "license_records": [
+    {
+      "license_record_id": "fixture-license-pending",
+      "license_id": "LicenseRef-SchemaFixture",
+      "license_name": "Schema fixture license; not a distribution decision",
+      "license_text": {"locator": "app-resource:licenses/schema-fixture-license.txt", "byte_length": 100, "artifact_sha256": "sha256:6666666666666666666666666666666666666666666666666666666666666666", "content_type": "text/plain"},
+      "notice": {"locator": "app-resource:notices/schema-fixture-notice.txt", "byte_length": 80, "artifact_sha256": "sha256:7777777777777777777777777777777777777777777777777777777777777777", "content_type": "text/plain"},
+      "obligations": {"redistribution": "review_pending", "include_license_text": true, "include_notice": true, "source_code": "review_pending", "attribution": "review_pending"},
+      "review": {"state": "pending_external", "authority": "human_legal_owner", "gate_id": "component-license-review"},
+      "disposition": {"kind": "active"}
+    }
+  ],
+  "components": [
+    {
+      "component_id": "python-runtime-fixture",
+      "component_version": "3.12.0",
+      "component_role": "python_runtime",
+      "platform": "windows",
+      "architecture": "x86_64",
+      "release_state": "blocked",
+      "artifact": {
+        "filename": "python-runtime-fixture.zip",
+        "content_type": "application/zip",
+        "byte_length": 1000,
+        "artifact_sha256": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "archive_shape": {"kind": "fixed_archive", "format": "zip", "entry_count": 10, "expanded_byte_length": 2000, "max_entry_byte_length": 500, "entry_manifest_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "expanded_tree_sha256": "sha256:b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1", "expanded_tree_profile": "canonical_regular_files_v1", "path_policy": "canonical_relative_no_traversal_ads_device", "link_policy": "forbid_links_and_reparse"}
+      },
+      "source": {
+        "kind": "immutable_https",
+        "origin_id": "fixture-runtime-origin",
+        "locator": "https://artifacts.example.invalid/python/1111111111111111111111111111111111111111/python-runtime-fixture.zip",
+        "source_revision": "1111111111111111111111111111111111111111",
+        "expected_byte_length": 1000,
+        "expected_artifact_sha256": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "retrieval_policy": "explicit_install_only"
+      },
+      "provenance": {
+        "creator": {"party_id": "fixture-runtime-creator", "display_name": "Fixture Runtime Creator", "role": "creator"},
+        "publisher": {"party_id": "fixture-runtime-packager", "display_name": "Fixture Runtime Packager", "role": "publisher"},
+        "packager": {"party_id": "fixture-runtime-packager", "display_name": "Fixture Runtime Packager", "role": "packager"},
+        "relationship": "different_party",
+        "publisher_packager_relationship": "same_party",
+        "transformation": "original_bytes_republished",
+        "chain": [
+          {"sequence": 0, "event": "created", "actor_party_id": "fixture-runtime-creator", "source_locator": "https://origin.example.invalid/python/1111111111111111111111111111111111111111/python-runtime-fixture.zip", "source_revision": "1111111111111111111111111111111111111111", "input": {"kind": "none"}, "output": {"byte_length": 1000, "artifact_sha256": "sha256:1111111111111111111111111111111111111111111111111111111111111111"}},
+          {"sequence": 1, "event": "packaged", "actor_party_id": "fixture-runtime-packager", "source_locator": "https://artifacts.example.invalid/python/1111111111111111111111111111111111111111/python-runtime-fixture.zip", "source_revision": "1111111111111111111111111111111111111111", "input": {"kind": "artifact", "identity": {"byte_length": 1000, "artifact_sha256": "sha256:1111111111111111111111111111111111111111111111111111111111111111"}}, "output": {"byte_length": 1000, "artifact_sha256": "sha256:1111111111111111111111111111111111111111111111111111111111111111"}}
+        ],
+        "producer_build_identity": {"producer_id": "fixture-runtime-packager", "producer_version": "1.0.0", "producer_build_id": "sha256:406a4e1975bc88b0fac5989f2591bfdf23bd8d55a0ad8a947129ecfc4b957466", "producer_source_locator": "https://builds.example.invalid/revisions/1010101010101010101010101010101010101010/source", "producer_source_revision": "1010101010101010101010101010101010101010", "build_recipe_sha256": "sha256:c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1"},
+        "evidence": {"status": "declared_unverified", "items": [{"evidence_id": "fixture-runtime-attestation", "kind": "package_attestation", "locator": "app-resource:evidence/runtime-attestation.json", "byte_length": 200, "artifact_sha256": "sha256:d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1", "review_state": "pending_external"}]}
+      },
+      "license_ref": {"license_record_id": "fixture-license-pending", "license_record_content_sha256": "sha256:248b7809e4beb7e2baee99c25ce07c7b6c94b51ab00cfbe78d39fa061e308ec6"},
+      "destination": {"kind": "managed_relative", "destination_class": "runtime_generation", "relative_path": "runtimes/python/python-runtime-fixture.zip", "path_semantics": "relative_to_selected_managed_root_never_absolute", "reparse_policy": "reject_any_reparse_or_link_intent", "collision_policy": "exact_hash_reuse_or_fail"},
+      "ownership_policy": {"kind": "managed_target", "classification": "tool_owned_only_after_verified_ledger_commit", "manifest_grants_ownership": false, "manifest_grants_delete": false, "delete_authority": "separate_ledger_containment_lease_gate", "external_mutation_policy": "forbidden", "required_proofs": ["verified_download_length_hash", "owned_transaction_commit", "ownership_ledger_entry", "handle_containment_no_reparse", "no_active_lease"]},
+      "offline_availability": {"kind": "requires_explicit_install_network", "post_install_offline_required": true, "runtime_network_install": "forbidden"},
+      "dependencies": [],
+      "disposition": {"kind": "active"}
+    },
+    {
+      "component_id": "comfy-frontend-fixture",
+      "component_version": "1.0.0",
+      "component_role": "comfy_frontend",
+      "platform": "windows",
+      "architecture": "noarch",
+      "release_state": "blocked",
+      "artifact": {"filename": "comfy-frontend-fixture.zip", "content_type": "application/zip", "byte_length": 2000, "artifact_sha256": "sha256:2222222222222222222222222222222222222222222222222222222222222222", "archive_shape": {"kind": "fixed_archive", "format": "zip", "entry_count": 20, "expanded_byte_length": 4000, "max_entry_byte_length": 1000, "entry_manifest_sha256": "sha256:a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2", "expanded_tree_sha256": "sha256:b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2", "expanded_tree_profile": "canonical_regular_files_v1", "path_policy": "canonical_relative_no_traversal_ads_device", "link_policy": "forbid_links_and_reparse"}},
+      "source": {"kind": "immutable_https", "origin_id": "fixture-frontend-origin", "locator": "https://artifacts.example.invalid/frontend/2222222222222222222222222222222222222222/comfy-frontend-fixture.zip", "source_revision": "2222222222222222222222222222222222222222", "expected_byte_length": 2000, "expected_artifact_sha256": "sha256:2222222222222222222222222222222222222222222222222222222222222222", "retrieval_policy": "explicit_install_only"},
+      "provenance": {
+        "creator": {"party_id": "fixture-frontend-creator", "display_name": "Fixture Frontend Creator", "role": "creator"},
+        "publisher": {"party_id": "fixture-frontend-packager", "display_name": "Fixture Frontend Packager", "role": "publisher"},
+        "packager": {"party_id": "fixture-frontend-packager", "display_name": "Fixture Frontend Packager", "role": "packager"},
+        "relationship": "different_party", "publisher_packager_relationship": "same_party", "transformation": "original_bytes_republished",
+        "chain": [
+          {"sequence": 0, "event": "created", "actor_party_id": "fixture-frontend-creator", "source_locator": "https://origin.example.invalid/frontend/2222222222222222222222222222222222222222/comfy-frontend-fixture.zip", "source_revision": "2222222222222222222222222222222222222222", "input": {"kind": "none"}, "output": {"byte_length": 2000, "artifact_sha256": "sha256:2222222222222222222222222222222222222222222222222222222222222222"}},
+          {"sequence": 1, "event": "packaged", "actor_party_id": "fixture-frontend-packager", "source_locator": "https://artifacts.example.invalid/frontend/2222222222222222222222222222222222222222/comfy-frontend-fixture.zip", "source_revision": "2222222222222222222222222222222222222222", "input": {"kind": "artifact", "identity": {"byte_length": 2000, "artifact_sha256": "sha256:2222222222222222222222222222222222222222222222222222222222222222"}}, "output": {"byte_length": 2000, "artifact_sha256": "sha256:2222222222222222222222222222222222222222222222222222222222222222"}}
+        ],
+        "producer_build_identity": {"producer_id": "fixture-frontend-packager", "producer_version": "1.0.0", "producer_build_id": "sha256:14144eadf2eef8e67a0e87614c13b28961920470d49816efc6156748ab8f6a29", "producer_source_locator": "https://builds.example.invalid/revisions/2020202020202020202020202020202020202020/source", "producer_source_revision": "2020202020202020202020202020202020202020", "build_recipe_sha256": "sha256:c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2"},
+        "evidence": {"status": "declared_unverified", "items": [{"evidence_id": "fixture-frontend-attestation", "kind": "package_attestation", "locator": "app-resource:evidence/frontend-attestation.json", "byte_length": 210, "artifact_sha256": "sha256:d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2", "review_state": "pending_external"}]}
+      },
+      "license_ref": {"license_record_id": "fixture-license-pending", "license_record_content_sha256": "sha256:248b7809e4beb7e2baee99c25ce07c7b6c94b51ab00cfbe78d39fa061e308ec6"},
+      "destination": {"kind": "managed_relative", "destination_class": "frontend_bundle", "relative_path": "runtimes/frontend/comfy-frontend-fixture", "path_semantics": "relative_to_selected_managed_root_never_absolute", "reparse_policy": "reject_any_reparse_or_link_intent", "collision_policy": "exact_hash_reuse_or_fail"},
+      "ownership_policy": {"kind": "managed_target", "classification": "tool_owned_only_after_verified_ledger_commit", "manifest_grants_ownership": false, "manifest_grants_delete": false, "delete_authority": "separate_ledger_containment_lease_gate", "external_mutation_policy": "forbidden", "required_proofs": ["verified_download_length_hash", "owned_transaction_commit", "ownership_ledger_entry", "handle_containment_no_reparse", "no_active_lease"]},
+      "offline_availability": {"kind": "requires_explicit_install_network", "post_install_offline_required": true, "runtime_network_install": "forbidden"},
+      "dependencies": [{"component_id": "python-runtime-fixture", "component_version": "3.12.0", "artifact_sha256": "sha256:1111111111111111111111111111111111111111111111111111111111111111", "kind": "required_runtime"}],
+      "disposition": {"kind": "active"}
+    },
+    {
+      "component_id": "local-node-fixture",
+      "component_version": "1.0.0",
+      "component_role": "local_node",
+      "platform": "windows",
+      "architecture": "noarch",
+      "release_state": "blocked",
+      "artifact": {"filename": "local-node-fixture.zip", "content_type": "application/zip", "byte_length": 3000, "artifact_sha256": "sha256:3333333333333333333333333333333333333333333333333333333333333333", "archive_shape": {"kind": "fixed_archive", "format": "zip", "entry_count": 30, "expanded_byte_length": 6000, "max_entry_byte_length": 1500, "entry_manifest_sha256": "sha256:a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3", "expanded_tree_sha256": "sha256:b3b3b3b3b3b3b3b3b3b3b3b3b3b3b3b3b3b3b3b3b3b3b3b3b3b3b3b3b3b3b3b3", "expanded_tree_profile": "canonical_regular_files_v1", "path_policy": "canonical_relative_no_traversal_ads_device", "link_policy": "forbid_links_and_reparse"}},
+      "source": {"kind": "immutable_https", "origin_id": "fixture-node-origin", "locator": "https://artifacts.example.invalid/nodes/3333333333333333333333333333333333333333/local-node-fixture.zip", "source_revision": "3333333333333333333333333333333333333333", "expected_byte_length": 3000, "expected_artifact_sha256": "sha256:3333333333333333333333333333333333333333333333333333333333333333", "retrieval_policy": "explicit_install_only"},
+      "provenance": {
+        "creator": {"party_id": "fixture-node-creator", "display_name": "Fixture Node Creator", "role": "creator"},
+        "publisher": {"party_id": "fixture-node-packager", "display_name": "Fixture Node Packager", "role": "publisher"},
+        "packager": {"party_id": "fixture-node-packager", "display_name": "Fixture Node Packager", "role": "packager"},
+        "relationship": "different_party", "publisher_packager_relationship": "same_party", "transformation": "original_bytes_republished",
+        "chain": [
+          {"sequence": 0, "event": "created", "actor_party_id": "fixture-node-creator", "source_locator": "https://origin.example.invalid/nodes/3333333333333333333333333333333333333333/local-node-fixture.zip", "source_revision": "3333333333333333333333333333333333333333", "input": {"kind": "none"}, "output": {"byte_length": 3000, "artifact_sha256": "sha256:3333333333333333333333333333333333333333333333333333333333333333"}},
+          {"sequence": 1, "event": "packaged", "actor_party_id": "fixture-node-packager", "source_locator": "https://artifacts.example.invalid/nodes/3333333333333333333333333333333333333333/local-node-fixture.zip", "source_revision": "3333333333333333333333333333333333333333", "input": {"kind": "artifact", "identity": {"byte_length": 3000, "artifact_sha256": "sha256:3333333333333333333333333333333333333333333333333333333333333333"}}, "output": {"byte_length": 3000, "artifact_sha256": "sha256:3333333333333333333333333333333333333333333333333333333333333333"}}
+        ],
+        "producer_build_identity": {"producer_id": "fixture-node-packager", "producer_version": "1.0.0", "producer_build_id": "sha256:2dd8d119d45b5bff1c46c3d127d425c1464030d8bc6971410beec9d650d9180e", "producer_source_locator": "https://builds.example.invalid/revisions/3030303030303030303030303030303030303030/source", "producer_source_revision": "3030303030303030303030303030303030303030", "build_recipe_sha256": "sha256:c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3"},
+        "evidence": {"status": "declared_unverified", "items": [{"evidence_id": "fixture-node-attestation", "kind": "package_attestation", "locator": "app-resource:evidence/node-attestation.json", "byte_length": 220, "artifact_sha256": "sha256:d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3", "review_state": "pending_external"}]}
+      },
+      "license_ref": {"license_record_id": "fixture-license-pending", "license_record_content_sha256": "sha256:248b7809e4beb7e2baee99c25ce07c7b6c94b51ab00cfbe78d39fa061e308ec6"},
+      "destination": {"kind": "managed_relative", "destination_class": "local_nodes", "relative_path": "runtimes/custom-nodes/local-node-fixture", "path_semantics": "relative_to_selected_managed_root_never_absolute", "reparse_policy": "reject_any_reparse_or_link_intent", "collision_policy": "exact_hash_reuse_or_fail"},
+      "ownership_policy": {"kind": "managed_target", "classification": "tool_owned_only_after_verified_ledger_commit", "manifest_grants_ownership": false, "manifest_grants_delete": false, "delete_authority": "separate_ledger_containment_lease_gate", "external_mutation_policy": "forbidden", "required_proofs": ["verified_download_length_hash", "owned_transaction_commit", "ownership_ledger_entry", "handle_containment_no_reparse", "no_active_lease"]},
+      "offline_availability": {"kind": "requires_explicit_install_network", "post_install_offline_required": true, "runtime_network_install": "forbidden"},
+      "dependencies": [{"component_id": "python-runtime-fixture", "component_version": "3.12.0", "artifact_sha256": "sha256:1111111111111111111111111111111111111111111111111111111111111111", "kind": "required_runtime"}],
+      "disposition": {"kind": "active"}
+    },
+    {
+      "component_id": "h3-model-fixture",
+      "component_version": "1.0.0",
+      "component_role": "model_diffusion",
+      "platform": "windows",
+      "architecture": "noarch",
+      "release_state": "blocked",
+      "artifact": {"filename": "h3-model-fixture.safetensors", "content_type": "application/vnd.safetensors", "byte_length": 4000, "artifact_sha256": "sha256:4444444444444444444444444444444444444444444444444444444444444444", "archive_shape": {"kind": "single_file", "format": "raw"}},
+      "source": {"kind": "external_match_only", "origin_id": "fixture-model-origin", "locator": "https://artifacts.example.invalid/models/4444444444444444444444444444444444444444/h3-model-fixture.safetensors", "source_revision": "4444444444444444444444444444444444444444", "expected_byte_length": 4000, "expected_artifact_sha256": "sha256:4444444444444444444444444444444444444444444444444444444444444444", "retrieval_policy": "match_only_no_retrieval"},
+      "provenance": {
+        "creator": {"party_id": "fixture-model-creator", "display_name": "Fixture Model Creator", "role": "creator"},
+        "publisher": {"party_id": "fixture-model-packager", "display_name": "Fixture Model Packager", "role": "publisher"},
+        "packager": {"party_id": "fixture-model-packager", "display_name": "Fixture Model Packager", "role": "packager"},
+        "relationship": "different_party", "publisher_packager_relationship": "same_party", "transformation": "original_bytes_republished",
+        "chain": [
+          {"sequence": 0, "event": "created", "actor_party_id": "fixture-model-creator", "source_locator": "https://origin.example.invalid/models/4444444444444444444444444444444444444444/h3-model-fixture.safetensors", "source_revision": "4444444444444444444444444444444444444444", "input": {"kind": "none"}, "output": {"byte_length": 4000, "artifact_sha256": "sha256:4444444444444444444444444444444444444444444444444444444444444444"}},
+          {"sequence": 1, "event": "packaged", "actor_party_id": "fixture-model-packager", "source_locator": "https://artifacts.example.invalid/models/4444444444444444444444444444444444444444/h3-model-fixture.safetensors", "source_revision": "4444444444444444444444444444444444444444", "input": {"kind": "artifact", "identity": {"byte_length": 4000, "artifact_sha256": "sha256:4444444444444444444444444444444444444444444444444444444444444444"}}, "output": {"byte_length": 4000, "artifact_sha256": "sha256:4444444444444444444444444444444444444444444444444444444444444444"}}
+        ],
+        "producer_build_identity": {"producer_id": "fixture-model-packager", "producer_version": "1.0.0", "producer_build_id": "sha256:7ee354ef8dae0e67d2366a939040881d82afc1cb98612a2474eea2b639ee6c9d", "producer_source_locator": "https://builds.example.invalid/revisions/4040404040404040404040404040404040404040/source", "producer_source_revision": "4040404040404040404040404040404040404040", "build_recipe_sha256": "sha256:c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4"},
+        "evidence": {"status": "declared_unverified", "items": [{"evidence_id": "fixture-model-attestation", "kind": "source_attestation", "locator": "app-resource:evidence/model-attestation.json", "byte_length": 230, "artifact_sha256": "sha256:d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4", "review_state": "pending_external"}]}
+      },
+      "license_ref": {"license_record_id": "fixture-license-pending", "license_record_content_sha256": "sha256:248b7809e4beb7e2baee99c25ce07c7b6c94b51ab00cfbe78d39fa061e308ec6"},
+      "destination": {"kind": "external_match_requirement", "destination_class": "external_read_only_reference", "selection_binding": "later_exact_model_observation_reference_required", "path_semantics": "no_path_in_manifest_external_candidate_selected_later", "reparse_policy": "later_candidate_handle_revalidation_required", "collision_policy": "exact_candidate_identity_and_artifact_hash_or_fail"},
+      "ownership_policy": {"kind": "external_match_only", "classification": "external_read_only", "manifest_grants_ownership": false, "manifest_grants_delete": false, "delete_authority": "never", "external_mutation_policy": "forbidden", "required_proofs": ["external_deletion_forbidden"]},
+      "offline_availability": {"kind": "external_presence_required", "post_install_offline_required": true, "runtime_network_install": "forbidden"},
+      "dependencies": [],
+      "disposition": {"kind": "active"}
+    },
+    {
+      "component_id": "native-helper-fixture",
+      "component_version": "1.0.0",
+      "component_role": "native_helper",
+      "platform": "windows",
+      "architecture": "x86_64",
+      "release_state": "blocked",
+      "artifact": {"filename": "native-helper-fixture.exe", "content_type": "application/vnd.microsoft.portable-executable", "byte_length": 5000, "artifact_sha256": "sha256:5555555555555555555555555555555555555555555555555555555555555555", "archive_shape": {"kind": "single_file", "format": "raw"}},
+      "source": {"kind": "embedded_app_resource", "origin_id": "fixture-helper-origin", "locator": "app-resource:private-tools/native-helper-fixture.exe", "source_revision": "5555555555555555555555555555555555555555", "expected_byte_length": 5000, "expected_artifact_sha256": "sha256:5555555555555555555555555555555555555555555555555555555555555555", "retrieval_policy": "not_retrievable_embedded"},
+      "provenance": {
+        "creator": {"party_id": "fixture-helper-creator", "display_name": "Fixture Helper Creator", "role": "creator"},
+        "publisher": {"party_id": "fixture-helper-packager", "display_name": "Fixture Helper Packager", "role": "publisher"},
+        "packager": {"party_id": "fixture-helper-packager", "display_name": "Fixture Helper Packager", "role": "packager"},
+        "relationship": "different_party", "publisher_packager_relationship": "same_party", "transformation": "compiled",
+        "chain": [
+          {"sequence": 0, "event": "created", "actor_party_id": "fixture-helper-creator", "source_locator": "app-resource:sources/native-helper-fixture", "source_revision": "5555555555555555555555555555555555555555", "input": {"kind": "none"}, "output": {"byte_length": 4500, "artifact_sha256": "sha256:8888888888888888888888888888888888888888888888888888888888888888"}},
+          {"sequence": 1, "event": "compiled", "actor_party_id": "fixture-helper-creator", "source_locator": "app-resource:builds/native-helper-fixture.exe", "source_revision": "5555555555555555555555555555555555555555", "input": {"kind": "artifact", "identity": {"byte_length": 4500, "artifact_sha256": "sha256:8888888888888888888888888888888888888888888888888888888888888888"}}, "output": {"byte_length": 5000, "artifact_sha256": "sha256:5555555555555555555555555555555555555555555555555555555555555555"}},
+          {"sequence": 2, "event": "packaged", "actor_party_id": "fixture-helper-packager", "source_locator": "app-resource:private-tools/native-helper-fixture.exe", "source_revision": "5555555555555555555555555555555555555555", "input": {"kind": "artifact", "identity": {"byte_length": 5000, "artifact_sha256": "sha256:5555555555555555555555555555555555555555555555555555555555555555"}}, "output": {"byte_length": 5000, "artifact_sha256": "sha256:5555555555555555555555555555555555555555555555555555555555555555"}}
+        ],
+        "producer_build_identity": {"producer_id": "fixture-helper-packager", "producer_version": "1.0.0", "producer_build_id": "sha256:76013f2a49559744e3b642051d85c8e999add905a4239dadba56b3a9bac35428", "producer_source_locator": "https://builds.example.invalid/revisions/5050505050505050505050505050505050505050/source", "producer_source_revision": "5050505050505050505050505050505050505050", "build_recipe_sha256": "sha256:c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5"},
+        "evidence": {"status": "declared_unverified", "items": [{"evidence_id": "fixture-helper-attestation", "kind": "package_attestation", "locator": "app-resource:evidence/helper-attestation.json", "byte_length": 240, "artifact_sha256": "sha256:d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5", "review_state": "pending_external"}]}
+      },
+      "license_ref": {"license_record_id": "fixture-license-pending", "license_record_content_sha256": "sha256:248b7809e4beb7e2baee99c25ce07c7b6c94b51ab00cfbe78d39fa061e308ec6"},
+      "destination": {"kind": "managed_relative", "destination_class": "private_tools", "relative_path": "private-tools/native-helper-fixture.exe", "path_semantics": "relative_to_selected_managed_root_never_absolute", "reparse_policy": "reject_any_reparse_or_link_intent", "collision_policy": "exact_hash_reuse_or_fail"},
+      "ownership_policy": {"kind": "managed_target", "classification": "tool_owned_only_after_verified_ledger_commit", "manifest_grants_ownership": false, "manifest_grants_delete": false, "delete_authority": "separate_ledger_containment_lease_gate", "external_mutation_policy": "forbidden", "required_proofs": ["verified_download_length_hash", "owned_transaction_commit", "ownership_ledger_entry", "handle_containment_no_reparse", "no_active_lease"]},
+      "offline_availability": {"kind": "bundled_in_app", "post_install_offline_required": true, "runtime_network_install": "forbidden"},
+      "dependencies": [],
+      "signature": {"kind": "embedded_authenticode", "scheme": "authenticode", "signer_id": "fixture-release-signer", "signed_artifact_sha256": "sha256:5555555555555555555555555555555555555555555555555555555555555555", "verification_policy": "verify_against_release_trust_store_before_materialization"},
+      "disposition": {"kind": "active"}
+    }
+  ],
+  "disposition": {"kind": "active"},
+  "integrity": {"algorithm": "sha256", "canonicalization": "rfc8785_jcs_root_integrity_omitted", "content_sha256": "sha256:a886e46ee176eee2bfbda7ba66d2c9d89a095ebc816977dddeb89e564e21dc75"}
+}

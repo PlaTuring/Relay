@@ -1,0 +1,10 @@
+{
+  "fixture_id": "public-disclosure-made-optional",
+  "mutation": {
+    "kind": "set_obligation_field",
+    "obligation_id": "public_environment_machine_generated_disclosure",
+    "field": "normative_strength",
+    "value": "optional"
+  },
+  "expected_code": "LICENSE_POLICY.PUBLIC_DISCLOSURE_STRENGTH"
+}

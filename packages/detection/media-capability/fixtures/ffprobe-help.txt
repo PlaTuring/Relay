@@ -1,0 +1,7 @@
+Simple multimedia streams analyzer
+ -show_entries entry_list  show a set of specified entries
+ -show_format       show format/container info
+ -show_streams      show streams info
+ -show_chapters     show chapters info
+ -show_programs     show programs info
+

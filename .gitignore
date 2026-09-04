@@ -1,0 +1,68 @@
+# Agent and build outputs
+artifacts/*
+!artifacts/.gitkeep
+.build-cache/
+release-v*/
+apps/control-plane/.build-cache/
+apps/control-plane/release/
+apps/control-plane/release-*/
+prototypes/**/artifacts/
+prototypes/**/work/
+prototypes/**/.cache/
+prototypes/**/.npm-cache/
+prototypes/**/release/
+prototypes/**/release-*/
+
+# Local workflow exports may contain prompts, media references, and private paths.
+apps/control-plane/工作流文件/
+
+# Local runtime/model data must never enter source control
+runtime/
+models/
+cache/
+workspace/
+downloads/
+*.relayproj
+*.partial
+*.partial.json
+
+# Generated media and checkpoints
+*.mp4
+*.mkv
+*.webm
+*.wav
+*.flac
+*.pt
+*.pth
+*.safetensors
+
+# Common tool output
+node_modules/
+dist/
+build/
+!apps/control-plane/build/
+!apps/control-plane/build/**
+coverage/
+.pytest_cache/
+__pycache__/
+*.pyc
+*.log
+
+# Local credentials and signing material
+.env*
+!.env.example
+.npmrc
+.secrets/
+*.pfx
+*.p12
+*.pem
+*.key
+
+# IDE and OS noise
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Locally built native programs are reproducible outputs, not source inputs.
+native/**/bin/

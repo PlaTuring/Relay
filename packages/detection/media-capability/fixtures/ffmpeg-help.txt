@@ -1,0 +1,4 @@
+Hyper fast Audio and Video encoder
+ -metadata[:metadata_specifier] string  add metadata
+ -map_metadata[:metadata_spec_out] outfile[,metadata]:infile[,metadata]  set metadata information
+

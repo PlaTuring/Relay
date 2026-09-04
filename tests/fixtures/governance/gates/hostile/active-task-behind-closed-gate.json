@@ -1,0 +1,1 @@
+{"fixture_id":"active-task-behind-closed-gate","mutation":{"kind":"protect_task","gate_id":"G3","task_id":"P1-APP-001"},"expected_code":"GATE.CLOSED_BYPASS"}

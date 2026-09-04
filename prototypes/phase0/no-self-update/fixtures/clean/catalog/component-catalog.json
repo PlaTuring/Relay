@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "1.0.0",
+  "catalogMode": "embedded",
+  "applicationVersion": "0.1.0-alpha.1",
+  "components": [
+    {
+      "id": "fixture-runtime",
+      "revision": "0123456789abcdef0123456789abcdef01234567",
+      "url": "https://downloads.example.invalid/by-sha256/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/runtime.zip",
+      "length": 123456,
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    }
+  ]
+}

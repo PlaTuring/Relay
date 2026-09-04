@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"source-wording-record-is-not-public-legal-approval","mutations":[{"op":"replace","path":"/records/9/eligibility/public_claim_eligible","value":true}],"expected":{"code":"CLAIM.PUBLIC_REQUIRES_PROVEN_OR_EXPERIMENTAL","instance_path":"/records/9/evidence/level","rule_id":"claim.eligibility.public.level"}}

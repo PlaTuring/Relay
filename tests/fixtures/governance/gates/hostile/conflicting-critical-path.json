@@ -1,0 +1,1 @@
+{"fixture_id":"conflicting-critical-path","mutation":{"kind":"conflicting_critical_path","claim_id":"alpha0_internal_acceptance","agent_hours":132},"expected_code":"CRITICAL_PATH.CONFLICT"}

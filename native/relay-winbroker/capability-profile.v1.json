@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "profile_id": "relay.win32.path-inspection",
+  "profile_version": "1.0.0",
+  "deployment_status": "enabled_alpha27",
+  "binary": "relay-winbroker.exe",
+  "architecture": "x64",
+  "fixed_argument_array": ["--capability-profile=path-inspection-v1"],
+  "transport": {
+    "kind": "inherited_anonymous_stdin_stdout",
+    "control_frame": "MH3W/1",
+    "diagnostic_stream": false,
+    "network": false,
+    "shell": false
+  },
+  "enabled_operations": [
+    {
+      "opcode": 257,
+      "name": "inspect_volume_candidate",
+      "mutation": false,
+      "request_fields": ["candidate_kind", "candidate_path", "require_fixed_local", "required_filesystem"]
+    },
+    {
+      "opcode": 258,
+      "name": "validate_path_identity",
+      "mutation": false,
+      "request_fields": ["candidate_path", "mutation_policy", "purpose"]
+    }
+  ],
+  "reserved_not_enabled_opcodes": [259, 513, 514, 769, 770, 771],
+  "unknown_or_reserved_operation_policy": "fail_closed",
+  "frozen_future_contract": "../win32-helper/spec/abi-manifest.v1.json",
+  "forbidden_surfaces": [
+    "arbitrary_process_launch",
+    "comfy_queue",
+    "download",
+    "filesystem_mutation",
+    "media_generation",
+    "network",
+    "prompt_endpoint",
+    "shell"
+  ]
+}

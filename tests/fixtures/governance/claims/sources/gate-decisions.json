@@ -1,0 +1,54 @@
+{
+  "source_document_version": "1.0.0",
+  "source_id": "SRC-SYNTH-GATE-DECISIONS",
+  "source_kind": "gate_decision_pack",
+  "publisher": "synthetic-governance-fixture",
+  "immutable_revision": "fixture:gate-decisions-r1",
+  "decisions": [
+    {
+      "decision_id": "DEC-SYNTH-EXT-CLOSED",
+      "gate_id": "EXT-SYNTH-DISTRIBUTION",
+      "gate_type": "external",
+      "requirement_keys": [
+        "req-synth-proven-stable",
+        "req-synth-experimental",
+        "req-synth-proven-expired",
+        "req-synth-proven-revoked"
+      ],
+      "owner_type": "external_owner",
+      "state": "closed",
+      "decided_at_utc": "2026-08-26T00:00:00.000Z",
+      "expires_at_utc": "2027-08-27T00:00:00.000Z"
+    },
+    {
+      "decision_id": "DEC-SYNTH-HUM-CLOSED",
+      "gate_id": "HUM-SYNTH-REVIEW",
+      "gate_type": "human",
+      "requirement_keys": ["req-synth-proven-stable", "req-synth-experimental"],
+      "owner_type": "human_owner",
+      "state": "closed",
+      "decided_at_utc": "2026-08-26T00:00:00.000Z",
+      "expires_at_utc": "2027-08-27T00:00:00.000Z"
+    },
+    {
+      "decision_id": "DEC-SYNTH-HUM-AGENT-INVALID",
+      "gate_id": "HUM-SYNTH-REVIEW",
+      "gate_type": "human",
+      "requirement_keys": ["req-synth-proven-stable"],
+      "owner_type": "agent",
+      "state": "closed",
+      "decided_at_utc": "2026-08-26T00:00:00.000Z",
+      "expires_at_utc": "2027-08-27T00:00:00.000Z"
+    },
+    {
+      "decision_id": "DEC-SYNTH-HUM-EXPIRED",
+      "gate_id": "HUM-SYNTH-REVIEW",
+      "gate_type": "human",
+      "requirement_keys": ["req-synth-proven-stable"],
+      "owner_type": "human_owner",
+      "state": "closed",
+      "decided_at_utc": "2026-08-25T00:00:00.000Z",
+      "expires_at_utc": "2026-08-27T11:00:00.000Z"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"unknown-auto-install-field","base":"valid/component-role-examples.json","mutations":[{"op":"add","path":"/components/0/auto_install","value":true}],"expected":{"code":"CONTRACT.UNKNOWN_FIELD","instance_path":"/components/0/auto_install","rule_id":"component.object.closed"}}

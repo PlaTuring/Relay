@@ -1,0 +1,11 @@
+{
+  "fixture_id": "brand-absence-removes-disclosure",
+  "mutation": {
+    "kind": "set_case_active_layers",
+    "case_id": "brand-asset-absent-no-op",
+    "active_layers": [
+      "minimax_h3_attribution"
+    ]
+  },
+  "expected_code": "CASE.BRAND_ABSENCE_REMOVES_PROTECTED"
+}

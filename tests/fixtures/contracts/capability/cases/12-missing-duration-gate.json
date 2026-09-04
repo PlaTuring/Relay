@@ -1,0 +1,7 @@
+{
+  "fixture_case_version": "1.0.0",
+  "case_id": "duration-gate-is-independent",
+  "base": "valid/alpha0-t2va-capability.json",
+  "mutations": [{"op": "remove", "path": "/capabilities/0/gates/duration"}],
+  "expected": {"code": "CAPABILITY.GATE_REQUIRED", "instance_path": "/capabilities/0/gates/duration", "rule_id": "capability.feature.duration.required"}
+}

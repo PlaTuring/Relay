@@ -1,0 +1,1 @@
+{"fixture_case_version":"1.0.0","case_id":"output-identity-drift","base":"valid/alpha0-poc-pending-recipe.json","mutations":[{"op":"replace","path":"/profile/output/requested_seconds","value":10}],"expected":{"code":"RECIPE.OUTPUT_IDENTITY_DRIFT","instance_path":"/profile/output","rule_id":"recipe.output.capability_gates_exact"}}
