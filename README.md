@@ -9,7 +9,6 @@
   <img alt="Windows 10 / 11 x64" src="https://img.shields.io/badge/Windows-10%20%7C%2011%20x64-0078D4?style=flat-square&logo=windows11&logoColor=white">
   <img alt="Local first" src="https://img.shields.io/badge/data-local--first-0F766E?style=flat-square">
   <img alt="Apache 2.0" src="https://img.shields.io/badge/license-Apache--2.0-0F766E?style=flat-square">
-  <a href="https://github.com/PlaTuring/Relay/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/PlaTuring/Relay/actions/workflows/ci.yml/badge.svg"></a>
 </p>
 
 <p align="center"><strong>准备本机环境，管理项目与素材，编译可编辑工作流，再清楚地交接给 ComfyUI。</strong></p>
