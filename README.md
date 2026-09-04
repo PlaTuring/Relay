@@ -25,10 +25,10 @@
 ## 界面导览
 
 <p align="center">
-  <img src="./docs/images/relay-workspace-overview.svg" alt="Relay 1.0.2 专业导播工作区界面导览" width="100%">
+  <img src="./docs/images/relay-professional-director.png" alt="Relay 1.0.2 专业导播实际界面" width="100%">
 </p>
 
-<p align="center"><sub>无用户数据的界面导览示意：项目设置、镜头编排、工作流参数与 ComfyUI 交接检查。</sub></p>
+<p align="center"><sub>Relay 1.0.2 软件实际界面：专业导播的项目设置、生成参数与镜头工作区。</sub></p>
 
 ## Relay 是什么
 
